@@ -4,7 +4,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href='/resources/materialize/css/materialize.css'/>
     <link rel="stylesheet" type="text/css" href='/resources/css/style.css'/>
-
     <meta charset="utf-8">
     <title>Home</title>
 </head>
