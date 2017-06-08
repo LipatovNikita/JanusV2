@@ -1,8 +1,22 @@
-.header-white {
-    background-color: #d3d3d3;
+.header-color {
+    background-color: #E8B51B;
 !important;
     color: #343434;
 !important;
+}
+
+.btn {
+    background-color: #241A00;
+!important
+}
+
+.btn:focus, .btn-large:focus,
+.btn-floating:focus {
+    background-color: #403000; !important
+}
+
+.btn:hover, .btn-large:hover {
+    background-color: #403000; !important
 }
 
 body {
@@ -24,13 +38,12 @@ img {
 }
 
 .picbackground {
-    background: url('/resources/images/fon.jpg');
-!important;
-    background-repeat: repeat;
+    background: #403000;
 }
 
 .block-white {
     background: white;
+    margin-buttom: 5%;
     padding: 5%;
 }
 
