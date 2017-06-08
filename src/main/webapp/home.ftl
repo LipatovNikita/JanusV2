@@ -2,13 +2,14 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <link rel="stylesheet" type="text/css" href='/resources/css/style.css'/>
     <link rel="stylesheet" type="text/css" href='/resources/materialize/css/materialize.css'/>
+    <link rel="stylesheet" type="text/css" href='/resources/css/style.css'/>
+
     <meta charset="utf-8">
     <title>Home</title>
 </head>
 <body>
-<nav class="nav header-white">
+<nav class="nav header-color">
     <ul id="nav">
         <ul id="nav" class="left">
             <li><a href="">Janus</a></li>

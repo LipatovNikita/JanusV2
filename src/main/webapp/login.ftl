@@ -2,19 +2,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href='/resources/css/style.css'/>
     <link rel="stylesheet" type="text/css" href='/resources/materialize/css/materialize.css'/>
+    <link rel="stylesheet" type="text/css" href='/resources/css/style.css'/>
+
     <meta charset="utf-8">
     <title>Home</title>
 </head>
 <body class="picbackground">
-<nav class="nav header-white">
-    <ul id="nav" class="right">
+<nav class="nav header-color">
+    <ul id="nav">
         <ul id="nav" class="left">
             <li><a href="">Janus</a></li>
-            <li><a href="">Information</a></li>
+            <li><a href="">Информация</a></li>
         </ul>
-        <li><a href="">Login</a></li>
+        <ul id="nav" class="right">
+        <#if !currentUser??>
+            <li><a href="/login">Войти</a></li>
+        </#if>
+        <#if currentUser??>
+            <li>
+                <form action="/logout" method="post">
+                    <button type="submit">Выйти</button>
+                </form>
+            </li>
+        </#if>
+        </ul>
     </ul>
 </nav>
 <div class="section picbackground">
@@ -41,7 +53,7 @@
 
                             </div>
                             <div class="right-align">
-                                <button class="btn waves-effect waves-light" type="submit" name="action">Войти</button>
+                                <button class="btn" type="submit" name="action">Войти</button>
                             </div>
 
                         </div>
@@ -70,7 +82,7 @@
                         </div>
                         <br/>
                         <div class="right-align">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Войти</button>
+                            <button class="btn" type="submit" name="action">Войти</button>
                         </div>
                     </form>
                 </div>
