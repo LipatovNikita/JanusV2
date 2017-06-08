@@ -1,0 +1,81 @@
+.header-color {
+    background-color: #E8B51B;
+!important;
+    color: #343434;
+!important;
+}
+
+.btn {
+    background-color: #241A00;
+!important
+}
+
+.btn:focus, .btn-large:focus,
+.btn-floating:focus {
+    background-color: #403000; !important
+}
+
+.btn:hover, .btn-large:hover {
+    background-color: #403000; !important
+}
+
+body {
+    background-color: white;
+}
+
+.section {
+    margin: 5% 3%;
+}
+
+h5 {
+    text-align: justify;
+}
+
+img {
+    max-height: 100%;
+    max-width: 100%;
+    display: table;
+}
+
+.picbackground {
+    background: #403000;
+}
+
+.block-white {
+    background: white;
+    margin-buttom: 5%;
+    padding: 5%;
+}
+
+@media (min-width: 1024px) {
+    img {
+        max-height: 100%;
+        max-width: 100%;
+        display: table;
+    }
+
+    .picture-block {
+        max-width: 70%;
+    }
+
+    h5 {
+        text-align: center;
+        max-width: 80%;
+    }
+
+    .text-left {
+        padding-top: 5%;
+    }
+
+}
+
+@media (min-width: 700px) {
+    img {
+        max-height: 60%;
+    }
+
+    .picture-block {
+        max-width: 70%;
+        margin-right: 0;
+    }
+}
