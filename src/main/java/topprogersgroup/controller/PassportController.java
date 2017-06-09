@@ -29,9 +29,10 @@ public class PassportController{
     @RequestMapping(value = { "/edit" }, method = RequestMethod.GET)
     public String editPassport(Model model) {
         Passport passport = new Passport();
+        passport.setId(10);
         passport.setPetName("Vaska");
         passport.setAnimalType("Cat");
-//        passport.setGender('Ж');
+        passport.setGender(true);
         passport.setBreed("Siam");
         passport.setColor("White");
         Date dateOfBirth = new Date();
@@ -51,10 +52,23 @@ public class PassportController{
         return "passport/passport";
     }
 
+    @RequestMapping(value = { "/fastpassport" }, method = RequestMethod.GET)
+    public String fastPassport(Model model) {
+        Passport passport = new Passport();
+
+        model.addAttribute("passport", passport);
+        return "passport/fastpassport";
+    }
+
+
     @RequestMapping(value = { "/edit" }, method = RequestMethod.POST)
     public String editPassport(Model model, @ModelAttribute("passport") Passport passport, BindingResult bindingResult) {
         if(passport != null){
             System.out.println("Паспорт не пустой");
+        }
+        if(!passport.isMicrochipTattoo()){
+            passport.setDateOfImplantation(null);
+            passport.setNumberMicrochipTattoo(null);
         }
         model.addAttribute("passport", passport);
         return "passport/passport";
@@ -73,6 +87,10 @@ public class PassportController{
 //
 //            return "/addPassport";
 //        }
+        if(!passport.isMicrochipTattoo()){
+            passport.setDateOfImplantation(null);
+            passport.setNumberMicrochipTattoo(null);
+        }
         Passport p = passport;
         String error = "First Name & Last Name is required!";
         model.addAttribute("errorMessage", error);

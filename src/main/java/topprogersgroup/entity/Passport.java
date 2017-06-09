@@ -19,8 +19,8 @@ public class Passport {
     @Column(name = "animalType", nullable = false)
     private String animalType;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "pet_name", nullable = false)
+    private String petName;
 
     //пол
     @Column(name = "gender", nullable = false)
