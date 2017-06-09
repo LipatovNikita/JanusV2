@@ -19,11 +19,7 @@
             <li><a href="/login">Войти</a></li>
         </#if>
         <#if currentUser??>
-            <li>
-                <form action="/logout" method="post">
-                    <button type="submit">Выйти</button>
-                </form>
-            </li>
+
         </#if>
         </ul>
     </ul>
