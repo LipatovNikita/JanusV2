@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import java.util.NoSuchElementException;
 
 @Controller
+@RequestMapping("/admin")
 public class UserController {
 
     @Autowired

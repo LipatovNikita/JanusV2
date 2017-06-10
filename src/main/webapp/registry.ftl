@@ -16,32 +16,27 @@
         <div class="col s12 l6">
             <div class="card white">
                 <div class="card-content black-text">
-                    <h4 class="light">Вход</h4>
+                    <h4 class="light">Регистрация</h4>
                     <br/>
-                    <form role="form" action="/login" method="post">
+                    <form role="form" action="/registation" method="post">
                         <div>
                             <label for="email">Адрес электронной почты</label>
-                            <input type="email" name="email" id="email" required autofocus/>
+                            <input type="email" name="email" id="email_reg" required/>
                         </div>
                         <div>
                             <label for="password">Пароль</label>
-                            <input type="password" name="password" id="password" required/>
+                            <input type="password" name="password" id="password_reg" required/>
+                        </div>
+                        <div>
+                            <label for="password">Повторите пароль</label>
+                            <input type="password" name="password" id="password_reg_repeat" required/>
                         </div>
                         <br/>
-                        <div class="row">
-                            <div class="col s5 m4">
-                                <input type="checkbox" name="remember-me" id="remember-me"/>
-                                <label for="remember-me">Запомнить меня</label>
-
-                            </div>
-                            <div class="right-align">
-                                <button class="btn" type="submit" name="action">Войти</button>
-                            </div>
-
+                        <div class="right-align">
+                            <button class="btn" type="submit" name="action">Войти</button>
                         </div>
                     </form>
                 </div>
-                <br/>
             </div>
         </div>
     </div>

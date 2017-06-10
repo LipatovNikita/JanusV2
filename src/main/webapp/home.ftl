@@ -1,4 +1,6 @@
 <#-- @ftlvariable name="currentUser" type="topprogersgroup.entity.CurrentUser" -->
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,26 +11,9 @@
     <title>Home</title>
 </head>
 <body>
-<nav class="nav header-color">
-    <ul id="nav">
-        <ul id="nav" class="left">
-            <li><a href="">Janus</a></li>
-            <li><a href="">Информация</a></li>
-        </ul>
-        <ul id="nav" class="right">
-        <#if !currentUser??>
-            <li><a href="/login">Войти</a></li>
-        </#if>
-        <#if currentUser??>
-            <li>
-                <form action="/logout" method="post">
-                    <button type="submit">Выйти</button>
-                </form>
-            </li>
-        </#if>
-        </ul>
-    </ul>
-</nav>
+
+<#include "/template/navbar.ftl">
+
 <div class="section">
     <br/>
     <br/>
@@ -45,6 +30,7 @@
             </h5>
         </div>
     </div>
+
 </div>
 </body>
 </html>
