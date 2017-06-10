@@ -9,7 +9,6 @@
 </head>
 <body class="picbackground">
 <#include "/template/navbar.ftl">
-
 <div class="section picbackground">
     <div class="row">
         <div class="col s12 l6">
@@ -36,7 +35,6 @@
                             <div class="right-align">
                                 <button class="btn" type="submit" name="action">Войти</button>
                             </div>
-
                         </div>
                     </form>
                 </div>
@@ -45,7 +43,6 @@
         </div>
     </div>
 </div>
-
 <#--<#if error.isPresent()>
 <p>Допущена ошибка либо в адресе электронной почты, либо в пароле</p>
 </#if>-->

@@ -10,10 +10,7 @@
     <title>Home</title>
 </head>
 <body>
-
-
 <#include "/template/navbar.ftl">
-
 <div class="section">
     <br/>
     <br/>
