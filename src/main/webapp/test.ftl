@@ -4,7 +4,9 @@
 <head>
     <link rel="stylesheet" type="text/css" href='/resources/materialize/css/materialize.css'/>
     <link rel="stylesheet" type="text/css" href='/resources/css/style_child.css'/>
+
     <script src="/resources/js/jquery-3.2.1.js"></script>
+
     <script src="/resources/js/ajax_content.js"></script>
     <meta charset="utf-8">
     <title>Home</title>
