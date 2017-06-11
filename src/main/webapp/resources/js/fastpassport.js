@@ -14,10 +14,11 @@ $(document).ready(function () {
                 .attr('id', numberRow)
                 .insertBefore($template);
 
-        var $temp = $(document.getElementById(numberRow).children[0]),
+        var $temp = $(document.getElementById(numberRow).children[0].children[0]),
                 $elem= $temp
                     .clone()
                     .attr('value', '${quarantine.diseases[' + numberRow + ']!""}')
+                    .val($(this).data('defvalue'))
                     .insertAfter($temp);
         $temp.remove();
     })

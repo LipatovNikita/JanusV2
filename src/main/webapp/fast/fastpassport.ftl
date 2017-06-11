@@ -262,7 +262,7 @@
 
                     <div class="form-group">
                         <div class="input-field col s12">
-                            <input type="text" id="diseases" name="diseases" value="${quarantine.diseases[0]!""}"
+                            <input type="text" id="0" name="diseases" value="${quarantine.diseases[0]!""}"
                                    class="validate">
                         </div>
                         <button type="button" class="btn btn-default addButton">Добавить</button>
