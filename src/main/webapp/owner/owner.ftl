@@ -5,11 +5,6 @@
     <title>Add Pet Passport</title>
 </head>
 <body>
-<#if errorMessage??>
-<div style="color:red;font-style:italic;">
-${errorMessage}
-</div>
-</#if>
 
 <div>
     <fieldset>

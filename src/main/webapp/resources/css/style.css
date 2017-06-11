@@ -36,7 +36,9 @@ img {
     max-width: 100%;
     display: table;
 }
-
+select {
+    display: inline-block;!important;
+}
 .picbackground {
     background: #403000;
 }
@@ -79,3 +81,8 @@ img {
         margin-right: 0;
     }
 }
+
+/*body{*/
+    /*width: 50%;*/
+    /*align-content: center;*/
+/*}*/

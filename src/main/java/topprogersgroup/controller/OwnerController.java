@@ -1,5 +1,6 @@
 package topprogersgroup.controller;
 
+import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,7 +14,19 @@ import topprogersgroup.entity.Owner;
 
 @Controller
 @RequestMapping(value = "/owner")
-public class OwnerController {
+public class OwnerController  {
+
+//    private static final String PATH = "/error";
+//
+//    @RequestMapping(value = PATH)
+//    public String error() {
+//        return "Error handling";
+//    }
+//
+//    @Override
+//    public String getErrorPath() {
+//        return PATH;
+//    }
 
     @RequestMapping(value = {"/edit"}, method = RequestMethod.GET)
     public String editOwner(Model model){

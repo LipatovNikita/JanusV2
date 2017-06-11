@@ -1,10 +1,10 @@
 <#import "/spring.ftl" as spring/>
-<#assign optio = { "A": "Option A", "B": "Option B", "C": "Option C" } />
+
 
 <html>
 <head>
-    <title>Паспорт питомца</title>
-    <#--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
+    <title>Add Pet Passport</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -17,144 +17,40 @@
 <body>
 <script type="text/javascript" rel="script" src="/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" rel="script" src="/resources/materialize/js/materialize.min.js"></script>
-<#include "/template/navbar.ftl">
 
 <form name="passport" action="" method="POST">
 
-    <div class="row">
-        <div>
-            <input type="hidden" name="id" value="${passport.id}">
-        </div>
-        <div class="input-field col s6">
-            <input type="text" id="petName" name="petName" value="${passport.petName!""}" class="validate">
-            <label for="petName">Кличка</label>
-        </div>
-        <div class="input-field col s6">
-            <input type="text" id="animalType" name="animalType" value="${passport.animalType!""}" class="validate">
-            <label for="animalType">Тип питомца</label>
-        </div>
-    </div>
+    <#--<input type="checkbox" id="microchipTattoo" name="microchipTattoo"-->
+           <#--<#if passport.microchipTattoo == true>checked="checked"</#if> onclick="showHideMicrochipTattoo()"-->
+           <#--class="validate">-->
+    <#--<label for="microchipTattoo">/Тату</label>-->
+
+    <#--<div class="row">-->
+        <#--<button class="btn waves-effect waves-light" type="submit" name="action">Создать-->
+            <#--<i class="material-icons right">send</i>-->
+        <#--</button>-->
 
 
-    <div class="row">
-        <div class="input-field col s6">
-            <input type="text" id="breed" name="breed" value="${passport.breed!""}" class="validate">
-            <label for="breed">Порода</label>
-        </div>
-        <div class="input-field col s6">
-            <input type="text" id="color" name="color" value="${passport.color!""}" class="validate">
-            <label for="color">Окрас</label>
-        </div>
-    </div>
+    <#--</div>-->
+    <#--<input type="submit" value="Созда">-->
 
-    <div class="row">
-        <div class="input-field col s3">
-            <input type="text" id="dateOfBirth" name="dateOfBirth" <#--value="${passport.dateOfBirth?string("dd/MM/yyyy")}"-->
-                   class="validate">
-            <label for="dateOfBirth">Дата рождения</label>
-        </div>
-
-        <div class="input-field col s3">
-            <div class="switch">
-                <label>
-                    Ж
-                    <input type="checkbox" id="gender" name="gender"
-                           <#if passport.gender == true>checked="checked"</#if>>
-                    <span class="lever"></span>
-                    М
-                </label>
-            </div>
-
-            <label style="padding-left: 10px;" for="genderLabel">Пол</label>
-        </div>
-
-        <div class="col s3">
-            <div class="switch">
-                <label>
-                    Чип
-                    <input type="checkbox" id="microchipTattoo" name="microchipTattoo"
-                           <#if passport.microchipTattoo == true>checked="checked"</#if>>
-                    <span class="lever"></span>
-                    Тату
-                </label>
-            </div>
-        </div>
-        <div class="input-field col s3">
-            <input type="checkbox" id="castrationSterilization" name="castrationSterilization"
-                   <#if passport.castrationSterilization == true>checked="checked"</#if> class="validate">
-            <label for="castrationSterilization">Кастрация/Стерилизация</label>
-        </div>
-    </div>
-
-    <div class="row microchipTattooShower">
-        <div class="input-field col s6">
-            <input type="text" id="numberMicrochipTattoo" name="numberMicrochipTattoo"
-                   value="${passport.numberMicrochipTattoo!""}" class="validate">
-            <label for="numberMicrochipTattoo">Номер чипа/тату</label>
-        </div>
-        <div class="input-field col s6">
-            <input type="text" id="dateOfImplantation" name="dateOfImplantation"
-                   <#--value="${passport.dateOfImplantation?string("dd/MM/yyyy")}"--> class="validate">
-        <#--<label for="dateOfImplantation">Дата чипирования/татуирования</label>-->
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="input-field col s6">
-            <input type="text" id="clinic" name="clinic" value="${passport.clinic!""}" class="validate">
-            <label for="clinic">Клиника</label>
-        </div>
-        <div class="input-field col s6">
-            <input type="text" id="doctor" name="doctor" value="${passport.doctor!""}" class="validate">
-            <label for="doctor">Доктор</label>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="input-field col s12">
-            <input type="text" id="offspring" name="offspring" value="${passport.offspring!""}" class="validate">
-            <label for="offspring">Потомство</label>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="specialFeatures" name="specialFeatures"
-                          class="materialize-textarea">${passport.specialFeatures!""}</textarea>
-                <label for="specialFeatures">Специальные признаки</label>
-            </div>
-        </div>
-
-        <div class="row">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Создать
-                <i class="material-icons right">send</i>
-            </button>
-        </div>
-
-        <input type="submit" value="Созда">
-
+    <#--<script>-->
+        <#--function showHideMicrochipTattoo() {-->
+            <#--if ($("#microchipTattoo").is(':checked')) {-->
+                <#--$(".microchipTattooShower").first().show("fast", function showNext() {-->
+                    <#--$(this).next(".microchipTattooShower").show("fast", showNext);-->
+                <#--});-->
+            <#--} else {-->
+                <#--$(".microchipTattooShower").hide(1000);-->
+            <#--}-->
+        <#--}-->
+    <#--</script>-->
 </form>
-
-
 </body>
-
 </html>
 
 
 
-
-
-<#--<p id="genderLabel">-->
-<#--<#if passport.gender=='М'>-->
-<#--<input type="radio" name="gender" id="gender1" checked="checked"/>-->
-<#--<label for="gender1">М</label>-->
-<#--<input type="radio" name="gender" id="gender2"/>-->
-<#--<label for="gender2">Ж</label>-->
-<#--<#else>-->
-<#--<input type="radio" name="gender" id="gender1" value=""/>-->
-<#--<label for="gender1">М</label>-->
-<#--<input type="radio" name="gender" id="gender2" checked="checked"/>-->
-<#--<label for="gender2">Ж</label>-->
-<#--</#if>-->
-<#--</p>-->
 
 <#--@Column(name = "animalType", nullable = false)-->
 <#--private String animalType;-->
