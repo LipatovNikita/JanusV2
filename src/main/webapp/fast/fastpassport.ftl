@@ -159,7 +159,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input type="text" id="phoneNumber" name="phoneNumber" value="${owner.phoneNumber!""}">
-                        <label for="phoneNumber">phoneNumber</label>
+                        <label for="phoneNumber">Номер телефона</label>
                     </div>
                 </div>
             </div>
@@ -252,14 +252,12 @@
                         </div>
                         <button type="button" class="btn btn-default addButton">Добавить</button>
                     </div>
-                    <div id="diseasesTemplate">
-                        <div class="form-group">
+                        <div class="form-group hide" id="diseasesTemplate">
                             <div class="input-field col s12">
                                 <input type="text" name="diseases" value="${quarantine.diseases!""}" class="validate">
                             </div>
                             <button type="button" class="btn btn-default removeButton">Удалить</button>
                         </div>
-                    </div>
                 </div>
                     <div class="input-field col s6">
                         <input type="text" id="laboratory" name="laboratory" value="${quarantine.laboratory!""}"
