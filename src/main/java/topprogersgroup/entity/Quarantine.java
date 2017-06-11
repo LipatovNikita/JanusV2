@@ -26,5 +26,5 @@ public class Quarantine {
     private Address addressOfLaboratory;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "quarantine")
-    List<Disease> diseases;
+    private List<Disease> diseases;
 }

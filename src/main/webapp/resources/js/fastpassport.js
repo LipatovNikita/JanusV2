@@ -11,7 +11,15 @@ $(document).ready(function () {
                 .removeClass('hide')
                 .removeAttr('id')
                 .attr('iddiseases', numberRow)
+                .attr('id', numberRow)
                 .insertBefore($template);
+
+        var $temp = $(document.getElementById(numberRow).children[0]),
+                $elem= $temp
+                    .clone()
+                    .attr('value', '${quarantine.diseases[' + numberRow + ']!""}')
+                    .insertAfter($temp);
+        $temp.remove();
     })
 
         .on('click', '.removeButton', function () {

@@ -10,6 +10,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import topprogersgroup.entity.*;
 
+import java.util.ArrayList;
+
 /**
  * Created by VP on 10.06.2017.
  */
@@ -25,6 +27,7 @@ public class FastController {
         Address address = new Address();
         ImmunizationDeworming immunization = new ImmunizationDeworming();
         Quarantine quarantine = new Quarantine();
+        quarantine.setDiseases(new ArrayList<>());
         model.addAttribute("passport", passport);
         model.addAttribute("owner", owner);
         model.addAttribute("address", address);
@@ -39,14 +42,13 @@ public class FastController {
                        @ModelAttribute("passport")Passport passport,
                        @ModelAttribute("quarantine")Quarantine quarantine,
                        @ModelAttribute("immunization")ImmunizationDeworming immunization,
-                     /*  @ModelAttribute("file") MultipartFile file,
-                       RedirectAttributes redirectAttributes,*/
-                       @ModelAttribute("address")Address address){
+                       @ModelAttribute("address")Address address,
+                       @RequestParam("file") MultipartFile file){
         Passport p = passport;
         Owner o = owner;
         Address a = address;
-     /*   MultipartFile f = file;
-        RedirectAttributes attributes = redirectAttributes;*/
+        MultipartFile f = file;
+
         ImmunizationDeworming i = immunization;
         Quarantine q =  quarantine;
         model.addAttribute("passport", p);
