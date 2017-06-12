@@ -19,27 +19,36 @@
     <div class="col s12 m4">
         <h3 class="light">Паспорт "Кличка"</h3>
     </div>
-    <ul class="pgwSlider">
-        <li><img src="/resources/test.jpg" alt="Заголовок из alt атрибута"></li>
-        <li><img src="/resources/test.jpg" alt="Заголовок из alt атрибута"></li>
-        <li>
-            <img src="/resources/test.jpg" alt="">
-            <span>Заголовок из тега span</span>
-        </li>
-        <li>
-            <img src="/resources/test.jpg" alt="">
-            <span>Заголовок из тега span</span>
+    <div class="row">
+        <div class="col s6">
+            <ul class="pgwSlider">
+                <li><img src="/resources/test.jpg" alt="Заголовок из alt атрибута"></li>
+                <li><img src="/resources/test.jpg" alt="Заголовок из alt атрибута"></li>
+                <li>
+                    <img src="/resources/test.jpg" alt="">
+                    <span>Заголовок из тега span</span>
+                </li>
+                <li>
+                    <img src="/resources/test.jpg" alt="">
+                    <span>Заголовок из тега span</span>
 
-        </li>
-        <li>
-            <img src="/resources/test.jpg" alt="">
-            <span>Заголовок из тега span</span>
-        </li>
-        <li>
-            <img src="/resources/test1.jpg" alt="">
-            <span>Заголовок из тега span</span>
-        </li>
-    </ul>
+                </li>
+                <li>
+                    <img src="/resources/test.jpg" alt="">
+                    <span>Заголовок из тега span</span>
+                </li>
+                <li>
+                    <img src="/resources/test1.jpg" alt="">
+                    <span>Заголовок из тега span</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col s6">
+            Здесь переключающаяся панельска с данными, чтобы можно было сверить сотруднику
+            Collapsible первый самый вроде бы неплохо
+        </div>
+    </div>
 </div>
 <footer>
     footer
