@@ -17,5 +17,31 @@
 <script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
 <#include "/template/navbar.ftl">
+<div class="row">
+    <div class="col s12 m6 l4">
+        <div class="card">
+            <div class="card-image">
+                <img src="/resources/test.jpg" alt=""/>
+            </div>
+            <div class="card-content">
+                <h3 class="light">Владелец</h3>
+            </div>
+            <div class="card-action">
+                <input
+            </div>
+        </div>
+    </div>
+    <div class="col l4 m6 s12">
+        <div class="card">
+            <div class="card-image">
+                <img src="/resources/test.jpg" alt=""/>
+            </div>
+            <div class="card-content">
+                <h3 class="light">Владелец</h3>
+            </div>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>

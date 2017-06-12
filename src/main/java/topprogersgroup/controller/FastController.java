@@ -24,13 +24,13 @@ public class FastController {
     public String fast(Model model){
         Passport passport = new Passport();
         Owner owner = new Owner();
-        Address address = new Address();
+       // Address address = new Address();
         ImmunizationDeworming immunization = new ImmunizationDeworming();
         Quarantine quarantine = new Quarantine();
         quarantine.setDiseases(new ArrayList<>());
         model.addAttribute("passport", passport);
         model.addAttribute("owner", owner);
-        model.addAttribute("address", address);
+     //   model.addAttribute("address", address);
         model.addAttribute("quarantine", quarantine);
         model.addAttribute("immunization", immunization);
         return "fast/fastpassport";
@@ -42,11 +42,11 @@ public class FastController {
                        @ModelAttribute("passport")Passport passport,
                        @ModelAttribute("quarantine")Quarantine quarantine,
                        @ModelAttribute("immunization")ImmunizationDeworming immunization,
-                       @ModelAttribute("address")Address address,
+                  //     @ModelAttribute("address")Address address,
                        @RequestParam("file") MultipartFile file){
         Passport p = passport;
         Owner o = owner;
-        Address a = address;
+      //  Address a = address;
         MultipartFile f = file;
 
         ImmunizationDeworming i = immunization;
@@ -54,7 +54,7 @@ public class FastController {
         model.addAttribute("passport", p);
         model.addAttribute("quarantine", q);
         model.addAttribute("owner", o);
-        model.addAttribute("address", a);
+       // model.addAttribute("address", a);
         model.addAttribute("immunization", i);
         return "fast/fastpassport";
     }

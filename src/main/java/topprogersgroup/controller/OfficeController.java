@@ -35,6 +35,6 @@ public class OfficeController {
     public String getDocumentPage(Model model) {
         Pet pet = new Pet(); // достать по id
         model.addAttribute("pet", pet);
-        return "/office/pet";
+        return "/office/";
     }
 }
