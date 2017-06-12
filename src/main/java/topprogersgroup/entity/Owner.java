@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -40,4 +41,11 @@ public class Owner {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "owner")
     private Passport passport;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pet> pet;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
