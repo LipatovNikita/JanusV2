@@ -159,7 +159,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input type="text" id="phoneNumber" name="phoneNumber" value="${owner.phoneNumber!""}">
-                        <label for="phoneNumber">phoneNumber</label>
+                        <label for="phoneNumber">Номер телефона</label>
                     </div>
                 </div>
             </div>
@@ -244,24 +244,7 @@
 
         <div id="block_quarantine" class="col s12">
             <div class="center-block">
-                <div class="row">
-                    <div class="form-group">
-                        <div class="input-field col s12">
-                            <input type="text" id="diseases" name="diseases" value="${quarantine.diseases!""}"
-                                   class="validate">
-                        </div>
-                        <button type="button" class="btn btn-default addButton">Добавить</button>
-                    </div>
-                    <div id="diseasesTemplate">
-                        <div class="form-group">
-                            <div class="input-field col s12">
-                                <input type="text" name="diseases" value="${quarantine.diseases!""}" class="validate">
-                            </div>
-                            <button type="button" class="btn btn-default removeButton">Удалить</button>
-                        </div>
-                    </div>
-                </div>
-                    <div class="input-field col s6">
+                <div class="input-field col s6">
                         <input type="text" id="laboratory" name="laboratory" value="${quarantine.laboratory!""}"
                                class="validate">
                         <label for="laboratory">Лаборатория</label>
@@ -274,14 +257,32 @@
                         <label for="numberOfDays">Количество дней</label>
                     </div>
                 </div>
+
+                <div class="row">
+
+                    <div class="form-group">
+                        <div class="input-field col s12">
+                            <input type="text" id="0" name="diseases" value="${quarantine.diseases[0]!""}"
+                                   class="validate">
+                        </div>
+                        <button type="button" class="btn btn-default addButton">Добавить</button>
+                    </div>
+
+                    <div class="form-group hide" id="diseasesTemplate">
+                        <div class="input-field col s12">
+                            <input type="text" name="diseases" value="" class="validate">
+                        </div>
+                        <button type="button" class="btn btn-default removeButton">Удалить</button>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div id="block_download" class="col s12">
-            <div class="center-block">
-            <#--  <input type="file" multiple name="file" /><br/><br/>
-                <input type="submit" value="Submit" />-->
-            </div>
+        <#--    <div class="center-block">
+                File to upload: <input type="file" name="file" multiple><br /> Name: <input
+                    type="text" name="name"><br /> <br />
+            </div>-->
         </div>
     </div>
 </form>
