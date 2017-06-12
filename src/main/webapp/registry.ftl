@@ -10,7 +10,6 @@
 </head>
 <body class="picbackground">
 <#include "/template/navbar.ftl">
-
 <div class="section picbackground">
     <div class="row">
         <div class="col s12 l6">
@@ -41,7 +40,6 @@
         </div>
     </div>
 </div>
-
 <#--<#if error.isPresent()>
 <p>Допущена ошибка либо в адресе электронной почты, либо в пароле</p>
 </#if>-->

@@ -1,19 +1,31 @@
-$( "#owner" ).click(function() {
-    alert( "Handler for .click() called." );
+$(document).ready(function () {
+    $('select').material_select();
 });
+$(document).ready(function () {
+    var numberRow = 0;
+    $('#block_quarantine').on('click', '.addButton', function () {
+        numberRow++;
+        var $template = $('#diseasesTemplate'),
+            $clone = $template
+                .clone()
+                .removeClass('hide')
+                .removeAttr('id')
+                .attr('iddiseases', numberRow)
+                .attr('id', numberRow)
+                .insertBefore($template);
 
-$( "#passport" ).click(function() {
-    alert( "Handler for .click() called." );
-});
+        var $temp = $(document.getElementById(numberRow).children[0].children[0]),
+                $elem= $temp
+                    .clone()
+                    .attr('value', '${quarantine.diseases[' + numberRow + ']!""}')
+                    .val($(this).data('defvalue'))
+                    .insertAfter($temp);
+        $temp.remove();
+    })
 
-$( "#immunizationDeworming" ).click(function() {
-    alert( "Handler for .click() called." );
-});
-
-$( "#vaccination" ).click(function() {
-    alert( "Handler for .click() called." );
-});
-
-$( "#pet" ).click(function() {
-    alert( "Handler for .click() called." );
+        .on('click', '.removeButton', function () {
+            var $row = $(this).parents('.form-group'),
+                index = $row.attr('iddiseases');
+            $row.remove();
+        });
 });

@@ -36,7 +36,9 @@ img {
     max-width: 100%;
     display: table;
 }
-
+select {
+    display: inline-block;!important;
+}
 .picbackground {
     background: #403000;
 }
