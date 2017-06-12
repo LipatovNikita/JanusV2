@@ -23,7 +23,7 @@ public class ImmunizationDeworming {
     private Date date;
 
     @Column(name = "name", nullable = false)
-    private String name;
+    private String imName;
 
     @Column(name = "drug", nullable = false)
     private String drug;

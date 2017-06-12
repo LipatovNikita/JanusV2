@@ -50,7 +50,7 @@ public class PassportController {
         passport.setBreed("Siam");
         passport.setColor("White");
         Date dateOfBirth = new Date();
-        dateOfBirth.setTime(dateOfBirth.getTime() - 10000000);
+        dateOfBirth.setTime(dateOfBirth.getTime() - 1000000000);
         passport.setDateOfBirth(dateOfBirth);
         passport.setOffspring("2 cat");
         passport.setClinic("Good hand");
@@ -59,7 +59,7 @@ public class PassportController {
         passport.setMicrochipTattoo(true);
         passport.setNumberMicrochipTattoo("87568hs8a");
         Date dateOfImplantation = new Date();
-        dateOfImplantation.setTime(dateOfImplantation.getTime() - 100000);
+        dateOfImplantation.setTime(dateOfImplantation.getTime() - 1000000);
         passport.setDateOfImplantation(dateOfImplantation);
         passport.setPassportPhoto("/photo");
         model.addAttribute("passport", passport);
@@ -95,10 +95,6 @@ public class PassportController {
         if(passport != null){
             System.out.println("Паспорт не пустой");
         }
-        if(!passport.isMicrochipTattoo()){
-            passport.setDateOfImplantation(null);
-            passport.setNumberMicrochipTattoo(null);
-        }
         model.addAttribute("passport", passport);
         return "passport/passport";
     }
@@ -116,10 +112,7 @@ public class PassportController {
 //
 //            return "/addPassport";
 //        }
-        if(!passport.isMicrochipTattoo()){
-            passport.setDateOfImplantation(null);
-            passport.setNumberMicrochipTattoo(null);
-        }
+
         Passport p = passport;
         String error = "First Name & Last Name is required!";
         model.addAttribute("errorMessage", error);

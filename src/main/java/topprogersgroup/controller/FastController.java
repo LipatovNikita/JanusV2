@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import topprogersgroup.entity.*;
-
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -27,12 +27,15 @@ public class FastController {
         Address address = new Address();
         ImmunizationDeworming immunization = new ImmunizationDeworming();
         Quarantine quarantine = new Quarantine();
-        quarantine.setDiseases(new ArrayList<>());
+        quarantine.setDiseases(new ArrayList<Disease>());
+        List<Vaccination> vaccinations = new ArrayList<>(10);
+        Vaccination vaccination = new Vaccination();
         model.addAttribute("passport", passport);
         model.addAttribute("owner", owner);
         model.addAttribute("address", address);
         model.addAttribute("quarantine", quarantine);
         model.addAttribute("immunization", immunization);
+        model.addAttribute("vaccination", vaccination);
         return "fast/fastpassport";
     }
 
@@ -40,6 +43,7 @@ public class FastController {
     public String fast(Model model,
                        @ModelAttribute("owner")Owner owner,
                        @ModelAttribute("passport")Passport passport,
+                       @ModelAttribute("vaccination") Vaccination vaccination,
                        @ModelAttribute("quarantine")Quarantine quarantine,
                        @ModelAttribute("immunization")ImmunizationDeworming immunization,
                        @ModelAttribute("address")Address address,
