@@ -25,10 +25,9 @@ public class OfficeController {
         return "/office/mypets";
     }
 
-    @RequestMapping(value = "/mypets/", method = RequestMethod.GET)
-    public String getLoginPage(Model model) {
-        Pet pet = new Pet();
-
+    @RequestMapping(value = "/mypets/{idpet}", method = RequestMethod.GET)
+    public String getPetPage(Model model) {
+        Pet pet = new Pet(); // достать по id
         model.addAttribute("pet", pet);
         return "/office/pet";
     }
