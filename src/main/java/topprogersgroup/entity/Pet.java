@@ -5,12 +5,11 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
-//@Data
-//@Entity
-//@Table(name = "pet")
+@Data
+@Entity
+@Table(name = "pet")
 public class Pet {
-
-//    @Id
+@Id
 @GeneratedValue(strategy= GenerationType.IDENTITY)
 @Column(name = "id", unique = true, nullable = false)
 private int id;

@@ -17,6 +17,26 @@
 <script type="text/javascript" rel="script" src="/resources/js/fastpassport.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
 <#include "/template/navbar.ftl">
+<div class="center-block">
+    <div class="section">
+        <ul class="row photos">
+        <#list pets as pet>
+            <a href="/#">
+                <li class="col s12 m6 l4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="/resources/test.jpg" alt=""/>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="light"><#--${pet.passport.petName!""}--></h3>
+                        </div>
+                    </div>
+                </li>
+            </a>
+        </#list>
+        </ul>
+    </div>
+</div>
 <footer class="footer">
     footer
 </footer>
