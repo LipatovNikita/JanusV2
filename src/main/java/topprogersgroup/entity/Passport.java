@@ -78,6 +78,6 @@ public class Passport {
     @OneToMany(mappedBy = "passport", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Vaccination> vaccination;
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "passport")
     private Pet pet;
 }
