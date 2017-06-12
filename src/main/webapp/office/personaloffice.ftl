@@ -5,8 +5,8 @@
     <title>Личный кабинет</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href='/resources/materialize/css/materialize.css'/>
     <link rel="stylesheet" type="text/css" href='/resources/css/style_child.css'/>
+    <link rel="stylesheet" type="text/css" href='/resources/materialize/css/materialize.css'/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -27,7 +27,7 @@
                 <h3 class="light">Владелец</h3>
             </div>
             <div class="card-action">
-                <input
+
             </div>
         </div>
     </div>
@@ -39,7 +39,6 @@
             <div class="card-content">
                 <h3 class="light">Владелец</h3>
             </div>
-
         </div>
     </div>
 </div>
