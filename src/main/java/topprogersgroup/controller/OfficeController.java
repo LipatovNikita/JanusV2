@@ -31,4 +31,10 @@ public class OfficeController {
         model.addAttribute("pet", pet);
         return "/office/pet";
     }
+    @RequestMapping(value = "/mypets/{idpet}/doc", method = RequestMethod.GET)
+    public String getDocumentPage(Model model) {
+        Pet pet = new Pet(); // достать по id
+        model.addAttribute("pet", pet);
+        return "/office/pet";
+    }
 }

@@ -14,7 +14,7 @@
 <script type="text/javascript" rel="script" src="/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" rel="script" src="/resources/materialize/js/materialize.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/combodate.js"></script>
-<script type="text/javascript" rel="script" src="/resources/js/fastpassport.js"></script>
+<script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
 <#include "/template/navbar.ftl">
 <div class="center-block">
@@ -28,13 +28,16 @@
                     <div class="card-content">
                         <h3 class="light"><#--${pet.passport.petName!""}--></h3>
                     </div>
+                    <div class="card-action">
+                        <input
+                    </div>
                 </div>
             </div>
-            <div class="col l4 m6 s12">
 
-            </div>
         </div>
+
     </div>
+
 </div>
 <footer class="footer">
 
