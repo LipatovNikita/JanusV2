@@ -27,4 +27,7 @@ public class Quarantine {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "quarantine")
     private List<Disease> diseases;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "quarantine")
+    private Pet pet;
 }

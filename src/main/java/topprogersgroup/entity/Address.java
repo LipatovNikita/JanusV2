@@ -40,4 +40,7 @@ public class Address {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "addressOfLaboratory")
     private Quarantine quarantine;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "address")
+    private StateVeterinaryService stateVeterinaryService;
 }
