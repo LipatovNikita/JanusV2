@@ -1,6 +1,7 @@
 package topprogersgroup.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,10 +17,10 @@ public class Passport {
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
-    @Column(name = "animalType", nullable = false)
+    @Column(name = "animaltype", nullable = false)
     private String animalType;
 
-    @Column(name = "pet_name", nullable = false)
+    @Column(name = "petname", nullable = false)
     private String petName;
 
     //пол
@@ -80,4 +81,8 @@ public class Passport {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "passport")
     private Pet pet;
+
+    @Column(name = "isdeleted")
+    @Type(type = "boolean")
+    private boolean isDeleted;
 }
