@@ -28,9 +28,11 @@ public class SpecialNotes {
     @Column(name = "inspectionnotes")
     private String inspectionNotes;
 
+    @ManyToOne
+    @JoinColumn(name = "veterinarydocument")
+    private VeterinaryDocument veterinaryDocument;
+
     @Column(name = "isdeleted")
     @Type(type = "boolean")
     private boolean isDeleted;
-
-
 }
