@@ -1,13 +1,14 @@
 package topprogersgroup.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "immunizationDeworming")
+@Table(name = "immunizationdeworming")
 public class ImmunizationDeworming {
 
     @Id
@@ -15,7 +16,7 @@ public class ImmunizationDeworming {
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
-    @Column(name = "immunizationDeworming", nullable = false)
+    @Column(name = "immunizationdeworming", nullable = false)
     private boolean immunizationDeworming;
 
     @Column(name = "date", nullable = false)
@@ -31,4 +32,8 @@ public class ImmunizationDeworming {
     @ManyToOne
     @JoinColumn(name = "id_passport")
     private Passport passport;
+
+    @Column(name = "isdeleted")
+    @Type(type = "boolean")
+    private boolean isDeleted;
 }

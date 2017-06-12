@@ -1,9 +1,9 @@
 package topprogersgroup.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
@@ -18,7 +18,7 @@ public class User {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password_hash", nullable = false)
+    @Column(name = "passwordhash", nullable = false)
     private String passwordHash;
 
     @Column(name = "role", nullable = false)
@@ -28,4 +28,13 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Owner owner;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Administrator administrator;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Employee employee;
+
+    @Column(name = "isdeleted")
+    @Type(type = "boolean")
+    private boolean isDeleted;
 }

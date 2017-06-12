@@ -12,10 +12,6 @@ import topprogersgroup.entity.Passport;
 
 import java.util.Date;
 
-/**
- * Created by VP on 04.06.2017.
- */
-
 @RequestMapping(value = "/passport")
 @Controller
 public class PassportController {
@@ -38,7 +34,6 @@ public class PassportController {
         model.addAttribute("passport", passport);
         return "passport/passport";
     }
-
 
     @RequestMapping(value = { "/edit" }, method = RequestMethod.GET)
     public String editPassport(Model model) {

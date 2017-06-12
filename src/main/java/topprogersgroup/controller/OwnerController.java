@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import topprogersgroup.entity.Owner;
 
-/**
- * Created by VP on 04.06.2017.
- */
-
 @Controller
 @RequestMapping(value = "/owner")
 public class OwnerController  {
@@ -52,7 +48,4 @@ public class OwnerController  {
 
         return "allOwner";
     }
-
-
-
 }
