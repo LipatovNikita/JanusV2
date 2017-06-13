@@ -29,7 +29,7 @@
                         <h3 class="light"><#--${pet.passport.petName!""}--></h3>
                     </div>
                     <div class="card-action">
-                        <a href="/mypets/{idpet}/doc" class="waves-effect waves-light btn">button</a>
+                        <a href="/office/mypets/1/slider" class="waves-effect waves-light btn">button</a>
                     </div>
                 </div>
             </div>
