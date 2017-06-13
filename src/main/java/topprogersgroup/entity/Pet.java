@@ -1,6 +1,7 @@
 package topprogersgroup.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -15,10 +16,13 @@ public class Pet {
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "guid", nullable = false)
     private String guid;
 
-    @Column(name = "isLast", nullable = false)
+    @Column(name = "isLast")
+    @Type(type = "boolean")
     private boolean isLast;
 
     @OneToOne

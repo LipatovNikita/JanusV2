@@ -1,11 +1,13 @@
 package topprogersgroup.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -16,6 +18,15 @@ public class Passport {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private int id;
+
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "guid", nullable = false)
+    private String guid;
+
+    @Column(name = "isLast")
+    @Type(type = "boolean")
+    private boolean isLast;
 
     @Column(name = "animaltype", nullable = false)
     private String animalType;
@@ -81,6 +92,9 @@ public class Passport {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "passport")
     private Pet pet;
+
+    @OneToMany(mappedBy = "passport")
+    private Set<UploadImage> images;
 
     @Column(name = "isdeleted")
     @Type(type = "boolean")

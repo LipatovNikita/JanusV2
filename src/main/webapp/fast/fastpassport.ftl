@@ -23,6 +23,7 @@
             <ul class="tabs">
                 <li class="tab col"><a class="active" href="#block_passport">Основная информация</a></li>
                 <li class="tab col"><a href="#block_owner">Владелец</a></li>
+                <li class="tab col"><a href="#block_address">Адрес</a></li>
                 <li class="tab col"><a href="#block_vact">Иммунизация</a></li>
                 <li class="tab col"><a href="#block_vaccination">Вакцинация</a></li>
                 <li class="tab col"><a href="#block_download">Оригиналы</a></li>
@@ -41,7 +42,6 @@
             </div>
         </div>
 
-
         <div id="block_vact" class="col s12">
             <div class="center-block">
                 <#include "/template/input/immunization.ftl">
@@ -52,13 +52,6 @@
             <div class="center-block">
                 <#include "/template/input/vaccination.ftl">
             </div>
-        </div>
-
-        <div id="block_download" class="col s12">
-        <#--    <div class="center-block">
-                File to upload: <input type="file" name="file" multiple><br /> Name: <input
-                    type="text" name="name"><br /> <br />
-            </div>-->
         </div>
     </div>
 </form>

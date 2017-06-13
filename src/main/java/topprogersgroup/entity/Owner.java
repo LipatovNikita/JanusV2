@@ -25,9 +25,6 @@ public class Owner {
     @Column(name = "middlename", nullable = false)
     private String middleName;
 
-    @Column(name = "gender", nullable = false)
-    private boolean gender;
-
     @Column(name = "birthdate", nullable = false)
     @Temporal(value=TemporalType.DATE)
     private Date birthdate;
