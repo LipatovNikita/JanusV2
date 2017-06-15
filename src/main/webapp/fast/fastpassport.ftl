@@ -38,6 +38,7 @@
         <div id="block_owner" class="col s12">
             <div class="center-block">
             <#include "/template/input/owner.ftl">
+                <input type="submit" name="sub" value="Создать">
             </div>
         </div>
 
@@ -50,7 +51,7 @@
         <div id="block_vaccination" class="col s12">
             <div class="center-block">
             <#include "/template/input/vaccination.ftl">
-                <input type="submit" name="sub" value="Создать">
+
             </div>
         </div>
     </div>

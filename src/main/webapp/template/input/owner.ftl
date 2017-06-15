@@ -5,7 +5,7 @@
         <label for="numberAndSeriesOfPassport">Серия и номер паспорта</label>
     </div>
     <div class="input-field col s6">
-        <input type="text" id="firstName" name="firstName" value="${owner.firstName!""}" class="validate">
+        <input type="text" id="firstName" name="firstName" value="${owner.firstName!""}">
         <label for="firstName">Имя </label>
     </div>
 </div>

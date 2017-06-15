@@ -11,14 +11,14 @@
         </div>
     </div>
     <div class="input-field col s6">
-        <input type="text" id="imName" name="imName" value="${immunization.imName!""}" class="validate">
+        <input type="text" id="imName" name="imName" value="${immunization.imName!""}" >
         <label for="imName">Наименование</label>
     </div>
 </div>
 
 <div class="row">
     <div class="input-field col s6">
-        <input type="text" id="drug" name="drug" value="${immunization.drug!""}" class="validate">
+        <input type="text" id="drug" name="drug" value="${immunization.drug!""}" >
         <label for="drug">Лекарственное средство</label>
     </div>
     <#--<div id="labelDate" class="input-field col s6">-->

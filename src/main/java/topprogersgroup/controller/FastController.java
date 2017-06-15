@@ -5,12 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import topprogersgroup.entity.*;
 import topprogersgroup.service.PassportService;
 import topprogersgroup.validator.FileValidator;
+import topprogersgroup.validator.ImmunizationDewormingValidator;
 import topprogersgroup.validator.OwnerValidator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +34,9 @@ public class FastController {
     @Autowired
     private OwnerValidator ownerValidator;
 
+    @Autowired
+    private ImmunizationDewormingValidator dewormingValidator;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String fast(Model model){
         Passport passport = new Passport();
@@ -50,17 +55,24 @@ public class FastController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String fast(Model model,
-                       @ModelAttribute("owner") @Valid Owner owner,
+                       @ModelAttribute("owner") Owner owner,
+                       BindingResult bindingResult,
                        @ModelAttribute("passport")Passport passport,
                        @ModelAttribute("vaccination") Vaccination vaccination,
                        @ModelAttribute("quarantine")Quarantine quarantine,
                        @ModelAttribute("immunization")ImmunizationDeworming immunization,
-                       BindingResult bindingResult) {
+                       SessionStatus status) {
 
+//        dewormingValidator.validate(immunization,bindingResult);
         ownerValidator.validate(owner,bindingResult);
+
 
         if(bindingResult.hasErrors()){
             return "fast/fastpassport";
+        }
+        else
+        {
+            status.setComplete();
         }
         Passport p = passport;
         Owner o = owner;
