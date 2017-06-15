@@ -4,6 +4,14 @@
     </div>
 </div>
 
+<#--<#assign array = [100, 200, 300, 400, 500] />-->
+<#--<#assign i = 0/>-->
+<#--<#assign mappedArray = []>-->
+<#--<#list array as item>-->
+<#--<#assign i=i+1/>-->
+    <#--<#assign mappedArray += ["<p>${item}</p>"]>-->
+<#--</#list>-->
+
 <div class="row">
     <div class="input-field col s12">
         <input type="text" id="seriesOfVaccine" name="seriesOfVaccine" value="${vaccination.seriesOfVaccine!""}"
@@ -12,12 +20,53 @@
     </div>
 </div>
 
+<#--<div class="row">-->
+    <#--<div class="input-field col s4">-->
+        <#--<input type="text" id="typeOfVaccine" name="typeOfVaccine" value="${vaccination.typeOfVaccine!""}"-->
+               <#--class="validate">-->
+        <#--<label for="typeOfVaccine">Тип вакцины</label>-->
+    <#--</div>-->
+<#--</div>-->
+
+<#--<div class="row">-->
+    <#--<div class="input-field col s4">-->
+        <#--<input type="text" id="typeOfVaccine" name="typeOfVaccine" value="${vaccination.typeOfVaccine!""}"-->
+               <#--class="validate">-->
+        <#--<label for="typeOfVaccine">Тип вакцины</label>-->
+    <#--</div>-->
+<#--</div>-->
+
+<div class="row">
+    <div class="input-field col s12">
+        <input type="text" id="seriesOfVaccine" name="seriesOfVaccine" value="${vaccinations[0].seriesOfVaccine!""}"
+               class="validate">
+        <label for="seriesOfVaccine">Серия вакцины</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="input-field col s12">
+        <input type="text" id="seriesOfVaccine" name="seriesOfVaccine" value="${vaccinations[1].seriesOfVaccine!""}"
+               class="validate">
+        <label for="seriesOfVaccine">Серия вакцины</label>
+    </div>
+</div>
+
 <div class="row">
     <div class="input-field col s4">
-        <input type="text" id="typeOfVaccine" name="typeOfVaccine" value="${vaccination.typeOfVaccine!""}"
+        <input type="text" id="typeOfVaccine" name="typeOfVaccine" value="${vaccinations[0].typeOfVaccine!""}"
                class="validate">
         <label for="typeOfVaccine">Тип вакцины</label>
     </div>
+</div>
+
+<div class="row">
+    <div class="input-field col s4">
+        <input type="text" id="typeOfVaccine" name="typeOfVaccine" value="${vaccinations[0].typeOfVaccine!""}"
+               class="validate">
+        <label for="typeOfVaccine">Тип вакцины</label>
+    </div>
+
     <#--<div class="input-field col s4">-->
         <#--<div id="labelDateOfVaccine">-->
             <#--<label>Дата вакцинации</label>-->
@@ -56,4 +105,4 @@
             <#--</div>-->
         <#--</div>-->
     <#--</div>-->
-</div>
+<#--</div>-->

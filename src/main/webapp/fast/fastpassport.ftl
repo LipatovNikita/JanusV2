@@ -23,7 +23,6 @@
             <ul class="tabs">
                 <li class="tab col"><a class="active" href="#block_passport">Основная информация</a></li>
                 <li class="tab col"><a href="#block_owner">Владелец</a></li>
-                <li class="tab col"><a href="#block_address">Адрес</a></li>
                 <li class="tab col"><a href="#block_vact">Иммунизация</a></li>
                 <li class="tab col"><a href="#block_vaccination">Вакцинация</a></li>
                 <li class="tab col"><a href="#block_download">Оригиналы</a></li>
@@ -32,25 +31,26 @@
         </div>
         <div id="block_passport" class="col s12">
             <div class="center-block">
-                <#include "/template/input/passport.ftl">
+            <#include "/template/input/passport.ftl">
             </div>
         </div>
 
         <div id="block_owner" class="col s12">
             <div class="center-block">
-                <#include "/template/input/owner.ftl">
+            <#include "/template/input/owner.ftl">
             </div>
         </div>
 
         <div id="block_vact" class="col s12">
             <div class="center-block">
-                <#include "/template/input/immunization.ftl">
+            <#include "/template/input/immunization.ftl">
             </div>
         </div>
 
         <div id="block_vaccination" class="col s12">
             <div class="center-block">
-                <#include "/template/input/vaccination.ftl">
+            <#include "/template/input/vaccination.ftl">
+                <input type="submit" name="sub" value="Создать">
             </div>
         </div>
     </div>
