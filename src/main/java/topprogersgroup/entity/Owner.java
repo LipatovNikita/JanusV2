@@ -4,6 +4,8 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class Owner {
 
     @Id
     @Column(name = "documentnumber", unique = true, nullable = false)
-    private String documentnumber;
+    private String documentNumber;
 
     @Column(name = "firstname", nullable = false)
     private String firstName;

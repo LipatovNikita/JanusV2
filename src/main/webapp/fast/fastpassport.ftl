@@ -17,7 +17,7 @@
 <script type="text/javascript" rel="script" src="/resources/js/fastpassport.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
 <#include "/template/navbar.ftl">
-<form name="/fast" id="form1" action="" method="POST">
+<form name="/fast" id="form1" action="" method="POST" enctype="multipart/form-data">
     <div class="row main_block">
         <div class="col s12 block-top">
             <ul class="tabs">
@@ -25,7 +25,7 @@
                 <li class="tab col"><a href="#block_owner">Владелец</a></li>
                 <li class="tab col"><a href="#block_vact">Иммунизация</a></li>
                 <li class="tab col"><a href="#block_vaccination">Вакцинация</a></li>
-                <li class="tab col"><a href="#block_download">Оригиналы</a></li>
+                <#--<li class="tab col"><a href="#block_download">Оригиналы</a></li>-->
 
             </ul>
         </div>

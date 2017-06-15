@@ -11,8 +11,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import topprogersgroup.entity.*;
 import topprogersgroup.service.PassportService;
 import topprogersgroup.validator.FileValidator;
+import topprogersgroup.validator.OwnerValidator;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -27,6 +29,9 @@ public class FastController {
     @Autowired
     private FileValidator fileValidator;
 
+    @Autowired
+    private OwnerValidator ownerValidator;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String fast(Model model){
         Passport passport = new Passport();
@@ -34,30 +39,29 @@ public class FastController {
         ImmunizationDeworming immunization = new ImmunizationDeworming();
         Quarantine quarantine = new Quarantine();
         quarantine.setDiseases(new ArrayList<Disease>());
-        List<Vaccination> vaccinations = new ArrayList<>(10);
-        vaccinations.add(new Vaccination());
-        vaccinations.add(new Vaccination());
-        vaccinations.add(new Vaccination());
-        vaccinations.add(new Vaccination());
         Vaccination vaccination = new Vaccination();
         model.addAttribute("passport", passport);
         model.addAttribute("owner", owner);
         model.addAttribute("quarantine", quarantine);
         model.addAttribute("immunization", immunization);
-        model.addAttribute("vaccinations", vaccinations);
         model.addAttribute("vaccination", vaccination);
         return "fast/fastpassport";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String fast(Model model,
-                       @ModelAttribute("owner")Owner owner,
+                       @ModelAttribute("owner") @Valid Owner owner,
                        @ModelAttribute("passport")Passport passport,
                        @ModelAttribute("vaccination") Vaccination vaccination,
                        @ModelAttribute("quarantine")Quarantine quarantine,
-                       @RequestBody List<Vaccination> vaccinations ,
-//                       @ModelAttribute("vaccinations")List<Vaccination> vaccinations,
-                       @ModelAttribute("immunization")ImmunizationDeworming immunization) {
+                       @ModelAttribute("immunization")ImmunizationDeworming immunization,
+                       BindingResult bindingResult) {
+
+        ownerValidator.validate(owner,bindingResult);
+
+        if(bindingResult.hasErrors()){
+            return "fast/fastpassport";
+        }
         Passport p = passport;
         Owner o = owner;
         ImmunizationDeworming i = immunization;
@@ -79,7 +83,8 @@ public class FastController {
     @RequestMapping(value = "/doUpload", method = RequestMethod.POST)
     public String testUpload(@RequestParam MultipartFile[] images // BindingResult bindingResult - это для валидации
                              // типа здесь Passport passport
-                             ) {
+                             )
+    {
         Passport passport = new Passport();
         passport.setId(10);
         passport.setGuid("111a");

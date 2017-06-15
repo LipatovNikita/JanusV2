@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="input-field col s6">
-        <p></p><input type="text" id="petName" name="petName" value="${passport.petName!""}">
+        <p>${passport.petName!""}</p>
         <label for="petName">Кличка</label>
     </div>
     <div class="input-field col s6">
@@ -15,7 +15,7 @@
 
 <div class="row">
     <div class="input-field col s6">
-        <p></p><input type="text" id="breed" name="breed" value="${passport.breed!""}">
+        <p>${passport.breed!""}</p>
         <label for="breed">Порода</label>
     </div>
     <div class="input-field col s6">
