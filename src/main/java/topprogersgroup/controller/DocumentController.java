@@ -3,7 +3,6 @@ package topprogersgroup.controller;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,5 +51,10 @@ public class DocumentController {
 
         return "";
     }
+
+//    return "redirect:/books"; вернул http://localhost:8080/books?
+//            return "jsp/books/booksList"; вернул http://localhost:8080/request-list?
+//            return "forward:/books"; вернул http://localhost:8080/request-list?
+
 
 }

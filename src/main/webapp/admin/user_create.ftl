@@ -6,6 +6,8 @@
 <head>
     <meta charset="utf-8">
     <title>Create a new user</title>
+    <script type="text/javascript" rel="script" src="/resources/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" rel="script" src="/resources/js/slider.js"></script>
 </head>
 <body>
 <h1>Создание нового пользователя</h1>
@@ -26,69 +28,53 @@
     <div>
         <label for="role">Права в системе</label>
         <select name="role" id="role" onclick="showHidePanel()" required>
-            <option <#if form.role == 'ADMIN'>selected</#if> >Администратор</option>
-            <option <#if form.role == 'EMPLOYEE'>selected</#if> >Сотрудник</option>
+            <option <#if form.role == 'ADMIN'>selected</#if>>Администратор</option>
+            <option <#if form.role == 'EMPLOYEE'>selected</#if>>Сотрудник</option>
         </select>
     </div>
 
-    <div hidden>
-        <div class="adminPanel">
+    <div>
+        <div class="adminPanel" hidden>
             <label for="firstName">Имя</label>
-            <input type="text" name="firstName" id="firstName" required/>
+            <input type="text" name="firstName" value="${admin.firstName!""}" required/>
 
             <label for="lastName">Фамилия</label>
-            <input type="text" name="lastName" id="lastName" required/>
+            <input type="text" name="lastName" id="lastName" value="${admin.lastName!""}" required/>
 
             <label for="passwordRepeated">Отчество</label>
-            <input type="text" name="middleName" id="middleName" required/>
+            <input type="text" name="middleName" id="middleName" value="${admin.middleName!""}" required/>
 
             <label for="documentNumber">Серия номер пасспорта</label>
-            <input type="text" name="documentNumber" id="documentNumber" required/>
+            <input type="text" name="documentNumber" id="documentNumber" value="${admin.documentNumber!""}" required/>
         </div>
-        <div class="empolyeePanel">
+        <div class="empolyeePanel" hidden>
             <label for="firstName">Имя</label>
-            <input type="text" name="firstName" id="firstName1" required/>
+            <input type="text" name="firstName" value="${employee.firstName!""}" required/>
 
             <label for="lastName">Фамилия</label>
-            <input type="text" name="lastName" id="lastName1" required/>
+            <input type="text" name="lastName" value="${employee.lastName!""}" required/>
 
             <label for="passwordRepeated">Отчество</label>
-            <input type="text" name="middleName" id="middleName1" required/>
+            <input type="text" name="middleName" value="${employee.middleName!""}" required/>
 
             <label for="documentNumber">Серия номер пасспорта</label>
-            <input type="text" name="documentNumber" id="documentNumber1" required/>
+            <input type="text" name="documentNumber" value="${employee.documentNumber!""}" required/>
 
             <label for="residentialAddress">Адрес проживания</label>
-            <input type="text" name="residentialAddress" id="residentialAddress" required/>
+            <input type="text" name="residentialAddress" value="${employee.residentialAddress!""}" required/>
 
             <label for="phoneNumber">Номер телефона</label>
-            <input type="text" name="phoneNumber" id="phoneNumber" required/>
+            <input type="text" name="phoneNumber" value="${employee.phoneNumber!""}" required/>
         </div>
     </div>
-
-
-    <script>
-        function showHidePanel() {
-            var select = document.getElementById("role");
-            var value = select.options[select.selectedIndex].value;
-            if (value == "ADMIN") {
-                $(".empolyeePanel").hide(1000);
-                $(".adminPanel").first().show("fast", function showNext() {
-                    $(this).next(".adminPanel").show("fast", showNext);
-                });
-            }
-            else {
-                $(".adminPanel").hide(1000);
-                $(".empolyeePanel").first().show("fast", function showNext() {
-                    $(this).next(".empolyeePanel").show("fast", showNext);
-                });
-            }
-        }
-    </script>
 
 
     <button type="submit">Добавить</button>
 </form>
+
+<script>
+
+</script>
 
 <@spring.bind "form" />
 <#if spring.status.error>

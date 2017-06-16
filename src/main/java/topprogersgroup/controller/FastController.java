@@ -15,7 +15,6 @@ import topprogersgroup.validator.FileValidator;
 import topprogersgroup.validator.ImmunizationDewormingValidator;
 import topprogersgroup.validator.OwnerValidator;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
@@ -60,28 +59,17 @@ public class FastController {
                        @ModelAttribute("passport")Passport passport,
                        @ModelAttribute("vaccination") Vaccination vaccination,
                        @ModelAttribute("quarantine")Quarantine quarantine,
-                       @ModelAttribute("immunization")ImmunizationDeworming immunization,
-                       SessionStatus status) {
+                       @ModelAttribute("immunization")ImmunizationDeworming immunization) {
 
 //        dewormingValidator.validate(immunization,bindingResult);
 //        ownerValidator.validate(owner,bindingResult);
 
 
         if(bindingResult.hasErrors()){
+            model.addAttribute("passport", passport);
+            model.addAttribute("owner", owner);
             return "fast/fastpassport";
         }
-        else
-        {
-            status.setComplete();
-        }
-        Passport p = passport;
-        Owner o = owner;
-        ImmunizationDeworming i = immunization;
-        Quarantine q =  quarantine;
-        model.addAttribute("passport", p);
-        model.addAttribute("quarantine", q);
-        model.addAttribute("owner", o);
-        model.addAttribute("immunization", i);
         return "fast/fastpassport";
     }
 

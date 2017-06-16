@@ -8,16 +8,28 @@
     <title>Create a new user</title>
 </head>
 <body>
-<h1>Создание Гос Вет Службы</h1>
+<h1>Создание ПКВП</h1>
 
 <form role="form" name="form" action="" method="post">
     <div>
-        <label for="serviceName">Наименование учреждения</label>
-        <input type="text" name="serviceName" id="serviceName" value="${statevetservice.serviceName}" required autofocus/>
+        <label for="cpName">Наименование учреждения</label>
+        <input type="text" name="cpName" id="cpName" value="${checkPoint.cpName}" required autofocus/>
     </div>
     <div>
         <label for="address">Адрес учереждения</label>
-        <input type="text" name="address" id="address" value="${statevetservice.address}" required/>
+        <input type="text" name="address" id="address" value="${checkPoint.address}" required/>
+    </div>
+    <div>
+        <label for="phonenumber">Номер телефона</label>
+        <input type="text" name="phonenumber" id="phonenumber" value="${checkPoint.phonenumber}" required/>
+    </div>
+    <div>
+        <label for="inspector">Сотрудник россельхоза</label>
+        <select name="inspector" id="inspector" required>
+            <#list inspector as iKey, iValue>
+                <option value="${iKey}">${iValue.lastName} ${iValue.firstName} ${iValue.middleName}</option>
+            </#list>
+        </select>
     </div>
     <button type="submit">Добавить</button>
 </form>

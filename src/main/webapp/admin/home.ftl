@@ -24,6 +24,8 @@
     <#if currentUser?? && currentUser.role == "ADMIN">
         Вы администратор!!
         <li><a href="/admin/create">Добавить пользователя</a></li>
+        <li><a href="/resp/checkpoint">Добавить ПКВП</a></li>
+        <li><a href="/resp/vet">Добавить ГосВет Службу</a></li>
     </#if>
     </ul>
 </nav>

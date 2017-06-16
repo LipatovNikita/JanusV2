@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import topprogersgroup.entity.CheckPoint;
+import topprogersgroup.entity.Employee;
 import topprogersgroup.entity.StateVeterinaryService;
 import topprogersgroup.entity.VeterinaryDocument;
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by VP on 16.06.2017.
@@ -25,41 +30,43 @@ public class ResponsibilitiesController {
     public String createSVetService(Model model){
         StateVeterinaryService service = new StateVeterinaryService();
         model.addAttribute("svService", service);
-        return "fast/fastpassport";
+        return "resp/statevetservice";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/vet"}, method = RequestMethod.POST)
     public String createSVetService(Model model,
-                                    @ModelAttribute("svService")StateVeterinaryService service,
+                                    @Valid @ModelAttribute("svService")StateVeterinaryService service,
                                     BindingResult result){
         if(result.hasErrors()){
             model.addAttribute("svService", service);
-            return "";
+            return "resp/statevetservice";
         }
-        return "fast/fastpassport";
+        return "forward:admin/home";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/checkpoint"}, method = RequestMethod.GET)
     public String createCheckPoint(Model model){
         CheckPoint checkPoint = new CheckPoint();
+        Map<Integer, Employee> inspector = new HashMap<>();
         model.addAttribute("checkPoint", checkPoint);
-        return "fast/fastpassport";
+        model.addAttribute("inspector", inspector);
+        return "resp/checkpoint";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/checkpoint"}, method = RequestMethod.POST)
     public String createCheckPoint(Model model,
-                                   @ModelAttribute("checkPoint")CheckPoint checkPoint,
+                                   @Valid @ModelAttribute("checkPoint")CheckPoint checkPoint,
+                                   @ModelAttribute("inspector")Map<Integer, Employee> inspector,
                                    BindingResult result){
         if(result.hasErrors()){
             model.addAttribute("checkPoint", checkPoint);
-            return "";
+            model.addAttribute("inspector", inspector);
+            return "resp/checkpoint";
         }
-
-
-        return "fast/fastpassport";
+        return "forward:admin/home";
     }
 
 
