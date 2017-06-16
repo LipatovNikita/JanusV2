@@ -31,3 +31,6 @@ body{
     display: flex;
     flex-direction: column;
 }
+.hide_template {
+    display: none; !important;
+}

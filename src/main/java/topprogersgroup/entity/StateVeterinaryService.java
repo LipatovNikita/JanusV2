@@ -1,16 +1,14 @@
 package topprogersgroup.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
-/**
- * Created by aalle on 09.06.2017.
- */
 //ГосВетСлужба
 @Data
 @Entity
-@Table(name = "stateVeterinaryService")
+@Table(name = "stateveterinaryservice")
 public class StateVeterinaryService {
 
     @Id
@@ -18,7 +16,13 @@ public class StateVeterinaryService {
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
+    @Column(name = "name", nullable = false, unique = true)
+    private String name;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "isdeleted")
+    @Type(type = "boolean")
+    private boolean isDeleted;
 }

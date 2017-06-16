@@ -1,4 +1,5 @@
 <#-- @ftlvariable name="error" type="java.util.Optional<String>" -->
+<#-- @ftlvariable name="currentUser" type="topprogersgroup.entity.CurrentUser" -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +17,7 @@
                 <div class="card-content black-text">
                     <h4 class="light">Вход</h4>
                     <br/>
+                <#if !currentUser??>
                     <form role="form" action="/login" method="post">
                         <div>
                             <label for="email">Адрес электронной почты</label>
@@ -37,6 +39,7 @@
                             </div>
                         </div>
                     </form>
+                </#if>
                 </div>
                 <br/>
             </div>

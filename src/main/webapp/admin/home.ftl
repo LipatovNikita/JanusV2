@@ -1,4 +1,6 @@
 <#-- @ftlvariable name="currentUser" type="topprogersgroup.entity.CurrentUser" -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +23,7 @@
     </#if>
     <#if currentUser?? && currentUser.role == "ADMIN">
         Вы администратор!!
-        <li><a href="/user/create">Добавить пользователя</a></li>
+        <li><a href="/admin/create">Добавить пользователя</a></li>
     </#if>
     </ul>
 </nav>

@@ -1,6 +1,7 @@
 package topprogersgroup.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,32 +13,27 @@ import java.util.List;
 public class Owner {
 
     @Id
-    @Column(name = "numberAndSeriesOfPassport", unique = true, nullable = false)
-    private String numberAndSeriesOfPassport;
+    @Column(name = "documentnumber", unique = true, nullable = false)
+    private String documentnumber;
 
-    @Column(name = "firstName", nullable = false)
+    @Column(name = "firstname", nullable = false)
     private String firstName;
 
-    @Column(name = "lastName", nullable = false)
+    @Column(name = "lastname", nullable = false)
     private String lastName;
 
-    //отчество
-    @Column(name = "patronymic", nullable = false)
-    private String patronymic;
+    @Column(name = "middlename", nullable = false)
+    private String middleName;
 
-    @Column(name = "gender", nullable = false)
-    private boolean gender;
-
-    @Column(name = "dateOfBirth", nullable = false)
+    @Column(name = "birthdate", nullable = false)
     @Temporal(value=TemporalType.DATE)
-    private Date dateOfBirth;
+    private Date birthdate;
 
-    @Column(name = "phoneNumber", nullable = false)
+    @Column(name = "phonenumber", nullable = false)
     private String phoneNumber;
 
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
+    @Column(name = "address")
+    private String address;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "owner")
     private Passport passport;
@@ -48,4 +44,8 @@ public class Owner {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Column(name = "isdeleted")
+    @Type(type = "boolean")
+    private boolean isDeleted;
 }

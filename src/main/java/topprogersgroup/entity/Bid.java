@@ -1,14 +1,12 @@
 package topprogersgroup.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by aalle on 09.06.2017.
- */
 //Заявка
 @Data
 @Entity
@@ -21,24 +19,28 @@ public class Bid {
     private int id;
 
     //Дата отправления
-    @Column(name = "departureDate")
+    @Column(name = "departuredate", nullable = false)
     private Date departureDate;
 
-    @Column(name = "countPet")
+    @Column(name = "countpet", nullable = false)
     private int countPet;
 
-    @Column(name = "countOfSeats")
-    private int countOfSeats;
+    @Column(name = "countseats", nullable = false)
+    private int countSeats;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private String status;
 
-//    private Route route;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "route")
+    private Route route;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "pet_bid",
-            joinColumns = @JoinColumn(name = "pet_id"),
+    @JoinTable(name = "pet_bid", joinColumns = @JoinColumn(name = "pet_id"),
             inverseJoinColumns = @JoinColumn(name = "bid_id"))
     private List<Pet> pets;
 
+    @Column(name = "isdeleted")
+    @Type(type = "boolean")
+    private boolean isDeleted;
 }

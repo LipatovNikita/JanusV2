@@ -1,24 +1,28 @@
 package topprogersgroup.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
 
-//@Data
-//@Entity
-//@Table(name = "pet")
+@Data
+@Entity
+@Table(name = "pet")
 public class Pet {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    private int id;
 
-//    @Id
-@GeneratedValue(strategy= GenerationType.IDENTITY)
-@Column(name = "id", unique = true, nullable = false)
-private int id;
-
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "guid", nullable = false)
     private String guid;
 
-    @Column(name = "isLast", nullable = false)
+    @Column(name = "isLast")
+    @Type(type = "boolean")
     private boolean isLast;
 
     @OneToOne
@@ -38,4 +42,8 @@ private int id;
             joinColumns = @JoinColumn(name = "bid_id"),
             inverseJoinColumns = @JoinColumn(name = "pet_id"))
     private List<Bid> bids;
+
+    @Column(name = "isdeleted")
+    @Type(type = "boolean")
+    private boolean isDeleted;
 }
