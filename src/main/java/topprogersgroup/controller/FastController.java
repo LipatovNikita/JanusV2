@@ -49,11 +49,12 @@ public class FastController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String fast(Model model,
-                       @ModelAttribute("owner")Owner owner,
-                       @ModelAttribute("passport")Passport passport,
+                   @ModelAttribute("owner")Owner owner,
                        @ModelAttribute("vaccination") Vaccination vaccination,
                        @ModelAttribute("quarantine")Quarantine quarantine,
-                       @ModelAttribute("immunization")ImmunizationDeworming immunization) {
+                       @ModelAttribute("passport")Passport passport,
+                       @ModelAttribute("immunization")ImmunizationDeworming immunization,
+                      @RequestParam("images_p") MultipartFile[] images) {
         Passport p = passport;
         Owner o = owner;
         ImmunizationDeworming i = immunization;
@@ -73,9 +74,8 @@ public class FastController {
     // потом всё адаптируете, это тестовый метод для загрузки фотографий
 
     @RequestMapping(value = "/doUpload", method = RequestMethod.POST)
-    public String testUpload(@RequestParam MultipartFile[] images // BindingResult bindingResult - это для валидации
-                             // типа здесь Passport passport
-                             ) {
+    public String testUpload(@RequestParam MultipartFile[] images, // BindingResult bindingResult - это для валидации
+                             @ModelAttribute("immunization")ImmunizationDeworming immunization) {
         Passport passport = new Passport();
         passport.setId(10);
         passport.setGuid("111a");
@@ -98,7 +98,6 @@ public class FastController {
         passport.setDateOfImplantation(dateOfImplantation);
 
         for (MultipartFile image : images) {
-            // валидация, вся хуйня (не работает)
 //            fileValidator.validate(image, bindingResult);
 //            if (bindingResult.hasErrors()) {
 //                return "testUpload";

@@ -125,3 +125,4 @@
         <label for="specialFeatures">Специальные признаки</label>
     </div>
 </div>
+<a class="btn btn-primary btnNext" >Next</a>

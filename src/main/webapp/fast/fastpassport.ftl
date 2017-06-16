@@ -16,43 +16,50 @@
 <script type="text/javascript" rel="script" src="/resources/js/combodate.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/fastpassport.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
+<script type="text/javascript" rel="script" src="/webjars/jquery-validation/1.16.0/jquery.validate.js"></script>
 <#include "/template/navbar.ftl">
-<form name="/fast" id="form1" action="" method="POST">
+<form name="/fast" id="form1" action="" method="POST" enctype="multipart/form-data">
     <div class="row main_block">
         <div class="col s12 block-top">
-            <ul class="tabs">
-                <li class="tab col"><a class="active" href="#block_passport">Основная информация</a></li>
-                <li class="tab col"><a href="#block_owner">Владелец</a></li>
-                <li class="tab col"><a href="#block_address">Адрес</a></li>
-                <li class="tab col"><a href="#block_vact">Иммунизация</a></li>
-                <li class="tab col"><a href="#block_vaccination">Вакцинация</a></li>
-                <li class="tab col"><a href="#block_download">Оригиналы</a></li>
-
+            <ul class="tabs" id="tabs">
+                <li class="tab col"><a href="#block_passport" class="active" name="block_passport" data-toggle="tab">Основная информация</a></li>
+                <li class="tab col"><a href="#block_owner" name="block_owner" data-toggle="tab">Владелец</a></li>
+                <li class="tab col"><a href="#block_vact" name="block_vact" data-toggle="tab">Иммунизация</a></li>
+                <li class="tab col"><a href="#block_vaccination" name="block_vaccination" data-toggle="tab">Вакцинация</a></li>
+                <li class="tab col"><a href="#block_download" name="block_download" data-toggle="tab">Оригиналы</a></li>
             </ul>
         </div>
         <div id="block_passport" class="col s12">
             <div class="center-block">
-                <#include "/template/input/passport.ftl">
+            <#include "/template/input/passport.ftl">
             </div>
         </div>
 
         <div id="block_owner" class="col s12">
             <div class="center-block">
-                <#include "/template/input/owner.ftl">
+            <#include "/template/input/owner.ftl">
             </div>
         </div>
 
         <div id="block_vact" class="col s12">
             <div class="center-block">
-                <#include "/template/input/immunization.ftl">
+            <#include "/template/input/immunization.ftl">
             </div>
         </div>
 
         <div id="block_vaccination" class="col s12">
             <div class="center-block">
-                <#include "/template/input/vaccination.ftl">
+            <#include "/template/input/vaccination.ftl">
             </div>
         </div>
+        <div id="block_download" class="col s12">
+            <div class="center-block" id="download_file">
+                <input type="file" name="images_p" multiple="multiple" id="images_p"/>
+            </div>
+            <a class="btn btn-primary btnPrevious" >Previous</a>
+            <input type="submit" value="Отправить данные">
+        </div>
+
     </div>
 </form>
 <footer class="footer">

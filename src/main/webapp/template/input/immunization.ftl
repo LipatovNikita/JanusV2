@@ -39,3 +39,5 @@
         <#--</div>-->
     <#--</div>-->
 </div>
+<a class="btn btn-primary btnPrevious" >Previous</a>
+<a class="btn btn-primary btnNext" >Next</a>
