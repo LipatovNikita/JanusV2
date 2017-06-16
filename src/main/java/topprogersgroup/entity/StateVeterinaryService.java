@@ -17,7 +17,7 @@ public class StateVeterinaryService {
     private int id;
 
     @Column(name = "name", nullable = false, unique = true)
-    private String name;
+    private String serviceName;
 
     @Column(name = "address")
     private String address;
