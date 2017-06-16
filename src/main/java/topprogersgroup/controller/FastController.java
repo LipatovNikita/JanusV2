@@ -55,7 +55,7 @@ public class FastController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String fast(Model model,
-                       @ModelAttribute("owner") Owner owner,
+                       @Valid @ModelAttribute("owner") Owner owner,
                        BindingResult bindingResult,
                        @ModelAttribute("passport")Passport passport,
                        @ModelAttribute("vaccination") Vaccination vaccination,
@@ -64,7 +64,7 @@ public class FastController {
                        SessionStatus status) {
 
 //        dewormingValidator.validate(immunization,bindingResult);
-        ownerValidator.validate(owner,bindingResult);
+//        ownerValidator.validate(owner,bindingResult);
 
 
         if(bindingResult.hasErrors()){

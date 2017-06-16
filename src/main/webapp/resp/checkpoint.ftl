@@ -22,14 +22,5 @@
     <button type="submit">Добавить</button>
 </form>
 
-<@spring.bind "form" />
-<#if spring.status.error>
-<ul>
-    <#list spring.status.errorMessages as error>
-        <li>${error}</li>
-    </#list>
-</ul>
-</#if>
-
 </body>
 </html>

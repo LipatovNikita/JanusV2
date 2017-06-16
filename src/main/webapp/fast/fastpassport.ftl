@@ -38,6 +38,13 @@
         <div id="block_owner" class="col s12">
             <div class="center-block">
             <#include "/template/input/owner.ftl">
+            <#--<#if spring.status.error>-->
+                <#--<ul>-->
+                    <#--<#list spring.status.errors.globalErrors as error>-->
+                        <#--<li>${error.defaultMessage}</li>-->
+                    <#--</#list>-->
+                <#--</ul>-->
+            <#--</#if>-->
                 <input type="submit" name="sub" value="Создать">
             </div>
         </div>

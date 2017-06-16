@@ -29,7 +29,7 @@ public class Employee {
     private int documentNumber;
 
     @Column(name = "phonenumber", nullable = false, unique = true)
-    private int phoneNumber;
+    private long phoneNumber;
 
     // адрес проживания
     @Column(name = "residentialaddress", nullable = false)
