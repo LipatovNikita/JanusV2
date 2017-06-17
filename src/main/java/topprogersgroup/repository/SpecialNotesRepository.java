@@ -1,10 +1,9 @@
 package topprogersgroup.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import topprogersgroup.entity.Administrator;
 import org.springframework.stereotype.Repository;
+import topprogersgroup.entity.SpecialNotes;
 
 @Repository
-public interface AdministratorRepository extends JpaRepository<Administrator, Integer> {
-
+public interface SpecialNotesRepository extends JpaRepository<SpecialNotes, Integer> {
 }

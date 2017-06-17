@@ -34,19 +34,4 @@ public class UserServiceImpl implements UserService {
         user.setRole(form.getRole());
         userRepository.save(user);
     }
-
-    public void registration(RegistrationForm form) {
-        User user = new User();
-        user.setEmail(form.getEmail());
-        user.setPasswordHash(new BCryptPasswordEncoder().encode(form.getPassword()));
-        user.setRole(form.getRole());
-        userRepository.save(user);
-        Owner owner = new Owner();
-        owner.setFirstName(form.getFirstName());
-        owner.setLastName(form.getLastName());
-        owner.setMiddleName(form.getMiddleName());
-        owner.setDocumentnumber(form.getDocumentNumber());
-        owner.setAddress(form.getAddress());
-        owner.setPhoneNumber(form.getPhoneNumber());
-    }
 }
