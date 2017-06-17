@@ -1,21 +1,18 @@
 <div class="row">
     <div class="col s12">
-        <input type="hidden" name="id" value="${vaccination.id}">
+        <input type="hidden" name="vaccinations[0].id"">
     </div>
 </div>
 <fieldset>
     <div class="row">
         <div class="input-field col s4">
-            <input type="text" id="seriesOfVaccine" name="vaccinations[0].seriesOfVaccine"
-                   value="${vaccination.seriesOfVaccine!""}"
-                   class="validate">
+            <input type="text" id="seriesOfVaccine" name="vaccinations[0].seriesOfVaccine" class="validate">
             <label for="seriesOfVaccine">Серия вакцины</label>
         </div>
 
         <div class="input-field col s4">
             <input type="text" id="typeOfVaccine" name="vaccinations[0].typeOfVaccine"
-                   value="${vaccination.typeOfVaccine!""}"
-                   class="validate">
+                                class="validate">
             <label for="typeOfVaccine">Тип вакцины</label>
         </div>
     </div>

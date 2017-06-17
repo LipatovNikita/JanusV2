@@ -42,7 +42,10 @@ $(document).ready(function () {
                 .removeAttr('id')
                 .attr('id', numberRowVactination)
                 .attr('idvac', numberRowVactination)
-                .insertBefore($templateVactination)
+                .insertBefore($templateVactination);
+        $vac_clone
+            .find('[name="seriesOfVaccine"]').attr('name', 'vaccinations[' + numberRowVactination + '].seriesOfVaccine').end()
+            .find('[name="typeOfVaccine"]').attr('name', 'vaccinations[' + numberRowVactination + '].typeOfVaccine').end()
     })
         .on('click', '.btnRemoveVac', function () {
             var $row = $(this).parents('.template-block');
@@ -60,13 +63,15 @@ $(document).ready(function () {
                 .removeAttr('id')
                 .attr('id', numberRowImmunisation)
                 .attr('idimmun', numberRowImmunisation)
-                .insertBefore($templateImmun)
+                .insertBefore($templateImmun);
+        $vac_clone
+            .find('[name="seriesOfVaccine"]').attr('name', 'vaccinations[' + numberRowVactination + '].seriesOfVaccine').end()
+            .find('[name="typeOfVaccine"]').attr('name', 'vaccinations[' + numberRowVactination + '].typeOfVaccine').end()
     })
         .on('click', '.btnRemoveImmun', function () {
             var $row = $(this).parents('.template-block');
             $row.remove();
         });
-
 
 
     $('.btnNext').on('click', function () {
@@ -192,5 +197,21 @@ $(function () {
 
         });
     $.extend($.validator.messages, {required: "Поле обязательно для заполения"});
+
+});
+
+//перехват отправки
+$('#form1').submit(function () {
+
+    // проверяем пару полей
+    var ok = ( $('#field1').val() && $('#field2').val() ); // пусть ok хранит результат какой-то проверки
+
+    if (!ok) { // если поля не прошли проверку
+
+        // каким-то образом оповещаем об ошибках пользователя
+        alert('Чето не то!');
+
+        return false; // и этим false отменяем отправку формы
+    }
 
 });

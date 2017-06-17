@@ -95,7 +95,7 @@ public class FastController {
         passport.setGuid("111a");
         passport.setPetName("Vaska");
         passport.setAnimalType("Cat");
-        passport.setGender(true);
+     //   passport.setGender(true);
         passport.setBreed("Siam");
         passport.setColor("White");
         Date dateOfBirth = new Date();

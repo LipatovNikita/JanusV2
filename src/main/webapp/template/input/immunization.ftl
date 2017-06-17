@@ -5,7 +5,7 @@
                 <label>
                     Иммунизация
                     <input type="checkbox" id="immunization" name="immunization"
-                           <#if immunization.immunizationDeworming== true>checked="checked"</#if>>
+                           <#if immunizations[0].immunizationDeworming.immunizationDeworming== true>checked="checked"</#if>>
                     <span class="lever"></span>
                     Дегельминтизация
                 </label>
@@ -15,11 +15,11 @@
 
     <div class="row">
         <div class="input-field col s6">
-            <input type="text" id="imName" name="imName" value="${immunization.imName!""}" class="validate">
+            <input type="text" id="imName" name="immunization" value="${immunizations[0].imName!""}" class="validate">
             <label for="imName">Наименование</label>
         </div>
         <div class="input-field col s6">
-            <input type="text" id="drug" name="drug" value="${immunization.drug!""}" class="validate">
+            <input type="text" id="drug" name="immunization" value="${immunizations[0].drug!""}" class="validate">
             <label for="drug">Лекарственное средство</label>
         </div>
     </div>
