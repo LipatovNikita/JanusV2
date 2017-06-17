@@ -17,40 +17,48 @@
 <script type="text/javascript" rel="script" src="/resources/js/fastpassport.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
 <#include "/template/navbar.ftl">
-<form name="/fast" id="form1" action="" method="POST">
+<form name="/fast" id="form1" action="" method="POST" enctype="multipart/form-data">
     <div class="row main_block">
         <div class="col s12 block-top">
             <ul class="tabs">
                 <li class="tab col"><a class="active" href="#block_passport">Основная информация</a></li>
                 <li class="tab col"><a href="#block_owner">Владелец</a></li>
-                <li class="tab col"><a href="#block_address">Адрес</a></li>
                 <li class="tab col"><a href="#block_vact">Иммунизация</a></li>
                 <li class="tab col"><a href="#block_vaccination">Вакцинация</a></li>
-                <li class="tab col"><a href="#block_download">Оригиналы</a></li>
+                <#--<li class="tab col"><a href="#block_download">Оригиналы</a></li>-->
 
             </ul>
         </div>
         <div id="block_passport" class="col s12">
             <div class="center-block">
-                <#include "/template/input/passport.ftl">
+            <#include "/template/input/passport.ftl">
             </div>
         </div>
 
         <div id="block_owner" class="col s12">
             <div class="center-block">
-                <#include "/template/input/owner.ftl">
+            <#include "/template/input/owner.ftl">
+            <#--<#if spring.status.error>-->
+                <#--<ul>-->
+                    <#--<#list spring.status.errors.globalErrors as error>-->
+                        <#--<li>${error.defaultMessage}</li>-->
+                    <#--</#list>-->
+                <#--</ul>-->
+            <#--</#if>-->
+                <input type="submit" name="sub" value="Создать">
             </div>
         </div>
 
         <div id="block_vact" class="col s12">
             <div class="center-block">
-                <#include "/template/input/immunization.ftl">
+            <#include "/template/input/immunization.ftl">
             </div>
         </div>
 
         <div id="block_vaccination" class="col s12">
             <div class="center-block">
-                <#include "/template/input/vaccination.ftl">
+            <#include "/template/input/vaccination.ftl">
+
             </div>
         </div>
     </div>
