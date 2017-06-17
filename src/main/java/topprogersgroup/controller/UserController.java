@@ -22,14 +22,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserCreateFormValidator userCreateFormValidator;
-
-    @InitBinder("form")
-    public void initBinder(WebDataBinder binder) {
-        binder.addValidators(userCreateFormValidator);
-    }
-
     @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
     @RequestMapping("/user/{id}")
     public ModelAndView getUserPage(@PathVariable int id) {

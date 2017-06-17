@@ -17,7 +17,7 @@ public class Owner {
 
     @Id
     @Column(name = "documentnumber", unique = true, nullable = false)
-    private String documentNumber;
+    private String documentnumber;
 
     @Column(name = "firstname", nullable = false)
     @NotNull
@@ -36,10 +36,10 @@ public class Owner {
     @Temporal(value=TemporalType.DATE)
     private Date birthdate;
 
-    @Column(name = "phonenumber", nullable = false)
+    @Column(name = "phonenumber")
     private String phoneNumber;
 
-    @Column(name = "address")
+    @Column(name = "address", nullable = false)
     private String address;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "owner")

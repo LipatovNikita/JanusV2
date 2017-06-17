@@ -6,12 +6,18 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import topprogersgroup.entity.*;
+import topprogersgroup.service.AdministratorService;
+import topprogersgroup.service.EmployeeService;
+import topprogersgroup.service.StateVeterinaryServiceService;
 import topprogersgroup.service.UserService;
+import topprogersgroup.validator.UserCreateFormValidator;
 
 import javax.validation.Valid;
 import java.util.Date;
@@ -24,6 +30,23 @@ public class AdminController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AdministratorService administratorService;
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    @Autowired
+    private StateVeterinaryServiceService stateVeterinaryServiceService;
+
+    @Autowired
+    private UserCreateFormValidator userCreateFormValidator;
+
+    @InitBinder("form")
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(userCreateFormValidator);
+    }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/", "/home"})
@@ -46,8 +69,7 @@ public class AdminController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String handleUserCreateForm(Model model,
-                                       @Valid @ModelAttribute("form") UserCreateForm form,
+    public String handleUserCreateForm(@Valid @ModelAttribute("form") UserCreateForm form,
                                        BindingResult bindingResult,
                                        @ModelAttribute("admin")Administrator admin,
                                        @ModelAttribute("employee")Employee employee) {
@@ -58,17 +80,17 @@ public class AdminController {
             userService.create(form);
         } catch (DataIntegrityViolationException e) {
             bindingResult.reject("email.exists", "Адрес электронной почты уже существует");
-//            model.a("admin", new Administrator());
-//            Employee e = new Employee();
-//            e.setEmploymentDate(new Date());
-//            modelAndView.addObject("employee", e);
             return "admin/user_create";
         }
-        if(form.getRole().equals(Role.ADMIN)){
-            Administrator admin1= admin;
+        if(form.getRole().equals(Role.ADMIN)) {
+            Administrator administrator = admin;
+            administrator.setUser(userService.getUserByEmail(form.getEmail()).get());
+            administratorService.create(administrator);
         }
-        else if(form.getRole().equals(Role.EMPLOYEE)){
-            Employee employee1 = employee;
+        else if(form.getRole().equals(Role.EMPLOYEE)) {
+            Employee newEmployee = employee;
+            newEmployee.setUser(userService.getUserByEmail(form.getEmail()).get());
+            employeeService.create(newEmployee);
         }
         return "admin/home";
     }
@@ -85,12 +107,13 @@ public class AdminController {
     @RequestMapping(value = {"/vet"}, method = RequestMethod.POST)
     public String createSVetService(Model model,
                                     @Valid @ModelAttribute("svService")StateVeterinaryService service,
-                                    BindingResult result){
-        if(result.hasErrors()){
+                                    BindingResult result) {
+        if(result.hasErrors()) {
             model.addAttribute("svService", service);
             return "admin/statevetservice";
         }
-        return "forward:admin/home";
+        stateVeterinaryServiceService.create(service);
+        return "admin/home";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

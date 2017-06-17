@@ -2,12 +2,12 @@ package topprogersgroup.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import topprogersgroup.entity.User;
 
+import java.util.List;
 import java.util.Optional;
 
-@Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-    Optional<User> findUserByEmail(String email);
+    Optional<User> findUserByEmailAndIsDeleted(String email, boolean isDeleted);
+    List<User> findUserByIsDeleted(boolean isDeleted);
 }

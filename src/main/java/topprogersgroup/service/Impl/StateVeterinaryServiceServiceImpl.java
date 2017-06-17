@@ -19,7 +19,7 @@ public class StateVeterinaryServiceServiceImpl implements StateVeterinaryService
     StateVeterinaryServiceRepository stateVeterinaryServiceRepository;
 
     @Override
-    public StateVeterinaryService save(StateVeterinaryService stateVeterinaryService) {
+    public StateVeterinaryService create(StateVeterinaryService stateVeterinaryService) {
         return stateVeterinaryServiceRepository.save(stateVeterinaryService);
     }
 
