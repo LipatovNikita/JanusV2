@@ -5,12 +5,15 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import topprogersgroup.entity.UserCreateForm;
 import topprogersgroup.service.UserService;
+import topprogersgroup.validator.UserCreateFormValidator;
 
 import javax.validation.Valid;
 
@@ -20,6 +23,14 @@ public class AdminController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserCreateFormValidator userCreateFormValidator;
+
+    @InitBinder("form")
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(userCreateFormValidator);
+    }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/", "/home"})
