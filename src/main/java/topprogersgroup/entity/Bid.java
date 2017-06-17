@@ -43,4 +43,5 @@ public class Bid {
     @Column(name = "isdeleted")
     @Type(type = "boolean")
     private boolean isDeleted;
+
 }

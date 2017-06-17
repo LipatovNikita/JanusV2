@@ -29,22 +29,20 @@ public class StateVeterinaryServiceServiceImpl implements StateVeterinaryService
     }
 
     @Override
-    public List<StateVeterinaryService> findAll() {
-        return stateVeterinaryServiceRepository.findAll();
+    public List<StateVeterinaryService> findAllIsDeleted() {
+        return stateVeterinaryServiceRepository.findByIsDeleted(true);
     }
 
     @Override
-    public List<StateVeterinaryService> findAllForPage(Pageable pageable) {
-        return (List<StateVeterinaryService>) stateVeterinaryServiceRepository.findAll(pageable);
-    }
-
-    @Override
-    public void delete(Integer id) {
-        stateVeterinaryServiceRepository.delete(id);
+    public List<StateVeterinaryService> findAllIsNotDeleted() {
+        return stateVeterinaryServiceRepository.findByIsDeleted(false);
     }
 
     @Override
     public void delete(StateVeterinaryService stateVeterinaryService) {
-        stateVeterinaryServiceRepository.delete(stateVeterinaryService);
+        stateVeterinaryService.setDeleted(true);
+        stateVeterinaryServiceRepository.save(stateVeterinaryService);
     }
+
+
 }
