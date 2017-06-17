@@ -34,3 +34,11 @@ body{
 .hide_template {
     display: none; !important;
 }
+.error{
+    margin-top: 2%;
+    font-family: cursive;
+    color: #ff4522;
+}
+.btn-block{
+    margin-top: 5%;
+}

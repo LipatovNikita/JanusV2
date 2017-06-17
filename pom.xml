@@ -72,9 +72,20 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery-validation</artifactId>
+			<version>1.16.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>jquery.steps</artifactId>
+			<version>1.1.0</version>
+
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>1.9.2.RELEASE</version>
+
 		</dependency>
 	</dependencies>
 

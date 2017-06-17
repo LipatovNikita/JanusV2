@@ -11,7 +11,7 @@
     </fieldset>
 </form>
 
-<@spring.bind "images" />
+
 <#if spring.status.error>
 <ul>
     <#list spring.status.errorMessages as error>

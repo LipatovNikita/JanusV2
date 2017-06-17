@@ -50,3 +50,6 @@
         <#--<label for="address">Номер телефона</label>-->
     <#--</div>-->
 <#--</div>-->
+
+<a class="btn btn-primary btnPrevious" >Previous</a>
+<a class="btn btn-primary btnNext" >Next</a>
