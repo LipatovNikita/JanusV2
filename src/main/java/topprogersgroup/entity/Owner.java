@@ -17,7 +17,7 @@ public class Owner {
 
     @Id
     @Column(name = "documentnumber", unique = true, nullable = false)
-    private String documentNumber;
+    private String documentnumber;
 
     @Column(name = "firstname", nullable = false)
     @NotNull

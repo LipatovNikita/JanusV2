@@ -37,7 +37,7 @@ public class Employee {
 
     // место работы (ГосВетСлужба)
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "veterinaryservice", nullable = false)
+    @JoinColumn(name = "veterinaryservice")
     private StateVeterinaryService stateVeterinaryService;
 
     // дата приёма на работу
