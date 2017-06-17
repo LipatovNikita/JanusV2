@@ -49,7 +49,7 @@ $(document).ready(function () {
             $row.remove();
         });
 
-    // Динамические поля для вакцинации
+    // Динамические поля для иммунизации
     var numberRowImmunisation = 0;
     $('#block_immunization').on('click', '.btnAddImmun', function () {
         numberRowVactination++;
