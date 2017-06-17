@@ -1,6 +1,7 @@
 package topprogersgroup.service;
 
 import org.springframework.data.domain.Pageable;
+import topprogersgroup.entity.Bid;
 import topprogersgroup.entity.CheckPoint;
 import topprogersgroup.entity.StateVeterinaryService;
 
@@ -15,11 +16,9 @@ public interface StateVeterinaryServiceService  {
 
     StateVeterinaryService findOne(Integer id);
 
-    List<StateVeterinaryService> findAll();
+    List<StateVeterinaryService> findAllIsDeleted();
 
-    List<StateVeterinaryService> findAllForPage(Pageable pageable);
-
-    void delete(Integer id);
+    List<StateVeterinaryService> findAllIsNotDeleted();
 
     void delete(StateVeterinaryService stateVeterinaryService);
 }

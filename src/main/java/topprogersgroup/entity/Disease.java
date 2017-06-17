@@ -33,7 +33,4 @@ public class Disease {
     @JoinColumn(name = "quarantine_id")
     private Quarantine quarantine;
 
-    @Column(name = "isdeleted")
-    @Type(type = "boolean")
-    private boolean isDeleted;
 }
