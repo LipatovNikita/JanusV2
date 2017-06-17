@@ -26,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="text" id="phoneNumber" name="phoneNumber" value="${owner.phoneNumber!}" class="validate">
+                    <input type="text" id="phoneNumber" name="phoneNumber" value="${owner.phoneNumber!""}" class="validate">
                     <label for="phoneNumber">phoneNumber</label>
                 </div>
             </div>

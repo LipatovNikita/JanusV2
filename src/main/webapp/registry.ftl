@@ -32,7 +32,7 @@
                         </div>
                         <br/>
                         <div class="right-align">
-                            <button class="btn" type="submit" name="action">Войти</button>
+                            <button class="btn" type="submit" name="action">Зарегистрироваться</button>
                         </div>
                     </form>
                 </div>
