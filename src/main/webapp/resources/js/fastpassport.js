@@ -46,9 +46,27 @@ $(document).ready(function () {
     })
         .on('click', '.btnRemoveVac', function () {
             var $row = $(this).parents('.template-block');
-            console.log($row);
             $row.remove();
         });
+
+    // Динамические поля для вакцинации
+    var numberRowImmunisation = 0;
+    $('#block_immunization').on('click', '.btnAddImmun', function () {
+        numberRowVactination++;
+        var $templateImmun = $('#immunTemplate'),
+            $vac_clone = $templateImmun
+                .clone()
+                .removeClass('hide')
+                .removeAttr('id')
+                .attr('id', numberRowImmunisation)
+                .attr('idimmun', numberRowImmunisation)
+                .insertBefore($templateImmun)
+    })
+        .on('click', '.btnRemoveImmun', function () {
+            var $row = $(this).parents('.template-block');
+            $row.remove();
+        });
+
 
 
     $('.btnNext').on('click', function () {
