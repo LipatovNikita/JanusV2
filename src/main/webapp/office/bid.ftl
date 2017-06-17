@@ -46,14 +46,6 @@
                            <#--data-template="D MMM YYYY">-->
                 <#--</div>-->
             <#--</div>-->
-            <#--<div>ВПРИНЦЕПИ СДЕСЬ НЕ НУЖНА ЕСЛИ ЗАЯВКУ БУДЕМ В 2 ШАГА ДЕЛАТЬ-->
-                <#--<label for="route">Тип транспорта</label>-->
-                <#--<input type="text" name="route" id="route" value="${.route!""}" required/>-->
-                <#--@OneToOne(cascade = CascadeType.ALL)-->
-                <#--@JoinColumn(name = "route")-->
-                <#--private Route route;-->
-            <#--</div>-->
-
 
             <#--<div>-->
                 <#--<label for="route">Тип транспорта</label>-->
