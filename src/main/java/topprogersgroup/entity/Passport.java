@@ -36,7 +36,7 @@ public class Passport {
 
     //пол
     @Column(name = "gender", nullable = false)
-    private boolean gender;
+    private char gender;
 
     //порода
     @Column(name = "breed", nullable = false)

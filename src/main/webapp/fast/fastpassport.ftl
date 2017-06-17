@@ -65,6 +65,8 @@
                     <a class="btn btn-primary btnPrevious">Previous</a>
                     <input class="btn btn-primary" type="submit" value="Отправить данные">
                 </div>
+
+          
             </div>
         </div>
     </div>

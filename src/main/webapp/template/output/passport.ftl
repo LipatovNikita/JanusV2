@@ -4,23 +4,22 @@
 
 <div class="row">
     <div class="input-field col s6">
-        <input type="text" id="petName" name="petName" value="${passport.petName!""}">
+        <p>${passport.petName!""}</p>
         <label for="petName">Кличка</label>
-        <label for="petName" name="errors">Кличка</label>
     </div>
     <div class="input-field col s6">
-        <input type="text" id="animalType" name="animalType" value="${passport.animalType!""}">
+        <p>${passport.animalType!""}</p>
         <label for="animalType">Тип питомца</label>
     </div>
 </div>
 
 <div class="row">
     <div class="input-field col s6">
-        <input type="text" id="breed" name="breed" value="${passport.breed!""}">
+        <p>${passport.breed!""}</p>
         <label for="breed">Порода</label>
     </div>
     <div class="input-field col s6">
-        <input type="text" id="color" name="color" value="${passport.color!""}">
+        <p>${passport.color!""}</p>
         <label for="color">Окрас</label>
     </div>
 </div>
@@ -69,7 +68,7 @@
                 <#--});-->
             <#--</script>-->
             <#--<input type="text" id="dateOfBirth" name="dateOfBirth"-->
-                   <#--value="${(passport.dateOfBirth?string("dd-MM-yyyy"))!""}" format="DD-MM-YYYY"-->
+                   <#--value="${passport.dateOfBirth?string("dd-MM-yyyy")}" format="DD-MM-YYYY"-->
                    <#--data-template="D MMM YYYY">-->
         <#--</div>-->
     <#--</div>-->
@@ -77,8 +76,7 @@
 
 <div class="row microchipTattooShower">
     <div class="input-field col s6">
-        <input type="text" id="numberMicrochipTattoo" name="numberMicrochipTattoo"
-               value="${passport.numberMicrochipTattoo!""}">
+        <p>${passport.numberMicrochipTattoo!""}</p>
         <label for="numberMicrochipTattoo">Номер чипа/тату</label>
     </div>
     <#--<div id="labelDateOfImpl" class="input-field col s6">-->
@@ -94,7 +92,7 @@
                 <#--});-->
             <#--</script>-->
             <#--<input type="text" id="dateOfImplantation" name="dateOfImplantation"-->
-                   <#--value="${(passport.dateOfImplantation?string("dd/MM/yyyy"))!""}" format="DD/MM/YYYY"-->
+                   <#--value="${passport.dateOfImplantation?string("dd/MM/yyyy")}" format="DD/MM/YYYY"-->
                    <#--data-template="D MMM YYYY">-->
         <#--</div>-->
     <#--</div>-->
@@ -102,28 +100,25 @@
 
 <div class="row">
     <div class="input-field col s6">
-        <input type="text" id="clinic" name="clinic" value="${passport.clinic!""}">
+        <p>${passport.clinic!""}</p>
         <label for="clinic">Клиника</label>
     </div>
     <div class="input-field col s6">
-        <input type="text" id="doctor" name="doctor" value="${passport.doctor!""}">
+        <p>${passport.doctor!""}</p>
         <label for="doctor">Доктор</label>
     </div>
 </div>
 
 <div class="row">
     <div class="input-field col s12">
-        <input type="text" id="offspring" name="offspring" value="${passport.offspring!""}"
-               class="validate">
+        <p>${passport.offspring!""}</p>
         <label for="offspring">Потомство</label>
     </div>
 </div>
 
 <div class="row">
     <div class="input-field col s12">
-                    <textarea id="specialFeatures" name="specialFeatures"
-                              class="materialize-textarea">${passport.specialFeatures!""}</textarea>
+        <p>${passport.specialFeatures!""}</p>
         <label for="specialFeatures">Специальные признаки</label>
     </div>
 </div>
-<a class="btn btn-primary btnNext" >Next</a>
