@@ -34,7 +34,7 @@
                 <#--});-->
             <#--</script>-->
             <#--<input type="text" id="date" name="date"-->
-                   <#--value="${owner.date?string("dd-MM-yyyy")}" format="DD-MM-YYYY"-->
+                   <#--value="${(owner.date?string("dd-MM-yyyy"))!""}" format="DD-MM-YYYY"-->
                    <#--data-template="D MMM YYYY">-->
         <#--</div>-->
     <#--</div>-->

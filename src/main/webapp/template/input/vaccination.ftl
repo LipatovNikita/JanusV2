@@ -33,7 +33,7 @@
                     <#--});-->
                 <#--</script>-->
                 <#--<input type="text" id="dateOfVaccine" name="dateOfVaccine"-->
-                       <#--value="${passport.dateOfVaccine?string("dd/MM/yyyy")}" format="DD/MM/YYYY"-->
+                       <#--value="${(passport.dateOfVaccine?string("dd/MM/yyyy"))!""}" format="DD/MM/YYYY"-->
                        <#--data-template="D MMM YYYY">-->
             <#--</div>-->
         <#--</div>-->
@@ -52,7 +52,7 @@
                     <#--});-->
                 <#--</script>-->
                 <#--<input type="text" id="validUntil" name="validUntil"-->
-                       <#--value="${passport.validUntil?string("dd/MM/yyyy")}" format="DD/MM/YYYY"-->
+                       <#--value="${(passport.validUntil?string("dd/MM/yyyy"))!""}" format="DD/MM/YYYY"-->
                        <#--data-template="D MMM YYYY">-->
             <#--</div>-->
         <#--</div>-->

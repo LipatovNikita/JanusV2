@@ -68,7 +68,7 @@
                 <#--});-->
             <#--</script>-->
             <#--<input type="text" id="dateOfBirth" name="dateOfBirth"-->
-                   <#--value="${passport.dateOfBirth?string("dd-MM-yyyy")}" format="DD-MM-YYYY"-->
+                   <#--value="${(passport.dateOfBirth?string("dd-MM-yyyy"))!""}" format="DD-MM-YYYY"-->
                    <#--data-template="D MMM YYYY">-->
         <#--</div>-->
     <#--</div>-->
@@ -93,7 +93,7 @@
                 <#--});-->
             <#--</script>-->
             <#--<input type="text" id="dateOfImplantation" name="dateOfImplantation"-->
-                   <#--value="${passport.dateOfImplantation?string("dd/MM/yyyy")}" format="DD/MM/YYYY"-->
+                   <#--value="${(passport.dateOfImplantation?string("dd/MM/yyyy"))!""}" format="DD/MM/YYYY"-->
                    <#--data-template="D MMM YYYY">-->
         <#--</div>-->
     <#--</div>-->

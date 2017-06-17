@@ -13,11 +13,11 @@
 <form role="form" name="form" action="" method="post">
     <div>
         <label for="serviceName">Наименование учреждения</label>
-        <input type="text" name="serviceName" id="serviceName" value="${statevetservice.serviceName}" required autofocus/>
+        <input type="text" name="serviceName" id="serviceName" value="${svService.serviceName!""}" required autofocus/>
     </div>
     <div>
         <label for="address">Адрес учереждения</label>
-        <input type="text" name="address" id="address" value="${statevetservice.address}" required/>
+        <input type="text" name="address" id="address" value="${svService.address!""}" required/>
     </div>
     <button type="submit">Добавить</button>
 </form>

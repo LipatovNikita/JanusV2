@@ -28,47 +28,44 @@
     <div>
         <label for="role">Права в системе</label>
         <select name="role" id="role" onclick="showHidePanel()" required>
-            <option <#if form.role == 'ADMIN'>selected</#if>>Администратор</option>
-            <option <#if form.role == 'EMPLOYEE'>selected</#if>>Сотрудник</option>
+            <option value="ADMIN">Администратор</option>
+            <option value="EMPLOYEE">Сотрудник</option>
         </select>
     </div>
 
     <div>
-        <div class="adminPanel" hidden>
+        <div class="adminPanel">
             <label for="firstName">Имя</label>
-            <input type="text" name="firstName" value="${admin.firstName!""}" required/>
+            <input type="text" name="firstName" id="firstName" value="${admin.firstName!""}" />
 
             <label for="lastName">Фамилия</label>
-            <input type="text" name="lastName" id="lastName" value="${admin.lastName!""}" required/>
+            <input type="text" name="lastName" id="lastName" value="${admin.lastName!""}" />
 
-            <label for="passwordRepeated">Отчество</label>
-            <input type="text" name="middleName" id="middleName" value="${admin.middleName!""}" required/>
+            <label for="middleName">Отчество</label>
+            <input type="text" name="middleName" id="middleName" value="${admin.middleName!""}" />
 
             <label for="documentNumber">Серия номер пасспорта</label>
-            <input type="text" name="documentNumber" id="documentNumber" value="${admin.documentNumber!""}" required/>
+            <input type="text" name="documentNumber" id="documentNumber" value="${admin.documentNumber!""}" />
         </div>
         <div class="empolyeePanel" hidden>
-            <label for="firstName">Имя</label>
-            <input type="text" name="firstName" value="${employee.firstName!""}" required/>
-
-            <label for="lastName">Фамилия</label>
-            <input type="text" name="lastName" value="${employee.lastName!""}" required/>
-
-            <label for="passwordRepeated">Отчество</label>
-            <input type="text" name="middleName" value="${employee.middleName!""}" required/>
-
-            <label for="documentNumber">Серия номер пасспорта</label>
-            <input type="text" name="documentNumber" value="${employee.documentNumber!""}" required/>
 
             <label for="residentialAddress">Адрес проживания</label>
-            <input type="text" name="residentialAddress" value="${employee.residentialAddress!""}" required/>
+            <input type="text" name="residentialAddress" id="residentialAddress" value="${employee.residentialAddress!""}" />
 
             <label for="phoneNumber">Номер телефона</label>
-            <input type="text" name="phoneNumber" value="${employee.phoneNumber!""}" required/>
+            <input type="text" name="phoneNumber" id="phoneNumber" value="${employee.phoneNumber!""}" />
+
+            <#--<label for="stateVeterinaryService">Место работы (ГосВетСлужба)</label>-->
+            <#--<input type="text" name="stateVeterinaryService" id="stateVeterinaryService" value="${employee.stateVeterinaryService!""}" />-->
+
+            <label for="position">Должность</label>
+            <input type="text" name="position" id="position" value="${employee.position!""}"/>
+
+            <label for="employmentDate">Дата приема на работу</label>
+            <input type="text" name="employmentDate" id="employmentDate" value="${(employee.employmentDate?string("dd/MM/yyyy"))!""}"/>
+
         </div>
     </div>
-
-
     <button type="submit">Добавить</button>
 </form>
 

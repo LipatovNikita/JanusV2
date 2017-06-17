@@ -39,7 +39,7 @@
                 <#--});-->
             <#--</script>-->
             <#--<input type="text" id="dateOfBirth" name="dateOfBirth"-->
-                   <#--value="${owner.dateOfBirth?string("dd-MM-yyyy")}" format="DD-MM-YYYY"-->
+                   <#--value="${(owner.dateOfBirth?string("dd-MM-yyyy"))!""}" format="DD-MM-YYYY"-->
                    <#--data-template="D MMM YYYY">-->
         <#--</div>-->
     <#--</div>-->
