@@ -45,7 +45,11 @@
                 <label for="transportID">Идентификатор транспорта</label>
                 <input type="text" name="transportID" id="transportID" value="${.transportID!""}" required/>
             </div>
-
+            <#--<div>-->
+                <#--<label for="checkPoints">Идентификатор транспорта</label>-->
+                <#--<input type="text" name="checkPoints" id="checkPoints" value="${.checkPoints!""}" required/>-->
+                <#--Set<CheckPoint> checkPoints;-->
+            <#--</div>-->
         </div>
     </div>
 </div>

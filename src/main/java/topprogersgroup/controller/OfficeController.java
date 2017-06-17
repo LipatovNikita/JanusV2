@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import topprogersgroup.entity.Bid;
 import topprogersgroup.entity.Pet;
 import topprogersgroup.entity.Route;
 
@@ -15,7 +16,13 @@ import java.util.List;
 @RequestMapping(value = "/office")
 public class OfficeController {
 
-    @RequestMapping(value = "/mypets", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(Model model) {
+        return "/office/home";
+    }
+
+    @RequestMapping(value = "/pets", method = RequestMethod.GET)
     public String getAllPetsPage(Model model) {
         List<Pet> pets = new ArrayList<>();
         pets.add(new Pet());
@@ -25,6 +32,13 @@ public class OfficeController {
         pets.add(new Pet());
         model.addAttribute("pets", pets);
         return "/office/mypets";
+    }
+
+    @RequestMapping(value = "/bids", method = RequestMethod.GET)
+    public String getBidPage(Model model) {
+        List<Bid> bidList = new ArrayList<>();
+        model.addAttribute("bidList", bidList);
+        return "/office/bids";
     }
 
     @RequestMapping(value = "/mypets/{idpet}", method = RequestMethod.GET)
