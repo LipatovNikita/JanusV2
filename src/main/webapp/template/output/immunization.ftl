@@ -11,14 +11,14 @@
         </div>
     </div>
     <div class="input-field col s6">
-        <input type="text" id="imName" name="imName" value="${immunization.imName!""}" >
+        <p>${immunization.imName!""}</p>
         <label for="imName">Наименование</label>
     </div>
 </div>
 
 <div class="row">
     <div class="input-field col s6">
-        <input type="text" id="drug" name="drug" value="${immunization.drug!""}" >
+        <p>${immunization.drug!""}</p>
         <label for="drug">Лекарственное средство</label>
     </div>
     <#--<div id="labelDate" class="input-field col s6">-->
@@ -34,10 +34,8 @@
                 <#--});-->
             <#--</script>-->
             <#--<input type="text" id="date" name="date"-->
-                   <#--value="${(owner.date?string("dd-MM-yyyy"))!""}" format="DD-MM-YYYY"-->
+                   <#--value="${owner.date?string("dd-MM-yyyy")}" format="DD-MM-YYYY"-->
                    <#--data-template="D MMM YYYY">-->
         <#--</div>-->
     <#--</div>-->
 </div>
-<a class="btn btn-primary btnPrevious" >Previous</a>
-<a class="btn btn-primary btnNext" >Next</a>

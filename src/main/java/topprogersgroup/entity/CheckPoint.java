@@ -4,6 +4,9 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 // пропускной пунк (ПКВП)
 @Data
@@ -17,12 +20,17 @@ public class CheckPoint {
     private int id;
 
     @Column(name = "name", nullable = false)
-    private String name;
+    @NotNull
+    @Size(min = 1, max = 255)
+    private String cpName;
 
     @Column(name = "address", nullable = false)
+    @NotNull
+    @Size(min = 1, max = 255)
     private String address;
 
     @Column(name = "phonenumber", nullable = false)
+    @Max(11)
     private int phoneNumber;
 
     @OneToOne(cascade = CascadeType.ALL)

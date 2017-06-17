@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import topprogersgroup.entity.*;
 import topprogersgroup.service.PassportService;
 import topprogersgroup.validator.FileValidator;
+import topprogersgroup.validator.ImmunizationDewormingValidator;
+import topprogersgroup.validator.OwnerValidator;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -30,6 +30,12 @@ public class FastController {
     @Autowired
     private FileValidator fileValidator;
 
+    @Autowired
+    private OwnerValidator ownerValidator;
+
+    @Autowired
+    private ImmunizationDewormingValidator dewormingValidator;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String fast(Model model){
         Passport passport = new Passport();
@@ -37,7 +43,6 @@ public class FastController {
         ImmunizationDeworming immunization = new ImmunizationDeworming();
         Quarantine quarantine = new Quarantine();
         quarantine.setDiseases(new ArrayList<Disease>());
-        List<Vaccination> vaccinations = new ArrayList<>(10);
         Vaccination vaccination = new Vaccination();
         model.addAttribute("passport", passport);
         model.addAttribute("owner", owner);
@@ -49,20 +54,25 @@ public class FastController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String fast(Model model,
-                   @ModelAttribute("owner")Owner owner,
+
+                       @Valid @ModelAttribute("owner") Owner owner,
+                       BindingResult bindingResult,
+                       @ModelAttribute("passport")Passport passport,
                        @ModelAttribute("vaccination") Vaccination vaccination,
                        @ModelAttribute("quarantine")Quarantine quarantine,
-                       @ModelAttribute("passport")Passport passport,
                        @ModelAttribute("immunization")ImmunizationDeworming immunization,
-                      @RequestParam("images_p") MultipartFile[] images) {
-        Passport p = passport;
-        Owner o = owner;
-        ImmunizationDeworming i = immunization;
-        Quarantine q =  quarantine;
-        model.addAttribute("passport", p);
-        model.addAttribute("quarantine", q);
-        model.addAttribute("owner", o);
-        model.addAttribute("immunization", i);
+      @RequestParam("images_p") MultipartFile[] images) {
+
+//        dewormingValidator.validate(immunization,bindingResult);
+//        ownerValidator.validate(owner,bindingResult);
+
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("passport", passport);
+            model.addAttribute("owner", owner);
+            return "fast/fastpassport";
+        }
+
         return "fast/fastpassport";
     }
 
@@ -74,8 +84,12 @@ public class FastController {
     // потом всё адаптируете, это тестовый метод для загрузки фотографий
 
     @RequestMapping(value = "/doUpload", method = RequestMethod.POST)
-    public String testUpload(@RequestParam MultipartFile[] images, // BindingResult bindingResult - это для валидации
-                             @ModelAttribute("immunization")ImmunizationDeworming immunization) {
+
+    public String testUpload(@RequestParam MultipartFile[] images // BindingResult bindingResult - это для валидации
+                             // типа здесь Passport passport
+                             )
+    {
+
         Passport passport = new Passport();
         passport.setId(10);
         passport.setGuid("111a");

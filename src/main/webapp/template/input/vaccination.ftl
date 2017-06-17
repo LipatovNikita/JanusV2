@@ -22,42 +22,45 @@
     <div class="col s4">
         <a class="btn btn-primary btnAddVac">Добавить</a>
     </div>
-    <div class="row">
+
     <#--<div class="input-field col s4">-->
-    <#--<div id="labelDateOfVaccine">-->
-    <#--<label>Дата вакцинации</label>-->
-    <#--<div>-->
-    <#--<script>-->
-    <#--$(function () {-->
-    <#--$('#dateOfImplantation').combodate({-->
-    <#--value: new Date(),-->
-    <#--minYear: 2012,-->
-    <#--maxYear: moment().format('YYYY')-->
-    <#--});-->
-    <#--});-->
-    <#--</script>-->
-    <#--<input type="text" id="dateOfVaccine" name="dateOfVaccine"-->
-    <#--value="${passport.dateOfVaccine?string("dd/MM/yyyy")}" format="DD/MM/YYYY"-->
-    <#--data-template="D MMM YYYY">-->
-    <#--</div>-->
-    <#--</div>-->
+        <#--<div id="labelDateOfVaccine">-->
+            <#--<label>Дата вакцинации</label>-->
+            <#--<div>-->
+                <#--<script>-->
+                    <#--$(function () {-->
+                        <#--$('#dateOfImplantation').combodate({-->
+                            <#--value: new Date(),-->
+                            <#--minYear: 2012,-->
+                            <#--maxYear: moment().format('YYYY')-->
+                        <#--});-->
+                    <#--});-->
+                <#--</script>-->
+                <#--<input type="text" id="dateOfVaccine" name="dateOfVaccine"-->
+                       <#--value="${(passport.dateOfVaccine?string("dd/MM/yyyy"))!""}" format="DD/MM/YYYY"-->
+                       <#--data-template="D MMM YYYY">-->
+            <#--</div>-->
+        <#--</div>-->
     <#--</div>-->
     <#--<div class="input-field col s4">-->
-    <#--<div id="labelValidUntil">-->
-    <#--<label>Действительна до</label>-->
-    <#--<div>-->
-    <#--<script>-->
-    <#--$(function () {-->
-    <#--$('#dateOfImplantation').combodate({-->
-    <#--value: new Date(),-->
-    <#--minYear: 2012,-->
-    <#--maxYear: moment().format('YYYY')-->
-    <#--});-->
-    <#--});-->
-    <#--</script>-->
-    <#--<input type="text" id="validUntil" name="validUntil"-->
-    <#--value="${passport.validUntil?string("dd/MM/yyyy")}" format="DD/MM/YYYY"-->
-    <#--data-template="D MMM YYYY">-->
+        <#--<div id="labelValidUntil">-->
+            <#--<label>Действительна до</label>-->
+            <#--<div>-->
+                <#--<script>-->
+                    <#--$(function () {-->
+                        <#--$('#dateOfImplantation').combodate({-->
+                            <#--value: new Date(),-->
+                            <#--minYear: 2012,-->
+                            <#--maxYear: moment().format('YYYY')-->
+                        <#--});-->
+                    <#--});-->
+                <#--</script>-->
+                <#--<input type="text" id="validUntil" name="validUntil"-->
+                       <#--value="${(passport.validUntil?string("dd/MM/yyyy"))!""}" format="DD/MM/YYYY"-->
+                       <#--data-template="D MMM YYYY">-->
+            <#--</div>-->
+        <#--</div>-->
+
     <#--</div>-->
     <#--</div>-->
     <#--</div>-->

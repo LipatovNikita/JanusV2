@@ -1,29 +1,28 @@
 <div class="row">
     <div class="input-field col s6">
-        <input type="text" name="numberAndSeriesOfPassport"
-               value="${owner.numberAndSeriesOfPassport!""}">
+        <p>${owner.numberAndSeriesOfPassport!""}</p>
         <label for="numberAndSeriesOfPassport">Серия и номер паспорта</label>
     </div>
     <div class="input-field col s6">
-        <input type="text" id="firstName" name="firstName" value="${owner.firstName!""}">
+        <p>${owner.firstName!""}</p>
         <label for="firstName">Имя </label>
     </div>
 </div>
 
 <div class="row">
     <div class="input-field col s6">
-        <input type="text" id="lastName" name="lastName" value="${owner.lastName!""}">
+        <p>${owner.lastName!""}</p>
         <label for="lastName">Фамилия</label>
     </div>
     <div class="input-field col s6">
-        <input type="text" id="patronymic" name="patronymic" value="${owner.patronymic!""}">
+        <p>${owner.patronymic!""}</p>
         <label for="patronymic">Отчество</label>
     </div>
 </div>
 
 <div class="row">
     <div class="input-field col s6">
-        <input type="text" id="phoneNumber" name="phoneNumber" value="${owner.phoneNumber!""}">
+        <p>${owner.phoneNumber!""}</p>
         <label for="phoneNumber">Номер телефона</label>
     </div>
     <#--<div id="labelDateOfBirth" class="input-field col s3">-->
@@ -39,7 +38,7 @@
                 <#--});-->
             <#--</script>-->
             <#--<input type="text" id="dateOfBirth" name="dateOfBirth"-->
-                   <#--value="${(owner.dateOfBirth?string("dd-MM-yyyy"))!""}" format="DD-MM-YYYY"-->
+                   <#--value="${owner.dateOfBirth?string("dd-MM-yyyy")}" format="DD-MM-YYYY"-->
                    <#--data-template="D MMM YYYY">-->
         <#--</div>-->
     <#--</div>-->
@@ -50,6 +49,3 @@
         <#--<label for="address">Номер телефона</label>-->
     <#--</div>-->
 <#--</div>-->
-
-<a class="btn btn-primary btnPrevious" >Previous</a>
-<a class="btn btn-primary btnNext" >Next</a>
