@@ -3,6 +3,8 @@ package topprogersgroup.service.Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import topprogersgroup.entity.Owner;
+import topprogersgroup.entity.RegistrationForm;
 import topprogersgroup.entity.User;
 import topprogersgroup.entity.UserCreateForm;
 import topprogersgroup.repository.UserRepository;
@@ -17,7 +19,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     public Optional<User> getUserByEmail(String email) {
-        return userRepository.findUserByEmail(email);
+
+        return userRepository.findUserByEmailAndIsDeleted(email, false);
     }
 
     public Optional<User> getUserById(int id) {

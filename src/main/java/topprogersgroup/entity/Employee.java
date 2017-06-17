@@ -29,7 +29,7 @@ public class Employee {
     private int documentNumber;
 
     @Column(name = "phonenumber", nullable = false, unique = true)
-    private int phoneNumber;
+    private String phoneNumber;
 
     // адрес проживания
     @Column(name = "residentialaddress", nullable = false)
@@ -37,7 +37,7 @@ public class Employee {
 
     // место работы (ГосВетСлужба)
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "veterinaryservice", nullable = false)
+    @JoinColumn(name = "veterinaryservice")
     private StateVeterinaryService stateVeterinaryService;
 
     // дата приёма на работу

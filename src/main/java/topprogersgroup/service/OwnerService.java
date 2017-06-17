@@ -5,9 +5,6 @@ import topprogersgroup.entity.Owner;
 
 import java.util.List;
 
-/**
- * Created by aalle on 16.06.2017.
- */
 public interface OwnerService {
 
     Owner save(Owner owner);

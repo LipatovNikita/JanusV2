@@ -7,9 +7,8 @@ import topprogersgroup.entity.Owner;
 
 import java.util.List;
 
-/**
- * Created by aalle on 16.06.2017.
- */
 public interface OwnerRepository extends JpaRepository<Owner,Integer> {
     List<Owner> findByIsDeleted(boolean isDeleted, Pageable pageable);
 }
+
+

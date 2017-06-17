@@ -4,6 +4,9 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -17,9 +20,13 @@ public class Owner {
     private String documentnumber;
 
     @Column(name = "firstname", nullable = false)
+    @NotNull
+    @Size(min = 2, max = 30)
     private String firstName;
 
     @Column(name = "lastname", nullable = false)
+    @NotNull
+    @Size(min = 2, max = 30, message = "")
     private String lastName;
 
     @Column(name = "middlename", nullable = false)
@@ -29,10 +36,10 @@ public class Owner {
     @Temporal(value=TemporalType.DATE)
     private Date birthdate;
 
-    @Column(name = "phonenumber", nullable = false)
+    @Column(name = "phonenumber")
     private String phoneNumber;
 
-    @Column(name = "address")
+    @Column(name = "address", nullable = false)
     private String address;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "owner")
