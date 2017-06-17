@@ -21,7 +21,7 @@
     </div>
     <div>
         <label for="phonenumber">Номер телефона</label>
-        <input type="text" name="phonenumber" id="phonenumber" value="${checkPoint.phonenumber!""}" required/>
+        <input type="text" name="phoneNumber" id="phoneNumber" value="${checkPoint.phoneNumber!""}" required/><#--placeholder="(XXX)-XXX-XXXX" pattern="(XXX)-XXX-XXXX"-->
     </div>
     <#--<div>-->
         <#--<label for="inspector">Сотрудник россельхоза</label>-->

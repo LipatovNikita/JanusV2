@@ -62,7 +62,7 @@ public class AdminController {
         modelAndView.addObject("form", new UserCreateForm());
         modelAndView.addObject("admin", new Administrator());
         Employee e = new Employee();
-        e.setEmploymentDate(new Date());
+        e.setEmploymentDate(new Date(54646464646565656L));
         modelAndView.addObject("employee", e);
         return modelAndView;
     }

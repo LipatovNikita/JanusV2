@@ -30,7 +30,7 @@ public class DocumentController {
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value = {"/preview/{idDoc}"}, method = RequestMethod.GET)
-    public String previewDocument(Model model,
+    public String getVeterinaryDocument(Model model,
                                   @PathVariable Integer idDoc){
         VeterinaryDocument vd = new VeterinaryDocument();
         model.addAttribute("veterinaryDocument", vd);
@@ -39,7 +39,7 @@ public class DocumentController {
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value = {"/preview/{id}"}, method = RequestMethod.POST)
-    public String previewDocument(Model model,
+    public String getVeterinaryDocument(Model model,
                                   @ModelAttribute("veterinaryDocument")VeterinaryDocument vd){
         return "fast/fastpassport";
     }

@@ -18,9 +18,38 @@
 <script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
 <#include "/template/navbar.ftl">
 <div class="center-block section row">
-    <div class="col l2 m6 s12">
+    <div class="col l6 m6 s12">
         <div class="card">
-
+            <div>
+                <label for="destination">Пункт назначения</label>
+                <input type="text" name="destination" id="destination" value="${.destination!""}" required autofocus/>
+            </div>
+            <div>
+                <label for="departure">Пункт отправления</label>
+                <input type="text" name="departure" id="departure" value="${.departure!""}" required/>
+            </div>
+            <div>
+                <label for="followingPoints">Пункты следования</label>
+                <input type="text" name="followingPoints" id="followingPoints" value="${.followingPoints!""}" required/>
+            </div>
+            <div>
+                <label for="BorderInspectionPosts">Въездной БИП в ЕС</label>
+                <input type="text" name="BorderInspectionPosts" id="BorderInspectionPosts"
+                       value="${.BorderInspectionPosts!""}" required/>
+            </div>
+            <div>
+                <label for="transportType">Тип транспорта</label>
+                <input type="text" name="transportType" id="transportType" value="${.transportType!""}" required/>
+            </div>
+            <div>
+                <label for="transportID">Идентификатор транспорта</label>
+                <input type="text" name="transportID" id="transportID" value="${.transportID!""}" required/>
+            </div>
+            <#--<div>-->
+                <#--<label for="checkPoints">Идентификатор транспорта</label>-->
+                <#--<input type="text" name="checkPoints" id="checkPoints" value="${.checkPoints!""}" required/>-->
+                <#--Set<CheckPoint> checkPoints;-->
+            <#--</div>-->
         </div>
     </div>
 </div>
