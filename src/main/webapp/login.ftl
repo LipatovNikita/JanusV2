@@ -37,6 +37,9 @@
                             <button class="btn" type="submit" name="action">Войти</button>
                         </div>
                     </div>
+                    <div class="row">
+                        <a href="/registration">Зарегистрироваться</a>
+                    </div>
                 </form>
             </#if>
             </div>
