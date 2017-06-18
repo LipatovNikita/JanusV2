@@ -2,6 +2,7 @@ package topprogersgroup.service;
 
 import org.springframework.data.domain.Pageable;
 import topprogersgroup.entity.CheckPoint;
+import topprogersgroup.entity.Owner;
 import topprogersgroup.entity.Pet;
 
 import java.util.List;

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import topprogersgroup.entity.Owner;
 import topprogersgroup.entity.Pet;
+import topprogersgroup.entity.User;
 import topprogersgroup.repository.OwnerRepository;
 import topprogersgroup.repository.PetRepository;
 import topprogersgroup.service.OwnerService;
@@ -65,5 +66,10 @@ public class OwnerServiceImpl implements OwnerService {
     public void delete(Owner owner) {
         owner.setDeleted(true);
         ownerRepository.save(owner);
+    }
+
+    @Override
+    public Owner getOwnerByUser(User user) {
+        return ownerRepository.findByUserAndIsDeleted(user, false);
     }
 }
