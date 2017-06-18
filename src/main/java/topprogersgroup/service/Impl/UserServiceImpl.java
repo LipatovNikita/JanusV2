@@ -19,7 +19,6 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     public Optional<User> getUserByEmail(String email) {
-
         return userRepository.findUserByEmailAndIsDeleted(email, false);
     }
 

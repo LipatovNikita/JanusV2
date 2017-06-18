@@ -35,16 +35,16 @@ public class DocumentController {
                       @PathVariable Integer numberPage){
         Pageable pageable = new PageRequest(numberPage,20);
         //todo: Доделать достование заявок
-//        List<Bid> bidList = veterinaryDocService.getVeterinaryDocumentPagingList(pageable);
+//        List<Bid> bidList = bidService.getBidPagingList(pageable);
 //        model.addAttribute("bidList", bidList);
         return "document/docs";
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
-    @RequestMapping(value = {"/create/{idDoc}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/create/{idBid}"}, method = RequestMethod.GET)
     public String createVeterinaryDocument(Model model,
-                                  @PathVariable Integer idDoc){
-//        Bid bid = veterinaryDocService.getVeterinaryDocumentById(idDoc);
+                                  @PathVariable Integer idBid){
+//        Bid bid = bidService.getBidById(idBid);
         VeterinaryDocument vetDoc = new VeterinaryDocument();
 //        model.addAttribute("bid", bid);
         model.addAttribute("vetDoc", vetDoc);
