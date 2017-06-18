@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import topprogersgroup.entity.Owner;
+import topprogersgroup.entity.User;
 import topprogersgroup.entity.UserCreateForm;
 import topprogersgroup.service.OwnerService;
 import topprogersgroup.service.UserService;
@@ -35,14 +36,15 @@ public class RegistrationController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registrationPage(@ModelAttribute("form") UserCreateForm form,
                                    BindingResult bindingResultForm,
-                                   @ModelAttribute("owner") Owner owner,
+                                   @Valid @ModelAttribute("owner") Owner owner,
                                    BindingResult bindingResultOwner) {
-        if (bindingResultForm.hasErrors()) {
+        if (bindingResultForm.hasErrors() || bindingResultOwner.hasErrors()) {
             return "/registration";
         }
         try {
-            //todo:Проверить на валидность Owner, Добавить в темплате овнера адрес
-            userService.create(form);
+            //todo:Проверить на валидность Owner
+            User user = userService.create(form);
+            owner.setUser(user);
             ownerService.create(owner);
         } catch (DataIntegrityViolationException e) {
             bindingResultForm.reject("email.exists", "Адрес электронной почты уже существует");

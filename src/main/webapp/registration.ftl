@@ -19,17 +19,17 @@
                 <h4 class="light">Регистрация</h4>
                 <br/>
                 <form role="form" name="registration" method="post">
-                    <div>
-                        <label for="email">Адрес электронной почты</label>
+                    <div class="input-field">
                         <input type="email" name="email" id="email_reg" required/>
+                        <label for="email">Адрес электронной почты</label>
                     </div>
-                    <div>
-                        <label for="password">Пароль</label>
+                    <div class="input-field">
                         <input type="password" name="password" id="password_reg" required/>
+                        <label for="password">Пароль</label>
                     </div>
-                    <div>
-                        <label for="password">Повторите пароль</label>
+                    <div class="input-field">
                         <input type="password" name="password" id="password_reg_repeat" required/>
+                        <label for="password">Повторите пароль</label>
                     </div>
                     <div>
                         <#include "/template/input/owner.ftl">

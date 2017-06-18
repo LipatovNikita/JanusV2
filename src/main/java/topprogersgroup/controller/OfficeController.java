@@ -50,13 +50,7 @@ public class OfficeController {
         return "/office/pet";
     }
 
-    @RequestMapping(value = "/mypets/{idPet}/slider", method = RequestMethod.GET)
-    public String getDocumentPage(Model model,
-                                  @PathVariable Integer idPet) {
-        Pet pet = new Pet(); // достать по id
-        model.addAttribute("pet", pet);
-        return "/office/slider";
-    }
+
 
     @RequestMapping(value = "/mypets/{idPet}/route", method = RequestMethod.GET)
     public String createRoute(Model model,

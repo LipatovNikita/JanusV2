@@ -17,11 +17,13 @@ public class Owner {
 
     @Id
     @Column(name = "documentnumber", unique = true, nullable = false)
-    private String documentnumber;
+    @NotNull
+    @Size(min = 2, max = 30, message = "")
+    private String documentNumber;
 
     @Column(name = "firstname", nullable = false)
     @NotNull
-    @Size(min = 2, max = 30)
+    @Size(min = 2, max = 30, message = "")
     private String firstName;
 
     @Column(name = "lastname", nullable = false)
@@ -30,16 +32,23 @@ public class Owner {
     private String lastName;
 
     @Column(name = "middlename", nullable = false)
+    @NotNull
+    @Size(min = 2, max = 30, message = "")
     private String middleName;
 
     @Column(name = "birthdate", nullable = false)
     @Temporal(value=TemporalType.DATE)
+//    @NotNull
     private Date birthdate;
 
     @Column(name = "phonenumber")
+    @NotNull
+    @Size(min = 4, max = 11, message = "")
     private String phoneNumber;
 
     @Column(name = "address", nullable = false)
+    @NotNull
+    @Size(min = 2, max = 255, message = "")
     private String address;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "owner")

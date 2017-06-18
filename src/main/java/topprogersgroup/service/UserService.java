@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface UserService {
     Optional<User> getUserByEmail(String email);
     Optional<User> getUserById(int id);
-    void create(UserCreateForm form);
+    User create(UserCreateForm form);
 }
