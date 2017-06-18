@@ -38,7 +38,7 @@ public class RegistrationController {
         try {
             Owner newOwner = owner;
             userService.create(form);
-            ownerService.create(newOwner);
+            ownerService.save(newOwner);
         } catch (DataIntegrityViolationException e) {
             bindingResult.reject("email.exists", "Адрес электронной почты уже существует");
             return "/registration";

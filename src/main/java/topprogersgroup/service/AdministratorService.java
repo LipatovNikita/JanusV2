@@ -3,6 +3,9 @@ package topprogersgroup.service;
 
 import topprogersgroup.entity.Administrator;
 
-public interface AdministratorService {
-    void create(Administrator administrator);
+import java.util.List;
+
+public interface AdministratorService extends BaseService<Administrator> {
+    List<Administrator> getAdministratorList();
+    Administrator getAdministratorById(int id);
 }

@@ -16,6 +16,10 @@ import java.util.List;
 public class Owner {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
+    private int id;
+
     @Column(name = "documentnumber", unique = true, nullable = false)
     private String documentnumber;
 

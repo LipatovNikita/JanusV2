@@ -56,7 +56,6 @@ public class PassportController {
         Date dateOfImplantation = new Date();
         dateOfImplantation.setTime(dateOfImplantation.getTime() - 1000000);
         passport.setDateOfImplantation(dateOfImplantation);
-        passport.setPassportPhoto("/photo");
         model.addAttribute("passport", passport);
         return "passport/passport";
     }

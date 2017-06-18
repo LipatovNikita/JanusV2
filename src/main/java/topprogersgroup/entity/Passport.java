@@ -84,9 +84,6 @@ public class Passport {
     @Temporal(value=TemporalType.DATE)
     private Date dateOfImplantation;
 
-    @Column(name = "passportPhoto", nullable = false)
-    private String passportPhoto;
-
     @OneToMany(mappedBy = "passport", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Vaccination> vaccination;
 
