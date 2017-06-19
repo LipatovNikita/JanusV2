@@ -29,22 +29,18 @@ public class CheckPointServiceImpl implements CheckPointService {
     }
 
     @Override
-    public List<CheckPoint> findAll() {
-        return checkPointRepository.findAll();
+    public List<CheckPoint> findAllIsDeleted() {
+        return checkPointRepository.findByIsDeleted(true);
     }
 
     @Override
-    public List<CheckPoint> findAllForPage(Pageable pageable) {
-        return (List<CheckPoint>) checkPointRepository.findAll(pageable);
-    }
-
-    @Override
-    public void delete(Integer id) {
-        checkPointRepository.delete(id);
+    public List<CheckPoint> findAllIsNotDeleted() {
+        return checkPointRepository.findByIsDeleted(false);
     }
 
     @Override
     public void delete(CheckPoint checkPoint) {
-        checkPointRepository.delete(checkPoint);
+        checkPoint.setDeleted(true);
+        checkPointRepository.save(checkPoint);
     }
 }

@@ -45,7 +45,7 @@
             <input type="text" name="middleName" id="middleName" value="${admin.middleName!""}" />
 
             <label for="documentNumber">Серия номер пасспорта</label>
-            <input type="text" name="documentNumber" id="documentNumber" value="${admin.documentNumber!""}" />
+            <input type="text" name="documentNumber" id="documentNumber" value="${admin.documentNumber!}" />
         </div>
         <div class="empolyeePanel" hidden>
 

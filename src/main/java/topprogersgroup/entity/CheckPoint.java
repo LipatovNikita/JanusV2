@@ -30,8 +30,9 @@ public class CheckPoint {
     private String address;
 
     @Column(name = "phonenumber", nullable = false)
-    @Max(11)
-    private int phoneNumber;
+    @NotNull
+    @Size(min = 1, max = 12)
+    private String phoneNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "inspector")

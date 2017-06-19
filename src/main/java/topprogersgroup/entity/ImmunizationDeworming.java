@@ -33,7 +33,4 @@ public class ImmunizationDeworming {
     @JoinColumn(name = "id_passport")
     private Passport passport;
 
-    @Column(name = "isdeleted")
-    @Type(type = "boolean")
-    private boolean isDeleted;
 }

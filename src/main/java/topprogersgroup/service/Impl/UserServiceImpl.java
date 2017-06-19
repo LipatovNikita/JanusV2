@@ -19,12 +19,15 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     public Optional<User> getUserByEmail(String email) {
-
         return userRepository.findUserByEmailAndIsDeleted(email, false);
     }
 
     public Optional<User> getUserById(int id) {
-        return Optional.ofNullable(userRepository.findOne(id));
+        return userRepository.findUserByIdAndIsDeleted(id, false);
+    }
+
+    public Optional<User> getUserByRole(String role) {
+        return userRepository.findUserByRoleAndIsDeleted(role, false);
     }
 
     public void create(UserCreateForm form) {
@@ -35,18 +38,8 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    public void registration(RegistrationForm form) {
-        User user = new User();
-        user.setEmail(form.getEmail());
-        user.setPasswordHash(new BCryptPasswordEncoder().encode(form.getPassword()));
-        user.setRole(form.getRole());
+    public void delete(User user) {
+        user.setDeleted(true);
         userRepository.save(user);
-        Owner owner = new Owner();
-        owner.setFirstName(form.getFirstName());
-        owner.setLastName(form.getLastName());
-        owner.setMiddleName(form.getMiddleName());
-        owner.setDocumentnumber(form.getDocumentNumber());
-        owner.setAddress(form.getAddress());
-        owner.setPhoneNumber(form.getPhoneNumber());
     }
 }
