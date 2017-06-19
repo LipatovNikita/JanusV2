@@ -38,6 +38,16 @@
 </#list>
 </div>
 
+<ul class="pagination">
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    <li class="active"><a href="/docs/${numberPage}">1</a></li>
+    <li class="waves-effect"><a href="/docs/${numberPage+1}">2</a></li>
+    <li class="waves-effect"><a href="/docs/${numberPage+2}">3</a></li>
+    <li class="waves-effect"><a href="/docs/${numberPage+3}">4</a></li>
+    <li class="waves-effect"><a href="/docs/${numberPage+4}">5</a></li>
+    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+</ul>
+
 <footer>
     footer
 </footer>

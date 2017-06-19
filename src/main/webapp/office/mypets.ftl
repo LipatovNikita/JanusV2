@@ -15,11 +15,12 @@
 <script type="text/javascript" rel="script" src="/resources/materialize/js/materialize.js"></script>
 
 <#include "/template/navbar.ftl">
+
 <div class="center-block section">
     <ul class="row photos">
     <#list pets as pet>
         <li class="col s12 m6 l4">
-            <a href="/office/mypets/${pet.id}">
+            <a href="/office/pets/${pet.id}">
                 <div class="card">
                     <div class="card-image">
                         <img src="${pet.passport.passportPhoto}" class="responsive-img" alt=""/>

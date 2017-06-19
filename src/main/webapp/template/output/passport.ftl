@@ -4,23 +4,23 @@
 
 <div class="row">
     <div class="input-field col s6">
+        <label>Кличка</label>
         <p>${passport.petName!""}</p>
-        <label for="petName">Кличка</label>
     </div>
     <div class="input-field col s6">
+        <label>Тип питомца</label>
         <p>${passport.animalType!""}</p>
-        <label for="animalType">Тип питомца</label>
     </div>
 </div>
 
 <div class="row">
     <div class="input-field col s6">
+        <label>Порода</label>
         <p>${passport.breed!""}</p>
-        <label for="breed">Порода</label>
     </div>
     <div class="input-field col s6">
+        <label>Окрас</label>
         <p>${passport.color!""}</p>
-        <label for="color">Окрас</label>
     </div>
 </div>
 
@@ -28,97 +28,65 @@
 <div class="row">
     <div class="col s3">
         <label>Пол</label>
-        <div class="switch">
-            <label>
-                Ж
-                <input type="checkbox" id="gender" name="gender"
-                       <#if passport.gender == true>checked="checked"</#if>>
-                <span class="lever"></span>
-                М
-            </label>
-        </div>
+    <#if passport.gender == true>
+        Ж
+    <#else>
+        М
+    </#if>
     </div>
-    <div class="col s3">
-        <label>Идентификация</label>
-        <div class="switch">
-            <label>
-                Чип
-                <input type="checkbox" id="microchipTattoo" name="microchipTattoo"
-                       <#if passport.microchipTattoo == true>checked="checked"</#if>>
-                <span class="lever"></span>
-                Тату
-            </label>
-        </div>
-    </div>
-    <div class="input-field col s3">
-        <input type="checkbox" id="castrationSterilization" name="castrationSterilization"
-               <#if passport.castrationSterilization == true>checked="checked"</#if>>
-        <label for="castrationSterilization">Кастрация/Стерилизация</label>
-    </div>
-    <#--<div id="labelDateOfBirth" class="input-field col s3">-->
-        <#--<label>Дата рождения</label>-->
-        <#--<div>-->
-            <#--<script>-->
-                <#--$(function () {-->
-                    <#--$('#dateOfBirth').combodate({-->
-                        <#--value: new Date(),-->
-                        <#--minYear: 1950,-->
-                        <#--maxYear: moment().format('YYYY')-->
-                    <#--});-->
-                <#--});-->
-            <#--</script>-->
-            <#--<input type="text" id="dateOfBirth" name="dateOfBirth"-->
-                   <#--value="${passport.dateOfBirth?string("dd-MM-yyyy")}" format="DD-MM-YYYY"-->
-                   <#--data-template="D MMM YYYY">-->
-        <#--</div>-->
-    <#--</div>-->
+</div>
+<div class="col s3">
+    <label>Идентификация</label>
+<#if passport.microchipTattoo == true>
+    <p>Чип</p>
+<#else>
+    <p>Тату</p>
+</#if>
+</div>
+
+<div class="input-field col s3">
+    <label>Кастрация/Стерилизация</label>
+    <input type="checkbox" id="castrationSterilization" name="castrationSterilization"
+           <#if passport.castrationSterilization == true>checked="checked"</#if>>
+</div>
+
+<div id="labelDateOfBirth" class="input-field col s3">
+    <label>Дата рождения</label>
+    <p>${(passport.dateOfBirth?string("dd-MM-yyyy"))!""}</p>
 </div>
 
 <div class="row microchipTattooShower">
     <div class="input-field col s6">
+        <label>Номер чипа/тату</label>
         <p>${passport.numberMicrochipTattoo!""}</p>
-        <label for="numberMicrochipTattoo">Номер чипа/тату</label>
     </div>
-    <#--<div id="labelDateOfImpl" class="input-field col s6">-->
-        <#--<label>Дата чипирования/татуирования</label>-->
-        <#--<div>-->
-            <#--<script>-->
-                <#--$(function () {-->
-                    <#--$('#dateOfImplantation').combodate({-->
-                        <#--value: new Date(),-->
-                        <#--minYear: 2012,-->
-                        <#--maxYear: moment().format('YYYY')-->
-                    <#--});-->
-                <#--});-->
-            <#--</script>-->
-            <#--<input type="text" id="dateOfImplantation" name="dateOfImplantation"-->
-                   <#--value="${passport.dateOfImplantation?string("dd/MM/yyyy")}" format="DD/MM/YYYY"-->
-                   <#--data-template="D MMM YYYY">-->
-        <#--</div>-->
-    <#--</div>-->
+    <div id="labelDateOfImpl" class="input-field col s6">
+        <label>Дата чипирования/татуирования</label>
+        <p>${(passport.dateOfImplantation?string("dd/MM/yyyy"))!""}</p>
+    </div>
 </div>
 
 <div class="row">
     <div class="input-field col s6">
+        <label>Клиника</label>
         <p>${passport.clinic!""}</p>
-        <label for="clinic">Клиника</label>
     </div>
     <div class="input-field col s6">
+        <label>Доктор</label>
         <p>${passport.doctor!""}</p>
-        <label for="doctor">Доктор</label>
     </div>
 </div>
 
 <div class="row">
     <div class="input-field col s12">
+        <label>Потомство</label>
         <p>${passport.offspring!""}</p>
-        <label for="offspring">Потомство</label>
     </div>
 </div>
 
 <div class="row">
     <div class="input-field col s12">
+        <label>Специальные признаки</label>
         <p>${passport.specialFeatures!""}</p>
-        <label for="specialFeatures">Специальные признаки</label>
     </div>
 </div>

@@ -17,14 +17,14 @@ public class Disease {
     private int id;
 
     @Column(name = "name", nullable = false)
-    private String name;
+    private String disName;
 
     @Column(name = "dateresearch", nullable = false)
     @Temporal(value= TemporalType.DATE)
-    private Date dateresearch;
+    private Date dateResearch;
 
     @Column(name = "researchmethod", nullable = false)
-    private String researchmethod;
+    private String researchMethod;
 
     @Column(name = "result", nullable = false)
     private String result;

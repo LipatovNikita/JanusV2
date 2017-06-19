@@ -37,6 +37,7 @@ public class DocumentController {
         //todo: Доделать достование заявок
 //        List<Bid> bidList = bidService.getBidPagingList(pageable);
 //        model.addAttribute("bidList", bidList);
+        model.addAttribute("numberPage",numberPage);
         return "document/docs";
     }
 
