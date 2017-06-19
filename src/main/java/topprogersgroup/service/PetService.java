@@ -15,6 +15,8 @@ public interface PetService {
 
     Pet findOne(Integer id);
 
+    List<Pet> findPetsByOwner(String documentnumber);
+
     List<Pet> findAllIsDeleted();
 
     List<Pet> findAllIsNotDeleted();

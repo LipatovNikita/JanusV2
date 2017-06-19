@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import topprogersgroup.entity.Pet;
+import topprogersgroup.repository.OwnerRepository;
 import topprogersgroup.repository.PetRepository;
+import topprogersgroup.service.OwnerService;
 import topprogersgroup.service.PetService;
 
 import java.util.List;
@@ -18,6 +20,9 @@ public class PetServiceImpl implements PetService {
     @Autowired
     private PetRepository petRepository;
 
+    @Autowired
+    private OwnerService ownerService;
+
     @Override
     public Pet save(Pet pet) {
         return petRepository.save(pet);
@@ -26,6 +31,11 @@ public class PetServiceImpl implements PetService {
     @Override
     public Pet findOne(Integer id) {
         return petRepository.findOne(id);
+    }
+
+    @Override
+    public List<Pet> findPetsByOwner(String documentnumber) {
+        return ownerService.findOne(documentnumber).getPet();
     }
 
     @Override

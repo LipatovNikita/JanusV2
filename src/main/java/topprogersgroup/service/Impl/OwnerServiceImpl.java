@@ -5,12 +5,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import topprogersgroup.entity.Owner;
 import topprogersgroup.entity.Pet;
+import topprogersgroup.entity.User;
 import topprogersgroup.repository.OwnerRepository;
 import topprogersgroup.repository.PetRepository;
+import topprogersgroup.repository.UserRepository;
 import topprogersgroup.service.OwnerService;
+import topprogersgroup.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by aalle on 16.06.2017.
@@ -24,14 +28,17 @@ public class OwnerServiceImpl implements OwnerService {
     @Autowired
     private PetRepository petRepository;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public Owner save(Owner owner) {
         return ownerRepository.save(owner);
     }
 
     @Override
-    public Owner findOne(Integer id) {
-        Owner owner = ownerRepository.findOne(id);
+    public Owner findOne(String documentnumber) {
+        Owner owner = ownerRepository.findOneByDocumentnumber(documentnumber);
         List<Pet> petList = new ArrayList<>();
         List<Pet> pets = owner.getPet();
         for(Pet pet:pets){
@@ -39,6 +46,12 @@ public class OwnerServiceImpl implements OwnerService {
         }
         owner.setPet(petList);
         return owner;
+    }
+
+    @Override
+    public Owner findOwnerByEmailUser(String email) {
+        User user = userService.getUserByEmail(email).get();
+        return findOne(user.getOwner().getDocumentnumber());
     }
 
     @Override
