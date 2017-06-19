@@ -30,12 +30,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.findUserByRoleAndIsDeleted(role, false);
     }
 
-    public void create(UserCreateForm form) {
+    public User create(UserCreateForm form) {
         User user = new User();
         user.setEmail(form.getEmail());
         user.setPasswordHash(new BCryptPasswordEncoder().encode(form.getPassword()));
         user.setRole(form.getRole());
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public void delete(User user) {

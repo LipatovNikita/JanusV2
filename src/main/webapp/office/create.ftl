@@ -1,7 +1,8 @@
 <#import "/spring.ftl" as spring/>
+
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Паспорт питомца</title>
+    <title>Заявка на вывоз</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href='/resources/materialize/css/materialize.css'/>
@@ -13,31 +14,36 @@
 <script type="text/javascript" rel="script" src="/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" rel="script" src="/resources/materialize/js/materialize.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/combodate.js"></script>
-<script type="text/javascript" rel="script" src="/resources/js/fastpassport.js"></script>
+<script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
 <#include "/template/navbar.ftl">
-<div class="center-block">
-    <div class="section">
-        <ul class="row photos">
-        <#list pets as pet>
-            <a href="/office/mypets/1">
-                <li class="col s12 m6 l4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="/resources/test.jpg" alt=""/>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="light"><#--${pet.passport.petName!""}--></h3>
-                        </div>
-                    </div>
-                </li>
-            </a>
-        </#list>
-        </ul>
+
+<form name="/create" id="createForm" action="" method="POST">
+    <div class="row main_block">
+        <div class="col s12 block-top">
+            <ul class="tabs">
+                <li class="tab col"><a class="active" href="#block_route">Маршрут</a></li>
+                <li class="tab col"><a href="#block_bid">Заявка на Ветеринарное свидетельство </a></li>
+            </ul>
+        </div>
+
+        <div id="block_route" class="col s12">
+            <div class="center-block">
+            <#include "/template/input/route.ftl">
+            </div>
+        </div>
+
+        <div id="block_bid" class="col s12">
+            <div class="center-block">
+            <#include "/template/input/bid.ftl">
+                <input type="submit" name="sub" value="Создать">
+            </div>
+        </div>
+
     </div>
-</div>
+</form>
 <footer class="footer">
-    footer
+
 </footer>
 </body>
 </html>

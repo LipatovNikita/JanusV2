@@ -7,24 +7,41 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href='/resources/materialize/css/materialize.css'/>
     <link rel="stylesheet" type="text/css" href='/resources/css/style_child.css'/>
+    <link rel="stylesheet" type="text/css" href='/resources/css/imageDrimmer.css'/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-<#include "/template/navbar.ftl">
-<div class="center-block section row">
-    <div class="col l6 m6 s12">
-        <div class="col s6 right picture-block">
-            <li><a href="/office/pets"></a><img src="/resources/images/janus.png" alt=""/></li>
-            <li><a href="/office/bids"><img src="/resources/images/janus.png" alt=""/></a></li>
-            <li><a href="#"><img src="/resources/images/janus.png" alt=""/></a></li>
 
+<#include "/template/navbar.ftl">
+
+<div class="center-block section row">
+    <div class="col s12">
+        <div class="row picture-block">
+            <div class="col s4">
+                <a href="/office/pets">
+                    <div class="imageDrimmerMyPets responsive-img">
+                        <p class="popup-text">Мои питомцы</p>
+                    <#--<img src="/resources/images/pets.png" class="responsive-img" alt=""/>-->
+                    </div>
+                </a>
+            </div>
+            <div id="imgzat" class="col s4">
+                <a href="/office/bids">
+                    <img src="/resources/images/bids.png" class="responsive-img" alt=""/>
+                </a>
+            </div>
+            <div class="col s4">
+                <a href=#">
+                    <img src="/resources/images/pets.png" class="responsive-img" alt=""/>
+                </a>
+            </div>
         </div>
     </div>
 </div>
 
-<footer class="footer">
+<#--<footer class="footer">-->
 
-</footer>
+<#--</footer>-->
 </body>
 </html>
