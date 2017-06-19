@@ -9,14 +9,11 @@ import topprogersgroup.entity.Pet;
 import topprogersgroup.entity.User;
 import topprogersgroup.repository.OwnerRepository;
 import topprogersgroup.repository.PetRepository;
-import topprogersgroup.repository.UserRepository;
 import topprogersgroup.service.OwnerService;
 import topprogersgroup.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 @Service
 public class OwnerServiceImpl implements OwnerService {
 
@@ -80,8 +77,4 @@ public class OwnerServiceImpl implements OwnerService {
         ownerRepository.save(owner);
     }
 
-    @Override
-    public Owner getOwnerByUser(User user) {
-        return ownerRepository.findByUserAndIsDeleted(user, false);
-    }
 }

@@ -1,11 +1,11 @@
 package topprogersgroup.ws.client;
 
-import localhost.types.foreignsystem.ObjectFactory;
-import localhost.types.foreignsystem.StatusFromForeignSystem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.WebServiceTemplate;
 import topprogersgroup.entity.VeterinaryCertificate;
+import topprogersgroup.ws.foreignsystem.ObjectFactory;
+import topprogersgroup.ws.foreignsystem.StatusFromForeignSystem;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -20,7 +20,7 @@ public class WebServiceClient {
 
     public String getVeterinaryCertificateStatus(VeterinaryCertificate veterinaryCertificate) throws DatatypeConfigurationException {
         ObjectFactory objectFactory = new ObjectFactory();
-        localhost.types.foreignsystem.VeterinaryCertificate veterinaryCertificateWS = objectFactory.createVeterinaryCertificate();
+        topprogersgroup.ws.foreignsystem.VeterinaryCertificate veterinaryCertificateWS = objectFactory.createVeterinaryCertificate();
         veterinaryCertificateWS.setCertificateId(veterinaryCertificate.getId());
         veterinaryCertificateWS.setCertificateNumber(veterinaryCertificate.getNumber());
         veterinaryCertificateWS.setVeterinaryDocumentNumber(veterinaryCertificate.getVeterinaryDocument().getNumber());
