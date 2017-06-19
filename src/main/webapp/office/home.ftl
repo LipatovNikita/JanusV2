@@ -11,20 +11,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-<#include "/template/navbar.ftl">
-<div class="center-block section row">
-    <div class="col l6 m6 s12">
-        <div class="col s6 right picture-block">
-            <li><a href="/office/pets"></a><img src="/resources/images/janus.png" alt=""/></li>
-            <li><a href="/office/bids"><img src="/resources/images/janus.png" alt=""/></a></li>
-            <li><a href="#"><img src="/resources/images/janus.png" alt=""/></a></li>
 
+<#include "/template/navbar.ftl">
+
+<div class="center-block section row">
+    <div class="col s12">
+        <div class="row picture-block">
+            <div class="col s4">
+                <a href="/office/pets">
+                    <img src="/resources/images/pets.png" class="responsive-img" alt=""/>
+                </a>
+            </div>
+            <div class="col s4">
+                <a href="/office/bids">
+                    <img src="/resources/images/bids.png" class="responsive-img" alt=""/>
+                </a>
+            </div>
+            <div class="col s4">
+                <a href=#">
+                    <img src="/resources/images/pets.png" class="responsive-img" alt=""/>
+                </a>
+            </div>
         </div>
     </div>
 </div>
 
-<footer class="footer">
+<#--<footer class="footer">-->
 
-</footer>
+<#--</footer>-->
 </body>
 </html>

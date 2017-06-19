@@ -25,8 +25,8 @@ import java.util.ArrayList;
 @RequestMapping("/docs")
 public class DocumentController {
 
-    @Autowired
-    private VeterinaryDocumentService veterinaryDocService;
+//    @Autowired
+//    private VeterinaryDocumentService veterinaryDocService;
 
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
@@ -65,8 +65,8 @@ public class DocumentController {
     @RequestMapping(value = {"/preview/{idDoc}"}, method = RequestMethod.GET)
     public String previewVeterinaryDocument(Model model,
                                             @PathVariable Integer idDoc){
-        VeterinaryDocument vd = veterinaryDocService.getVeterinaryDocumentById(idDoc);
-        model.addAttribute("veterinaryDocument", vd);
+//        VeterinaryDocument vd = veterinaryDocService.getVeterinaryDocumentById(idDoc);
+//        model.addAttribute("veterinaryDocument", vd);
         //todo: Сделать страницу
         return "document/preview";
     }

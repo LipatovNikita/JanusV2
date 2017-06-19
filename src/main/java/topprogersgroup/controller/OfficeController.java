@@ -21,7 +21,6 @@ public class OfficeController {
 
 //    @Autowired
 
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
         return "/office/home";
@@ -30,7 +29,7 @@ public class OfficeController {
     @RequestMapping(value = "/pets", method = RequestMethod.GET)
     public String getAllPetsPage(Model model) {
         //todo: Вытащить петов
-//        List<Pet> pets = petsService.findAllByOwner(owner);
+//        List<Pet> pets = owner.getPets();
 //        model.addAttribute("pets", pets);
         return "/office/mypets";
     }
@@ -45,11 +44,18 @@ public class OfficeController {
 
     @RequestMapping(value = "/bids", method = RequestMethod.GET)
     public String getBidPage(Model model) {
-//        List<Bid> bidList = bidSetvice.findAllByOwner(owner);
+//        List<Bid> bidList = bidService.findAllByOwner(owner);
 //        model.addAttribute("bidList", bidList);
         return "/office/bids";
     }
 
+    @RequestMapping(value = "/bids/{idBid}", method = RequestMethod.POST)
+    public String previewBid(Model model,
+                             @PathVariable Integer idBid) {
+//        Bid bid = bidSetvice.findById(idBid);
+//        model.addAttribute("bid", bid);
+        return "/office/route";
+    }
 
     @RequestMapping(value = "/bids/create", method = RequestMethod.GET)
     public String createBid(Model model) {
@@ -71,12 +77,5 @@ public class OfficeController {
         return "forward:/office/bids";
     }
 
-    @RequestMapping(value = "/bids/{idBid}", method = RequestMethod.POST)
-    public String previewBid(Model model,
-                             @PathVariable Integer idBid) {
-//        Bid bid = bidSetvice.findById(idBid);
-//        model.addAttribute("bid", bid);
-        return "/office/route";
-    }
 
 }

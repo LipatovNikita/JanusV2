@@ -15,35 +15,32 @@
 <script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/pgwslider.js"></script>
 <#include "/template/navbar.ftl">
+
 <div class="section">
-    <#list veterinaryDocList as vetDoc>
-    <div class="row">
-        <div class="col s6">
-            Количество петомцев: ${vetDoc.bid.countPet!0}<br/>
-            Количество мест под петомцев: ${vetDoc.bid.countSeats!0}<br/>
-            Дата отправления: ${(vetDoc.bid.departureDate?string("dd-MM-yyyy"))!""}<br/>
-        </div>
-        <div class="col s6">
-            Количество петомцев: ${vetDoc.bid.countPet!0}<br/>
-            Количество мест под петомцев: ${vetDoc.bid.countSeats!0}<br/>
-            Дата отправления: ${(vetDoc.bid.departureDate?string("dd-MM-yyyy"))!""}<br/>
-        </div>
-    </div>
+<#list bidList as bid>
+    <a href="/docs/create/${bid.id}">
+        <div class="row">
 
-    </#list>
-
+            <div class="col s6">
+                Количество петомцев: ${bid.countPet!0}<br/>
+                Количество мест под петомцев: ${bid.countSeats!0}<br/>
+                Дата отправления: ${(bid.departureDate?string("dd-MM-yyyy"))!""}<br/>
+            </div>
+            <div class="col s6">
+                Пункт назначения: ${bid.route.destination!""}<br/>
+                Пукты следования: ${bid.route.followingPoints!""}<br/>
+                Пункт отправления: ${bid.route.departure!""}<br/>
+                Въездной БИП в ЕС: ${bid.route.BorderInspectionPosts!""}<br/>
+                Тип транспорта: ${bid.route.transportType!""}<br/>
+            </div>
+        </div>
+    </a>
+</#list>
 </div>
+
 <footer>
     footer
 </footer>
 </body>
 </html>
 
-<div>
-    <label for="countPet"> </label>
-    <input type="text" name="countPet" id="countPet" value="" required autofocus/>
-</div>
-<div>
-    <label for="countSeats"></label>
-    <input type="text" name="countSeats" id="countSeats" value="${.countSeats!0}" required/>
-</div>
