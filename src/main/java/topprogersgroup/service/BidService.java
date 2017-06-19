@@ -19,7 +19,5 @@ public interface BidService {
 
     List<Bid> findForPageIsNotDeleted(Pageable pageable);
 
-    List<Bid> getBidListByOwner(Owner owner);
-
     void delete(Bid bid);
 }

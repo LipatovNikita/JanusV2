@@ -40,11 +40,6 @@ public class BidServiceImpl implements BidService {
     }
 
     @Override
-    public List<Bid> getBidListByOwner(Owner owner) {
-        return bidRepository.findByOwnerAndIsDeleted(owner, false);
-    }
-
-    @Override
     public void delete(Bid bid) {
         bid.setDeleted(true);
         bidRepository.save(bid);
