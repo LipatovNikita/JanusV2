@@ -1,6 +1,7 @@
 package topprogersgroup.service.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import topprogersgroup.entity.Owner;
@@ -16,14 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Created by aalle on 16.06.2017.
- */
 @Service
 public class OwnerServiceImpl implements OwnerService {
 
     @Autowired
     private OwnerRepository ownerRepository;
+
 
     @Autowired
     private PetRepository petRepository;

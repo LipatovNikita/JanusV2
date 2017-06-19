@@ -7,12 +7,9 @@ import topprogersgroup.entity.StateVeterinaryService;
 
 import java.util.List;
 
-/**
- * Created by aalle on 16.06.2017.
- */
 public interface StateVeterinaryServiceService  {
 
-    StateVeterinaryService save(StateVeterinaryService stateVeterinaryService);
+    StateVeterinaryService create(StateVeterinaryService stateVeterinaryService);
 
     StateVeterinaryService findOne(Integer id);
 
