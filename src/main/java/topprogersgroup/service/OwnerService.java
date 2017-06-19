@@ -10,7 +10,9 @@ public interface OwnerService {
 
     Owner save(Owner owner);
 
-    Owner findOne(Integer id);
+    Owner findOne(String documentnumber);
+
+    Owner findOwnerByEmailUser(String email);
 
     List<Owner> findForPageIsDeleted(Pageable pageable);
 
