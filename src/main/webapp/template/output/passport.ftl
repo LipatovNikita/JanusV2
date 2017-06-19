@@ -29,9 +29,9 @@
     <div class="col s3">
         <label>Пол</label>
     <#if passport.gender == true>
-        Ж
+        <p>Ж</p>
     <#else>
-        М
+        <p>М</p>
     </#if>
     </div>
 </div>

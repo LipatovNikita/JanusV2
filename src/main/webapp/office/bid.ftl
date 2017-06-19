@@ -23,11 +23,11 @@
 
             <div>
                 <label for="countPet">Количество петомцев</label>
-                <input type="text" name="countPet" id="countPet" value="${.countPet!0}" required autofocus/>
+                <input type="text" name="countPet" id="countPet" value="${bid.countPet!0}" required autofocus/>
             </div>
             <div>
                 <label for="countSeats">Количество мест под петомцев</label>
-                <input type="text" name="countSeats" id="countSeats" value="${.countSeats!0}" required/>
+                <input type="text" name="countSeats" id="countSeats" value="${bid.countSeats!0}" required/>
             </div>
             <#--<div id="labelDepartureDate" class="input-field col s3">-->
                 <#--<label>Дата рождения</label>-->
@@ -42,7 +42,7 @@
                         <#--});-->
                     <#--</script>-->
                     <#--<input type="text" id="departureDate" name="departureDate"-->
-                           <#--value="${(passport.departureDate?string("dd-MM-yyyy"))!""}" format="DD-MM-YYYY"-->
+                           <#--value="${(bid.departureDate?string("dd-MM-yyyy"))!""}" format="DD-MM-YYYY"-->
                            <#--data-template="D MMM YYYY">-->
                 <#--</div>-->
             <#--</div>-->

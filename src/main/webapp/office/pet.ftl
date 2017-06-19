@@ -109,6 +109,15 @@
                     </span>
                 </div>
             </li>
+            <#--todo: Доделать оригиналы-->
+            <#--<li>-->
+                <#--<div class="collapsible-header">Оригиналы</div>-->
+                <#--<div class="collapsible-body">-->
+                    <#--<span>-->
+                    <#--<#include "/template/output/quarantine.ftl">-->
+                    <#--</span>-->
+                <#--</div>-->
+            <#--</li>-->
         </ul>
     </div>
 </div>

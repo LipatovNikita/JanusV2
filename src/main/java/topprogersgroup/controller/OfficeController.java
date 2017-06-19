@@ -1,6 +1,8 @@
 package topprogersgroup.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import topprogersgroup.entity.Bid;
+import topprogersgroup.entity.Passport;
 import topprogersgroup.entity.Pet;
 import topprogersgroup.entity.Route;
+import topprogersgroup.service.CurrentUserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +23,8 @@ import java.util.List;
 public class OfficeController {
 
 
-//    @Autowired
+    @Autowired
+    CurrentUserService userService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
@@ -27,7 +32,9 @@ public class OfficeController {
     }
 
     @RequestMapping(value = "/pets", method = RequestMethod.GET)
-    public String getAllPetsPage(Model model) {
+    public String getAllPetsPage(Model model,
+                                 @AuthenticationPrincipal User user) {
+        String email = userService.getUserEmail();
         //todo: Вытащить петов
 //        List<Pet> pets = owner.getPets();
 //        model.addAttribute("pets", pets);
@@ -38,7 +45,13 @@ public class OfficeController {
     public String getPetPage(Model model,
                              @PathVariable Integer idPet) {
 //        Pet pet = petsService.findById(idPet);
+//        Passport passport = pet.getPassport();
 //        model.addAttribute("pet", pet);
+//        model.addAttribute("passport", passport);
+//        model.addAttribute("owner", passport.getOwner());
+//        model.addAttribute("vaccinationList", passport.getVaccination());
+//        model.addAttribute("immunizationList", passport.getImmunizationDeworming());
+//        model.addAttribute("quarantine",pet.getQuarantine());
         return "/office/pet";
     }
 
