@@ -22,7 +22,6 @@ import java.util.List;
 @RequestMapping(value = "/office")
 public class OfficeController {
 
-
     @Autowired
     CurrentUserService userService;
 
@@ -38,7 +37,7 @@ public class OfficeController {
         //todo: Вытащить петов
 //        List<Pet> pets = owner.getPets();
 //        model.addAttribute("pets", pets);
-        return "/office/mypets";
+        return "/office/pets";
     }
 
     @RequestMapping(value = "/pets/{idPet}", method = RequestMethod.GET)
