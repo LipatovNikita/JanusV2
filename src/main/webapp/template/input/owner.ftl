@@ -1,29 +1,29 @@
 <div class="row">
     <div class="input-field col s6">
         <input type="text" name="numberAndSeriesOfPassport"
-               value="${owner.numberAndSeriesOfPassport!""}">
+               value="${passport.owner.documentnumber!""}">
         <label for="numberAndSeriesOfPassport">Серия и номер паспорта</label>
     </div>
     <div class="input-field col s6">
-        <input type="text" id="firstName" name="firstName" value="${owner.firstName!""}">
+        <input type="text" id="firstName" name="firstName" value="${passport.owner.firstName!""}">
         <label for="firstName">Имя </label>
     </div>
 </div>
 
 <div class="row">
     <div class="input-field col s6">
-        <input type="text" id="lastName" name="lastName" value="${owner.lastName!""}">
+        <input type="text" id="lastName" name="lastName" value="${passport.owner.lastName!""}">
         <label for="lastName">Фамилия</label>
     </div>
     <div class="input-field col s6">
-        <input type="text" id="patronymic" name="patronymic" value="${owner.patronymic!""}">
+        <input type="text" id="patronymic" name="patronymic" value="${passport.owner.patronymic!""}">
         <label for="patronymic">Отчество</label>
     </div>
 </div>
 
 <div class="row">
     <div class="input-field col s6">
-        <input type="text" id="phoneNumber" name="phoneNumber" value="${owner.phoneNumber!""}">
+        <input type="text" id="phoneNumber" name="phoneNumber" value="${passport.owner.phoneNumber!""}">
         <label for="phoneNumber">Номер телефона</label>
     </div>
     <#--<div id="labelDateOfBirth" class="input-field col s3">-->

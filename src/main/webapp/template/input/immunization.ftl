@@ -1,11 +1,13 @@
-<fieldset>
+<#list passport.immunizationDeworming as item>
+<fieldset class="template-block">
     <div class="row">
         <div class="input-field col s6">
-            <div class="switch">
+           <div class="switch">
                 <label>
                     Иммунизация
-                    <input type="checkbox" id="immunization" name="immunization"
-                           <#if immunizations[0].immunizationDeworming.immunizationDeworming== true>checked="checked"</#if>>
+                    <input type="checkbox" id="passport.immunizationDeworming[${item_index}].immunizationDeworming"
+                           name="immunizationDeworming[${item_index}].immunizationDeworming"/>
+                    <#if item.immunizationDeworming== true>checked="checked"</#if>
                     <span class="lever"></span>
                     Дегельминтизация
                 </label>
@@ -15,12 +17,15 @@
 
     <div class="row">
         <div class="input-field col s6">
-            <input type="text" id="imName" name="immunization" value="${immunizations[0].imName!""}" class="validate">
-            <label for="imName">Наименование</label>
+            <input type="text" id="passport.immunizationDeworming[${item_index}].imName"
+                   name="immunizationDeworming[${item_index}].imName" value="${item.imName!""}"/>
+
+            <label for="immunizationDeworming[${item_index}].imName">Наименование</label>
         </div>
         <div class="input-field col s6">
-            <input type="text" id="drug" name="immunization" value="${immunizations[0].drug!""}" class="validate">
-            <label for="drug">Лекарственное средство</label>
+            <input type="text" id="passport.immunizationDeworming[${item_index}].drug"
+                   name="immunizationDeworming[${item_index}].drug" value="${item.drug!""}"/>
+            <label for="immunizationDeworming[${item_index}].drug">Лекарственное средство</label>
         </div>
     </div>
     <div class="col s4">
@@ -35,22 +40,25 @@
                 <div class="switch">
                     <label>
                         Иммунизация
-                        <input type="checkbox" id="immunization" name="immunization"
-                               <#if immunization.immunizationDeworming== true>checked="checked"</#if>>
+                        <input type="checkbox" name="immunizationDeworming"/>
+                        <#if item.immunizationDeworming== true>checked="checked"</#if>
                         <span class="lever"></span>
                         Дегельминтизация
                     </label>
                 </div>
             </div>
+            <div class="input-field col s6">
+                Здесь должна быть дата
+            </div>
         </div>
 
         <div class="row">
             <div class="input-field col s6">
-                <input type="text" id="imName" name="imName" value="${immunization.imName!""}" class="validate">
+                <input type="text" name="imName" value="${item.imName!""}">
                 <label for="imName">Наименование</label>
             </div>
             <div class="input-field col s6">
-                <input type="text" id="drug" name="drug" value="${immunization.drug!""}" class="validate">
+                <input type="text" name="drug" value="${item.drug!""}">
                 <label for="drug">Лекарственное средство</label>
             </div>
         </div>
@@ -59,6 +67,8 @@
         </div>
     </fieldset>
 </div>
+</#list>
+
 <div class="btn-block">
     <a class="btn btn-primary btnPrevious">Previous</a>
     <a class="btn btn-primary btnNext">Next</a>

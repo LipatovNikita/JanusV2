@@ -1,51 +1,44 @@
 $(document).ready(function () {
+
     $('select').material_select();
 
     $('ul.tabs').tabs();
 
     $isValid = false;
-    var numberRowQuar = 0;
-    $('#block_quarantine').on('click', '.addButton', function () {
+    var numberRowQuar = $('fieldset[idquarantine]:last').attr('idquarantine');
+    $('#block_quarantine').on('click', '.btnAddQuar', function () {
         numberRowQuar++;
-        var $template = $('#diseasesTemplate'),
+        var $template = $('#quarantineTemplate'),
             $clone = $template
                 .clone()
                 .removeClass('hide')
                 .removeAttr('id')
-                .attr('iddiseases', numberRowQuar)
-                .attr('id', numberRowQuar)
+                .attr('idquarantine', numberRowQuar)
                 .insertBefore($template);
-
-        var $temp = $(document.getElementById(numberRowQuar).children[0].children[0]),
-            $elem = $temp
-                .clone()
-                .attr('value', '${quarantine.diseases[' + numberRowQuar + ']!""}')
-                .val($(this).data('defvalue'))
-                .insertAfter($temp);
-        $temp.remove();
+        $clone
+            .find('[name="diseases.name"]').attr('name', 'diseases[' + numberRowQuar + '].name').attr('id', 'diseases[' + numberRowQuar + '].name').end()
+            .find('[name="diseases.researchmethod"]').attr('name', 'diseases[' + numberRowQuar + '].researchmethod').attr('id', 'diseases[' + numberRowQuar + '].researchmethod').end()
+            .find('[name="diseases.result"]').attr('name', 'diseases[' + numberRowQuar + '].result').attr('id', 'diseases[' + numberRowQuar + '].result').end()
     })
-
-        .on('click', '.removeButton', function () {
-            var $row = $(this).parents('.form-group'),
-                index = $row.attr('iddiseases');
+        .on('click', '.btnRemoveQuar', function () {
+            var $row = $(this).parents('.template-block');
             $row.remove();
         });
 
     // Динамические поля для вакцинации
-    var numberRowVactination = 0;
+    var numberRowVaccination = $('fieldset[idvac]:last').attr('idvac');
     $('#block_vaccination').on('click', '.btnAddVac', function () {
-        numberRowVactination++;
-        var $templateVactination = $('#vacTemplate'),
-            $vac_clone = $templateVactination
+        numberRowVaccination++;
+        var $templateVaccination = $('#templateVaccination'),
+            $vac_clone = $templateVaccination
                 .clone()
                 .removeClass('hide')
                 .removeAttr('id')
-                .attr('id', numberRowVactination)
-                .attr('idvac', numberRowVactination)
-                .insertBefore($templateVactination);
+                .attr('idvac', numberRowVaccination)
+                .insertBefore($templateVaccination);
         $vac_clone
-            .find('[name="seriesOfVaccine"]').attr('name', 'vaccinations[' + numberRowVactination + '].seriesOfVaccine').end()
-            .find('[name="typeOfVaccine"]').attr('name', 'vaccinations[' + numberRowVactination + '].typeOfVaccine').end()
+            .find('[name="vaccination.seriesOfVaccine"]').attr('name', 'vaccination[' + numberRowVaccination + '].seriesOfVaccine').attr('id', 'vaccination[' + numberRowVaccination + '].seriesOfVaccine').end()
+            .find('[name="vaccination.typeOfVaccine"]').attr('name', 'vaccination[' + numberRowVaccination + '].typeOfVaccine').attr('id', 'vaccination[' + numberRowVaccination + '].typeOfVaccine').end()
     })
         .on('click', '.btnRemoveVac', function () {
             var $row = $(this).parents('.template-block');
@@ -53,26 +46,25 @@ $(document).ready(function () {
         });
 
     // Динамические поля для иммунизации
-    var numberRowImmunisation = 0;
+    var numberRowImmunization = 0;
     $('#block_immunization').on('click', '.btnAddImmun', function () {
-        numberRowVactination++;
+        numberRowImmunization++;
         var $templateImmun = $('#immunTemplate'),
             $vac_clone = $templateImmun
                 .clone()
                 .removeClass('hide')
                 .removeAttr('id')
-                .attr('id', numberRowImmunisation)
-                .attr('idimmun', numberRowImmunisation)
+                .attr('idimmun', numberRowImmunization)
                 .insertBefore($templateImmun);
         $vac_clone
-            .find('[name="seriesOfVaccine"]').attr('name', 'vaccinations[' + numberRowVactination + '].seriesOfVaccine').end()
-            .find('[name="typeOfVaccine"]').attr('name', 'vaccinations[' + numberRowVactination + '].typeOfVaccine').end()
+            .find('[name="immunizationDeworming"]').attr('id', 'passport.immunizationDeworming[' + numberRowImmunization + '].immunizationDeworming').attr('name', 'immunizationDeworming[' + numberRowImmunization + '].immunizationDeworming').end()
+            .find('[name="imName"]').attr('id', 'passport.immunizationDeworming[' + numberRowImmunization + '].imName').attr('name', 'immunizationDeworming[' + numberRowImmunization + '].imName').end()
+            .find('[name="drug"]').attr('id', 'passport.immunizationDeworming[' + numberRowImmunization + '].drug').attr('name', 'immunizationDeworming[' + numberRowImmunization + '].drug').end()
     })
         .on('click', '.btnRemoveImmun', function () {
             var $row = $(this).parents('.template-block');
             $row.remove();
         });
-
 
     $('.btnNext').on('click', function () {
         $isValid = false;
@@ -85,40 +77,30 @@ $(document).ready(function () {
         $('ul.tabs').tabs('select_tab', name);
 
     });
+
+    // $('.mainBtn').on('click', function () {
+    //     var form = $('#form1')[0];
+    //     var data = new FormData(form);
+    //     var im = $('#values').val();
+    //     data.append('immunizations', im);
+    //     $.ajax({
+    //         type: "POST",
+    //         enctype: 'multipart/form-data',
+    //         url: "/fast/add",
+    //         data: data,
+    //         processData: false,
+    //         contentType: false,
+    //         success: function (data) {
+    //             console.log("success : ", data);
+    //         },
+    //         error: function () {
+    //             console.log('error');
+    //         }
+    //     });
+    // });
 });
 $(function () {
     $('#form1')
-    /*.steps({
-     headerTag: 'h2',
-     bodyTag: 'section',
-     onStepChanging: function (e, currentIndex, newIndex) {
-     var fv = $('#form1').data('validate'),
-     $container = $('#form1').find('section[data-step="' + currentIndex + '"]');
-     fv.validateContainer($container);
-
-     var isValidStep = fv.isValidContainer($container);
-     if (isValidStep === false || isValidStep === null) {
-     return false;
-     }
-
-     return true;
-     },
-     onFinishing: function (e, currentIndex) {
-     var fv = $('#form1').data('validate'),
-     $container = $('#form1').find('section[data-step="' + currentIndex + '"]');
-
-     fv.validateContainer($container);
-
-     var isValidStep = fv.isValidContainer($container);
-     if (isValidStep === false || isValidStep === null) {
-     return false;
-     }
-     return true;
-     },
-     onFinished: function (e, currentIndex) {
-     $('#welcomeModal').modal();
-     }
-     })*/
         .validate({
             errorElement: 'div',
             highlight: function (element, errorClass, validClass) {
@@ -157,14 +139,12 @@ $(function () {
                 numberMicrochipTattoo: {
                     required: true
                 },
-
                 clinic: {
                     required: true
                 },
                 offspring: {
                     required: true
                 },
-
                 numberAndSeriesOfPassport: {
                     required: true
                 },
@@ -200,18 +180,3 @@ $(function () {
 
 });
 
-//перехват отправки
-$('#form1').submit(function () {
-
-    // проверяем пару полей
-    var ok = ( $('#field1').val() && $('#field2').val() ); // пусть ok хранит результат какой-то проверки
-
-    if (!ok) { // если поля не прошли проверку
-
-        // каким-то образом оповещаем об ошибках пользователя
-        alert('Чето не то!');
-
-        return false; // и этим false отменяем отправку формы
-    }
-
-});
