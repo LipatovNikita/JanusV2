@@ -79,4 +79,9 @@ public class OwnerServiceImpl implements OwnerService {
         owner.setDeleted(true);
         ownerRepository.save(owner);
     }
+
+    @Override
+    public Owner getOwnerByUser(User user) {
+        return ownerRepository.findByUserAndIsDeleted(user, false);
+    }
 }

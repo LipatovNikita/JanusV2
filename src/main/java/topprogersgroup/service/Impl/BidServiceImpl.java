@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import topprogersgroup.entity.Bid;
+import topprogersgroup.entity.Owner;
 import topprogersgroup.repository.BidRepository;
 import topprogersgroup.service.BidService;
 
@@ -36,6 +37,11 @@ public class BidServiceImpl implements BidService {
     @Override
     public List<Bid> findForPageIsNotDeleted(Pageable pageable) {
         return bidRepository.findByIsDeleted(false, pageable);
+    }
+
+    @Override
+    public List<Bid> getBidListByOwner(Owner owner) {
+        return bidRepository.findByOwnerAndIsDeleted(owner, false);
     }
 
     @Override

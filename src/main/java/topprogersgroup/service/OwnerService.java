@@ -2,6 +2,7 @@ package topprogersgroup.service;
 
 import org.springframework.data.domain.Pageable;
 import topprogersgroup.entity.Owner;
+import topprogersgroup.entity.User;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface OwnerService {
     List<Owner> findForPageIsNotDeleted(Pageable pageable);
 
     void delete(Owner owner);
+
+    Owner getOwnerByUser(User user);
 }
