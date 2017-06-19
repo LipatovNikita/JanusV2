@@ -12,16 +12,3 @@
         <p>${(bid.departureDate?string("dd-MM-yyyy"))!""}</p>
     </div>
 </div>
-
-<div class="row">
-    <div class="col s12">
-        <label>Маршрут</label>
-        <#include "/template/output/route.ftl"/>
-    </div>
-</div>
-<div class="row">
-    <div class="col s12">
-        <label>Петомцы</label>
-        <#include "/template/output/petstable.ftl"/>
-    </div>
-</div>

@@ -22,8 +22,8 @@
     <div class="row">
         <div class="col s5">
             <ul class="pgwSlider">
-                <li><img src="/resources/test.jpg" alt="Заголовок из alt атрибута"></li>
-                <li><img src="/resources/test.jpg" alt="Заголовок из alt атрибута"></li>
+                <li><img src="/resources/test.jpg" alt=""></li>
+                <li><img src="/resources/test.jpg" alt=""></li>
                 <li>
                     <img src="/resources/test.jpg" alt="">
                     <span>Заголовок из тега span</span>
@@ -44,10 +44,7 @@
             </ul>
         </div>
 
-        <div class="col s7">
-            Здесь переключающаяся панельска с данными, чтобы можно было сверить сотруднику
-            Collapsible первый самый вроде бы неплохо
-        </div>
+
     </div>
 </div>
 <footer>

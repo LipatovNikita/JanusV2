@@ -1,53 +1,37 @@
 <div class="row">
-    <div class="col s4">
-        <label>Пункт назначения</label>
-        <p>${route.destination!""}</p>
+    <div class="col s6">
+        <label for="destination">Пункт назначения</label>
+        <input type="text" name="destination" id="destination" value="${route.destination!""}" required autofocus/>
     </div>
-    <div class="col s4">
-        <label>Пункт отправления</label>
-        <p>${route.departure!""}</p>
-    </div>
-    <div class="col s4">
-        <label>Пункты следования</label>
-        <p>${route.followingPoints!""}</p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col s4">
-        <label>Въездной БИП в ЕС</label>
-        <p>${route.BorderInspectionPosts!""}</p>
-    </div>
-    <div class="col s4">
-        <label>Тип транспорта</label>
-        <p>${route.transportType!""}</p>
-    </div>
-    <div class="col s4">
-        <label>Идентификатор транспорта</label>
-        <p>${route.transportID!""}</p>
+    <div class="col s6">
+        <label for="departure">Пункт отправления</label>
+        <input type="text" name="departure" id="departure" value="${route.departure!""}" required/>
     </div>
 </div>
 <div class="row">
     <div class="col s12">
-        <table>
-            <thead>
-            <tr>
-                <th>Название пропускного пункта</th>
-                <th>Адрес</th>
-                <th>Номер телефона</th>
-                <th>Испектор</th>
-            </tr>
-            </thead>
-            <tbody>
-            <#list route.checkPoints as chechPoint>
-            <tr>
-                <td>${chechPoint.cpName}</td>
-                <td>${chechPoint.address}</td>
-                <td>${chechPoint.phoneNumber}</td>
-                <td>${chechPoint.inspector.firstName} ${chechPoint.inspector.lastName}</td>
-            </tr>
-            </#list>
-            </tbody>
-        </table>
+        <label for="followingPoints">Пункты следования</label>
+        <input type="text" name="followingPoints" id="followingPoints" value="${route.followingPoints!""}" required/>
     </div>
+</div>
+<div class="row">
+    <div class="col s3">
+        <label for="BorderInspectionPosts">Въездной БИП в ЕС</label>
+        <input type="text" name="BorderInspectionPosts" id="BorderInspectionPosts"
+               value="${route.BorderInspectionPosts!""}" required/>
+    </div>
+    <div class="col s3">
+        <label for="transportType">Тип транспорта</label>
+        <input type="text" name="transportType" id="transportType" value="${route.transportType!""}" required/>
+    </div>
+    <div class="col s3">
+        <label for="transportID">Идентификатор транспорта</label>
+        <input type="text" name="transportID" id="transportID" value="${route.transportID!""}" required/>
+    </div>
+<#--todo:Добавить чекПоинты-->
+<#--<div class="col s3">-->
+<#--<label for="checkPoints">Идентификатор транспорта</label>-->
+<#--<input type="text" name="checkPoints" id="checkPoints" value="${.checkPoints!""}" required/>-->
+<#--Set<CheckPoint> checkPoints;-->
+<#--</div>-->
 </div>

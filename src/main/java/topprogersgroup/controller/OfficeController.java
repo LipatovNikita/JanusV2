@@ -5,6 +5,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import topprogersgroup.entity.Pet;
 import topprogersgroup.entity.Route;
 import topprogersgroup.service.CurrentUserService;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +68,9 @@ public class OfficeController {
                              @PathVariable Integer idBid) {
 //        Bid bid = bidSetvice.findById(idBid);
 //        model.addAttribute("bid", bid);
-        return "/office/route";
+//        model.addAttribute("route",bid.getRoute());
+//        model.addAttribute("petList",bid.getPets());
+        return "/office/bid";
     }
 
     @RequestMapping(value = "/bids/create", method = RequestMethod.GET)
@@ -77,15 +81,21 @@ public class OfficeController {
 //        model.addAttribute("pets", pets);
         model.addAttribute("route", route);
         model.addAttribute("bid", bid);
-        return "/office/bid";
+        return "/office/create";
     }
 
     @RequestMapping(value = "/bids/create", method = RequestMethod.POST)
     public String createBid(Model model,
-                              @ModelAttribute("route")Route route,
-                              @ModelAttribute("bid")Bid bid) {
-        Pet pet = new Pet(); // достать по id
-        model.addAttribute("pet", pet);
+                            @Valid @ModelAttribute("route")Route route,
+                            BindingResult bindingRouteResult,
+                            @ModelAttribute("bid")Bid bid,
+                            BindingResult bindingBidResult) {
+        if(bindingBidResult.hasErrors() || bindingRouteResult.hasErrors()){
+            return "/bids/create";
+        }
+//        routeService.save(route);
+//        bid.setRoute(route);
+//        bidService.save(bid);
         return "forward:/office/bids";
     }
 

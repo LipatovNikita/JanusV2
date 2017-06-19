@@ -18,28 +18,30 @@
 <script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
 <#include "/template/navbar.ftl">
 
-
-<div class="row main_block">
-    <div class="col s12 block-top">
-        <ul class="tabs">
-            <li class="tab col"><a class="active" href="#block_route">Маршрут</a></li>
-            <li class="tab col"><a href="#block_bid">Заявка на Ветеринарное свидетельство </a></li>
-        </ul>
-    </div>
-    <div id="block_route" class="col s12">
-        <div class="center-block">
-        <#include "/template/input/route.ftl">
+<form name="/create" id="createForm" action="" method="POST">
+    <div class="row main_block">
+        <div class="col s12 block-top">
+            <ul class="tabs">
+                <li class="tab col"><a class="active" href="#block_route">Маршрут</a></li>
+                <li class="tab col"><a href="#block_bid">Заявка на Ветеринарное свидетельство </a></li>
+            </ul>
         </div>
-    </div>
 
-    <div id="block_bid" class="col s12">
-        <div class="center-block">
-        <#include "/template/input/bid.ftl">
-            <input type="submit" name="sub" value="Создать">
+        <div id="block_route" class="col s12">
+            <div class="center-block">
+            <#include "/template/input/route.ftl">
+            </div>
         </div>
-    </div>
-</div>
 
+        <div id="block_bid" class="col s12">
+            <div class="center-block">
+            <#include "/template/input/bid.ftl">
+                <input type="submit" name="sub" value="Создать">
+            </div>
+        </div>
+
+    </div>
+</form>
 <footer class="footer">
 
 </footer>

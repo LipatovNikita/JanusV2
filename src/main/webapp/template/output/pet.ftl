@@ -39,7 +39,7 @@
             </span>
         </div>
     </li>
-<#--todo: Доделать оригиналы-->
+<#--todo: Доделать оригиналы и решить как будет с bidforemployee(потому-что там уже есть вывод картинок)-->
 <#--<li>-->
 <#--<div class="collapsible-header">Оригиналы</div>-->
 <#--<div class="collapsible-body">-->
@@ -49,3 +49,8 @@
 <#--</div>-->
 <#--</li>-->
 </ul>
+<script>
+    $(document).ready(function(){
+        $('.collapsible').collapsible();
+    });
+</script>

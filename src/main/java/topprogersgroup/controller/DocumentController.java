@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import topprogersgroup.entity.Bid;
 import topprogersgroup.entity.VeterinaryDocument;
 import topprogersgroup.service.VeterinaryDocumentService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -49,16 +51,26 @@ public class DocumentController {
         VeterinaryDocument vetDoc = new VeterinaryDocument();
 //        model.addAttribute("bid", bid);
         model.addAttribute("vetDoc", vetDoc);
+//        model.addAttribute("petList", bid.getPets());
+//        model.addAttribute("route", bid.getRoute());
         return "document/vetDoc";
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
-    @RequestMapping(value = {"/create/{idDoc}"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/create/{idBid}"}, method = RequestMethod.POST)
     public String createVeterinaryDocument(Model model,
-                                        @ModelAttribute("bid")Bid bid,
-                                        @ModelAttribute("vetDoc") VeterinaryDocument vetDoc){
-//        VeterinaryDocument vd = veterinaryDocService.getVeterinaryDocumentById(idDoc);
-//        model.addAttribute("veterinaryDocument", vd);
+                                           @ModelAttribute("bid")Bid bid,
+                                           @Valid @ModelAttribute("vetDoc") VeterinaryDocument vetDoc,
+                                           BindingResult bindingVetDocResult){
+        if(bindingVetDocResult.hasErrors()){
+            return "document/vetDoc";
+        }
+        //todo: Дописать сравнение
+        if(bid.getStatus().equals("")){
+
+        }
+        vetDoc.setBid(bid);
+//        vetDocService.save(vetDoc);
         return String.format("forward:/preview/{0}",vetDoc.getId());
     }
 
