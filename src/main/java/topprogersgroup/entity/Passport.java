@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -22,7 +23,7 @@ public class Passport {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "guid", nullable = false)
-    private String guid;
+    private UUID guid;
 
     @Column(name = "isLast")
     @Type(type = "boolean")
@@ -57,7 +58,7 @@ public class Passport {
     @Column(name = "offspring")
     private String offspring;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
@@ -84,13 +85,13 @@ public class Passport {
     @Temporal(value=TemporalType.DATE)
     private Date dateOfImplantation;
 
-    @OneToMany(mappedBy = "passport", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "passport", cascade = CascadeType.ALL)
     private List<Vaccination> vaccination;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "passport")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "passport", fetch = FetchType.EAGER)
     private Pet pet;
 
-    @OneToMany(mappedBy = "passport")
+    @OneToMany(mappedBy = "passport", fetch = FetchType.EAGER)
     private Set<UploadImage> images;
 
     @Column(name = "isdeleted")

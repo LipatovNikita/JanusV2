@@ -36,7 +36,10 @@ public class VeterinaryCertificate {
     @Column(name = "number", nullable = false, unique = true)
     private int number;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @Column(name = "status", nullable = false)
+    private String status;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "veterinarydocument", nullable = false)
     private VeterinaryDocument veterinaryDocument;
 

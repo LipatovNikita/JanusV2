@@ -2,7 +2,7 @@
 <fieldset class="template-block">
     <div class="row">
         <div class="input-field col s6">
-           <div class="switch">
+            <div class="switch">
                 <label>
                     Иммунизация
                     <input type="checkbox" id="passport.immunizationDeworming[${item_index}].immunizationDeworming"
@@ -12,6 +12,11 @@
                     Дегельминтизация
                 </label>
             </div>
+        </div>
+        <div class="input-field col s6">
+            <input type="text" class="date" id="immunizationDeworming[${item_index}].date"
+                   name="immunizationDeworming[${item_index}].date" data-format="YYYY/MM/DD" data-template="D MMM YYYY"
+                   value="${item.date!"1996/10/24"?date}">
         </div>
     </div>
 
@@ -32,7 +37,6 @@
         <a class="btn btn-primary btnAddImmun">Добавить</a>
     </div>
 </fieldset>
-
 <div id="immunTemplate" class="hide template-block">
     <fieldset>
         <div class="row">
@@ -47,8 +51,10 @@
                     </label>
                 </div>
             </div>
+
             <div class="input-field col s6">
-                Здесь должна быть дата
+                <input type="text" class="date" id="immunizationDeworming.date" name="immunizationDeworming.date"
+                       data-format="YYYY/MM/DD" data-template="D MMM YYYY" value="${item.date!"1996/10/24"?date}">
             </div>
         </div>
 
@@ -68,7 +74,6 @@
     </fieldset>
 </div>
 </#list>
-
 <div class="btn-block">
     <a class="btn btn-primary btnPrevious">Previous</a>
     <a class="btn btn-primary btnNext">Next</a>

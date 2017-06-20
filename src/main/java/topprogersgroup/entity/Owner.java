@@ -55,13 +55,13 @@ public class Owner {
     @Size(min = 2, max = 255, message = "")
     private String address;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "owner")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)
     private Passport passport;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<Pet> pet;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

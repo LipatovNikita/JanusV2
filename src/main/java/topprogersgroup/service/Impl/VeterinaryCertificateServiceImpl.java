@@ -1,6 +1,7 @@
 package topprogersgroup.service.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import topprogersgroup.entity.VeterinaryCertificate;
 import topprogersgroup.entity.VeterinaryDocument;
@@ -34,5 +35,10 @@ public class VeterinaryCertificateServiceImpl implements VeterinaryCertificateSe
 
     public List<VeterinaryCertificate> getVeterinaryCertificateList() {
         return veterinaryCertificateRepository.findAll();
+    }
+
+    @Override
+    public List<VeterinaryCertificate> findForPageByStatusAndSortDate(String status, boolean isDeleted, Pageable pageable) {
+        return veterinaryCertificateRepository.findByStatusAndIsDeletedOrderByIssueDate(status,isDeleted,pageable);
     }
 }

@@ -21,7 +21,7 @@ public class UploadImage {
     @Column(name = "path", nullable = false, unique = true)
     private String path;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "passport")
     private Passport passport;
 
