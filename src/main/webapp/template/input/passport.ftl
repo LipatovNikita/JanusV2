@@ -6,6 +6,7 @@
     <div class="input-field col s6">
         <input type="text" id="petName" name="petName" value="${passport.petName!""}">
         <label for="petName">Кличка</label>
+        <label for="petName" name="errors">Кличка</label>
     </div>
     <div class="input-field col s6">
         <input type="text" id="animalType" name="animalType" value="${passport.animalType!""}">
@@ -125,3 +126,4 @@
         <label for="specialFeatures">Специальные признаки</label>
     </div>
 </div>
+<a class="btn btn-primary btnNext" >Next</a>

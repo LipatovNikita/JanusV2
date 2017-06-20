@@ -3,12 +3,12 @@
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
                   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                  targetNamespace="http://localhost:1488/services/foreignSystem"
-                  xmlns:tns="http://localhost:1488/services/foreignSystem"
-                  xmlns:types="http://localhost:1488/types/foreignSystem">
+                  targetNamespace="http://localhost/services/foreignSystem"
+                  xmlns:tns="http://localhost/services/foreignSystem"
+                  xmlns:types="http://localhost/types/foreignSystem">
 
     <wsdl:types>
-        <xsd:schema targetNamespace="http://localhost:1488/types/foreignSystem"
+        <xsd:schema targetNamespace="http://localhost/types/foreignSystem"
                     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
                     elementFormDefault="qualified"
                     attributeFormDefault="unqualified"

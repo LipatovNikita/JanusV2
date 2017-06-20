@@ -9,6 +9,8 @@
     <title>Регистрация</title>
 </head>
 <body class="picbackground">
+<script type="text/javascript" rel="script" src="/resources/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" rel="script" src="/resources/materialize/js/materialize.js"></script>
 <#include "/template/navbar.ftl">
 <div class="section row">
     <div class="col s12 m6 l6 offset-m3 offset-l3">
@@ -16,18 +18,21 @@
             <div class="card-content black-text">
                 <h4 class="light">Регистрация</h4>
                 <br/>
-                <form role="form" action="/registation" method="post">
-                    <div>
-                        <label for="email">Адрес электронной почты</label>
+                <form role="form" name="registration" method="post">
+                    <div class="input-field">
                         <input type="email" name="email" id="email_reg" required/>
+                        <label for="email">Адрес электронной почты</label>
                     </div>
-                    <div>
-                        <label for="password">Пароль</label>
+                    <div class="input-field">
                         <input type="password" name="password" id="password_reg" required/>
+                        <label for="password">Пароль</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="password" id="password_reg_repeat" required/>
+                        <label for="password">Повторите пароль</label>
                     </div>
                     <div>
-                        <label for="password">Повторите пароль</label>
-                        <input type="password" name="password" id="password_reg_repeat" required/>
+                        <#include "/template/input/owner.ftl">
                     </div>
                     <br/>
                     <div class="right-align">

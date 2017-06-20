@@ -1,6 +1,5 @@
 package topprogersgroup.controller;
 
-import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,7 +40,7 @@ public class PassportController {
         passport.setId(10);
         passport.setPetName("Vaska");
         passport.setAnimalType("Cat");
-        passport.setGender(true);
+      //  passport.setGender(true);
         passport.setBreed("Siam");
         passport.setColor("White");
         Date dateOfBirth = new Date();

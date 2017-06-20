@@ -14,7 +14,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="text" id="patronymic" name="patronymic" value="${owner.patronymic!}" class="validate">
+                    <input type="text" id="middleName" name="middleName" value="${owner.middleName!}" class="validate">
                     <label for="patronymic">patronymic</label>
                 </div>
             </div>
@@ -32,6 +32,6 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="text" id="address" name="address" value="${owner.address!}" class="validate">
+                    <input type="text" id="address" name="address" value="${owner.address!""}" class="validate">
                     <label for="address">address</label>
                 </div>

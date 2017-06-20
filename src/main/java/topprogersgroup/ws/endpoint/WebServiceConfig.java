@@ -22,7 +22,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         // внедрение ApplicationContext в MessageDispatcherServlet
         // для автоматического обнаружения бинов, связанных с web-сервисами
                 messageDispatcherServlet.setApplicationContext(context);
-        return new ServletRegistrationBean(messageDispatcherServlet, "topprogersgroup/ws/*");
+        return new ServletRegistrationBean(messageDispatcherServlet, "/topprogersgroup/ws/*");
     }
 
     @Bean

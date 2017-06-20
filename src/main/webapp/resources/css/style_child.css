@@ -1,5 +1,5 @@
 .center-block{
-    width: 80%;
+    width: 75%;
 }
 .header-color {
     background-color: #E8B51B;
@@ -32,5 +32,27 @@ body{
     flex-direction: column;
 }
 .hide_template {
+    display: none; !important;
+}
+.error{
+    margin-top: 2%;
+    font-family: cursive;
+    color: #ff4522;
+}
+.btn-block{
+    margin-top: 5%;
+}
+.template-block{
+    margin-top: 1%;
+}
+.combodate{
+
+}
+.select-wrapper{
+    display: inline-block;
+    width: 20%;
+    float: right;
+}
+.initialized{
     display: none; !important;
 }

@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import topprogersgroup.entity.*;
-import topprogersgroup.service.AdministratorService;
-import topprogersgroup.service.EmployeeService;
-import topprogersgroup.service.StateVeterinaryServiceService;
-import topprogersgroup.service.UserService;
+import topprogersgroup.service.*;
 import topprogersgroup.validator.UserCreateFormValidator;
 
 import javax.validation.Valid;
@@ -38,10 +35,13 @@ public class AdminController {
     private EmployeeService employeeService;
 
     @Autowired
-    private StateVeterinaryServiceService stateVeterinaryServiceService;
+    private StateVeterinaryServiceService stateVeterinaryServService;
 
     @Autowired
     private UserCreateFormValidator userCreateFormValidator;
+
+    @Autowired
+    private CheckPointService checkPointService;
 
     @InitBinder("form")
     public void initBinder(WebDataBinder binder) {
@@ -62,7 +62,7 @@ public class AdminController {
         modelAndView.addObject("form", new UserCreateForm());
         modelAndView.addObject("admin", new Administrator());
         Employee e = new Employee();
-        e.setEmploymentDate(new Date(54646464646565656L));
+        e.setEmploymentDate(new Date());
         modelAndView.addObject("employee", e);
         return modelAndView;
     }
@@ -83,14 +83,13 @@ public class AdminController {
             return "admin/user_create";
         }
         if(form.getRole().equals(Role.ADMIN)) {
-            Administrator administrator = admin;
-            administrator.setUser(userService.getUserByEmail(form.getEmail()).get());
-            administratorService.create(administrator);
+            admin.setUser(userService.getUserByEmail(form.getEmail()).get());
+            administratorService.create(admin);
         }
         else if(form.getRole().equals(Role.EMPLOYEE)) {
-            Employee newEmployee = employee;
-            newEmployee.setUser(userService.getUserByEmail(form.getEmail()).get());
-            employeeService.create(newEmployee);
+            //todo:Добавить на страницу ГосВетСлужбу, а Employee и Admin дописать валидацию
+            employee.setUser(userService.getUserByEmail(form.getEmail()).get());
+            employeeService.create(employee);
         }
         return "admin/home";
     }
@@ -109,10 +108,10 @@ public class AdminController {
                                     @Valid @ModelAttribute("svService")StateVeterinaryService service,
                                     BindingResult result) {
         if(result.hasErrors()) {
-            model.addAttribute("svService", service);
             return "admin/statevetservice";
         }
-        stateVeterinaryServiceService.create(service);
+        //todo: Доделать страницу(навести красоту - матириал)
+        stateVeterinaryServService.create(service);
         return "admin/home";
     }
 
@@ -133,10 +132,10 @@ public class AdminController {
 //                                   @ModelAttribute("inspector")Map<Integer, Employee> inspector,
                                    BindingResult result){
         if(result.hasErrors()){
-//            model.addAttribute("checkPoint", checkPoint);
-//            model.addAttribute("inspector", inspector);
             return "admin/checkpoint";
         }
+        //todo: Сделать выбор Employee
+        checkPointService.save(checkPoint);
         return "forward:admin/home";
     }
 
