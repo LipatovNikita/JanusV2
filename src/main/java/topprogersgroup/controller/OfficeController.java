@@ -1,6 +1,7 @@
 package topprogersgroup.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,7 @@ public class OfficeController {
     @Autowired
     OwnerService ownerService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"/",""}, method = RequestMethod.GET)
     public String home(Model model) {
         return "/office/home";
     }
@@ -79,6 +80,7 @@ public class OfficeController {
     }
 
     //Просмотр заявки
+    @PreAuthorize("@currentUserServiceImpl.canAccessOwnerBids(principal, #idBid)")
     @RequestMapping(value = "/bids/preview/{idBid}", method = RequestMethod.POST)
     public String previewBid(Model model,
                              @PathVariable Integer idBid) {
