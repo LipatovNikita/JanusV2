@@ -22,6 +22,8 @@
     <#--todo: Можно с помощью JS сначала заблокировать ссылку, потом после вывода сообщения, типа после отправки редактировать нельзя, если нажмет да то отправить-->
         <a href="/office/bids/${bid.id}/send">Отправить на расмотрение(без возможности редактирования)</a>
         <a href="/office/bids/${bid.id}/edit">Редактирование</a>
+    <#elseif bid.status == "REJECTED">
+        <a href="/office/bids/${bid.id}/edit">Редактирование</a>
     </#if>
     <div class="col s12">
         <#include "/template/output/bidforowner.ftl"/>
