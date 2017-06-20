@@ -34,7 +34,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public Owner findOne(String documentnumber) {
-        Owner owner = ownerRepository.findOneByDocumentnumber(documentnumber);
+        Owner owner = ownerRepository.findOneByDocumentNumber(documentnumber);
         List<Pet> petList = new ArrayList<>();
         List<Pet> pets = owner.getPet();
         for(Pet pet:pets){
@@ -47,7 +47,7 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public Owner findOwnerByEmailUser(String email) {
         User user = userService.getUserByEmail(email).get();
-        return findOne(user.getOwner().getDocumentnumber());
+        return findOne(user.getOwner().getDocumentNumber());
     }
 
     @Override

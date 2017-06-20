@@ -39,7 +39,7 @@ public class DocumentController {
     public String all(Model model,
                       @PathVariable Integer numberPage){
         Pageable pageable = new PageRequest(numberPage,20);
-        //todo: Сделать сортировку с конца
+        //todo: Сделать сортировку с конца и должны выводиться только в статусе PROCESSED
         List<Bid> bidList = bidService.findForPageIsNotDeleted(pageable);
         model.addAttribute("bidList", bidList);
         model.addAttribute("numberPage",numberPage);
@@ -51,12 +51,15 @@ public class DocumentController {
     public String createVeterinaryDocument(Model model,
                                   @PathVariable Integer idBid){
         Bid bid = bidService.findOne(idBid);
-        VeterinaryDocument vetDoc = new VeterinaryDocument();
-        model.addAttribute("bid", bid);
-        model.addAttribute("vetDoc", vetDoc);
-        model.addAttribute("petList", bid.getPets());
-        model.addAttribute("route", bid.getRoute());
-        return "document/vetdoc";
+        if(bid.getStatus().equals("PROCESSED")){
+            VeterinaryDocument vetDoc = new VeterinaryDocument();
+            model.addAttribute("bid", bid);
+            model.addAttribute("vetDoc", vetDoc);
+            model.addAttribute("petList", bid.getPets());
+            model.addAttribute("route", bid.getRoute());
+            return "document/vetdoc";
+        }
+       return "forward:/docs/";
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
