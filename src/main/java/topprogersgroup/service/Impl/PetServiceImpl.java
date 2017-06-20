@@ -34,8 +34,8 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public List<Pet> findPetsByOwner(String documentnumber) {
-        return ownerService.findOne(documentnumber).getPet();
+    public List<Pet> findPetsByOwner(Integer id) {
+        return ownerService.findOne(id).getPet();
     }
 
     @Override
