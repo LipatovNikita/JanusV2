@@ -132,8 +132,8 @@ public class DocumentController {
         if(bindingVetDocResult.hasErrors()){
             return "document/vetdoc";
         }
-        vetDoc.setStatus(1);
-//        todo: Таня тоже для тебя
+        vetDoc.setStatus(CREATED);
+//        todo: Таня тоже для тебя прими что нужно в конроллере, но не возвращаемые страницы не изменяй
         return String.format("forward:/docs/accepted/page/%d",numberPage);
     }
 
