@@ -19,6 +19,7 @@
 <script type="text/javascript" rel="script" src="/webjars/jquery-validation/1.16.0/jquery.validate.js"></script>
 <script type="text/javascript" rel="script" src="/webjars/jquery.steps/1.1.0/build/jquery.steps.js"></script>
 <#include "/template/navbar.ftl">
+<#setting date_format="YYYY/MM/DD">
 <form name="/fast" id="form1" action="" method="POST" enctype="multipart/form-data">
     <div class="row main_block">
         <div class="col s12 block-top">
@@ -28,7 +29,7 @@
                 <li class="tab col"><a href="#block_immunization" name="block_immunization" data-toggle="tab">Иммунизация</a>
                 <li class="tab col"><a href="#block_vaccination" name="block_vaccination"
                                        data-toggle="tab">Вакцинация</a></li>
-                <li class="tab col"><a href="#block_quarantine" name="#block_quarantine" data-toggle="tab">Карантирование</a>
+                <li class="tab col"><a href="#block_quarantine" name="block_quarantine" data-toggle="tab">Карантирование</a>
                 </li>
                 <li class="tab col"><a href="#block_download" name="block_download" data-toggle="tab">Оригиналы</a></li>
             </ul>
@@ -63,7 +64,7 @@
     </div>
 </form>
 <footer class="footer">
-Ребят, запилите сюда какой-нить текст :))
+    Ребят, запилите сюда какой-нить текст :))
 </footer>
 </body>
 </html>

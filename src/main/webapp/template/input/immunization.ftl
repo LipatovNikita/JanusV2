@@ -14,7 +14,9 @@
             </div>
         </div>
         <div class="input-field col s6">
-            <input type="text" id="date" name="immunizationDeworming[${item_index}].date" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value="${item.date!"1996-10-24"?datetime("yyyy-mm-dd")}">
+            <input type="text" class="date" id="immunizationDeworming[${item_index}].date"
+                   name="immunizationDeworming[${item_index}].date" data-format="YYYY/MM/DD" data-template="D MMM YYYY"
+                   value="${item.date!"1996/10/24"?date}">
         </div>
     </div>
 
@@ -50,8 +52,10 @@
                     </label>
                 </div>
             </div>
+
             <div class="input-field col s6">
-                Здесь должна быть дата
+                <input type="text" class="date" id="immunizationDeworming.date" name="immunizationDeworming.date"
+                       data-format="YYYY/MM/DD" data-template="D MMM YYYY" value="${item.date!"1996/10/24"?date}">
             </div>
         </div>
 

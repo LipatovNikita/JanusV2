@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="input-field col s6">
-        <input type="text" id="petName" name="petName" value="${passport.petName!""}">
+        <input type="text" id="petName" name="petName" value="${passport.petName!""}" required="true">
         <label for="petName">Кличка</label>
         <label for="petName" name="errors">Кличка</label>
     </div>
@@ -56,23 +56,23 @@
                <#if passport.castrationSterilization == true>checked="checked"</#if>>
         <label for="castrationSterilization">Кастрация/Стерилизация</label>
     </div>
-    <#--<div id="labelDateOfBirth" class="input-field col s3">-->
-        <#--<label>Дата рождения</label>-->
-        <#--<div>-->
-            <#--<script>-->
-                <#--$(function () {-->
-                    <#--$('#dateOfBirth').combodate({-->
-                        <#--value: new Date(),-->
-                        <#--minYear: 1950,-->
-                        <#--maxYear: moment().format('YYYY')-->
-                    <#--});-->
-                <#--});-->
-            <#--</script>-->
-            <#--<input type="text" id="dateOfBirth" name="dateOfBirth"-->
-                   <#--value="${(passport.dateOfBirth?string("dd-MM-yyyy"))!""}" format="DD-MM-YYYY"-->
-                   <#--data-template="D MMM YYYY">-->
-        <#--</div>-->
-    <#--</div>-->
+<#--<div id="labelDateOfBirth" class="input-field col s3">-->
+<#--<label>Дата рождения</label>-->
+<#--<div>-->
+<#--<script>-->
+<#--$(function () {-->
+<#--$('#dateOfBirth').combodate({-->
+<#--value: new Date(),-->
+<#--minYear: 1950,-->
+<#--maxYear: moment().format('YYYY')-->
+<#--});-->
+<#--});-->
+<#--</script>-->
+<#--<input type="text" id="dateOfBirth" name="dateOfBirth"-->
+<#--value="${(passport.dateOfBirth?string("dd-MM-yyyy"))!""}" format="DD-MM-YYYY"-->
+<#--data-template="D MMM YYYY">-->
+<#--</div>-->
+<#--</div>-->
 </div>
 
 <div class="row microchipTattooShower">
@@ -81,23 +81,23 @@
                value="${passport.numberMicrochipTattoo!""}">
         <label for="numberMicrochipTattoo">Номер чипа/тату</label>
     </div>
-    <#--<div id="labelDateOfImpl" class="input-field col s6">-->
-        <#--<label>Дата чипирования/татуирования</label>-->
-        <#--<div>-->
-            <#--<script>-->
-                <#--$(function () {-->
-                    <#--$('#dateOfImplantation').combodate({-->
-                        <#--value: new Date(),-->
-                        <#--minYear: 2012,-->
-                        <#--maxYear: moment().format('YYYY')-->
-                    <#--});-->
-                <#--});-->
-            <#--</script>-->
-            <#--<input type="text" id="dateOfImplantation" name="dateOfImplantation"-->
-                   <#--value="${(passport.dateOfImplantation?string("dd/MM/yyyy"))!""}" format="DD/MM/YYYY"-->
-                   <#--data-template="D MMM YYYY">-->
-        <#--</div>-->
-    <#--</div>-->
+<#--<div id="labelDateOfImpl" class="input-field col s6">-->
+<#--<label>Дата чипирования/татуирования</label>-->
+<#--<div>-->
+<#--<script>-->
+<#--$(function () {-->
+<#--$('#dateOfImplantation').combodate({-->
+<#--value: new Date(),-->
+<#--minYear: 2012,-->
+<#--maxYear: moment().format('YYYY')-->
+<#--});-->
+<#--});-->
+<#--</script>-->
+<#--<input type="text" id="dateOfImplantation" name="dateOfImplantation"-->
+<#--value="${(passport.dateOfImplantation?string("dd/MM/yyyy"))!""}" format="DD/MM/YYYY"-->
+<#--data-template="D MMM YYYY">-->
+<#--</div>-->
+<#--</div>-->
 </div>
 
 <div class="row">
@@ -126,4 +126,4 @@
         <label for="specialFeatures">Специальные признаки</label>
     </div>
 </div>
-<a class="btn btn-primary btnNext" >Next</a>
+<a class="btn btn-primary btnNext">Next</a>
