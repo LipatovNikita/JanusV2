@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.WebServiceTemplate;
 import topprogersgroup.entity.VeterinaryCertificate;
-import topprogersgroup.ws.foreignsystem.ObjectFactory;
-import topprogersgroup.ws.foreignsystem.StatusFromForeignSystem;
+import localhost.types.foreignsystem.ObjectFactory;
+import localhost.types.foreignsystem.StatusFromForeignSystem;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -20,7 +20,7 @@ public class WebServiceClient {
 
     public String getVeterinaryCertificateStatus(VeterinaryCertificate veterinaryCertificate) throws DatatypeConfigurationException {
         ObjectFactory objectFactory = new ObjectFactory();
-        topprogersgroup.ws.foreignsystem.VeterinaryCertificate veterinaryCertificateWS = objectFactory.createVeterinaryCertificate();
+        localhost.types.foreignsystem.VeterinaryCertificate veterinaryCertificateWS = objectFactory.createVeterinaryCertificate();
         veterinaryCertificateWS.setCertificateId(veterinaryCertificate.getId());
         veterinaryCertificateWS.setCertificateNumber(veterinaryCertificate.getNumber());
         veterinaryCertificateWS.setVeterinaryDocumentNumber(veterinaryCertificate.getVeterinaryDocument().getNumber());
@@ -31,7 +31,8 @@ public class WebServiceClient {
         veterinaryCertificateWS.setIssueDate(dateXML);
         veterinaryCertificateWS.setCentralCompetentAuthority(veterinaryCertificate.getCentralCompetentAuthority());
         veterinaryCertificateWS.setLocalCompetentAuthority(veterinaryCertificate.getLocalCompetentAuthority());
-        StatusFromForeignSystem statusFromForeignSystem = (StatusFromForeignSystem) webServiceTemplate.marshalSendAndReceive(veterinaryCertificateWS);
+        StatusFromForeignSystem statusFromForeignSystem =
+                (StatusFromForeignSystem) webServiceTemplate.marshalSendAndReceive(veterinaryCertificateWS);
         return statusFromForeignSystem.getStatus();
     }
 }

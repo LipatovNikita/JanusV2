@@ -15,16 +15,16 @@ public class ImmunizationDewormingServiceImpl implements ImmunizationDewormingSe
     @Autowired
     private ImmunizationDewormingRepository immunizationDewormingRepository;
 
-    public void create(ImmunizationDeworming immunizationDeworming) {
-        immunizationDewormingRepository.save(immunizationDeworming);
+    public ImmunizationDeworming create(ImmunizationDeworming immunizationDeworming) {
+        return immunizationDewormingRepository.save(immunizationDeworming);
     }
 
     public void delete(ImmunizationDeworming immunizationDeworming) {
         immunizationDewormingRepository.delete(immunizationDeworming);
     }
 
-    public void edit(ImmunizationDeworming immunizationDeworming) {
-        immunizationDewormingRepository.save(immunizationDeworming);
+    public ImmunizationDeworming edit(ImmunizationDeworming immunizationDeworming) {
+        return immunizationDewormingRepository.save(immunizationDeworming);
     }
 
     public List<ImmunizationDeworming> getImmunizationDewormingListByPassport(Passport passport) {

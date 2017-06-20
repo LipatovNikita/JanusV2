@@ -22,7 +22,7 @@
                 <a href="/office/pets">
                     <div class="imageDrimmerMyPets responsive-img">
                         <p class="popup-text">Мои питомцы</p>
-                    <#--<img src="/resources/images/pets.png" class="responsive-img" alt=""/>-->
+                    <img src="/resources/images/pets.png" class="responsive-img" alt=""/>
                     </div>
                 </a>
             </div>
@@ -32,8 +32,8 @@
                 </a>
             </div>
             <div class="col s4">
-                <a href=#">
-                    <img src="/resources/images/pets.png" class="responsive-img" alt=""/>
+                <a href=/office/bids/create">
+                    Создать заявку на Вет Док
                 </a>
             </div>
         </div>

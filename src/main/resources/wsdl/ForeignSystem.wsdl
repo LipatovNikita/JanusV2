@@ -3,8 +3,8 @@
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
                   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                  targetNamespace="http://localhost/services/foreignSystem"
-                  xmlns:tns="http://localhost/services/foreignSystem"
+                  targetNamespace="http://localhost/services/foreignsystem"
+                  xmlns:tns="http://localhost/services/foreignsystem"
                   xmlns:types="http://localhost/types/foreignSystem">
 
     <wsdl:types>
@@ -56,7 +56,7 @@
     <wsdl:binding name="ForeignSystem_SoapBinding" type="tns:ForeignSystem_PortType">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="setVeterinaryCertificateStatus">
-            <soap:operation soapAction="http://www.janusWS.com/services/foreignSystem/setVeterinaryCertificateStatus"/>
+            <soap:operation soapAction="http://localhost/services/foreignsystem/setVeterinaryCertificateStatus"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -68,7 +68,7 @@
 
     <wsdl:service name="ForeignSystem_Service">
         <wsdl:port name="ForeignSystem_Port" binding="ForeignSystem_SoapBinding">
-            <soap:address location="http://localhost:9090/janus/ws/foreignsystem"/>
+            <soap:address location="http://localhost:8080/topprogersgroup/ws/foreignsystem"/>
         </wsdl:port>
     </wsdl:service>
 

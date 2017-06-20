@@ -6,10 +6,11 @@ import topprogersgroup.entity.Bid;
 import topprogersgroup.entity.Passport;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by aalle on 16.06.2017.
  */
 public interface PassportRepository extends JpaRepository<Passport, Integer> {
-    Passport findOneByGuidAndIsDeletedAndIsLast(String guid, boolean isDeleted, boolean isLast);
+    Passport findOneByGuidAndIsDeletedAndIsLast(UUID guid, boolean isDeleted, boolean isLast);
 }

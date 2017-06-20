@@ -8,6 +8,7 @@ import topprogersgroup.entity.CheckPoint;
 import topprogersgroup.entity.Passport;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public interface PassportService {
@@ -18,7 +19,7 @@ public interface PassportService {
 
     Passport findOne(Integer id);
 
-    Passport findByGuid(String guid);
+    Passport findByGuid(UUID guid);
 
     Passport update(Passport passport);
 

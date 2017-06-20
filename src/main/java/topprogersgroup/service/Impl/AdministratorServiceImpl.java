@@ -20,8 +20,8 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Autowired
     private UserRepository userRepository;
 
-    public void create(Administrator administrator) {
-        administratorRepository.save(administrator);
+    public Administrator create(Administrator administrator) {
+        return  administratorRepository.save(administrator);
     }
 
     public void delete(Administrator administrator) {
@@ -32,8 +32,8 @@ public class AdministratorServiceImpl implements AdministratorService {
         userRepository.save(user.get());
     }
 
-    public void edit(Administrator administrator) {
-        administratorRepository.save(administrator);
+    public Administrator edit(Administrator administrator) {
+        return administratorRepository.save(administrator);
     }
 
     public List<Administrator> getAdministratorList() {

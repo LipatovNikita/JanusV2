@@ -6,12 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;;
 import topprogersgroup.entity.*;
-import topprogersgroup.service.PassportService;
+import topprogersgroup.service.*;
 import topprogersgroup.validator.FileValidator;
 import topprogersgroup.validator.ImmunizationDewormingValidator;
 import topprogersgroup.validator.OwnerValidator;
 
-import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -31,7 +30,19 @@ public class FastController {
     @Autowired
     private ImmunizationDewormingValidator dewormingValidator;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private OwnerService ownerService;
+
+    @Autowired
+    private QuarantineService quarantineService;
+
+    @Autowired
+    private PetService petService;
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String fast(Model model) {
         Passport passport = new Passport();
         List<ImmunizationDeworming> immunizations = new ArrayList<>();
@@ -50,48 +61,22 @@ public class FastController {
         return "fast/fastpassport";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/")
-    public String add(Model model, @ModelAttribute("passport") Passport passport, @RequestParam("images_p") MultipartFile[] images, @ModelAttribute("quarantine") Quarantine  quarantine) {
-        return "fast/fastpassport";
-    }
+    @RequestMapping(method = RequestMethod.POST, value = "/add")
+    public String add(Model model, @ModelAttribute("passport") Passport passport, @RequestParam("images_p") MultipartFile[] images, @ModelAttribute("quarantine") Quarantine quarantine) {
+        //  Owner owner = ownerService.findOwnerByEmailUser(userService.getUserEmail());
 
-    @RequestMapping(value = "/upload", method = RequestMethod.GET)
-    public String showUploadForm() {
-        return "testUpload";
-    }
-
-    // потом всё адаптируете, это тестовый метод для загрузки фотографий
-
-    @RequestMapping(value = "/doUpload", method = RequestMethod.POST)
-    public String testUpload(@RequestParam MultipartFile[] images) {
-        Passport passport = new Passport();
-        passport.setId(10);
-        passport.setGuid("111a");
-        passport.setPetName("Vaska");
-        passport.setAnimalType("Cat");
-        //   passport.setGender(true);
-        passport.setBreed("Siam");
-        passport.setColor("White");
-        Date dateOfBirth = new Date();
-        dateOfBirth.setTime(dateOfBirth.getTime() - 1000000000);
-        passport.setDateOfBirth(dateOfBirth);
-        passport.setOffspring("2 cat");
-        passport.setClinic("Good hand");
-        passport.setDoctor("Ivanov");
-        passport.setCastrationSterilization(true);
-        passport.setMicrochipTattoo(true);
-        passport.setNumberMicrochipTattoo("87568hs8a");
-        Date dateOfImplantation = new Date();
-        dateOfImplantation.setTime(dateOfImplantation.getTime() - 1000000);
-        passport.setDateOfImplantation(dateOfImplantation);
-
+        Owner owner = new Owner();
+        passport.setOwner(owner);
+        passport = passportService.save(passport);
         for (MultipartFile image : images) {
-//            fileValidator.validate(image, bindingResult);
-//            if (bindingResult.hasErrors()) {
-//                return "testUpload";
-//            }
-            passportService.uploadPassportImage(image, passport); // passport из request
+            passportService.uploadPassportImage(image, passport);
         }
+        quarantine = quarantineService.save(quarantine);
+        Pet pet = new Pet();
+        pet.setPassport(passport);
+        pet.setQuarantine(quarantine);
+        petService.save(pet);
         return "fast/fastpassport";
     }
+
 }

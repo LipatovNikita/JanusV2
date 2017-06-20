@@ -7,7 +7,9 @@ import topprogersgroup.entity.VeterinaryCertificate;
 import topprogersgroup.entity.VeterinaryDocument;
 import topprogersgroup.repository.VeterinaryCertificateRepository;
 import topprogersgroup.service.VeterinaryCertificateService;
+import topprogersgroup.ws.client.WebServiceClient;
 
+import javax.xml.datatype.DatatypeConfigurationException;
 import java.util.List;
 
 @Service
@@ -16,8 +18,11 @@ public class VeterinaryCertificateServiceImpl implements VeterinaryCertificateSe
     @Autowired
     private VeterinaryCertificateRepository veterinaryCertificateRepository;
 
-    public void create(VeterinaryCertificate veterinaryCertificate) {
-        veterinaryCertificateRepository.save(veterinaryCertificate);
+    @Autowired
+    private WebServiceClient webServiceClient;
+
+    public VeterinaryCertificate create(VeterinaryCertificate veterinaryCertificate) {
+        return veterinaryCertificateRepository.save(veterinaryCertificate);
     }
 
     public void delete(VeterinaryCertificate veterinaryCertificate) {
@@ -25,8 +30,8 @@ public class VeterinaryCertificateServiceImpl implements VeterinaryCertificateSe
         veterinaryCertificateRepository.save(veterinaryCertificate);
     }
 
-    public void edit(VeterinaryCertificate veterinaryCertificate) {
-        veterinaryCertificateRepository.save(veterinaryCertificate);
+    public VeterinaryCertificate edit(VeterinaryCertificate veterinaryCertificate) {
+        return veterinaryCertificateRepository.save(veterinaryCertificate);
     }
 
     public VeterinaryCertificate getVeterinaryCertificateListByVeterinaryDocument(VeterinaryDocument veterinaryDocument) {
@@ -35,6 +40,16 @@ public class VeterinaryCertificateServiceImpl implements VeterinaryCertificateSe
 
     public List<VeterinaryCertificate> getVeterinaryCertificateList() {
         return veterinaryCertificateRepository.findAll();
+    }
+
+    public String getStatusFromForeignSystem(VeterinaryCertificate veterinaryCertificate) {
+        try {
+            return webServiceClient.getVeterinaryCertificateStatus(veterinaryCertificate);
+        }
+        catch (DatatypeConfigurationException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     @Override

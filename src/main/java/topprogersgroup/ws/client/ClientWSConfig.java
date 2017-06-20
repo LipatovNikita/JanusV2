@@ -20,7 +20,7 @@ public class ClientWSConfig {
         WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
         webServiceTemplate.setMarshaller(jaxb2Marshaller());
         webServiceTemplate.setUnmarshaller(jaxb2Marshaller());
-        webServiceTemplate.setDefaultUri("http://localhost:9090/janus/ws/foreignsystem");
+        webServiceTemplate.setDefaultUri("http://localhost:8080/topprogersgroup/ws/foreignsystem");
         return webServiceTemplate;
     }
 }

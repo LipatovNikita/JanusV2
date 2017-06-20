@@ -45,14 +45,15 @@ body{
 .template-block{
     margin-top: 1%;
 }
-.combodate{
-
-}
 .select-wrapper{
     display: inline-block;
     width: 20%;
     float: right;
 }
-.initialized{
+.select-wrapper input.select-dropdown{
+    display: none; !important;
+}
+
+.caret{
     display: none; !important;
 }

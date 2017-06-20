@@ -20,8 +20,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private UserRepository userRepository;
 
-    public void create(Employee employee) {
-        employeeRepository.save(employee);
+    public Employee create(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     public void delete(Employee employee) {
@@ -32,8 +32,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         userRepository.save(user.get());
     }
 
-    public void edit(Employee employee) {
-        employeeRepository.save(employee);
+    public Employee edit(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     public List<Employee> getEmployeeList() {

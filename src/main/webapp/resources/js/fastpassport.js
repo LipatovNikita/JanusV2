@@ -1,5 +1,8 @@
 $(document).ready(function () {
-    $('#date').combodate();
+
+    $('.date').each(function () {
+        $(this).combodate();
+    });
 
     $('select').material_select();
 
@@ -17,9 +20,11 @@ $(document).ready(function () {
                 .attr('idquarantine', numberRowQuar)
                 .insertBefore($template);
         $clone
-            .find('[name="diseases.name"]').attr('name', 'diseases[' + numberRowQuar + '].name').attr('id', 'diseases[' + numberRowQuar + '].name').end()
+            .find('[name="diseases.disName"]').attr('name', 'diseases[' + numberRowQuar + '].disName').attr('id', 'diseases[' + numberRowQuar + '].disName').end()
             .find('[name="diseases.researchmethod"]').attr('name', 'diseases[' + numberRowQuar + '].researchmethod').attr('id', 'diseases[' + numberRowQuar + '].researchmethod').end()
             .find('[name="diseases.result"]').attr('name', 'diseases[' + numberRowQuar + '].result').attr('id', 'diseases[' + numberRowQuar + '].result').end()
+            .find('[name="diseases.dateResearch"]').attr('name', 'diseases[' + numberRowQuar + '].dateResearch').attr('id', 'diseases[' + numberRowQuar + '].dateResearch').end();
+
     })
         .on('click', '.btnRemoveQuar', function () {
             var $row = $(this).parents('.template-block');
@@ -40,6 +45,8 @@ $(document).ready(function () {
         $vac_clone
             .find('[name="vaccination.seriesOfVaccine"]').attr('name', 'vaccination[' + numberRowVaccination + '].seriesOfVaccine').attr('id', 'vaccination[' + numberRowVaccination + '].seriesOfVaccine').end()
             .find('[name="vaccination.typeOfVaccine"]').attr('name', 'vaccination[' + numberRowVaccination + '].typeOfVaccine').attr('id', 'vaccination[' + numberRowVaccination + '].typeOfVaccine').end()
+            .find('[name="vaccination.dateOfVaccine"]').attr('name', 'vaccination[' + numberRowVaccination + '].dateOfVaccine').attr('id', 'vaccination[' + numberRowVaccination + '].dateOfVaccine').end()
+            .find('[name="vaccination.validUntil"]').attr('name', 'vaccination[' + numberRowVaccination + '].validUntil').attr('id', 'vaccination[' + numberRowVaccination + '].validUntil').end()
     })
         .on('click', '.btnRemoveVac', function () {
             var $row = $(this).parents('.template-block');
@@ -57,10 +64,12 @@ $(document).ready(function () {
                 .removeAttr('id')
                 .attr('idimmun', numberRowImmunization)
                 .insertBefore($templateImmun);
+
         $vac_clone
             .find('[name="immunizationDeworming"]').attr('id', 'passport.immunizationDeworming[' + numberRowImmunization + '].immunizationDeworming').attr('name', 'immunizationDeworming[' + numberRowImmunization + '].immunizationDeworming').end()
             .find('[name="imName"]').attr('id', 'passport.immunizationDeworming[' + numberRowImmunization + '].imName').attr('name', 'immunizationDeworming[' + numberRowImmunization + '].imName').end()
             .find('[name="drug"]').attr('id', 'passport.immunizationDeworming[' + numberRowImmunization + '].drug').attr('name', 'immunizationDeworming[' + numberRowImmunization + '].drug').end()
+            .find('[name="immunizationDeworming.date"]').attr('id', 'passport.immunizationDeworming[' + numberRowImmunization + '].date').attr('name', 'immunizationDeworming[' + numberRowImmunization + '].date').end()
     })
         .on('click', '.btnRemoveImmun', function () {
             var $row = $(this).parents('.template-block');
@@ -79,9 +88,12 @@ $(document).ready(function () {
 
     });
 
+
 });
+
+
 $(function () {
-   /* $('#form1')
+    $('#form1')
         .validate({
             errorElement: 'div',
             highlight: function (element, errorClass, validClass) {
@@ -95,7 +107,6 @@ $(function () {
                     .removeClass(errorClass);
             },
             ignore: false,
-
             rules: {
                 images: {
                     required: true,
@@ -122,42 +133,13 @@ $(function () {
                 },
                 clinic: {
                     required: true
-                },
-                offspring: {
-                    required: true
-                },
-                numberAndSeriesOfPassport: {
-                    required: true
-                },
-                firstName: {
-                    required: true
-                },
-
-                lastName: {
-                    required: true
-                },
-                patronymic: {
-                    required: true
-                },
-                imName: {
-                    required: true
-                },
-                drug: {
-                    required: true
-                },
-                specialFeatures: {
-                    required: true
-                },
-                seriesOfVaccine: {
-                    required: true
-                },
-                typeOfVaccine: {
-                    required: true
                 }
             }
-
         });
-    $.extend($.validator.messages, {required: "Поле обязательно для заполения"});*/
+  /*  $(input[id^='vaccination['): {
+        required: true
+    }*/
+    $.extend($.validator.messages, {required: "Поле обязательно для заполения"});
 
 });
 

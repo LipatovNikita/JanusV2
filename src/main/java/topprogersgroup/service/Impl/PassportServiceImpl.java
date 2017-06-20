@@ -13,6 +13,7 @@ import topprogersgroup.service.PassportService;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class PassportServiceImpl implements PassportService {
@@ -53,7 +54,7 @@ public class PassportServiceImpl implements PassportService {
     }
 
     @Override
-    public Passport findByGuid(String guid) {
+    public Passport findByGuid(UUID guid) {
         return passportRepository.findOneByGuidAndIsDeletedAndIsLast(guid,false,true);
     }
 
