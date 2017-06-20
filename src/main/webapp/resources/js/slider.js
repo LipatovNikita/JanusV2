@@ -9,6 +9,10 @@ function showHidePanel() {
     }
 }
 
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+});
+
 // function showHidePanel() {
 //     if ($("#role :selected").text() == "Администратор") {
 // //    if ($("#microchipTattoo").is(':checked')) {

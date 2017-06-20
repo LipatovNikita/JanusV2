@@ -13,5 +13,4 @@ import java.util.List;
  */
 public interface BidRepository extends JpaRepository<Bid,Integer> {
     List<Bid> findByIsDeleted(boolean isDeleted, Pageable pageable);
-    List<Bid> findByOwnerAndIsDeleted(Owner owner, boolean isDeleted);
 }

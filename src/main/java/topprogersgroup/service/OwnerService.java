@@ -20,5 +20,4 @@ public interface OwnerService {
 
     void delete(Owner owner);
 
-    Owner getOwnerByUser(User user);
 }

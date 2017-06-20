@@ -77,7 +77,19 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery-validation</artifactId>
+            <version>1.16.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>jquery.steps</artifactId>
+            <version>1.1.0</version>
+        </dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>
@@ -85,7 +97,25 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.13.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<schemaDirectory>${project.basedir}/src/main/resources/wsdl</schemaDirectory>
+					<schemaIncludes>
+						<include>*.wsdl</include>
+					</schemaIncludes>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
 </project>

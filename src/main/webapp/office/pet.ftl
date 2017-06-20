@@ -13,27 +13,23 @@
 <body>
 <script type="text/javascript" rel="script" src="/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" rel="script" src="/resources/materialize/js/materialize.js"></script>
-<script type="text/javascript" rel="script" src="/resources/js/combodate.js"></script>
-<script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
-<script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
+<script type="text/javascript" rel="script" src="/resources/js/slider.js"></script>
+
 <#include "/template/navbar.ftl">
-<div class="center-block">
-    <div class="section">
-        <div class="row">
-            <div class="col l4 m6 s12">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="/resources/test.jpg" alt=""/>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="light"><#--${pet.passport.petName!""}--></h3>
-                    </div>
-                    <div class="card-action">
-                        <a href="/office/mypets/1/slider" class="waves-effect waves-light btn">button</a>
-                    </div>
-                </div>
+
+<div class="row center-block section">
+    <div class="col s12 m4">
+        <div class="card">
+            <div class="card-image">
+                <img src="${passport.passportPhoto}" class="responsive-img" alt=""/>
+            </div>
+            <div class="card-content">
+                <h3 class="light">${passport.petName}</h3>
             </div>
         </div>
+    </div>
+    <div class="col s12 m8">
+        <#include "/template/output/pet.ftl">
     </div>
 </div>
 <footer class="footer">
