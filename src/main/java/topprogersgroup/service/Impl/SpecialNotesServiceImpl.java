@@ -15,8 +15,8 @@ public class SpecialNotesServiceImpl implements SpecialNotesService {
     @Autowired
     private SpecialNotesRepository specialNotesRepository;
 
-    public void create(SpecialNotes specialNotes) {
-        specialNotesRepository.save(specialNotes);
+    public SpecialNotes create(SpecialNotes specialNotes) {
+        return specialNotesRepository.save(specialNotes);
     }
 
     public void delete(SpecialNotes specialNotes) {
@@ -24,8 +24,8 @@ public class SpecialNotesServiceImpl implements SpecialNotesService {
         specialNotesRepository.save(specialNotes);
     }
 
-    public void edit(SpecialNotes specialNotes) {
-        specialNotesRepository.save(specialNotes);
+    public SpecialNotes edit(SpecialNotes specialNotes) {
+        return specialNotesRepository.save(specialNotes);
     }
 
     public List<SpecialNotes> getSpecialNotesListByVeterinaryDocument(VeterinaryDocument veterinaryDocument) {

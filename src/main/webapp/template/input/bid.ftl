@@ -26,7 +26,7 @@
 <#--data-template="D MMM YYYY">-->
 <#--</div>-->
 <#--</div>-->
-<#--todo:Множественный селект для питомцев-->
+<#--todo:Множественный селект для выбора питомцев и выбор маршрута-->
 <#--<div>-->
 <#--<label for="route">Тип транспорта</label>-->
 <#--<input type="text" name="route" id="route" value="${.route!""}" required/>-->

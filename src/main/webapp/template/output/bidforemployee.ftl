@@ -2,24 +2,28 @@
     <div class="col s12 block-top">
         <ul class="tabs">
             <li class="tab col"><a class="active" href="#block_bid">Основная информация</a></li>
-            <li class="tab col"><a href="#block_route">Маршрут</a></li>
             <#assign x = 1/>
             <#list petList as pet>
                 <li class="tab col"><a href="#block_pet${x}">Петомец${x}</a></li>
             <#assign x = x+1/>
             </#list>
-            <li class="tab col"><a href="#block_vetdoc">Ветеринарный документ</a></li>
 
         </ul>
     </div>
     <div id="block_bid" class="col s12">
         <div class="center-block">
+            <div class="row">
+                <div class="col s10">
+                    <select name="status" id="status" required>
+                        <option value="ACCEPTED">Принять</option>
+                        <option value="REJECTED">Отклонить</option>
+                    </select>
+                </div>
+                <div class="col s2">
+                    <input type="submit" name="send" value="Сохранить">
+                </div>
+            </div>
         <#include "/template/output/bid.ftl">
-        </div>
-    </div>
-
-    <div id="block_route" class="col s12">
-        <div class="center-block">
         <#include "/template/output/route.ftl">
         </div>
     </div>
@@ -42,11 +46,4 @@
         </div>
         <#assign x = x+1/>
     </#list>
-
-    <div id="block_vetdoc" class="col s12">
-        <div class="center-block">
-            <#--todo Создать страничку-->
-        <#--<#include "/template/input/vaccination.ftl">-->
-        </div>
-    </div>
 </div>

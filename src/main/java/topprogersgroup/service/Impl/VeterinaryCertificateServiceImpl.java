@@ -16,8 +16,8 @@ public class VeterinaryCertificateServiceImpl implements VeterinaryCertificateSe
     @Autowired
     private VeterinaryCertificateRepository veterinaryCertificateRepository;
 
-    public void create(VeterinaryCertificate veterinaryCertificate) {
-        veterinaryCertificateRepository.save(veterinaryCertificate);
+    public VeterinaryCertificate create(VeterinaryCertificate veterinaryCertificate) {
+        return veterinaryCertificateRepository.save(veterinaryCertificate);
     }
 
     public void delete(VeterinaryCertificate veterinaryCertificate) {
@@ -25,8 +25,8 @@ public class VeterinaryCertificateServiceImpl implements VeterinaryCertificateSe
         veterinaryCertificateRepository.save(veterinaryCertificate);
     }
 
-    public void edit(VeterinaryCertificate veterinaryCertificate) {
-        veterinaryCertificateRepository.save(veterinaryCertificate);
+    public VeterinaryCertificate edit(VeterinaryCertificate veterinaryCertificate) {
+        return veterinaryCertificateRepository.save(veterinaryCertificate);
     }
 
     public VeterinaryCertificate getVeterinaryCertificateListByVeterinaryDocument(VeterinaryDocument veterinaryDocument) {
