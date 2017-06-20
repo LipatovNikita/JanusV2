@@ -10,7 +10,7 @@ public interface OwnerService {
 
     Owner save(Owner owner);
 
-    Owner findOne(String documentnumber);
+    Owner findOne(Integer id);
 
     Owner findOwnerByEmailUser(String email);
 

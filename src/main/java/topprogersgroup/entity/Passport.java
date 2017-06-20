@@ -57,7 +57,7 @@ public class Passport {
     @Column(name = "offspring")
     private String offspring;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
@@ -84,13 +84,13 @@ public class Passport {
     @Temporal(value=TemporalType.DATE)
     private Date dateOfImplantation;
 
-    @OneToMany(mappedBy = "passport", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "passport", cascade = CascadeType.ALL)
     private List<Vaccination> vaccination;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "passport")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "passport", fetch = FetchType.EAGER)
     private Pet pet;
 
-    @OneToMany(mappedBy = "passport")
+    @OneToMany(mappedBy = "passport", fetch = FetchType.EAGER)
     private Set<UploadImage> images;
 
     @Column(name = "isdeleted")

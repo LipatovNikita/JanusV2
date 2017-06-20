@@ -12,4 +12,5 @@ public interface VeterinaryDocumentService extends BaseService<VeterinaryDocumen
     List<VeterinaryDocument> getAllVeterinaryDocumentPagingList(Pageable pageable);
     List<VeterinaryDocument> getVeterinaryDocumentPagingListByEmployee(Employee employee);
     VeterinaryDocument getVeterinaryDocumentByBid(Bid bid);
+    List<VeterinaryDocument> findForPageByStatusAndSortDate(String status, boolean isDeleted, Pageable pageable);
 }

@@ -36,7 +36,7 @@ public class Employee {
     private String residentialAddress;
 
     // место работы (ГосВетСлужба)
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "veterinaryservice")
     private StateVeterinaryService stateVeterinaryService;
 
@@ -48,7 +48,7 @@ public class Employee {
     @Column(name = "position", nullable = false)
     private String position;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user", unique = true)
     private User user;
 

@@ -34,8 +34,8 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public List<Pet> findPetsByOwner(String documentnumber) {
-        return ownerService.findOne(documentnumber).getPet();
+    public List<Pet> findPetsByOwner(Integer id) {
+        return ownerService.findOne(id).getPet();
     }
 
     @Override
@@ -46,6 +46,15 @@ public class PetServiceImpl implements PetService {
     @Override
     public List<Pet> findAllIsNotDeleted() {
         return petRepository.findByIsDeletedAndIsLast(false, true);
+    }
+
+    @Override
+    public Pet update(Pet pet) {
+        pet.setLast(false);
+        petRepository.save(pet);
+        pet.setId(0);
+        pet.setLast(true);
+        return petRepository.save(pet);
     }
 
     @Override
