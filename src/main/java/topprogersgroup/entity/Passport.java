@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -22,7 +23,7 @@ public class Passport {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "guid", nullable = false)
-    private String guid;
+    private UUID guid;
 
     @Column(name = "isLast")
     @Type(type = "boolean")

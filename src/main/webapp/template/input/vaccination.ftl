@@ -15,10 +15,16 @@
     </div>
     <div class="row">
         <div class="input-field col s6">
-            Здесь будет дата
+            <input type="text" class="date" id="vaccination[${item_index}].dateOfVaccine"
+                   name="vaccination[${item_index}].dateOfVaccine" data-format="YYYY/MM/DD" data-template="D MMM YYYY"
+                   value="${item. dateOfVaccine!"1996/10/24"?date}">
+            <label for="vaccination[${item_index}].dateResearch">Дата вакцинации</label>
         </div>
         <div class="input-field col s6">
-            Здесь будет дата
+            <input type="text" class="date" id="vaccination[${item_index}].validUntil"
+                   name="vaccination[${item_index}].validUntil" data-format="YYYY/MM/DD" data-template="D MMM YYYY"
+                   value="${item.validUntil!"1996/10/24"?date}">
+            <label for="vaccination[${item_index}].validUntil">Действительна до</label>
         </div>
     </div>
     <div class="col s4">
@@ -34,17 +40,22 @@
                 <label for="typeOfVaccine">Тип вакцины</label>
             </div>
             <div class="input-field col s6">
-                    <input type="text" id="vaccination.seriesOfVaccine"
-                           name="vaccination.seriesOfVaccine""/>
-                    <label for="seriesOfVaccine">Серия вакцины</label>
+                <input type="text" id="vaccination.seriesOfVaccine"
+                       name="vaccination.seriesOfVaccine""/>
+                <label for="seriesOfVaccine">Серия вакцины</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6">
-                Здесь будет дата
+                <input type="text" class="date" id="vaccination.dateOfVaccine" name="vaccination.dateOfVaccine"
+                       data-format="YYYY/MM/DD" data-template="D MMM YYYY"
+                       value="${item. dateOfVaccine!"1996/10/24"?date}">
+                <label for="vaccination[${item_index}].dateResearch">Дата вакцинации</label>
             </div>
             <div class="input-field col s6">
-                Здесь будет дата
+                <input type="text" class="date" id="vaccination.validUntil" name="vaccination.validUntil"
+                       data-format="YYYY/MM/DD" data-template="D MMM YYYY" value="${item.validUntil!"1996/10/24"?date}">
+                <label for="vaccination[${item_index}].validUntil">Действительна до</label>
             </div>
         </div>
         <div class="col s4">
