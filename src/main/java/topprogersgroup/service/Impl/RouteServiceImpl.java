@@ -12,8 +12,8 @@ public class RouteServiceImpl implements RouteService {
     @Autowired
     private RouteRepository routeRepository;
 
-    public void create(Route route) {
-        routeRepository.save(route);
+    public Route create(Route route) {
+        return routeRepository.save(route);
     }
 
     public void delete(Route route) {
@@ -21,7 +21,7 @@ public class RouteServiceImpl implements RouteService {
         routeRepository.save(route);
     }
 
-    public void edit(Route route) {
-        routeRepository.save(route);
+    public Route edit(Route route) {
+        return routeRepository.save(route);
     }
 }

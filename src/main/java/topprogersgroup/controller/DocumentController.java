@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import topprogersgroup.entity.Bid;
 import topprogersgroup.entity.VeterinaryDocument;
+import topprogersgroup.service.BidService;
 import topprogersgroup.service.VeterinaryDocumentService;
 
 import javax.validation.Valid;
@@ -27,8 +28,10 @@ import java.util.ArrayList;
 @RequestMapping("/docs")
 public class DocumentController {
 
-//    @Autowired
-//    private VeterinaryDocumentService veterinaryDocService;
+    @Autowired
+    private VeterinaryDocumentService veterinaryDocService;
+    @Autowired
+    private BidService bidService;
 
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
@@ -36,9 +39,9 @@ public class DocumentController {
     public String all(Model model,
                       @PathVariable Integer numberPage){
         Pageable pageable = new PageRequest(numberPage,20);
-        //todo: Доделать достование заявок
-//        List<Bid> bidList = bidService.getBidPagingList(pageable);
-//        model.addAttribute("bidList", bidList);
+        //todo: Сделать сортировку с конца
+        List<Bid> bidList = bidService.findForPageIsNotDeleted(pageable);
+        model.addAttribute("bidList", bidList);
         model.addAttribute("numberPage",numberPage);
         return "document/docs";
     }
@@ -47,13 +50,13 @@ public class DocumentController {
     @RequestMapping(value = {"/create/{idBid}"}, method = RequestMethod.GET)
     public String createVeterinaryDocument(Model model,
                                   @PathVariable Integer idBid){
-//        Bid bid = bidService.getBidById(idBid);
+        Bid bid = bidService.findOne(idBid);
         VeterinaryDocument vetDoc = new VeterinaryDocument();
-//        model.addAttribute("bid", bid);
+        model.addAttribute("bid", bid);
         model.addAttribute("vetDoc", vetDoc);
-//        model.addAttribute("petList", bid.getPets());
-//        model.addAttribute("route", bid.getRoute());
-        return "document/vetDoc";
+        model.addAttribute("petList", bid.getPets());
+        model.addAttribute("route", bid.getRoute());
+        return "document/vetdoc";
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
@@ -63,14 +66,14 @@ public class DocumentController {
                                            @Valid @ModelAttribute("vetDoc") VeterinaryDocument vetDoc,
                                            BindingResult bindingVetDocResult){
         if(bindingVetDocResult.hasErrors()){
-            return "document/vetDoc";
+            return "document/vetdoc";
         }
         //todo: Дописать сравнение
         if(bid.getStatus().equals("")){
 
         }
         vetDoc.setBid(bid);
-//        vetDocService.save(vetDoc);
+        vetDoc = veterinaryDocService.create(vetDoc);
         return String.format("forward:/preview/{0}",vetDoc.getId());
     }
 
@@ -78,15 +81,27 @@ public class DocumentController {
     @RequestMapping(value = {"/preview/{idDoc}"}, method = RequestMethod.GET)
     public String previewVeterinaryDocument(Model model,
                                             @PathVariable Integer idDoc){
-//        VeterinaryDocument vd = veterinaryDocService.getVeterinaryDocumentById(idDoc);
-//        model.addAttribute("veterinaryDocument", vd);
+        VeterinaryDocument vetDoc = veterinaryDocService.getVeterinaryDocumentById(idDoc);
+        model.addAttribute("vetDoc", vetDoc);
         //todo: Сделать страницу
         return "document/preview";
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
-    @RequestMapping(value = {"/preview/send/{idDoc}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/list/{numberPage}"}, method = RequestMethod.GET)
+    public String getVeterinaryDocumentList(Model model,
+                                            @PathVariable Integer numberPage){
+        Pageable pageable = new PageRequest(numberPage,20);
+        List<VeterinaryDocument> vetDoc = veterinaryDocService.getAllVeterinaryDocumentPagingList(pageable);
+        model.addAttribute("vetDoc", vetDoc);
+        //todo: Сделать страницу
+        return "document/preview";
+    }
+
+    @PreAuthorize("hasAuthority('EMPLOYEE')")
+    @RequestMapping(value = {"/preview/{idDoc}/send"}, method = RequestMethod.GET)
     public String sendDocumentToForeignCountry(@PathVariable Integer idDoc){
+        VeterinaryDocument vetDoc = veterinaryDocService.getVeterinaryDocumentById(idDoc);
         //todo: Дописать метод конвертирующий в западный сертификат наш документ
 //        VeterinaryDocument document =
 

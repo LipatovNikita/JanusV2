@@ -14,7 +14,10 @@ import topprogersgroup.entity.Bid;
 import topprogersgroup.entity.Passport;
 import topprogersgroup.entity.Pet;
 import topprogersgroup.entity.Route;
+import topprogersgroup.service.BidService;
 import topprogersgroup.service.CurrentUserService;
+import topprogersgroup.service.PetService;
+import topprogersgroup.service.RouteService;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -26,12 +29,19 @@ public class OfficeController {
 
     @Autowired
     CurrentUserService userService;
+    @Autowired
+    PetService petService;
+    @Autowired
+    RouteService routeService;
+    @Autowired
+    BidService bidService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
         return "/office/home";
     }
 
+    //Все петомцы
     @RequestMapping(value = "/pets", method = RequestMethod.GET)
     public String getAllPetsPage(Model model,
                                  @AuthenticationPrincipal User user) {
@@ -42,34 +52,39 @@ public class OfficeController {
         return "/office/pets";
     }
 
+    //Страница пета
     @RequestMapping(value = "/pets/{idPet}", method = RequestMethod.GET)
     public String getPetPage(Model model,
                              @PathVariable Integer idPet) {
-//        Pet pet = petsService.findById(idPet);
-//        Passport passport = pet.getPassport();
-//        model.addAttribute("pet", pet);
-//        model.addAttribute("passport", passport);
-//        model.addAttribute("owner", passport.getOwner());
-//        model.addAttribute("vaccinationList", passport.getVaccination());
-//        model.addAttribute("immunizationList", passport.getImmunizationDeworming());
-//        model.addAttribute("quarantine",pet.getQuarantine());
+        Pet pet = petService.findOne(idPet);
+        Passport passport = pet.getPassport();
+        model.addAttribute("pet", pet);
+        model.addAttribute("passport", passport);
+        model.addAttribute("owner", passport.getOwner());
+        model.addAttribute("vaccinationList", passport.getVaccination());
+        model.addAttribute("immunizationList", passport.getImmunizationDeworming());
+        model.addAttribute("quarantine",pet.getQuarantine());
         return "/office/pet";
     }
 
+    //Все заявки
     @RequestMapping(value = "/bids", method = RequestMethod.GET)
     public String getBidPage(Model model) {
+        //todo: Вытащить заявки
 //        List<Bid> bidList = bidService.findAllByOwner(owner);
 //        model.addAttribute("bidList", bidList);
         return "/office/bids";
     }
 
-    @RequestMapping(value = "/bids/{idBid}", method = RequestMethod.POST)
+    //Просмотр заявки
+    @RequestMapping(value = "/bids/preview/{idBid}", method = RequestMethod.POST)
     public String previewBid(Model model,
                              @PathVariable Integer idBid) {
-//        Bid bid = bidSetvice.findById(idBid);
-//        model.addAttribute("bid", bid);
-//        model.addAttribute("route",bid.getRoute());
-//        model.addAttribute("petList",bid.getPets());
+        //todo:Запретить смотреть чужие заявки и чужих петов
+        Bid bid = bidService.findOne(idBid);
+        model.addAttribute("bid", bid);
+        model.addAttribute("route",bid.getRoute());
+        model.addAttribute("petList",bid.getPets());
         return "/office/bid";
     }
 
@@ -93,10 +108,49 @@ public class OfficeController {
         if(bindingBidResult.hasErrors() || bindingRouteResult.hasErrors()){
             return "/bids/create";
         }
-//        routeService.save(route);
-//        bid.setRoute(route);
-//        bidService.save(bid);
+        route = routeService.create(route);
+        bid.setRoute(route);
+        bid.setStatus("CREATED");
+        bidService.save(bid);
         return "forward:/office/bids";
+    }
+
+    @RequestMapping(value = "/bids/{idBid}/edit", method = RequestMethod.GET)
+    public String editBid(Model model,
+                          @PathVariable Integer idBid) {
+        Bid bid = bidService.findOne(idBid);
+        if(bid.getStatus().equals("CREATED")){
+//            List<Pet> pets = petsService.findAllByOwner(owner);
+//        model.addAttribute("pets", pets);
+            model.addAttribute("route", bid.getRoute());
+            model.addAttribute("bid", bid);
+            return "/office/create";
+        }
+        return "/office/bids";
+    }
+
+    @RequestMapping(value = "/bids/{idBid}/edit", method = RequestMethod.POST)
+    public String editBid(Model model,
+                          @Valid @ModelAttribute("route")Route route,
+                          BindingResult bindingRouteResult,
+                          @Valid @ModelAttribute("bid")Bid bid,
+                          BindingResult bindingBidResult) {
+        if(bindingBidResult.hasErrors() || bindingRouteResult.hasErrors()){
+            return "/bids/create";
+        }
+        route = routeService.create(route);
+        bid.setRoute(route);
+        bidService.save(bid);
+        return "forward:/office/bids";
+    }
+
+    @RequestMapping(value = "/bids/{idBid}/send", method = RequestMethod.GET)
+    public String sendBid(Model model,
+                          @PathVariable Integer idBid) {
+        Bid bid = bidService.findOne(idBid);
+        bid.setStatus("PROCESSED");
+        bidService.save(bid);
+        return "/office/bids";
     }
 
 
