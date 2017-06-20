@@ -27,7 +27,7 @@ public class Administrator {
     @Column(name = "documentnumber", nullable = false, unique = true)
     private int documentNumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user", unique = true)
     private User user;
 

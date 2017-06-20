@@ -14,4 +14,5 @@ public interface VeterinaryDocumentRepository extends JpaRepository<VeterinaryDo
     List<VeterinaryDocument> findByIsDeleted(boolean isDeleted);
     VeterinaryDocument findByBidAndIsDeleted(Bid bid, boolean isDeleted);
     List<VeterinaryDocument> findByEmployeeAndIsDeleted(Employee employee, boolean isDeleted);
+    List<VeterinaryDocument> findByStatusAndIsDeletedOrderByIssueDate(String status, boolean isDeleted, Pageable pageable);
 }

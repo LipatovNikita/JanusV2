@@ -39,7 +39,7 @@ public class Route {
     @Column(name = "transportID", nullable = false)
     private String transportID;
 
-    @OneToMany(mappedBy = "route", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "route", fetch = FetchType.EAGER)
     Set<CheckPoint> checkPoints;
 
     @Column(name = "isdeleted")

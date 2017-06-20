@@ -28,7 +28,7 @@ public class Quarantine {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "quarantine")
     private List<Disease> diseases;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "quarantine")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "quarantine", fetch = FetchType.EAGER)
     private Pet pet;
 
     @Column(name = "isdeleted")

@@ -34,11 +34,11 @@ public class CheckPoint {
     @Size(min = 1, max = 12)
     private String phoneNumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "inspector")
     private Employee inspector;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "route_checkpoint",
             joinColumns = @JoinColumn(name = "checkPoint_id"),
             inverseJoinColumns = @JoinColumn(name = "route_id"))

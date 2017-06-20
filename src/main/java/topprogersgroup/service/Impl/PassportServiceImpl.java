@@ -58,6 +58,15 @@ public class PassportServiceImpl implements PassportService {
     }
 
     @Override
+    public Passport update(Passport passport) {
+        passport.setLast(false);
+        passportRepository.save(passport);
+        passport.setId(0);
+        passport.setLast(true);
+        return passportRepository.save(passport);
+    }
+
+    @Override
     public void delete(Passport passport) {
         passport.setLast(false);
         passport.setDeleted(true);

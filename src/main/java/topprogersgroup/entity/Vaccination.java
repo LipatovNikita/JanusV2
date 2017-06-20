@@ -28,7 +28,7 @@ public class Vaccination {
     @Column(name = "validUntil", nullable = false)
     private Date validUntil;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_passport")
     private Passport passport;
 }

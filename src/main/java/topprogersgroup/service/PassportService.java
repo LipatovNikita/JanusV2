@@ -20,5 +20,7 @@ public interface PassportService {
 
     Passport findByGuid(String guid);
 
+    Passport update(Passport passport);
+
     void delete(Passport passport);
 }
