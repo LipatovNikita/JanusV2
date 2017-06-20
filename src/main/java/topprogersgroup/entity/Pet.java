@@ -6,6 +6,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -19,7 +20,7 @@ public class Pet {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "guid", nullable = false,unique = true)
-    private String guid;
+    private UUID guid;
 
     @Column(name = "isLast")
     @Type(type = "boolean")

@@ -7,7 +7,7 @@
     <div class="input-field col s6">
         <input type="text" id="quarantine.addressOfLaboratory" name="quarantine.addressOfLaboratory"
                value="${quarantine.addressOfLaboratory!""}">
-        <label for="quarantine.addressOfLaboratory">Дней в карантине</label>
+        <label for="quarantine.addressOfLaboratory">Адрес лабораторной</label>
     </div>
     <div class="input-field col s4">
         <input type="text" id="quarantine.numberOfDays" name="quarantine.numberOfDays"
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="input-field col s8">
+        <div class="input-field col s5">
             <input type="text" id="diseases[${item_index}.result" name="diseases[${item_index}].result"
                    value="${item.result!""}">
             <label for="diseases[${item_index}].result">Результат</label>
@@ -57,7 +57,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="input-field col s8">
+        <div class="input-field col s5">
             <input type="text" id="diseases.result" name="diseases.result">
             <label for="diseases[${item_index}].result">Результат</label>
         </div>
@@ -72,5 +72,7 @@
     </div>
 </fieldset>
 </#list>
-
-
+<div class="btn-block">
+    <a class="btn btn-primary btnPrevious">Previous</a>
+    <a class="btn btn-primary btnNext">Next</a>
+</div>

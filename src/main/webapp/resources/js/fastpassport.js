@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $('.date').each(function() {
+    $('.date').each(function () {
         $(this).combodate();
     });
 
@@ -88,9 +88,12 @@ $(document).ready(function () {
 
     });
 
+
 });
+
+
 $(function () {
-   /* $('#form1')
+    $('#form1')
         .validate({
             errorElement: 'div',
             highlight: function (element, errorClass, validClass) {
@@ -104,7 +107,6 @@ $(function () {
                     .removeClass(errorClass);
             },
             ignore: false,
-
             rules: {
                 images: {
                     required: true,
@@ -131,42 +133,13 @@ $(function () {
                 },
                 clinic: {
                     required: true
-                },
-                offspring: {
-                    required: true
-                },
-                numberAndSeriesOfPassport: {
-                    required: true
-                },
-                firstName: {
-                    required: true
-                },
-
-                lastName: {
-                    required: true
-                },
-                patronymic: {
-                    required: true
-                },
-                imName: {
-                    required: true
-                },
-                drug: {
-                    required: true
-                },
-                specialFeatures: {
-                    required: true
-                },
-                seriesOfVaccine: {
-                    required: true
-                },
-                typeOfVaccine: {
-                    required: true
                 }
             }
-
         });
-    $.extend($.validator.messages, {required: "Поле обязательно для заполения"});*/
+  /*  $(input[id^='vaccination['): {
+        required: true
+    }*/
+    $.extend($.validator.messages, {required: "Поле обязательно для заполения"});
 
 });
 

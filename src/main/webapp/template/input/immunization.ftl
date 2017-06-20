@@ -37,7 +37,6 @@
         <a class="btn btn-primary btnAddImmun">Добавить</a>
     </div>
 </fieldset>
-
 <div id="immunTemplate" class="hide template-block">
     <fieldset>
         <div class="row">
@@ -75,7 +74,6 @@
     </fieldset>
 </div>
 </#list>
-
 <div class="btn-block">
     <a class="btn btn-primary btnPrevious">Previous</a>
     <a class="btn btn-primary btnNext">Next</a>
