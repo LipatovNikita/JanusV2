@@ -26,12 +26,12 @@ public class VeterinaryDocument {
     @Column(name = "issueDate", nullable = false)
     private Date issueDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "stateveterinaryservice", nullable = false)
     private StateVeterinaryService stateVeterinaryService;
 
     // заявка на вывоз
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "bid", nullable = false)
     private Bid bid;
 
@@ -39,10 +39,10 @@ public class VeterinaryDocument {
     @Column(name = "number", nullable = false, unique = true)
     private int number;
 
-    @OneToMany(mappedBy = "veterinaryDocument", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "veterinaryDocument", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<SpecialNotes> specialNotes;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "employee", nullable = false)
     private Employee employee;
 

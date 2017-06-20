@@ -30,6 +30,11 @@ public class BidServiceImpl implements BidService {
     }
 
     @Override
+    public List<Bid> findForPageByStatusAndSortDate(String status, boolean isDeleted, Pageable pageable) {
+        return bidRepository.findByStatusAndIsDeletedOrderByDepartureDate(status,isDeleted,pageable);
+    }
+
+    @Override
     public List<Bid> findForPageIsDeleted(Pageable pageable) {
         return bidRepository.findByIsDeleted(true, pageable);
     }

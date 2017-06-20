@@ -15,6 +15,8 @@ public interface BidService {
 
     Bid findOne(Integer id);
 
+    List<Bid> findForPageByStatusAndSortDate(String status, boolean isDeleted, Pageable pageable);
+
     List<Bid> findForPageIsDeleted(Pageable pageable);
 
     List<Bid> findForPageIsNotDeleted(Pageable pageable);

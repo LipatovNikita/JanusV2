@@ -10,7 +10,6 @@ import java.util.List;
 
 public interface OwnerRepository extends JpaRepository<Owner,Integer> {
     List<Owner> findByIsDeleted(boolean isDeleted, Pageable pageable);
-    Owner findOneByDocumentNumber(String documentNumber);
 }
 
 

@@ -28,7 +28,7 @@ public class SpecialNotes {
     @Column(name = "inspectionnotes")
     private String inspectionNotes;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "veterinarydocument")
     private VeterinaryDocument veterinaryDocument;
 

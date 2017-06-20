@@ -25,15 +25,15 @@ public class Pet {
     @Type(type = "boolean")
     private boolean isLast;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "passport_id")
     private Passport passport;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "quarantine_id")
     private Quarantine quarantine;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 

@@ -29,7 +29,7 @@ public class Disease {
     @Column(name = "result", nullable = false)
     private String result;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "quarantine_id")
     private Quarantine quarantine;
 

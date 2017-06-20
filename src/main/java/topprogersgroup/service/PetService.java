@@ -22,5 +22,7 @@ public interface PetService {
 
     List<Pet> findAllIsNotDeleted();
 
+    Pet update(Pet pet);
+
     void delete(Pet pet);
 }

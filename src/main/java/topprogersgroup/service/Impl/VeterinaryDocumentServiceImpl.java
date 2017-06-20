@@ -38,6 +38,11 @@ public class VeterinaryDocumentServiceImpl implements VeterinaryDocumentService 
         return veterinaryDocumentRepository.findByBidAndIsDeleted(bid, false);
     }
 
+    @Override
+    public List<VeterinaryDocument> findForPageByStatusAndSortDate(String status, boolean isDeleted, Pageable pageable) {
+        return veterinaryDocumentRepository.findByStatusAndIsDeletedOrderByIssueDate(status,isDeleted,pageable);
+    }
+
     public void delete(VeterinaryDocument veterinaryDocument) {
         veterinaryDocument.setDeleted(true);
         veterinaryDocumentRepository.save(veterinaryDocument);

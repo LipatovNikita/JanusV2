@@ -49,6 +49,15 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
+    public Pet update(Pet pet) {
+        pet.setLast(false);
+        petRepository.save(pet);
+        pet.setId(0);
+        pet.setLast(true);
+        return petRepository.save(pet);
+    }
+
+    @Override
     public void delete(Pet pet) {
         pet.setDeleted(true);
         petRepository.save(pet);
