@@ -18,6 +18,7 @@ import topprogersgroup.validator.UserCreateFormValidator;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -119,6 +120,7 @@ public class AdminController {
     @RequestMapping(value = {"/checkpoint"}, method = RequestMethod.GET)
     public String createCheckPoint(Model model){
         CheckPoint checkPoint = new CheckPoint();
+        //todo: Сделать выбор Employee
         Map<Integer, Employee> inspector = new HashMap<>();
         model.addAttribute("checkPoint", checkPoint);
 //        model.addAttribute("inspector", inspector);
@@ -134,7 +136,7 @@ public class AdminController {
         if(result.hasErrors()){
             return "admin/checkpoint";
         }
-        //todo: Сделать выбор Employee
+
         checkPointService.save(checkPoint);
         return "forward:admin/home";
     }

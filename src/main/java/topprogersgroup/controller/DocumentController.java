@@ -7,11 +7,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import topprogersgroup.entity.Bid;
+import topprogersgroup.entity.Owner;
 import topprogersgroup.entity.SpecialNotes;
 import topprogersgroup.entity.VeterinaryDocument;
 import topprogersgroup.service.BidService;
@@ -53,6 +51,36 @@ public class DocumentController {
         List<Bid> bidList = bidService.findForPageIsNotDeleted(pageable);
         model.addAttribute("bidList", bidList);
         model.addAttribute("numberPage",numberPage);
+        return "document/bids";
+    }
+
+//    //Поиск заявок
+//    @PreAuthorize("hasAuthority('EMPLOYEE')")
+//    @RequestMapping(value = {"/find/bids"}, method = RequestMethod.GET)
+//    public String findBid(Model model){
+//        String ownerDocNumber = "";
+//        model.addAttribute("ownerDocNumber", ownerDocNumber);
+//        return "document/findbids";
+//    }
+
+
+    //Поиск заявок по номеру документа Владельца(находятся на странице - findbids)
+    @PreAuthorize("hasAuthority('EMPLOYEE')")
+    @RequestMapping(value = {"/find/bids"}, method = RequestMethod.POST)
+    public String findBid(Model model,
+                          @RequestParam String ownerDocNumber){
+//        List<Bid> bidList = bidService.
+//        model.addAttribute("bidList",bidList);
+        return "document/bids";
+    }
+
+    //Поиск принятых заявок по номеру документа Владельца(находятся на странице - findacceptedbids)
+    @PreAuthorize("hasAuthority('EMPLOYEE')")
+    @RequestMapping(value = {"/find/acceptedbids"}, method = RequestMethod.POST)
+    public String findAcceptedBid(Model model,
+                                  @RequestParam String ownerDocNumber){
+//        List<Bid> bidList = bidService.
+//        model.addAttribute("bidList",bidList);
         return "document/bids";
     }
 

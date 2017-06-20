@@ -14,6 +14,7 @@
 <script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
 
 <#include "/template/navbar.ftl">
+<#include "/template/search/findacceptedbids.ftl"><#--todo:Надежда что работает поиск принятых заявок-->
 
 <div class="section">
 <#list bidList as bid>
