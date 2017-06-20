@@ -33,35 +33,37 @@
                 <li class="tab col"><a href="#block_download" name="block_download" data-toggle="tab">Оригиналы</a></li>
             </ul>
         </div>
-        <div id="block_passport" class="col s12 center-block">
+        <div class="center-block">
+            <div id="block_passport" class="col s12">
             <#include "/template/input/passport.ftl">
-        </div>
+            </div>
 
-        <div id="block_immunization" class="col s12 center-block">
+            <div id="block_immunization" class="col s12">
             <#include "/template/input/immunization.ftl">
-        </div>
+            </div>
 
-        <div id="block_vaccination" class="col s12 center-block">
+            <div id="block_vaccination" class="col s12">
             <#include "/template/input/vaccination.ftl">
-        </div>
-        <div id="block_quarantine" class="col s12 center-block">
-        <#include "/template/input/quarantine.ftl">
-        </div>
-        <div id="block_download" class="col s12 center-block">
-            <div id="download_file">
-                <section>
-                    <input type="file" name="images_p" multiple="multiple" id="images_p"/>
-                </section>
-                <div class="btn-block">
-                    <a class="btn btn-primary btnPrevious">Previous</a>
-                    <input class="btn btn-primary mainBtn" type="submit" value="Отправить данные">
+            </div>
+            <div id="block_quarantine" class="col s12">
+            <#include "/template/input/quarantine.ftl">
+            </div>
+            <div id="block_download" class="col s12">
+                <div id="download_file">
+                    <section>
+                        <input type="file" name="images_p" multiple="multiple" id="images_p"/>
+                    </section>
+                    <div class="btn-block">
+                        <a class="btn btn-primary btnPrevious">Previous</a>
+                        <input class="btn btn-primary mainBtn" type="submit" value="Отправить данные">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
 <footer class="footer">
-    footer
+Ребят, запилите сюда какой-нить текст :))
 </footer>
 </body>
 </html>

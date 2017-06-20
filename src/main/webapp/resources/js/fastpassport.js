@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $('#date').combodate();
 
     $('select').material_select();
 
@@ -78,29 +79,9 @@ $(document).ready(function () {
 
     });
 
-    // $('.mainBtn').on('click', function () {
-    //     var form = $('#form1')[0];
-    //     var data = new FormData(form);
-    //     var im = $('#values').val();
-    //     data.append('immunizations', im);
-    //     $.ajax({
-    //         type: "POST",
-    //         enctype: 'multipart/form-data',
-    //         url: "/fast/add",
-    //         data: data,
-    //         processData: false,
-    //         contentType: false,
-    //         success: function (data) {
-    //             console.log("success : ", data);
-    //         },
-    //         error: function () {
-    //             console.log('error');
-    //         }
-    //     });
-    // });
 });
 $(function () {
-    $('#form1')
+   /* $('#form1')
         .validate({
             errorElement: 'div',
             highlight: function (element, errorClass, validClass) {
@@ -176,7 +157,7 @@ $(function () {
             }
 
         });
-    $.extend($.validator.messages, {required: "Поле обязательно для заполения"});
+    $.extend($.validator.messages, {required: "Поле обязательно для заполения"});*/
 
 });
 

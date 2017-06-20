@@ -1,5 +1,5 @@
 .center-block{
-    width: 80%;
+    width: 75%;
 }
 .header-color {
     background-color: #E8B51B;
@@ -44,4 +44,15 @@ body{
 }
 .template-block{
     margin-top: 1%;
+}
+.combodate{
+
+}
+.select-wrapper{
+    display: inline-block;
+    width: 20%;
+    float: right;
+}
+.initialized{
+    display: none; !important;
 }

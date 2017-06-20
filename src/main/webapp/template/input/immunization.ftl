@@ -2,7 +2,7 @@
 <fieldset class="template-block">
     <div class="row">
         <div class="input-field col s6">
-           <div class="switch">
+            <div class="switch">
                 <label>
                     Иммунизация
                     <input type="checkbox" id="passport.immunizationDeworming[${item_index}].immunizationDeworming"
@@ -12,6 +12,9 @@
                     Дегельминтизация
                 </label>
             </div>
+        </div>
+        <div class="input-field col s6">
+            <input type="text" id="date" name="immunizationDeworming[${item_index}].date" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value="${item.date!"1996-10-24"?datetime("yyyy-mm-dd")}">
         </div>
     </div>
 
