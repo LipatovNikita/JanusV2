@@ -5,7 +5,7 @@
         <label for="quarantine.laboratory">Лаборатория</label>
     </div>
     <div class="input-field col s6">
-        <input type="text" id="quarantine.addressOfLaboratory" name="quarantine.addressOfLaboratory"
+        <input type="text" id="quarantineaddressOfLaboratory" name="quarantine.addressOfLaboratory"
                value="${quarantine.addressOfLaboratory!""}">
         <label for="quarantine.addressOfLaboratory">Адрес лабораторной</label>
     </div>
