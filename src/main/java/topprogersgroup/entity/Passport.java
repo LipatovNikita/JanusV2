@@ -58,7 +58,7 @@ public class Passport {
     @Column(name = "offspring")
     private String offspring;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 

@@ -13,7 +13,9 @@
 <body>
 <script type="text/javascript" rel="script" src="/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
+
 <#include "/template/navbar.ftl">
+<#include "/template/search/findbids.ftl"><#--todo:Надежда что работает поиск заявок-->
 
 <div class="section">
 <#list bidList as bid>
@@ -38,6 +40,7 @@
 </#list>
 </div>
 
+<#if numberPage?? || (numberPage > 0) >
 <ul class="pagination">
     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
     <li class="active"><a href="/docs/${numberPage}">1</a></li>
@@ -47,6 +50,7 @@
     <li class="waves-effect"><a href="/docs/${(numberPage+4)}">5</a></li>
     <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
 </ul>
+</#if>
 
 <footer>
     footer
