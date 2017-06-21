@@ -29,7 +29,7 @@
                     </div>
                     <div class="input-field">
                         <input type="password" name="passwordRepeated" id="password_reg_repeat" required/>
-                        <label for="password">Повторите пароль</label>
+                        <label for="passwordRepeated">Повторите пароль</label>
                     </div>
                     <div>
                         <#include "/template/input/owner.ftl">

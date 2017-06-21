@@ -14,13 +14,14 @@
 <script type="text/javascript" rel="script" src="/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/pgwslider.js"></script>
+
 <#include "/template/navbar.ftl">
 
 <div class="section">
-<#list bidList as bid>
-    <a href="/docs/preview/${bid.id}">
+<#if bidList??>
+    <#list bidList as bid>
         <div class="row">
-            <div class="col s6">
+            <div class="col s4">
                 Количество петомцев: ${bid.countPet!0}<br/>
                 Количество мест под петомцев: ${bid.countSeats!0}<br/>
                 Дата отправления: ${(bid.departureDate?string("dd-MM-yyyy"))!""}<br/>
@@ -32,9 +33,14 @@
                 Въездной БИП в ЕС: ${bid.route.BorderInspectionPosts!""}<br/>
                 Тип транспорта: ${bid.route.transportType!""}<br/>
             </div>
+            <div class="col s2">
+                <div class="row"><a href="/office/${bid.id}/preview">Просмотреть</a></div>
+                <div class="row"><a href="/office/${bid.id}/edit">Редактировать</a></div>
+            </div>
         </div>
-    </a>
-</#list>
+    </#list>
+</#if>
+
 </div>
 
 <footer>

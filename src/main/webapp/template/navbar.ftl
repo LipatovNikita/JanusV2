@@ -5,8 +5,7 @@
             <li><a href="">Janus</a></li>
             <li><a href="">Информация</a></li>
         <#if currentUser??>
-            <li><a href="http://localhost:8080/office/">Личный кабинет</a></li>
-            <li><a href="http://localhost:8080/fast/add">Добавить питомца</a></li>
+            <li><a href="/fast/add">Добавить питомца</a></li>
         </#if>
         </ul>
         <ul id="nav" class="right">
@@ -14,6 +13,13 @@
             <li><a href="/login">Войти</a></li>
         </#if>
         <#if currentUser??>
+        <#if currentUser.role == "ADMIN">
+            <li><a href="/admin/home">Личный кабинет</a></li>
+        <#elseif currentUser.role == "EMPLOYEE">
+            <li><a href="/docs/home">Личный кабинет</a></li>
+        <#elseif currentUser.role == "PET_OWNER">
+            <li><a href="/office/home">Личный кабинет</a></li>
+        </#if>
             <li><a href="/logout">Выйти</a></li>
         </#if>
         </ul>
