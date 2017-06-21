@@ -19,6 +19,7 @@
     <fieldset class="row">
         <div class="col s12 m8 l6">
             <div class="row">
+                <input type="hidden" name="id" id="id" value="${checkPoint.id!0}"/>
                 <div class="col s12 m6">
                     <label for="cpName">Наименование учреждения</label>
                     <input type="text" name="cpName" id="cpName" value="${checkPoint.cpName!""}" required autofocus/>
@@ -42,7 +43,7 @@
             <#--</select>-->
             <#--</div>-->
             </div>
-            <button type="submit" class="btn waves-effect waves-light">Добавить</button>
+            <button type="submit" class="btn waves-effect waves-light">Сохранить</button>
         </div>
     </fieldset>
 </form>

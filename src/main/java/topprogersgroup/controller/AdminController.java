@@ -128,7 +128,7 @@ public class AdminController {
     @RequestMapping(value = {"/vet/list/normal"}, method = RequestMethod.GET)
     public String viewSVetServicesIsNotDel(Model model){
         List<StateVeterinaryService> servicesIsNotDel = stateVeterinaryServService.findAllIsNotDeleted();
-        model.addAttribute("svService", servicesIsNotDel);
+        model.addAttribute("svServiceList", servicesIsNotDel);
         return "admin/allstatevetservice";
     }
 
@@ -138,7 +138,55 @@ public class AdminController {
     public String viewSVetServicesIsDel(Model model){
         List<StateVeterinaryService> servicesIsDel = stateVeterinaryServService.findAllIsDeleted();
         model.addAttribute("svServiceList", servicesIsDel);
-        return "admin/allstatevetservice";
+        return "admin/alldeletestatevetservice";
+    }
+
+    //Удаление ГосВетСлужбы
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping(value = {"/vet/list/{idSVS}/delete"}, method = RequestMethod.GET)
+    public String deleteSVetServices(@PathVariable Integer idSVS){
+        StateVeterinaryService svService = stateVeterinaryServService.findOne(idSVS);
+        if(svService!= null && !svService.isDeleted()){
+            stateVeterinaryServService.delete(svService);
+        }
+        return "redirect:/admin/vet/list/normal";
+    }
+
+    //Восстановление ГосВетСлужбы
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping(value = {"/vet/list/{idSVS}/restore"}, method = RequestMethod.GET)
+    public String restoreSVetServices(@PathVariable Integer idSVS){
+        StateVeterinaryService svService = stateVeterinaryServService.findOne(idSVS);
+        if(svService!= null && svService.isDeleted()){
+            svService.setDeleted(false);
+            stateVeterinaryServService.create(svService);
+        }
+        return "redirect:/admin/vet/list/del";
+    }
+
+    //Редактирование ГосВетСлужбы
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping(value = {"/vet/list/{idSVS}/edit"}, method = RequestMethod.GET)
+    public String editVetServices(Model model,
+                                 @PathVariable Integer idSVS){
+        StateVeterinaryService svService = stateVeterinaryServService.findOne(idSVS);
+        if(svService!= null && !svService.isDeleted()){
+            model.addAttribute("svService", svService);
+            return "admin/statevetservice";
+        }
+        return "redirect:/admin/vet/list/normal";
+    }
+
+    //Редактирование ГосВетСлужбы
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping(value = {"/vet/list/{idSVS}/edit"}, method = RequestMethod.POST)
+    public String editVetServices(@Valid @ModelAttribute("svService")StateVeterinaryService service,
+                                  BindingResult result) {
+        if(result.hasErrors()) {
+            return "admin/statevetservice";
+        }
+        stateVeterinaryServService.create(service);
+        return "admin/home";
     }
 
     //Добавить пропускной пунк (ПКВП)
@@ -163,7 +211,7 @@ public class AdminController {
         return "admin/home";
     }
 
-    //Вывести НЕ удаленные ГосВетСлужбы
+    //Вывести НЕ удаленные ПКВП
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/checkpoint/list/normal"}, method = RequestMethod.GET)
     public String viewCheckPointIsNotDel(Model model){
@@ -172,7 +220,7 @@ public class AdminController {
         return "admin/allcheckpoint";
     }
 
-    //Вывести удаленные ГосВетСлужбы
+    //Вывести удаленные ПКВП
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/checkpoint/list/del"}, method = RequestMethod.GET)
     public String viewCheckPointIsDel(Model model){
@@ -181,7 +229,7 @@ public class AdminController {
         return "admin/alldeletecheckpoint";
     }
 
-    //Удаление ГосВетСлужбы
+    //Удаление ПКВП
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/checkpoint/list/{idCheckPoint}/delete"}, method = RequestMethod.GET)
     public String deleteCheckPoint(@PathVariable Integer idCheckPoint){
@@ -192,7 +240,7 @@ public class AdminController {
         return "redirect:/admin/checkpoint/list/normal";
     }
 
-    //Восстановление ГосВетСлужбы
+    //Восстановление ПКВП
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/checkpoint/list/{idCheckPoint}/restore"}, method = RequestMethod.GET)
     public String restoreCheckPoint(@PathVariable Integer idCheckPoint){
@@ -204,7 +252,7 @@ public class AdminController {
         return "redirect:/admin/checkpoint/list/del";
     }
 
-    //Редактирование ГосВетСлужбы
+    //Редактирование ПКВП
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/checkpoint/list/{idCheckPoint}/edit"}, method = RequestMethod.GET)
     public String editCheckPoint(Model model,
@@ -217,7 +265,7 @@ public class AdminController {
         return "redirect:/admin/checkpoint/list/normal";
     }
 
-    //Редактирование ГосВетСлужбы
+    //Редактирование ПКВП
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/checkpoint/list/{idCheckPoint}/edit"}, method = RequestMethod.POST)
     public String editCheckPoint(Model model,

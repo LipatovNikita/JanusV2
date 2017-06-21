@@ -30,10 +30,14 @@
             </div>
             <div class="col s3 m2 l1">
                 <div class="row">
-                    <a href="" class="waves-effect waves-light btn">Редактировать</a>
+                    <a href="/admin/vet/list/${svService.id}/edit" class="waves-effect waves-light btn">
+                        Редактировать
+                    </a>
                 </div>
                 <div class="row">
-                    <a href="" class="waves-effect waves-light btn">Удалить</a>
+                    <a href="/admin/vet/list/${svService.id}/delete" class="waves-effect waves-light btn">
+                        Удалить
+                    </a>
                 </div>
             </div>
         </div>
