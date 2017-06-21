@@ -48,7 +48,7 @@ public class DocumentController {
                       @PathVariable Integer numberPage){
         Pageable pageable = new PageRequest(numberPage,20);
         //todo: Сделать сортировку с конца и должны выводиться только в статусе PROCESSED
-        List<Bid> bidList = bidService.findForPageIsNotDeleted(pageable);
+        List<Bid> bidList = bidService.findForPageByStatusAndSortDate(PROCESSED,false, pageable);
         model.addAttribute("bidList", bidList);
         model.addAttribute("numberPage",numberPage);
         return "document/bids";
@@ -69,7 +69,8 @@ public class DocumentController {
     @RequestMapping(value = {"/find/bids"}, method = RequestMethod.POST)
     public String findBid(Model model,
                           @RequestParam String ownerDocNumber){
-//        List<Bid> bidList = bidService.
+        Pageable pageable = new PageRequest(1,100);
+        List<Bid> bidList = bidService.findForPageByStatusAndSortDate(PROCESSED,false, pageable);
 //        model.addAttribute("bidList",bidList);
         return "document/bids";
     }

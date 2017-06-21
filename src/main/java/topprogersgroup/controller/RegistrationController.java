@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import topprogersgroup.entity.Owner;
-import topprogersgroup.entity.RegistrationForm;
-import topprogersgroup.entity.UserCreateForm;
+import topprogersgroup.entity.*;
 import topprogersgroup.service.OwnerService;
 import topprogersgroup.service.UserService;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 @Controller
 public class RegistrationController {
@@ -37,19 +36,23 @@ public class RegistrationController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String handleRegistrationFirstPage(Model model,
                                               @ModelAttribute("form") UserCreateForm form,
+                                              BindingResult bindingUserResult,
                                               @ModelAttribute("owner")Owner owner,
-                                              BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+                                              BindingResult bindingOwnerResult) {
+        if (bindingUserResult.hasErrors() || bindingOwnerResult.hasErrors()) {
             return "/registration";
         }
+        User user;
         try {
-            Owner newOwner = owner;
-            userService.create(form);
-            ownerService.save(newOwner);
+            form.setRole(Role.PET_OWNER);
+            user = userService.create(form);
         } catch (DataIntegrityViolationException e) {
-            bindingResult.reject("email.exists", "Адрес электронной почты уже существует");
+            bindingUserResult.reject("email.exists", "Адрес электронной почты уже существует");
             return "/registration";
         }
+        owner.setUser(user);
+        owner.setBirthdate(new Date());//todo:Таня удали когда дату на овнере сделаешь
+        ownerService.save(owner);
         return "home";
     }
 }
