@@ -81,8 +81,15 @@ select {
         margin-right: 0;
     }
 }
+.select-wrapper{
+    display: inline-block;
+    width: 20%;
+    float: right;
+}
+.select-wrapper input.select-dropdown{
+    display: none; !important;
+}
 
-/*body{*/
-    /*width: 50%;*/
-    /*align-content: center;*/
-/*}*/
+.caret{
+    display: none; !important;
+}

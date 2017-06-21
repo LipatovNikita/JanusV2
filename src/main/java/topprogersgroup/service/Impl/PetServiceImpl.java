@@ -10,6 +10,7 @@ import topprogersgroup.service.OwnerService;
 import topprogersgroup.service.PetService;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by aalle on 16.06.2017.
@@ -25,6 +26,8 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Pet save(Pet pet) {
+        UUID uuid = UUID.randomUUID();
+        pet.setGuid(uuid);
         return petRepository.save(pet);
     }
 
