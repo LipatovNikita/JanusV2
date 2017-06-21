@@ -65,6 +65,8 @@ public class PassportServiceImpl implements PassportService {
 
     @Override
     public Passport save(Passport passport) {
+        String guid = UUID.randomUUID().toString();
+        passport.setGuid(guid);
         passport.setLast(true);
         UUID uuid = UUID.randomUUID();
         passport.setGuid(uuid);
@@ -83,6 +85,11 @@ public class PassportServiceImpl implements PassportService {
 
     @Override
     public Passport update(Passport passport) {
+        Passport passport1 = new Passport();
+        passport1.setId(passport.getId());
+        passport1 = passportRepository.findOne(passport1.getId());
+        passport1.setLast(false);
+        passportRepository.save(passport1);
         passport.setLast(false);
         passportRepository.save(passport);
         passport.setId(0);

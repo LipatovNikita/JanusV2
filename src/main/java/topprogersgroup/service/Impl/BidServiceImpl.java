@@ -56,6 +56,11 @@ public class BidServiceImpl implements BidService {
     }
 
     @Override
+    public List<Bid> findByEmailUser(String email, boolean isDeleted) {
+        return bidRepository.findByPetsOwnerUserEmailAndIsDeleted(email,isDeleted);
+    }
+
+    @Override
     public void delete(Bid bid) {
         bid.setDeleted(true);
         bidRepository.save(bid);
