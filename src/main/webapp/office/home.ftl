@@ -21,17 +21,28 @@
         <div class="row picture-block">
             <div class="col s4">
                 <a href="/office/pets">
+                    Петомцы
                     <img src="/resources/images/pets.png" class="responsive-img" alt=""/>
                 </a>
             </div>
             <div id="imgzat" class="col s4">
                 <a href="/office/bids">
+                    Заявки
                     <img src="/resources/images/bids.png" class="responsive-img" alt=""/>
                 </a>
             </div>
+        </div>
+        <div class="row picture-block">
             <div class="col s4">
                 <a href="/office/bids/create">
                     Создать заявку на Вет Док
+                    <img src="/resources/images/bid.png" class="responsive-img" alt=""/>
+                </a>
+            </div>
+            <div class="col s4">
+                <a href="/fast/add">
+                    Создать паспорт
+                    <img src="/resources/images/pass.png" class="responsive-img" alt=""/>
                 </a>
             </div>
         </div>
