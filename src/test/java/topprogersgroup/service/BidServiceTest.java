@@ -20,6 +20,8 @@ import topprogersgroup.service.Impl.BidServiceImpl;
 import javax.annotation.Resource;
 
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -34,7 +36,8 @@ public class BidServiceTest {
 
     @Test
     public void findOne() throws Exception {
-        System.out.print(bidService.findOne(1));
+        Bid bid = bidService.findOne(1);
+        System.out.print("fd");
     }
 
     @Test
@@ -45,8 +48,13 @@ public class BidServiceTest {
 
     @Test
     public void delete() throws Exception {
-        Bid bid = bidService.findOne(1);
-        bidService.delete(bid);
+//        Bid bid = bidService.findOne(1);
+//        bidService.delete(bid);
     }
 
+    @Test
+    public void findByDocumentNumberAndStatus() throws Exception {
+        List<Bid> bid = bidService.findByDocumentNumberAndStatus("processed","2281488",false);
+        System.out.print("fdf");
+    }
 }
