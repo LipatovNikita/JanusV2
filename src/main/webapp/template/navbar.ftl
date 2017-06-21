@@ -16,7 +16,7 @@
         </#if>
         <#if currentUser??>
             <li><a href="/logout">Выйти</a></li>
-       з </#if>
+        </#if>
         </ul>
     </ul>
 </nav>
