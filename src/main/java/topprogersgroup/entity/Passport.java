@@ -25,7 +25,7 @@ public class Passport {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", nullable = false)
-    private UUID guid;
+    private UUID  guid;
 
     @Column(name = "isLast")
     @Type(type = "boolean")
