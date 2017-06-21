@@ -4,6 +4,9 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Data
@@ -17,22 +20,33 @@ public class Employee {
     private int id;
 
     @Column(name = "firstname", nullable = false)
+    @NotNull
+    @Size(min = 1, max = 55)
     private String firstName;
 
     @Column(name = "lastname", nullable = false)
+    @NotNull
+    @Size(min = 1, max = 55)
     private String lastName;
 
     @Column(name = "middlename", nullable = false)
+    @NotNull
+    @Size(min = 1, max = 55)
     private String middleName;
 
     @Column(name = "documentnumber", nullable = false, unique = true)
-    private int documentNumber;
+    @Max(99999999999L)
+    private long documentNumber;
 
     @Column(name = "phonenumber", nullable = false, unique = true)
+    @NotNull
+    @Size(min = 1, max = 25)
     private String phoneNumber;
 
     // адрес проживания
     @Column(name = "residentialaddress", nullable = false)
+    @NotNull
+    @Size(min = 1, max = 255)
     private String residentialAddress;
 
     // место работы (ГосВетСлужба)
@@ -46,6 +60,8 @@ public class Employee {
 
     // должность
     @Column(name = "position", nullable = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     private String position;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

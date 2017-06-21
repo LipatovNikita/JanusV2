@@ -4,6 +4,9 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Data
 @Entity
@@ -16,16 +19,23 @@ public class Administrator {
     private int id;
 
     @Column(name = "firstname", nullable = false)
+    @NotNull
+    @Size(min = 1, max = 55)
     private String firstName;
 
     @Column(name = "lastname", nullable = false)
+    @NotNull
+    @Size(min = 1, max = 55)
     private String lastName;
 
     @Column(name = "middlename", nullable = false)
+    @NotNull
+    @Size(min = 1, max = 55)
     private String middleName;
 
     @Column(name = "documentnumber", nullable = false, unique = true)
-    private int documentNumber;
+    @Max(99999999999L)
+    private long documentNumber;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user", unique = true)

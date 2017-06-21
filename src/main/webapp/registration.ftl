@@ -28,7 +28,7 @@
                         <label for="password">Пароль</label>
                     </div>
                     <div class="input-field">
-                        <input type="password" name="password" id="password_reg_repeat" required/>
+                        <input type="password" name="passwordRepeated" id="password_reg_repeat" required/>
                         <label for="password">Повторите пароль</label>
                     </div>
                     <div>

@@ -7,11 +7,14 @@
         <label for="residenceTime">Время пребывания животного в РФ</label>
         <input type="text" name="residenceTime" id="residenceTime" value="${vetDoc.residenceTime!0}" required/>
     </div>
-    <#--todo:Изменить дату и сделать выбор employee и stateVeterinaryService -->
-    <#--<div class="col s4">-->
-        <#--<label>Дата оформления свидетельства</label>-->
-        <#--<input type="text" name="issueDate" id="issueDate" value="${(vetDoc.issueDate?string("dd/MM/yyyy"))!""}" required/>-->
-    <#--</div>-->
+    <#setting date_format="YYYY/MM/DD">
+    <#--todo:Изменить дату и сделать выбор employee  -->
+    <div class="input-field col s6">
+        <input type="text" class="date" id="issueDate"
+               name="issueDate" data-format="YYYY/MM/DD" data-template="D MMM YYYY"
+               value="${vetDoc.issueDate!"1996/10/24"?date}">
+        <label for="dateNotes">Дата оформления</label>
+    </div>
 </div>
 <div class="row">
 <#--todo:Селект сотрудника-->
