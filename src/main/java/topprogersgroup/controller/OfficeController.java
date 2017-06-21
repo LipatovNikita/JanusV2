@@ -39,7 +39,7 @@ public class OfficeController {
     @Autowired
     OwnerService ownerService;
 
-    @RequestMapping(value = {"/",""}, method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/","/home"}, method = RequestMethod.GET)
     public String home(Model model) {
         return "/office/home";
     }
@@ -55,6 +55,7 @@ public class OfficeController {
     }
 
     //Страница пета
+    //todo:Запретить смотреть чужих петов
     @RequestMapping(value = "/pets/{idPet}", method = RequestMethod.GET)
     public String getPetPage(Model model,
                              @PathVariable Integer idPet) {
@@ -74,17 +75,17 @@ public class OfficeController {
     public String getBidPage(Model model) {
         //todo: Вытащить заявки
         Owner owner = ownerService.findOwnerByEmailUser(userService.getUserEmail());
-//        List<Bid> bidList = bidService.(owner);
+//        List<Bid> bidList = bidService.findByDocumentNumberAndStatus()
 //        model.addAttribute("bidList", bidList);
         return "/office/bids";
     }
 
     //Просмотр заявки
+    //todo:Запретить смотреть чужие заявки
     @PreAuthorize("@currentUserServiceImpl.canAccessOwnerBids(principal, #idBid)")
-    @RequestMapping(value = "/bids/preview/{idBid}", method = RequestMethod.POST)
+    @RequestMapping(value = "/bids/{idBid}/preview", method = RequestMethod.POST)
     public String previewBid(Model model,
                              @PathVariable Integer idBid) {
-        //todo:Запретить смотреть чужие заявки и чужих петов
         Bid bid = bidService.findOne(idBid);
         model.addAttribute("bid", bid);
         model.addAttribute("route",bid.getRoute());
@@ -118,7 +119,7 @@ public class OfficeController {
         bid.setRoute(route);
         bid.setStatus(CREATED);
         bidService.save(bid);
-        return "forward:/office/bids";
+        return "redirect:/office/bids";
     }
 
     //Редактирование возможно если заявка СОЗДАНА или ОТКЛОНЕНА
@@ -155,7 +156,7 @@ public class OfficeController {
         route = routeService.create(route);
         bid.setRoute(route);
         bidService.save(bid);
-        return "forward:/office/bids";
+        return "redirect:/office/bids";
     }
 
     //Отправлять возможно заявки только в состоянии СОЗДАНА
@@ -170,9 +171,9 @@ public class OfficeController {
             bidService.save(bid);
             return "/office/bids";
         }else if(bid.getStatus().equals(REJECTED)){
-            return String.format("forward:/office/bids/%d/edit",idBid);
+            return String.format("redirect:/office/bids/%d/edit",idBid);
         }
-        return "forward:/office/bids";
+        return "redirect:/office/bids";
     }
 
 }

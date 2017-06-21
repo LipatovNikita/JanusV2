@@ -18,8 +18,6 @@ import topprogersgroup.service.VeterinaryDocumentService;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
 
 /**
  * Created by VP on 16.06.2017.
@@ -40,6 +38,11 @@ public class DocumentController {
     @Autowired
     private BidService bidService;
 
+    @PreAuthorize("hasAuthority('EMPLOYEE')")
+    @RequestMapping(value = {"","/home"}, method = RequestMethod.GET)
+    public String home(Model model){
+        return "document/home";
+    }
 
     //Вывод всех заявок в состоянии ОБРАБАТЫВАЕТСЯ
     @PreAuthorize("hasAuthority('EMPLOYEE')")
@@ -47,7 +50,6 @@ public class DocumentController {
     public String all(Model model,
                       @PathVariable Integer numberPage){
         Pageable pageable = new PageRequest(numberPage,20);
-        //todo: Сделать сортировку с конца и должны выводиться только в статусе PROCESSED
         List<Bid> bidList = bidService.findForPageByStatusAndSortDate(PROCESSED,false, pageable);
         model.addAttribute("bidList", bidList);
         model.addAttribute("numberPage",numberPage);
@@ -69,9 +71,8 @@ public class DocumentController {
     @RequestMapping(value = {"/find/bids"}, method = RequestMethod.POST)
     public String findBid(Model model,
                           @RequestParam String ownerDocNumber){
-        Pageable pageable = new PageRequest(1,100);
-        List<Bid> bidList = bidService.findForPageByStatusAndSortDate(PROCESSED,false, pageable);
-//        model.addAttribute("bidList",bidList);
+        List<Bid> bidList = bidService.findByDocumentNumberAndStatus(PROCESSED,ownerDocNumber,false);
+        model.addAttribute("bidList",bidList);
         return "document/bids";
     }
 
@@ -89,8 +90,8 @@ public class DocumentController {
     @RequestMapping(value = {"/find/acceptedbids"}, method = RequestMethod.POST)
     public String findAcceptedBid(Model model,
                                   @RequestParam String ownerDocNumber){
-//        List<Bid> bidList = bidService.
-//        model.addAttribute("bidList",bidList);
+        List<Bid> bidList = bidService.findByDocumentNumberAndStatus(ACCEPTED,ownerDocNumber,false);
+        model.addAttribute("bidList",bidList);
         return "document/bids";
     }
 
@@ -108,7 +109,7 @@ public class DocumentController {
             model.addAttribute("numberPage",numberPage);
             return "document/bid";//Страница с заявкой
         }
-       return String.format("forward:/docs/%d",numberPage);
+       return String.format("redirect:/docs/%d",numberPage);
     }
 
     //Сохранения решения насчет заявки(ОТКЛОНЕНА или ПРИНЯТА)
@@ -125,7 +126,7 @@ public class DocumentController {
                 bid.getStatus().equals(ACCEPTED)){
             bidService.save(bid);
         }
-        return String.format("forward:docs/%d",numberPage);
+        return String.format("redirect:docs/%d",numberPage);
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
@@ -133,9 +134,9 @@ public class DocumentController {
     public String getAcceptedBidPage(Model model,
                                      @ModelAttribute("numberPage")Integer numberPage){
         Pageable pageable = new PageRequest(numberPage,20);
-//        todo: Должны выводиться страницы в статусе ПРИНЯТЫ и отсортированы по дате с конца
-//        List<Bid> bidList = bidService.findForPageIsNotDeleted(pageable);
-//        model.addAttribute("bidList", bidList);
+//        todo:Сделано - Должны выводиться страницы в статусе ПРИНЯТЫ и отсортированы по дате с конца
+        List<Bid> bidList = bidService.findForPageByStatusAndSortDate(ACCEPTED,false,pageable);
+        model.addAttribute("bidList", bidList);
         model.addAttribute("numberPage",numberPage);
         return "document/acceptedbids";
     }
@@ -158,7 +159,7 @@ public class DocumentController {
             model.addAttribute("numberPage",numberPage);
             return "document/vetdoc";
         }
-        return String.format("forward:/docs/accepted/page/%d",numberPage);
+        return String.format("redirect:/docs/accepted/page/%d",numberPage);
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
@@ -175,7 +176,7 @@ public class DocumentController {
         vetDoc.setStatus(CREATED);
 
 //        todo: Таня тоже для тебя прими что нужно в конроллере, но не возвращаемые страницы не изменяй
-        return String.format("forward:/docs/accepted/page/%d",numberPage);
+        return String.format("redirect:/docs/accepted/page/%d",numberPage);
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")

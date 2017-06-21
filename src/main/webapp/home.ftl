@@ -20,7 +20,7 @@
         </div>
         <div class="col s6 light">
             <h5 class="text-left">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam
+                Lorem ipsum dolor sit 12 amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam
                 pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros
                 justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget,
                 bibendum sollicitudin lacus.
