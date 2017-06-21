@@ -50,7 +50,7 @@ public class AdminController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @RequestMapping(value = {"","/", "/home"})
+    @RequestMapping(value = {"", "/", "/home"})
     public String getAdminHomePage() {
         return "admin/home";
     }

@@ -38,9 +38,10 @@
         <label for="phoneNumber">Номер телефона</label>
     </div>
     <div class="input-field col s6">
+        <br/>
             <input type="text" class="date" id="birthdate" name="birthdate" data-format="YYYY/MM/DD" data-template="D MMM YYYY"
                    value="${owner.birthdate!"1996/10/24"?date}">
-            <label for="owner.birthdate">День рождения</label>
+            <label for="birthdate">День рождения</label>
     </div>
 </div>
 <div class="row">

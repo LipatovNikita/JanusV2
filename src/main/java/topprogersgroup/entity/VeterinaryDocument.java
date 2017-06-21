@@ -11,7 +11,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "veterinarydocument")
-public class VeterinaryDocument {
+public class VeterinaryDocument{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

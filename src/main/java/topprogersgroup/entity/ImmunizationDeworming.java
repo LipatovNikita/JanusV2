@@ -28,7 +28,7 @@ public class ImmunizationDeworming {
     @Column(name = "drug", nullable = false)
     private String drug;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_passport")
     private Passport passport;
 
