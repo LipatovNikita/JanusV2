@@ -1,13 +1,18 @@
 package topprogersgroup.service.Impl;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import topprogersgroup.entity.Bid;
 import topprogersgroup.entity.Owner;
+import topprogersgroup.entity.Pet;
 import topprogersgroup.repository.BidRepository;
 import topprogersgroup.service.BidService;
 
+import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 /**
@@ -15,6 +20,7 @@ import java.util.List;
  */
 @Service
 public class BidServiceImpl implements BidService {
+
 
     @Autowired
     private BidRepository bidRepository;
@@ -42,6 +48,11 @@ public class BidServiceImpl implements BidService {
     @Override
     public List<Bid> findForPageIsNotDeleted(Pageable pageable) {
         return bidRepository.findByIsDeleted(false, pageable);
+    }
+
+    @Override
+    public List<Bid> findByDocumentNumberAndStatus(String status, String documentNumber, boolean isDeleted) {
+        return bidRepository.findByStatusAndPetsOwnerDocumentNumberAndIsDeleted(status,documentNumber,isDeleted);
     }
 
     @Override

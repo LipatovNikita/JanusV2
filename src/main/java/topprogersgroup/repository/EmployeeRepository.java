@@ -10,5 +10,5 @@ import java.util.List;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     List<Employee> findByIsDeleted(boolean isDeleted);
     Employee findByIdAndIsDeleted(int id, boolean isDeleted);
-
+    Employee findByUserEmailAndIsDeleted(String email,boolean isDeleted);
 }

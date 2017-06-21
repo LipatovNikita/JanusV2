@@ -43,4 +43,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getEmployeeById(int id) {
         return employeeRepository.findByIdAndIsDeleted(id, false);
     }
+
+    @Override
+    public Employee findEmployeeByEmail(String email, boolean isDeleted) {
+        return employeeRepository.findByUserEmailAndIsDeleted(email,isDeleted);
+    }
 }

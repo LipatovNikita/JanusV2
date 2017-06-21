@@ -51,7 +51,6 @@ public class RegistrationController {
             return "/registration";
         }
         owner.setUser(user);
-        owner.setBirthdate(new Date());//todo:Таня удали когда дату на овнере сделаешь
         ownerService.save(owner);
         return "home";
     }
