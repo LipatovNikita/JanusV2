@@ -7,11 +7,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import topprogersgroup.entity.Bid;
+import topprogersgroup.entity.Owner;
 import topprogersgroup.entity.SpecialNotes;
 import topprogersgroup.entity.VeterinaryDocument;
 import topprogersgroup.service.BidService;
@@ -50,9 +48,49 @@ public class DocumentController {
                       @PathVariable Integer numberPage){
         Pageable pageable = new PageRequest(numberPage,20);
         //todo: Сделать сортировку с конца и должны выводиться только в статусе PROCESSED
-        List<Bid> bidList = bidService.findForPageIsNotDeleted(pageable);
+        List<Bid> bidList = bidService.findForPageByStatusAndSortDate(PROCESSED,false, pageable);
         model.addAttribute("bidList", bidList);
         model.addAttribute("numberPage",numberPage);
+        return "document/bids";
+    }
+
+//    //Поиск заявок
+//    @PreAuthorize("hasAuthority('EMPLOYEE')")
+//    @RequestMapping(value = {"/find/bids"}, method = RequestMethod.GET)
+//    public String findBid(Model model){
+//        String ownerDocNumber = "";
+//        model.addAttribute("ownerDocNumber", ownerDocNumber);
+//        return "document/findbids";
+//    }
+
+
+    //Поиск заявок по номеру документа Владельца(находятся на странице - findbids)
+    @PreAuthorize("hasAuthority('EMPLOYEE')")
+    @RequestMapping(value = {"/find/bids"}, method = RequestMethod.POST)
+    public String findBid(Model model,
+                          @RequestParam String ownerDocNumber){
+        Pageable pageable = new PageRequest(1,100);
+        List<Bid> bidList = bidService.findForPageByStatusAndSortDate(PROCESSED,false, pageable);
+//        model.addAttribute("bidList",bidList);
+        return "document/bids";
+    }
+
+    //    //Поиск заявок
+//    @PreAuthorize("hasAuthority('EMPLOYEE')")
+//    @RequestMapping(value = {"/find/bids"}, method = RequestMethod.GET)
+//    public String findAcceptedBid(Model model){
+//        String ownerDocNumber = "";
+//        model.addAttribute("ownerDocNumber", ownerDocNumber);
+//        return "document/findbids";
+//    }
+
+    //Поиск принятых заявок по номеру документа Владельца(находятся на странице - findacceptedbids)
+    @PreAuthorize("hasAuthority('EMPLOYEE')")
+    @RequestMapping(value = {"/find/acceptedbids"}, method = RequestMethod.POST)
+    public String findAcceptedBid(Model model,
+                                  @RequestParam String ownerDocNumber){
+//        List<Bid> bidList = bidService.
+//        model.addAttribute("bidList",bidList);
         return "document/bids";
     }
 
@@ -141,7 +179,7 @@ public class DocumentController {
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
-    @RequestMapping(value = {"/preview/{idDoc}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/vet/{idDoc}"}, method = RequestMethod.GET)
     public String previewVeterinaryDocument(Model model,
                                             @PathVariable Integer idDoc){
         VeterinaryDocument vetDoc = veterinaryDocService.getVeterinaryDocumentById(idDoc);
@@ -151,7 +189,7 @@ public class DocumentController {
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
-    @RequestMapping(value = {"/list/{numberPage}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/vet/list/{numberPage}"}, method = RequestMethod.GET)
     public String getVeterinaryDocumentList(Model model,
                                             @PathVariable Integer numberPage){
         Pageable pageable = new PageRequest(numberPage,20);
@@ -162,7 +200,7 @@ public class DocumentController {
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
-    @RequestMapping(value = {"/preview/{idDoc}/send"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/vet/{idDoc}/send"}, method = RequestMethod.GET)
     public String sendDocumentToForeignCountry(@PathVariable Integer idDoc){
         VeterinaryDocument vetDoc = veterinaryDocService.getVeterinaryDocumentById(idDoc);
         //todo: Дописать метод конвертирующий в западный сертификат наш документ
