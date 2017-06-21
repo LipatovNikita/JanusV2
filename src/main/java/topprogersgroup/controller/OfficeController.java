@@ -55,6 +55,7 @@ public class OfficeController {
     }
 
     //Страница пета
+    @PreAuthorize("@currentUserServiceImpl.canAccessOwnerPets(principal, #idPet)")
     @RequestMapping(value = "/pets/{idPet}", method = RequestMethod.GET)
     public String getPetPage(Model model,
                              @PathVariable Integer idPet) {

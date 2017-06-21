@@ -1,6 +1,7 @@
 package topprogersgroup.entity;
 
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @Data
 @Entity
+@ToString
 @Table(name = "passport")
 public class Passport {
 

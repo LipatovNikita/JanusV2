@@ -5,21 +5,28 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Create a new user</title>
+    <title>Создание Гос Вет Службы</title>
 </head>
 <body>
-<h1>Создание Гос Вет Службы</h1>
+<#include "/template/navbar.ftl"/>
 
 <form role="form" name="form" action="" method="post">
-    <div>
-        <label for="serviceName">Наименование учреждения</label>
-        <input type="text" name="serviceName" id="serviceName" value="${svService.serviceName!""}" required autofocus/>
+    <div class="row">
+        <div class="col s12 m8 l6">
+            <div class="row">
+                <div class="s12 m6">
+                    <label for="serviceName">Наименование учреждения</label>
+                    <input type="text" name="serviceName" id="serviceName" value="${svService.serviceName!""}" required autofocus/>
+                </div>
+                <div class="s12 m6">
+                    <label for="address">Адрес учереждения</label>
+                    <input type="text" name="address" id="address" value="${svService.address!""}" required/>
+                </div>
+                <button type="submit" class="btn waves-effect waves-light">Добавить</button>
+            </div>
+        </div>
     </div>
-    <div>
-        <label for="address">Адрес учереждения</label>
-        <input type="text" name="address" id="address" value="${svService.address!""}" required/>
-    </div>
-    <button type="submit">Добавить</button>
+
 </form>
 
 </body>

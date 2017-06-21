@@ -21,7 +21,7 @@ $(document).ready(function () {
                 .insertBefore($template);
         $clone
             .find('[name="diseases.disName"]').attr('name', 'diseases[' + numberRowQuar + '].disName').attr('id', 'diseases[' + numberRowQuar + '].disName').end()
-            .find('[name="diseases.researchmethod"]').attr('name', 'diseases[' + numberRowQuar + '].researchmethod').attr('id', 'diseases[' + numberRowQuar + '].researchmethod').end()
+            .find('[name="diseases.researchMethod"]').attr('name', 'diseases[' + numberRowQuar + '].researchMethod').attr('id', 'diseases[' + numberRowQuar + '].researchMethod').end()
             .find('[name="diseases.result"]').attr('name', 'diseases[' + numberRowQuar + '].result').attr('id', 'diseases[' + numberRowQuar + '].result').end()
             .find('[name="diseases.dateResearch"]').attr('name', 'diseases[' + numberRowQuar + '].dateResearch').attr('id', 'diseases[' + numberRowQuar + '].dateResearch').end();
 

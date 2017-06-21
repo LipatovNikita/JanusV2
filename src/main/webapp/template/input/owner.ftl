@@ -1,3 +1,13 @@
+<#setting date_format="YYYY/MM/DD">
+<script type="text/javascript" rel="script" src="/resources/js/combodate.js"></script>
+<script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.date').each(function () {
+            $(this).combodate();
+        });
+    });
+</script>
 <div class="row">
     <div class="input-field col s6">
         <input type="text" name="documentNumber" id="documentNumber"
@@ -23,14 +33,16 @@
 
 <div class="row">
     <div class="input-field col s6">
+        <br/>
         <input type="text" id="phoneNumber" name="phoneNumber" value="${owner.phoneNumber!""}">
         <label for="phoneNumber">Номер телефона</label>
     </div>
-    <#--todo:Танюшка дата для тебя-->
-    <#--<div class="input-field col s6">-->
-        <#--<input type="text" id="phoneNumber" name="phoneNumber" value="${owner.phoneNumber!""}">-->
-        <#--<label for="phoneNumber">Номер телефона</label>-->
-    <#--</div>-->
+    <div class="input-field col s6">
+        <br/>
+            <input type="text" class="date" id="birthdate" name="birthdate" data-format="YYYY/MM/DD" data-template="D MMM YYYY"
+                   value="${owner.birthdate!"1996/10/24"?date}">
+            <label for="birthdate">День рождения</label>
+    </div>
 </div>
 <div class="row">
     <div class="input-field col s12">
@@ -38,3 +50,4 @@
         <label for="address">Адрес</label>
     </div>
 </div>
+
