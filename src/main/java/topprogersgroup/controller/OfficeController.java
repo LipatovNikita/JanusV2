@@ -44,7 +44,7 @@ public class OfficeController {
         return "/office/home";
     }
 
-    //Все петомцы
+    //Все питомцы
     @RequestMapping(value = "/pets", method = RequestMethod.GET)
     public String getAllPetsPage(Model model,
                                  @AuthenticationPrincipal User user) {

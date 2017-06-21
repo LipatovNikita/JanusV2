@@ -84,7 +84,7 @@ public class FastController {
             pet.setQuarantine(quarantine);
             petService.save(pet);
         }
-        return "fast/fastpassport";
+        return "office/home";
     }
 
 }

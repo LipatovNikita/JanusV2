@@ -1,3 +1,4 @@
+<#setting date_format="YYYY/MM/DD">
 <div class="row">
     <input type="hidden" name="id" value="${passport.id}">
 </div>

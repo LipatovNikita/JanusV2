@@ -1,18 +1,18 @@
 <div class="row">
-    <input type="hidden" id="quarantine.id" name="quarantine.id" value="${quarantine.id!0}">
+    <input type="hidden" id="id" name="id" value="${quarantine.id!0}">
     <div class="input-field col s6">
-        <input type="text" id="quarantine.laboratory" name="quarantine.laboratory" value="${quarantine.laboratory!""}">
+        <input type="text" id="laboratory" name="laboratory" value="${quarantine.laboratory!""}">
         <label for="quarantine.laboratory">Лаборатория</label>
     </div>
     <div class="input-field col s6">
-        <input type="text" id="quarantineaddressOfLaboratory" name="quarantine.addressOfLaboratory"
+        <input type="text" id="addressOfLaboratory" name="addressOfLaboratory"
                value="${quarantine.addressOfLaboratory!""}">
         <label for="quarantine.addressOfLaboratory">Адрес лабораторной</label>
     </div>
     <div class="input-field col s4">
-        <input type="text" id="quarantine.numberOfDays" name="quarantine.numberOfDays"
+        <input type="text" id="numberOfDays" name="numberOfDays"
                value="${quarantine.numberOfDays!0}">
-        <label for="quarantine.numberOfDays">Дней в карантине</label>
+        <label for="numberOfDays">Дней в карантине</label>
     </div>
 </div>
 <#list quarantine.diseases as item>
@@ -24,7 +24,7 @@
             <label for="diseases[${item_index}].disName">Наименование</label>
         </div>
         <div class="input-field col s6">
-            <input type="text" id="diseases[${item_index}].researchmethod" name="diseases[${item_index}].researchmethod"
+            <input type="text" id="diseases[${item_index}].researchMethod" name="diseases[${item_index}].researchMethod"
                    value="${item.researchmethod!""}">
             <label for="diseases[${item_index}].researchmethod">Метод исследования</label>
         </div>
@@ -52,8 +52,8 @@
             <label for="diseases[${item_index}].disName">Наименование</label>
         </div>
         <div class="input-field col s6">
-            <input type="text" id="diseases.researchmethod" name="diseases.researchmethod">
-            <label for="diseases[${item_index}].researchmethod">Метод исследования</label>
+            <input type="text" id="diseases.researchMethod" name="diseases.researchMethod">
+            <label for="diseases[${item_index}].researchMethod">Метод исследования</label>
         </div>
     </div>
     <div class="row">
