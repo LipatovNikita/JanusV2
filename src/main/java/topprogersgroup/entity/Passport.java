@@ -23,7 +23,7 @@ public class Passport {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "guid", nullable = false)
-    private UUID guid;
+    private String guid;
 
     @Column(name = "isLast")
     @Type(type = "boolean")
@@ -58,7 +58,7 @@ public class Passport {
     @Column(name = "offspring")
     private String offspring;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 

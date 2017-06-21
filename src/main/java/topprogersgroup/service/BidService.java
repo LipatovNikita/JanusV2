@@ -23,5 +23,7 @@ public interface BidService {
 
     List<Bid> findByDocumentNumberAndStatus(String status,String documentNumber,boolean isDeleted);
 
+    List<Bid> findByEmailUser(String email, boolean isDeleted);
+
     void delete(Bid bid);
 }

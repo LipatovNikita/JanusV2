@@ -55,8 +55,8 @@ public class Owner {
     @Size(min = 2, max = 255, message = "")
     private String address;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)
-    private Passport passport;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private List<Passport> passport;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Pet> pet;

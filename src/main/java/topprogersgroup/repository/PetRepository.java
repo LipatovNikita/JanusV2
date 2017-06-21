@@ -14,5 +14,5 @@ import java.util.UUID;
  */
 public interface PetRepository extends JpaRepository<Pet,Integer> {
     List<Pet> findByIsDeletedAndIsLast(boolean isDeleted, boolean isLast);
-    Pet findOneByGuidAndIsDeletedAndIsLast(UUID guid, boolean isDeleted, boolean isLast);
+    Pet findOneByGuidAndIsDeletedAndIsLast(String guid, boolean isDeleted, boolean isLast);
 }
