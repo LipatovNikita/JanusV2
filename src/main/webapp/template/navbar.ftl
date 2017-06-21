@@ -4,8 +4,10 @@
         <ul id="nav" class="left">
             <li><a href="">Janus</a></li>
             <li><a href="">Информация</a></li>
+            <li><a href="http://localhost:8080/passport/edit">Edit</a></li>
+            <li><a href="http://localhost:8080/passport/add">Add</a></li>
         <#if currentUser??>
-            <li><a href="/fast/add">Добавить питомца</a></li>
+            <li><a href="http://localhost:8080/office/">Личный кабинет</a></li>
         </#if>
         </ul>
         <ul id="nav" class="right">

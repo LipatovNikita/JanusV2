@@ -7,31 +7,35 @@
     <meta charset="utf-8">
     <title>Создание Гос Вет Службы</title>
     <link rel="stylesheet" type="text/css" href='/resources/materialize/css/materialize.css'/>
-    <link rel="stylesheet" type="text/css" href='/resources/css/style.css'/>
+    <link rel="stylesheet" type="text/css" href='/resources/css/style_child.css'/>
 
     <script type="text/javascript" rel="script" src="/resources/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" rel="script" src="/resources/materialize/js/materialize.js"></script>
 </head>
 <body>
+<div class="header-margin">
 <#include "/template/navbar.ftl"/>
-
+</div>
 <form role="form" name="form" action="" method="post">
-    <fieldset class="row">
-        <div class="col s12 m8 l6">
-            <div class="row">
-                <div class="s12 m6">
-                    <label for="serviceName">Наименование учреждения</label>
-                    <input type="text" name="serviceName" id="serviceName" value="${svService.serviceName!""}" required autofocus/>
+    <div class="row main_block center-block">
+        <fieldset class="card table">
+            <div class="col s12">
+                    <div class="s12 m6">
+                        <label for="serviceName">Наименование учреждения</label>
+                        <input type="text" name="serviceName" id="serviceName" value="${svService.serviceName!""}"
+                               required
+                               autofocus/>
+                    </div>
+                    <div class="s12 m6">
+                        <label for="address">Адрес учереждения</label>
+                        <input type="text" name="address" id="address" value="${svService.address!""}" required/>
+                    </div>
+                <div class="btn-block col s12 m5">
+                    <button type="submit" class="btn waves-effect waves-light">Добавить</button>
                 </div>
-                <div class="s12 m6">
-                    <label for="address">Адрес учереждения</label>
-                    <input type="text" name="address" id="address" value="${svService.address!""}" required/>
-                </div>
-                <button type="submit" class="btn waves-effect waves-light">Добавить</button>
             </div>
-        </div>
-    </fieldset>
-
+        </fieldset>
+    </div>
 </form>
 
 </body>

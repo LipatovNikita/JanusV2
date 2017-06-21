@@ -76,7 +76,7 @@ public class OfficeController {
     public String getBidPage(Model model) {
         //todo: Вытащить заявки
         Owner owner = ownerService.findOwnerByEmailUser(userService.getUserEmail());
-//        List<Bid> bidList = bidService.findByDocumentNumberAndStatus()
+//        List<Bid> bidList = bidService.(owner);
 //        model.addAttribute("bidList", bidList);
         return "/office/bids";
     }
@@ -87,6 +87,7 @@ public class OfficeController {
     @RequestMapping(value = "/bids/{idBid}/preview", method = RequestMethod.POST)
     public String previewBid(Model model,
                              @PathVariable Integer idBid) {
+        //todo:Запретить смотреть чужие заявки и чужих петов
         Bid bid = bidService.findOne(idBid);
         model.addAttribute("bid", bid);
         model.addAttribute("route",bid.getRoute());

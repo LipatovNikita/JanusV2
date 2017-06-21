@@ -57,3 +57,9 @@ body{
 .caret{
     display: none; !important;
 }
+.header-margin{
+    margin-bottom: 5%;
+}
+.card.table{
+    padding: 5% 5%;
+}
