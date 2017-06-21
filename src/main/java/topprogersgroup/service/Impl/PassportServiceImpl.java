@@ -68,8 +68,6 @@ public class PassportServiceImpl implements PassportService {
         String guid = UUID.randomUUID().toString();
         passport.setGuid(guid);
         passport.setLast(true);
-        UUID uuid = UUID.randomUUID();
-        passport.setGuid(uuid);
         return passportRepository.save(passport);
     }
 

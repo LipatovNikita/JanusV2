@@ -55,7 +55,6 @@ public class OfficeController {
     }
 
     //Страница пета
-    //todo:Запретить смотреть чужих петов
     @PreAuthorize("@currentUserServiceImpl.canAccessOwnerPets(principal, #idPet)")
     @RequestMapping(value = "/pets/{idPet}", method = RequestMethod.GET)
     public String getPetPage(Model model,
