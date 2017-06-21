@@ -9,7 +9,11 @@ function showHidePanel() {
     }
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
+    $('.date').each(function () {
+        $(this).combodate();
+        console.log('sos');
+    });
     $('.collapsible').collapsible();
 });
 

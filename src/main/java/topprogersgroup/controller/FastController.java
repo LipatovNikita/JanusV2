@@ -47,6 +47,7 @@ public class FastController {
     @Autowired
     private PetService petService;
 
+    @PreAuthorize("hasAuthority('PET_OWNER')")
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String fast(Model model) {
         Passport passport = new Passport();
@@ -80,11 +81,12 @@ public class FastController {
             }
             quarantine = quarantineService.save(quarantine);
             Pet pet = new Pet();
+            pet.setOwner(owner);
             pet.setPassport(passport);
             pet.setQuarantine(quarantine);
             petService.save(pet);
         }
-        return "fast/fastpassport";
+        return "office/home";
     }
 
 }

@@ -39,12 +39,12 @@ public class OfficeController {
     @Autowired
     OwnerService ownerService;
 
-    @RequestMapping(value = {"/",""}, method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/","/home"}, method = RequestMethod.GET)
     public String home(Model model) {
         return "/office/home";
     }
 
-    //Все петомцы
+    //Все питомцы
     @RequestMapping(value = "/pets", method = RequestMethod.GET)
     public String getAllPetsPage(Model model,
                                  @AuthenticationPrincipal User user) {
@@ -81,8 +81,9 @@ public class OfficeController {
     }
 
     //Просмотр заявки
+    //todo:Запретить смотреть чужие заявки
     @PreAuthorize("@currentUserServiceImpl.canAccessOwnerBids(principal, #idBid)")
-    @RequestMapping(value = "/bids/preview/{idBid}", method = RequestMethod.POST)
+    @RequestMapping(value = "/bids/{idBid}/preview", method = RequestMethod.POST)
     public String previewBid(Model model,
                              @PathVariable Integer idBid) {
         //todo:Запретить смотреть чужие заявки и чужих петов
@@ -119,7 +120,7 @@ public class OfficeController {
         bid.setRoute(route);
         bid.setStatus(CREATED);
         bidService.save(bid);
-        return "forward:/office/bids";
+        return "redirect:/office/bids";
     }
 
     //Редактирование возможно если заявка СОЗДАНА или ОТКЛОНЕНА
@@ -156,7 +157,7 @@ public class OfficeController {
         route = routeService.create(route);
         bid.setRoute(route);
         bidService.save(bid);
-        return "forward:/office/bids";
+        return "redirect:/office/bids";
     }
 
     //Отправлять возможно заявки только в состоянии СОЗДАНА
@@ -171,9 +172,9 @@ public class OfficeController {
             bidService.save(bid);
             return "/office/bids";
         }else if(bid.getStatus().equals(REJECTED)){
-            return String.format("forward:/office/bids/%d/edit",idBid);
+            return String.format("redirect:/office/bids/%d/edit",idBid);
         }
-        return "forward:/office/bids";
+        return "redirect:/office/bids";
     }
 
 }

@@ -13,10 +13,8 @@ import topprogersgroup.entity.*;
 import topprogersgroup.service.OwnerService;
 import topprogersgroup.service.UserService;
 
-import javax.validation.Valid;
-import java.util.Date;
-
 @Controller
+@RequestMapping("/registration")
 public class RegistrationController {
 
     @Autowired
@@ -25,7 +23,7 @@ public class RegistrationController {
     @Autowired
     private OwnerService ownerService;
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public ModelAndView getRegistrationPage() {
         ModelAndView modelAndView = new ModelAndView("registration");
         modelAndView.addObject("form", new UserCreateForm());
@@ -33,7 +31,7 @@ public class RegistrationController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    @RequestMapping(value = {"", "/"}, method = RequestMethod.POST)
     public String handleRegistrationFirstPage(Model model,
                                               @ModelAttribute("form") UserCreateForm form,
                                               BindingResult bindingUserResult,
