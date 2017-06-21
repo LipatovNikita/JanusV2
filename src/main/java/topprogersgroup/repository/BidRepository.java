@@ -17,4 +17,5 @@ public interface BidRepository extends JpaRepository<Bid,Integer> {
     List<Bid> findByIsDeleted(boolean isDeleted, Pageable pageable);
     List<Bid> findByStatusAndIsDeletedOrderByDepartureDate(String status, boolean isDeleted, Pageable pageable);
     List<Bid> findByStatusAndPetsOwnerDocumentNumberAndIsDeleted(String status, String documentNumber, boolean isDeleted);
+    List<Bid> findByPetsOwnerUserEmailAndIsDeleted(String email, boolean isDeleted);
 }

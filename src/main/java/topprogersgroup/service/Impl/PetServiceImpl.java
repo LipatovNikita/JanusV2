@@ -26,8 +26,9 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Pet save(Pet pet) {
-        UUID uuid = UUID.randomUUID();
-        pet.setGuid(uuid);
+        String guid = UUID.randomUUID().toString();
+        pet.setGuid(guid);
+        pet.setLast(true);
         return petRepository.save(pet);
     }
 
@@ -53,7 +54,11 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Pet update(Pet pet) {
-        pet.setLast(false);
+        Pet pet1 = new Pet();
+        pet1.setId(pet.getId());
+        pet1 = petRepository.findOne(pet1.getId());
+        pet1.setLast(false);
+        petRepository.save(pet1);
         petRepository.save(pet);
         pet.setId(0);
         pet.setLast(true);
