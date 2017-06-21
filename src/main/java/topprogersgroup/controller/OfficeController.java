@@ -175,5 +175,4 @@ public class OfficeController {
         return "forward:/office/bids";
     }
 
-
 }

@@ -20,10 +20,7 @@
         <div class="row picture-block">
             <div class="col s4">
                 <a href="/office/pets">
-                    <div class="imageDrimmerMyPets responsive-img">
-                        <p class="popup-text">Мои питомцы</p>
                     <img src="/resources/images/pets.png" class="responsive-img" alt=""/>
-                    </div>
                 </a>
             </div>
             <div id="imgzat" class="col s4">
