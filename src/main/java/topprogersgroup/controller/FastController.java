@@ -1,6 +1,11 @@
 package topprogersgroup.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -61,21 +66,24 @@ public class FastController {
         return "fast/fastpassport";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/add")
+    @PreAuthorize("hasAuthority('PET_OWNER')")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(Model model, @ModelAttribute("passport") Passport passport, @RequestParam("images_p") MultipartFile[] images, @ModelAttribute("quarantine") Quarantine quarantine) {
-        //  Owner owner = ownerService.findOwnerByEmailUser(userService.getUserEmail());
-
-        Owner owner = new Owner();
-        passport.setOwner(owner);
-        passport = passportService.save(passport);
-        for (MultipartFile image : images) {
-            passportService.uploadPassportImage(image, passport);
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            String email = ((UserDetails) principal).getUsername();
+            Owner owner = ownerService.findOwnerByEmailUser(email);
+            passport.setOwner(owner);
+            passport = passportService.save(passport);
+            for (MultipartFile image : images) {
+                passportService.uploadPassportImage(image, passport);
+            }
+            quarantine = quarantineService.save(quarantine);
+            Pet pet = new Pet();
+            pet.setPassport(passport);
+            pet.setQuarantine(quarantine);
+            petService.save(pet);
         }
-        quarantine = quarantineService.save(quarantine);
-        Pet pet = new Pet();
-        pet.setPassport(passport);
-        pet.setQuarantine(quarantine);
-        petService.save(pet);
         return "fast/fastpassport";
     }
 
