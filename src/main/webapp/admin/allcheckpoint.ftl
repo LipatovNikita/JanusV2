@@ -14,41 +14,43 @@
 </head>
 <body>
 <#include "/template/navbar.ftl"/>
-
-<#list checkPointList as checkPoint>
-<div class="row">
-    <div class="col s9 m6 l5">
-        <div class="row">
-            <div class="col s6">
-                <label>Наименование учреждения</label>
+<#if checkPointList??>
+    <#list checkPointList as checkPoint>
+    <div class="row">
+        <div class="col s9 m6 l5">
+            <div class="row">
+                <div class="col s6">
+                    <label>Наименование учреждения</label>
                 ${checkPoint.cpName!""}
-            </div>
-            <div class="col s6">
-                <label>Номер телефона</label>
+                </div>
+                <div class="col s6">
+                    <label>Номер телефона</label>
                 ${checkPoint.phoneNumber!""}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Адрес учереждения</label>
+                ${checkPoint.address!""}
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12">
-                <label>Адрес учереждения</label>
-            ${checkPoint.address!""}
+        <div class="col s3 m2 l1">
+            <div class="row">
+                <a href="/admin/checkpoint/list/${checkPoint.id}/edit" class="waves-effect waves-light btn">
+                    Редактировать
+                </a>
+            </div>
+            <div class="row">
+                <a href="/admin/checkpoint/list/${checkPoint.id}/delete"class="waves-effect waves-light btn">
+                    Удалить
+                </a>
             </div>
         </div>
     </div>
-    <div class="col s3 m2 l1">
-        <div class="row">
-            <a href="/admin/checkpoint/list/${checkPoint.id}/edit" class="waves-effect waves-light btn">
-                Редактировать
-            </a>
-        </div>
-        <div class="row">
-            <a href="/admin/checkpoint/list/${checkPoint.id}/delete"class="waves-effect waves-light btn">
-                Удалить
-            </a>
-        </div>
-    </div>
-</div>
-</#list>
+    </#list>
+
+</#if>
 
 </body>
 </html>

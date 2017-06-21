@@ -123,7 +123,7 @@ public class AdminController {
         return "admin/home";
     }
 
-    //Вывести не удаленные ГосВетСлужбы
+    //Вывести НЕ удаленные ГосВетСлужбы
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/vet/list/normal"}, method = RequestMethod.GET)
     public String viewSVetServicesIsNotDel(Model model){

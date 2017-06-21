@@ -1,4 +1,19 @@
 <#import "/spring.ftl" as spring/>
+<!-- Dropdown Structure -->
+<script>
+    $(document).ready(function){
+        $(".dropdown-button").dropdown();
+    }
+</script>
+
+<ul id="dropdownView" class="dropdown-content">
+    <li><a href="/admin/vet/list/normal">Стисок ГосВетСлуб</a></li>
+    <li><a href="/admin/vet/list/del">Удаленных ГосВетСлужб</a></li>
+    <li class="divider"></li>
+    <li><a href="/admin/checkpoint/list/normal">Список ПКВП</a></li>
+    <li><a href="/admin/checkpoint/list/del">Удаленных ПКВП</a></li>
+</ul>
+
 <nav class="nav header-color">
     <ul id="nav">
         <ul id="nav" class="left">
@@ -14,6 +29,7 @@
         </#if>
         <#if currentUser??>
         <#if currentUser.role == "ADMIN">
+            <li><a class="dropdown-button" href="#!" data-activates="dropdownView">Списки объектов</a></li>
             <li><a href="/admin/home">Личный кабинет</a></li>
         <#elseif currentUser.role == "EMPLOYEE">
             <li><a href="/docs/home">Личный кабинет</a></li>

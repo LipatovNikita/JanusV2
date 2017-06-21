@@ -14,33 +14,32 @@
 <body>
 <#include "/template/navbar.ftl"/>
 
-<#list svServiceList as svService>
-<div class="row">
-    <div class="col s9 m6 l5">
-        <div class="row">
-            <div class="col s5">
-                <label>Наименование учреждения</label>
+<#if svServiceList??>
+    <#list svServiceList as svService>
+    <div class="row">
+        <div class="col s9 m6 l5">
+            <div class="row">
+                <div class="col s5">
+                    <label>Наименование учреждения</label>
                 ${svService.serviceName!""}
-            </div>
-            <div class="col s5">
-                <label>Адрес учереждения</label>
+                </div>
+                <div class="col s5">
+                    <label>Адрес учереждения</label>
                 ${svService.address!""}
+                </div>
             </div>
-        </div>
-        <div class="col s3 m2 l1">
-            <div class="row">
-                <a href="" class="waves-effect waves-light btn">Редактировать</a>
-            </div>
-            <div class="row">
-                <a href="" class="waves-effect waves-light btn">Удалить</a>
+            <div class="col s3 m2 l1">
+                <div class="row">
+                    <a href="" class="waves-effect waves-light btn">Редактировать</a>
+                </div>
+                <div class="row">
+                    <a href="" class="waves-effect waves-light btn">Удалить</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</#list>
-
-
-
+    </#list>
+</#if>
 
 </body>
 </html>
