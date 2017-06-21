@@ -148,7 +148,9 @@ public class DocumentController {
         if(bid.getStatus().equals(ACCEPTED)){
             VeterinaryDocument vetDoc = new VeterinaryDocument();
             vetDoc.setBid(bid);
-//            HashSet<SpecialNotes> notesSet = new HashSet<>();
+            HashSet<SpecialNotes> notesSet = new HashSet<>();
+            notesSet.add(new SpecialNotes());
+            vetDoc.setSpecialNotes(notesSet);
 //            todo: Таня допиши, сюда что еще нужно для формирования ВетДока, может массив СпецОтметок
             model.addAttribute("vetDoc",vetDoc);
             model.addAttribute("bid", bid);
@@ -170,6 +172,7 @@ public class DocumentController {
             return "document/vetdoc";
         }
         vetDoc.setStatus(CREATED);
+
 //        todo: Таня тоже для тебя прими что нужно в конроллере, но не возвращаемые страницы не изменяй
         return String.format("forward:/docs/accepted/page/%d",numberPage);
     }

@@ -2,10 +2,8 @@
     <div class="col s12 block-top">
         <ul class="tabs">
             <li class="tab col"><a class="active" href="#block_bid">Основная информация</a></li>
-            <#assign x = 1/>
             <#list petList as pet>
-                <li class="tab col"><a href="#block_pet${x}">Петомец${x}</a></li>
-            <#assign x = x+1/>
+                <li class="tab col"><a href="#block_pet${pet_index}">Питомец${pet_index}</a></li>
             </#list>
 
         </ul>
@@ -28,9 +26,8 @@
         </div>
     </div>
 
-    <#assign x = 1/>
     <#list petList as pet>
-        <div id="block_pet${x}" class="col s12">
+        <div id="block_pet${pet_index}" class="col s12">
             <div class="row center-block">
                 <div class="col s4">
                     <ul class="pgwSlider">
@@ -44,6 +41,5 @@
                 </div>
             </div>
         </div>
-        <#assign x = x+1/>
     </#list>
 </div>
