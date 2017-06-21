@@ -46,7 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe()
                 .and()
-                .csrf().disable();
+                .csrf().disable()
+                .exceptionHandling().accessDeniedPage("/403");
     }
 
     @Override
