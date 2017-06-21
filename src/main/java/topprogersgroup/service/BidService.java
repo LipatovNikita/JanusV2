@@ -21,5 +21,7 @@ public interface BidService {
 
     List<Bid> findForPageIsNotDeleted(Pageable pageable);
 
+    List<Bid> findByDocumentNumberAndStatus(String status,String documentNumber,boolean isDeleted);
+
     void delete(Bid bid);
 }
