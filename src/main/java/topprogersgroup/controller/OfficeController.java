@@ -74,10 +74,8 @@ public class OfficeController {
     //Все заявки
     @RequestMapping(value = "/bids", method = RequestMethod.GET)
     public String getBidPage(Model model) {
-        //todo: Вытащить заявки
-        Owner owner = ownerService.findOwnerByEmailUser(userService.getUserEmail());
-//        List<Bid> bidList = bidService.findByDocumentNumberAndStatus()
-//        model.addAttribute("bidList", bidList);
+        List<Bid> bidList = bidService.findByEmailUser(userService.getUserEmail(),false);
+        model.addAttribute("bidList", bidList);
         return "/office/bids";
     }
 
