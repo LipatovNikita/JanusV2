@@ -50,7 +50,7 @@ public class AdminController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @RequestMapping(value = {"/", "/home"})
+    @RequestMapping(value = {"","/", "/home"})
     public String getAdminHomePage() {
         return "admin/home";
     }
@@ -71,30 +71,40 @@ public class AdminController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String handleUserCreateForm(@Valid @ModelAttribute("form") UserCreateForm form,
-                                       BindingResult bindingResult,
-                                       @ModelAttribute("admin")Administrator admin,
-                                       @ModelAttribute("employee")Employee employee) {
-        if (bindingResult.hasErrors()) {
+                                       BindingResult bindingFormResult,
+                                       @Valid @ModelAttribute("admin")Administrator admin,
+                                       BindingResult bindingAdminResult,
+                                       @Valid @ModelAttribute("employee")Employee employee,
+                                       BindingResult bindingEmployeeResult) {
+        if (bindingFormResult.hasErrors()) {
             return "admin/user_create";
         }
+        User usr;
         try {
-            userService.create(form);
+            usr = userService.create(form);
         } catch (DataIntegrityViolationException e) {
-            bindingResult.reject("email.exists", "Адрес электронной почты уже существует");
+            bindingFormResult.reject("email.exists", "Адрес электронной почты уже существует");
             return "admin/user_create";
         }
         if(form.getRole().equals(Role.ADMIN)) {
-            admin.setUser(userService.getUserByEmail(form.getEmail()).get());
+            if(bindingAdminResult.hasErrors()){
+                return "admin/user_create";
+            }
+            admin.setUser(usr);
             administratorService.create(admin);
         }
         else if(form.getRole().equals(Role.EMPLOYEE)) {
+            if(bindingEmployeeResult.hasErrors()){
+                return "admin/user_create";
+            }
             //todo:Добавить на страницу ГосВетСлужбу, а Employee и Admin дописать валидацию
-            employee.setUser(userService.getUserByEmail(form.getEmail()).get());
+            employee.setUser(usr);
             employeeService.create(employee);
         }
         return "admin/home";
     }
 
+    //Добавить ГосВетСлужбу
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/vet"}, method = RequestMethod.GET)
     public String createSVetService(Model model){
@@ -103,6 +113,7 @@ public class AdminController {
         return "admin/statevetservice";
     }
 
+    //Добавить ГосВетСлужбу
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/vet"}, method = RequestMethod.POST)
     public String createSVetService(Model model,
@@ -116,6 +127,7 @@ public class AdminController {
         return "admin/home";
     }
 
+    //Добавить пропускной пунк (ПКВП)
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/checkpoint"}, method = RequestMethod.GET)
     public String createCheckPoint(Model model){
@@ -127,18 +139,18 @@ public class AdminController {
         return "admin/checkpoint";
     }
 
+    //Добавить пропускной пунк (ПКВП)
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = {"/checkpoint"}, method = RequestMethod.POST)
     public String createCheckPoint(Model model,
                                    @Valid @ModelAttribute("checkPoint")CheckPoint checkPoint,
-//                                   @ModelAttribute("inspector")Map<Integer, Employee> inspector,
-                                   BindingResult result){
-        if(result.hasErrors()){
+                                   BindingResult result)
+//                                   @ModelAttribute("inspector")Map<Integer, Employee> inspector){
+    {     if(result.hasErrors()){
             return "admin/checkpoint";
         }
-
         checkPointService.save(checkPoint);
-        return "forward:admin/home";
+        return "admin/home";
     }
 
 }
