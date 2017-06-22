@@ -13,4 +13,5 @@ import java.util.List;
 public interface VeterinaryCertificateRepository extends JpaRepository<VeterinaryCertificate, Integer> {
     VeterinaryCertificate findByVeterinaryDocumentAndIsDeleted(VeterinaryDocument veterinaryDocument, boolean isDeleted);
     List<VeterinaryCertificate> findByStatusAndIsDeletedOrderByIssueDate(String status, boolean isDeleted, Pageable pageable);
+    List<VeterinaryCertificate> findByIsDeletedOrderByIssueDate(boolean isDeleted, Pageable pageable);
 }

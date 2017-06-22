@@ -22,7 +22,7 @@
 </div>
 
 <div class="row">
-    <table>
+    <table class="striped responsive-table">
         <thead>
         <tr>
             <th>Название заболевания</th>
