@@ -22,7 +22,7 @@
             <a href="/office/pets/${pet.id}">
                 <div class="card">
                     <div class="card-image">
-                        <img src="${images}" class="responsive-img" alt=""/>
+                        <img src="${pet.passport.images[0].path!""}" class="responsive-img" alt=""/>
                     </div>
                     <div class="card-content">
                         <h3 class="light">${pet.passport.petName!""}</h3>

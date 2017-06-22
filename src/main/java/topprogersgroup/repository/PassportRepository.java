@@ -12,5 +12,5 @@ import java.util.UUID;
  * Created by aalle on 16.06.2017.
  */
 public interface PassportRepository extends JpaRepository<Passport, Integer> {
-    Passport findOneByGuidAndIsDeletedAndIsLast(UUID guid, boolean isDeleted, boolean isLast);
+    Passport findOneByGuidAndIsDeletedAndIsLast(String guid, boolean isDeleted, boolean isLast);
 }
