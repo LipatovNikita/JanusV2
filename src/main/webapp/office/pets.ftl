@@ -19,13 +19,13 @@
     <ul class="row photos">
     <#list pets as pet>
         <li class="col s12 m6 l4">
-           <a href="/office/pets/${pet.id}">
+            <a href="/office/pets/${pet.id}">
                 <div class="card">
                     <div class="card-image">
-                      <img src="${images}" class="responsive-img" alt=""/>
+                        <img src="${pet.passport.images[0].path!""}" class="responsive-img" alt=""/>
                     </div>
                     <div class="card-content">
-                       <h3 class="light">${pet.passport.petName!""}</h3>
+                        <h3 class="light">${pet.passport.petName!""}</h3>
                     </div>
                     <div class="card-action">
                      <a href="/fast/edit/${pet.id}" class="btn-floating btn-large red">

@@ -1,6 +1,7 @@
 package topprogersgroup.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.HashMapChangeSet;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -16,7 +17,9 @@ import topprogersgroup.service.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/office")
@@ -50,9 +53,7 @@ public class OfficeController {
                                  @AuthenticationPrincipal User user) {
         Owner owner = ownerService.findOwnerByEmailUser(userService.getUserEmail());
         List<Pet> pets = owner.getPet();
-        UploadImage uploadImage = (UploadImage) pets.get(0).getPassport().getImages().toArray()[0];
         model.addAttribute("pets", pets);
-        model.addAttribute("images", uploadImage.getPath());
         return "/office/pets";
     }
 
@@ -71,8 +72,6 @@ public class OfficeController {
         model.addAttribute("vaccinationList", passport.getVaccination());
         model.addAttribute("immunizationList", passport.getImmunizationDeworming());
         model.addAttribute("quarantine",pet.getQuarantine());
-        UploadImage uploadImage = (UploadImage) pet.getPassport().getImages().toArray()[0];
-        model.addAttribute("image", uploadImage.getPath());
         return "/office/pet";
     }
 
