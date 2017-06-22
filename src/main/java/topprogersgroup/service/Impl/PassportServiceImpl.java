@@ -4,11 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import topprogersgroup.entity.ImmunizationDeworming;
 import topprogersgroup.entity.Passport;
 import topprogersgroup.entity.UploadImage;
+import topprogersgroup.entity.Vaccination;
 import topprogersgroup.repository.ImageRepository;
 import topprogersgroup.repository.PassportRepository;
+import topprogersgroup.service.ImmunizationDewormingService;
 import topprogersgroup.service.PassportService;
+import topprogersgroup.service.VaccinationService;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +27,12 @@ public class PassportServiceImpl implements PassportService {
     private PassportRepository passportRepository;
     @Autowired
     private ImageRepository imageRepository;
+
+    @Autowired
+    private VaccinationService vaccinationService;
+
+    @Autowired
+    private ImmunizationDewormingService immunizationDewormingService;
 
     public void uploadPassportImage(MultipartFile image, Passport passport) {
         final String imageHomePath = System.getProperty("catalina.home") +
@@ -68,7 +78,16 @@ public class PassportServiceImpl implements PassportService {
         String guid = UUID.randomUUID().toString();
         passport.setGuid(guid);
         passport.setLast(true);
-        return passportRepository.save(passport);
+        passport = passportRepository.save(passport);
+        for (Vaccination vaccination : passport.getVaccination()) {
+            vaccination.setPassport(passport);
+        }
+        for (ImmunizationDeworming immunizationDeworming : passport.getImmunizationDeworming()) {
+            immunizationDeworming.setPassport(passport);
+        }
+        vaccinationService.saveAll(passport.getVaccination());
+        immunizationDewormingService.saveAll(passport.getImmunizationDeworming());
+        return passport;
     }
 
     @Override
@@ -78,18 +97,16 @@ public class PassportServiceImpl implements PassportService {
 
     @Override
     public Passport findByGuid(UUID guid) {
-        return passportRepository.findOneByGuidAndIsDeletedAndIsLast(guid,false,true);
+        return passportRepository.findOneByGuidAndIsDeletedAndIsLast(guid, false, true);
     }
 
     @Override
     public Passport update(Passport passport) {
-        Passport passport1 = new Passport();
-        passport1.setId(passport.getId());
-        passport1 = passportRepository.findOne(passport1.getId());
-        passport1.setLast(false);
-        passportRepository.save(passport1);
+        Passport oldPassport = new Passport();
+        oldPassport = passportRepository.findOne(passport.getId());
+        oldPassport.setLast(false);
+        passportRepository.save(oldPassport);
         passport.setLast(false);
-        passportRepository.save(passport);
         passport.setId(0);
         passport.setLast(true);
         return passportRepository.save(passport);

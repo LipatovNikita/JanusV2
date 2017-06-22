@@ -1,6 +1,7 @@
 package topprogersgroup.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
 
@@ -12,7 +13,6 @@ import java.util.List;
 
 @Data
 @Entity
-@ToString
 @Table(name = "owner")
 public class Owner {
 

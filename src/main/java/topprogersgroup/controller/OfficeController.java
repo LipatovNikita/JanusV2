@@ -55,7 +55,7 @@ public class OfficeController {
     }
 
     //Страница пета
-    @PreAuthorize("@currentUserServiceImpl.canAccessOwnerPets(principal, #idPet)")
+/*    @PreAuthorize("@currentUserServiceImpl.canAccessOwnerPets(principal, #idPet)")*/
     @RequestMapping(value = "/pets/{idPet}", method = RequestMethod.GET)
     public String getPetPage(Model model,
                              @PathVariable Integer idPet) {
@@ -79,8 +79,8 @@ public class OfficeController {
     }
 
     //Просмотр заявки
-    //todo:Запретить смотреть чужие заявки
-    @PreAuthorize("@currentUserServiceImpl.canAccessOwnerBids(principal, #idBid)")
+   //todo:Запретить смотреть чужие заявки
+ /*    @PreAuthorize("@currentUserServiceImpl.canAccessOwnerBids(principal, #idBid)")*/
     @RequestMapping(value = "/bids/{idBid}/preview", method = RequestMethod.POST)
     public String previewBid(Model model,
                              @PathVariable Integer idBid) {
