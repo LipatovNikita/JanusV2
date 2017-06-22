@@ -21,10 +21,16 @@
 <div class="row main_block">
     <div class="col s12 block-top">
         <ul class="tabs" id="tabs">
-            <li class="tab col"><a href="#block_vetdoc" class="active" name="block_vetdoc" data-toggle="tab">Ветеринарное
-                свидетельство</a></li>
-            <li class="tab col"><a href="#block_specnotes" name="block_specnotes" data-toggle="tab">Специальные
-                отметки</a>
+            <li class="tab col">
+                <a href="#block_vetdoc" class="active" name="block_vetdoc" data-toggle="tab">
+                    Ветеринарное свидетельство
+                </a>
+            </li>
+            <li class="tab col">
+                <a href="#block_specnotes" name="block_specnotes" data-toggle="tab">
+                    Специальные отметки
+                </a>
+            </li>
         </ul>
     </div>
     <div id="block_vetdoc" class="col s12 center-block">

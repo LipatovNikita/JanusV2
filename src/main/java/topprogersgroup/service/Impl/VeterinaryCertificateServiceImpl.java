@@ -56,4 +56,14 @@ public class VeterinaryCertificateServiceImpl implements VeterinaryCertificateSe
     public List<VeterinaryCertificate> findForPageByStatusAndSortDate(String status, boolean isDeleted, Pageable pageable) {
         return veterinaryCertificateRepository.findByStatusAndIsDeletedOrderByIssueDate(status,isDeleted,pageable);
     }
+
+    @Override
+    public List<VeterinaryCertificate> findForPageBySortDate(boolean isDeleted, Pageable pageable) {
+        return veterinaryCertificateRepository.findByIsDeletedOrderByIssueDate(isDeleted,pageable);
+    }
+
+    @Override
+    public VeterinaryCertificate findById(int idVeterinaryCertificate) {
+        return veterinaryCertificateRepository.findOne(idVeterinaryCertificate);
+    }
 }
