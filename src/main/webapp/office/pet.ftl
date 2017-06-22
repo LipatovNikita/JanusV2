@@ -27,7 +27,6 @@
                 <h3 class="light">${passport.petName}</h3>
             </div>
             <div class="btn-block">
-
             </div>
         </div>
     </div>
