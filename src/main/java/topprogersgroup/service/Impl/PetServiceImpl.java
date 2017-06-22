@@ -3,11 +3,16 @@ package topprogersgroup.service.Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import topprogersgroup.entity.Passport;
 import topprogersgroup.entity.Pet;
+import topprogersgroup.entity.Quarantine;
 import topprogersgroup.repository.OwnerRepository;
+import topprogersgroup.repository.PassportRepository;
 import topprogersgroup.repository.PetRepository;
 import topprogersgroup.service.OwnerService;
+import topprogersgroup.service.PassportService;
 import topprogersgroup.service.PetService;
+import topprogersgroup.service.QuarantineService;
 
 import java.util.List;
 import java.util.Random;
@@ -24,6 +29,12 @@ public class PetServiceImpl implements PetService {
 
     @Autowired
     private OwnerService ownerService;
+
+    @Autowired
+    private PassportService passportService;
+
+    @Autowired
+    private QuarantineService quarantineService;
 
     @Override
     public Pet save(Pet pet) {
@@ -54,6 +65,11 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
+    public List<Pet> findIsLastPetByOwner(Integer id) {
+        return petRepository.findByIsDeletedAndIsLastAndOwnerId(false,true,id);
+    }
+
+    @Override
     public Pet update(Pet pet) {
         Pet oldPet = new Pet();
         oldPet = petRepository.findOne(pet.getId());
@@ -66,6 +82,12 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public void delete(Pet pet) {
+        Passport passport = pet.getPassport();
+        passport.setDeleted(true);
+        passportService.update(passport);
+        Quarantine quarantine = pet.getQuarantine();
+        quarantine.setDeleted(true);
+        quarantineService.delete(quarantine);
         pet.setDeleted(true);
         petRepository.save(pet);
     }
