@@ -1,6 +1,9 @@
 <#list passport.immunizationDeworming as item>
 <fieldset class="template-block">
     <div class="row">
+        <div class="row">
+            <input type="hidden" name="passport.immunizationDeworming[${item_index}].id" name="passport.immunizationDeworming[${item_index}].id" value="${item.id!0}">
+        </div>
         <div class="input-field col s6">
             <div class="switch">
                 <label>
@@ -40,12 +43,15 @@
 <div id="immunTemplate" class="hide template-block">
     <fieldset>
         <div class="row">
+            <div class="row">
+                <input type="hidden" id="passport.immunizationDeworming[${item_index}].id" name="passport.immunizationDeworming[${item_index}].id" value="${item.id!0}">
+            </div>
             <div class="input-field col s6">
                 <div class="switch">
                     <label>
                         Иммунизация
                         <input type="checkbox" name="immunizationDeworming"/>
-                        <#if item.immunizationDeworming== true>checked="checked"</#if>
+                        <#if item.immunizationDeworming == true>checked="checked"</#if>
                         <span class="lever"></span>
                         Дегельминтизация
                     </label>

@@ -4,11 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import topprogersgroup.entity.ImmunizationDeworming;
 import topprogersgroup.entity.Passport;
 import topprogersgroup.entity.UploadImage;
+import topprogersgroup.entity.Vaccination;
 import topprogersgroup.repository.ImageRepository;
 import topprogersgroup.repository.PassportRepository;
+import topprogersgroup.service.ImmunizationDewormingService;
 import topprogersgroup.service.PassportService;
+import topprogersgroup.service.VaccinationService;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,23 +25,35 @@ public class PassportServiceImpl implements PassportService {
 
     @Autowired
     private PassportRepository passportRepository;
+
     @Autowired
     private ImageRepository imageRepository;
 
-    public void uploadPassportImage(MultipartFile image, Passport passport) {
-        final String imageHomePath = System.getProperty("catalina.home") +
-                File.separator + "images" + File.separator + "passport" + File.separator;
+    @Autowired
+    private VaccinationService vaccinationService;
 
-        String imagePath = imageHomePath + passport.getGuid() + File.separator + passport.getId() +
-                File.separator + generateImageName(new Random(61)) + getFileExtension(image.getOriginalFilename());
+    @Autowired
+    private ImmunizationDewormingService immunizationDewormingService;
+
+    public void uploadPassportImage(MultipartFile image, Passport passport) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        String projectPath = classLoader.getResource("").getPath();
+        String basicProjectPath = projectPath.substring(1, projectPath.indexOf("target"));
+        String absoluteImagePath = basicProjectPath + "src/main/webapp/resources/images/passport/" +
+                passport.getGuid() + "/" + passport.getId() + "/" +
+                generateImageName() + getFileExtension(image.getOriginalFilename());
+        String imagePathForPage = absoluteImagePath.substring(absoluteImagePath.indexOf("/resources"),
+                absoluteImagePath.length()).replace("\\", "/");
         try {
-            File dir = new File(imagePath);
-            dir.getParentFile().mkdirs();
+            File dir = new File(absoluteImagePath);
+            if (!dir.exists()) {
+                dir.getParentFile().mkdirs();
+            }
             image.transferTo(dir);
             UploadImage uploadImage = new UploadImage();
-            uploadImage.setName(generateImageName(new Random(61)) + getFileExtension(image.getOriginalFilename()));
-            uploadImage.setPath(imagePath);
-            uploadImage.setPassport(null);
+            uploadImage.setName(image.getOriginalFilename());
+            uploadImage.setPath(imagePathForPage);
+            uploadImage.setPassport(passport);
             imageRepository.save(uploadImage);
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,11 +70,11 @@ public class PassportServiceImpl implements PassportService {
         return fileName.substring(index, fileName.length());
     }
 
-    public String generateImageName(Random random) {
+    public String generateImageName() {
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-        char[] text = new char[25];
+        char[] text = new char[10];
         for (int i = 0; i < text.length; i++) {
-            text[i] = alphabet.charAt(random.nextInt(alphabet.length()));
+            text[i] = alphabet.charAt(new Random().nextInt(60));
         }
         return new String(text);
     }
@@ -68,7 +84,16 @@ public class PassportServiceImpl implements PassportService {
         String guid = UUID.randomUUID().toString();
         passport.setGuid(guid);
         passport.setLast(true);
-        return passportRepository.save(passport);
+        passport = passportRepository.save(passport);
+        for (Vaccination vaccination : passport.getVaccination()) {
+            vaccination.setPassport(passport);
+        }
+        for (ImmunizationDeworming immunizationDeworming : passport.getImmunizationDeworming()) {
+            immunizationDeworming.setPassport(passport);
+        }
+        vaccinationService.saveAll(passport.getVaccination());
+        immunizationDewormingService.saveAll(passport.getImmunizationDeworming());
+        return passport;
     }
 
     @Override
@@ -78,18 +103,16 @@ public class PassportServiceImpl implements PassportService {
 
     @Override
     public Passport findByGuid(UUID guid) {
-        return passportRepository.findOneByGuidAndIsDeletedAndIsLast(guid,false,true);
+        return passportRepository.findOneByGuidAndIsDeletedAndIsLast(guid, false, true);
     }
 
     @Override
     public Passport update(Passport passport) {
-        Passport passport1 = new Passport();
-        passport1.setId(passport.getId());
-        passport1 = passportRepository.findOne(passport1.getId());
-        passport1.setLast(false);
-        passportRepository.save(passport1);
+        Passport oldPassport = new Passport();
+        oldPassport = passportRepository.findOne(passport.getId());
+        oldPassport.setLast(false);
+        passportRepository.save(oldPassport);
         passport.setLast(false);
-        passportRepository.save(passport);
         passport.setId(0);
         passport.setLast(true);
         return passportRepository.save(passport);
