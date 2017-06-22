@@ -13,4 +13,6 @@ public interface VeterinaryCertificateService extends BaseService<VeterinaryCert
     List<VeterinaryCertificate> getVeterinaryCertificateList();
     List<VeterinaryCertificate> findForPageByStatusAndSortDate(String status, boolean isDeleted, Pageable pageable);
     String getStatusFromForeignSystem(VeterinaryCertificate veterinaryCertificate);
+    List<VeterinaryCertificate> findForPageBySortDate(boolean isDeleted, Pageable pageable);
+    VeterinaryCertificate findById(int idVeterinaryCertificate);
 }

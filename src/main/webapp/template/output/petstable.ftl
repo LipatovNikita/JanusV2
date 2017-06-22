@@ -1,5 +1,5 @@
 <#if petList??>
-<table>
+<table class="striped responsive-table">
     <thead>
     <tr>
         <th>Кличка</th>

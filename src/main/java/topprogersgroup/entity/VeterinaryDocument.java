@@ -46,7 +46,7 @@ public class VeterinaryDocument{
     @JoinColumn(name = "employee", nullable = false)
     private Employee employee;
 
-    // получаемый (от зарубежной системы) или изначально задаваемый статус
+    // изначально задаваемый статус
     @Column(name = "status")
     private String status;
 
