@@ -20,6 +20,7 @@
     <div class="row main_block center-block">
         <fieldset class="card table">
             <div class="col s12">
+            <input type="hidden" name="id" id="id" value="${checkPoint.id!0}"/>
                 <div class="col s12 m6">
                     <label for="cpName">Наименование учреждения</label>
                     <input type="text" name="cpName" id="cpName" value="${checkPoint.cpName!""}" required

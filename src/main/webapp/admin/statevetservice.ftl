@@ -20,6 +20,7 @@
     <div class="row main_block center-block">
         <fieldset class="card table">
             <div class="col s12">
+             <input type="hidden" name="id" id="id" value="${svService.id!0}"/>
                     <div class="s12 m6">
                         <label for="serviceName">Наименование учреждения</label>
                         <input type="text" name="serviceName" id="serviceName" value="${svService.serviceName!""}"
@@ -37,6 +38,5 @@
         </fieldset>
     </div>
 </form>
-
 </body>
 </html>
