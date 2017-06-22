@@ -1,5 +1,7 @@
 <#-- @ftlvariable name="form" type="topprogersgroup.entity.UserCreateForm" -->
 <#import "/spring.ftl" as spring>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -86,23 +88,28 @@
                     <input type="text" name="position" id="position" value="${employee.position!""}"/>
                 </div>
             </div>
-            <div class="input-field col s6">
-             <#--   todo доделать эту чертову дату -->
-                <input type="text" class="date" id="employmentDate" data-format="YYYY/MM/DD" data-template="D MMM YYYY" name="employmentDate" value="${employee.employmentDate!"1996/10/24"?date}">
+            <div class="col s12 m6">
+                <#--todo Доделать дату-->
                 <label for="employmentDate">Дата приема на работу</label>
+                <input type="text" name="employmentDate" id="employmentDate"
+                       value="${(employee.employmentDate?string("dd/MM/yyyy"))!""}"/>
             </div>
             <div class="col s12 m6">
-            <#--<label for="stateVeterinaryService">Место работы (ГосВетСлужба)</label>-->
-                        <#--<input type="text" name="stateVeterinaryService" id="stateVeterinaryService" value="${employee.stateVeterinaryService!""}" />-->
+                <label for="stateVeterinaryService">Место работы (ГосВетСлужба)</label>
+                <select name="SVSId" id="SVSselect">
+                <#list SVSList as SVS>
+                    <option value="${SVS.id}">${SVS.serviceName}</option>
+                </#list>
+                </select>
             </div>
 
         </div>
         <div class="btn-block col s12 m5">
             <button type="submit" class="btn waves-effect waves-light">Добавить</button>
         </div>
-
     </form>
 </div>
+
 <@spring.bind "form" />
 <#if spring.status.error>
 <ul>
@@ -111,5 +118,6 @@
     </#list>
 </ul>
 </#if>
+
 </body>
 </html>
