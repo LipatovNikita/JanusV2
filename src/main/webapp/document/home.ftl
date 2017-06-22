@@ -22,11 +22,13 @@
             <div class="col s4">
                 <a href="/docs/1">
                     Заявки
+                    <img src="/resources/images/processbids.png" class="responsive-img" alt=""/>
                 </a>
             </div>
             <div id="imgzat" class="col s4">
                 <a href="/docs/accepted/page/1">
                     Принятые заявки
+                    <img src="/resources/images/okbids.png" class="responsive-img" alt=""/>
                 </a>
             </div>
         </div>
