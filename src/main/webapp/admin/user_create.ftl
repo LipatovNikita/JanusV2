@@ -1,4 +1,3 @@
-<#-- @ftlvariable name="form" type="topprogersgroup.entity.UserCreateForm" -->
 <#import "/spring.ftl" as spring>
 
 <!DOCTYPE html>
@@ -48,24 +47,22 @@
                         <label for="documentNumber">Серия/номер пасспорта</label>
                         <input type="text" name="documentNumber" id="documentNumber" value="${admin.documentNumber!}" required/>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col s12 m6">
                         <label for="firstName">Имя</label>
                         <input type="text" name="firstName" id="firstName" value="${admin.firstName!""}" required/>
                     </div>
                 </div>
-                <div class="col s12 m6">
-                    <label for="lastName">Фамилия</label>
-                    <input type="text" name="lastName" id="lastName" value="${admin.lastName!""}" required/>
-                </div>
-                <div class="col s12 m6">
-                    <label for="middleName">Отчество</label>
-                    <input type="text" name="middleName" id="middleName" value="${admin.middleName!""}" required/>
-                </div>
+                <div class="row">
+                    <div class="col s12 m6">
+                        <label for="lastName">Фамилия</label>
+                        <input type="text" name="lastName" id="lastName" value="${admin.lastName!""}" required/>
+                    </div>
+                    <div class="col s12 m6">
+                        <label for="middleName">Отчество</label>
+                        <input type="text" name="middleName" id="middleName" value="${admin.middleName!""}" required/>
+                    </div>
             </div>
             <div class="empolyeePanel" hidden>
-
                 <div class="row">
                     <div class="col s12">
                         <label for="residentialAddress">Адрес проживания</label>
@@ -90,8 +87,12 @@
                                value="${(employee.employmentDate?string("dd/MM/yyyy"))!""}"/>
                     </div>
                     <div class="col s12 m6">
-                        <#--<label for="stateVeterinaryService">Место работы (ГосВетСлужба)</label>-->
-                        <#--<input type="text" name="stateVeterinaryService" id="stateVeterinaryService" value="${employee.stateVeterinaryService!""}" />-->
+                        <label for="stateVeterinaryService">Место работы (ГосВетСлужба)</label>
+                        <select name="SVSId" id="SVSselect">
+                            <#list SVSList as SVS>
+                                <option value="${SVS.id}">${SVS.serviceName}</option>
+                            </#list>
+                        </select>
                     </div>
                 </div>
             </div>
