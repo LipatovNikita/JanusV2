@@ -56,24 +56,33 @@ public class AdminController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView getUserCreatePage() {
         ModelAndView modelAndView = new ModelAndView();
+        Employee e = new Employee();
+        List<StateVeterinaryService> SVSList = stateVeterinaryServService.findAllIsNotDeleted();
+        e.setEmploymentDate(new Date());
+        Integer SVSId = null;
         modelAndView.setViewName("admin/user_create");
         modelAndView.addObject("form", new UserCreateForm());
         modelAndView.addObject("admin", new Administrator());
-        Employee e = new Employee();
-        e.setEmploymentDate(new Date());
+        modelAndView.addObject("SVSId",SVSId);
         modelAndView.addObject("employee", e);
+        modelAndView.addObject("SVSList", SVSList);
         return modelAndView;
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String handleUserCreateForm(@Valid @ModelAttribute("form") UserCreateForm form,
+    public String handleUserCreateForm(Model model,
+                                       @Valid @ModelAttribute("form") UserCreateForm form,
                                        BindingResult bindingFormResult,
                                        @Valid @ModelAttribute("admin")Administrator admin,
                                        BindingResult bindingAdminResult,
                                        @Valid @ModelAttribute("employee")Employee employee,
-                                       BindingResult bindingEmployeeResult) {
-        if (bindingFormResult.hasErrors()) {
+                                       BindingResult bindingEmployeeResult,
+                                       @ModelAttribute("SVSId")Integer SVSId){
+        List<StateVeterinaryService> SVSList;
+        if (bindingFormResult.hasErrors() || bindingAdminResult.hasErrors()) {
+            SVSList = stateVeterinaryServService.findAllIsNotDeleted();
+            model.addAttribute("SVSList", SVSList);
             return "admin/user_create";
         }
         User usr;
@@ -84,17 +93,16 @@ public class AdminController {
             return "admin/user_create";
         }
         if(form.getRole().equals(Role.ADMIN)) {
-            if(bindingAdminResult.hasErrors()){
-                return "admin/user_create";
-            }
             admin.setUser(usr);
             administratorService.create(admin);
         }
         else if(form.getRole().equals(Role.EMPLOYEE)) {
             if(bindingEmployeeResult.hasErrors()){
+                SVSList = stateVeterinaryServService.findAllIsNotDeleted();
+                model.addAttribute("SVSList", SVSList);
                 return "admin/user_create";
             }
-            //todo:Добавить на страницу ГосВетСлужбу, а Employee и Admin дописать валидацию
+            employee.setStateVeterinaryService(stateVeterinaryServService.findOne(SVSId));
             employee.setUser(usr);
             employeeService.create(employee);
         }

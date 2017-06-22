@@ -23,15 +23,17 @@
             <div class="col s4">
                 <a href="/admin/create">
                     Добавить пользователя
+                    <img src="/resources/images/users.png" class="responsive-img" alt=""/>
                 </a>
             </div>
             <div id="imgzat" class="col s4">
                 <a href="/admin/checkpoint/create">Добавить ПКВП
-                <#--<img src="/resources/images/bids.png" class="responsive-img" alt=""/>-->
+                <img src="/resources/images/checkpoint.png" class="responsive-img" alt=""/>
                 </a>
             </div>
             <div class="col s4">
                 <a href="/admin/vet/create">Добавить ГосВетСлужбу</a>
+                <img src="/resources/images/statevetservice.png" class="responsive-img" alt=""/>
             </div>
         </div>
     </div>
