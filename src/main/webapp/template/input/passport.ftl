@@ -52,13 +52,11 @@
             </label>
         </div>
     </div>
-    <div class="col s8">
-        <label>Дата татуирования/чипирования</label>
-        <br/>
+    <div class="input-field col s6">
         <input type="text" class="date" id="dateOfImplantation"
                name="dateOfImplantation" data-format="YYYY/MM/DD" data-template="D MMM YYYY"
                value="${passport.dateOfImplantation!"1996/10/24"?date}">
-
+        <label for="dateOfImplantation">Дата татуирования/чипирования</label>
     </div>
     <div class="input-field col s3">
         <input type="checkbox" id="castrationSterilization" name="castrationSterilization"

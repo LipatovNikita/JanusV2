@@ -1,5 +1,5 @@
 <div class="row">
-    <input type="hidden" id="quarantine.id" name="id" value="${quarantine.id!0}">
+ <#--   <input type="hidden" id="quarantine.id" name="id" value="${quarantine.id!0}">-->
     <div class="input-field col s6">
         <input type="text" id="laboratory" name="laboratory" value="${quarantine.laboratory!""}">
         <label for="quarantine.laboratory">Лаборатория</label>
@@ -20,13 +20,13 @@
     <div class="row">
         <div class="input-field col s6">
             <input type="text" id="diseases[${item_index}].disName" name="diseases[${item_index}].disName"
-                   value="${item.name!""}">
+                   value="${item.disName!""}">
             <label for="diseases[${item_index}].disName">Наименование</label>
         </div>
         <div class="input-field col s6">
             <input type="text" id="diseases[${item_index}].researchMethod" name="diseases[${item_index}].researchMethod"
-                   value="${item.researchmethod!""}">
-            <label for="diseases[${item_index}].researchmethod">Метод исследования</label>
+                   value="${item.researchMethod!""}">
+            <label for="diseases[${item_index}].researchMethod">Метод исследования</label>
         </div>
     </div>
     <div class="row">

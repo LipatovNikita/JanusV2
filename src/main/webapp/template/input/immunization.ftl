@@ -2,18 +2,19 @@
 <fieldset class="template-block">
     <div class="row">
         <div class="row">
-            <input type="hidden" name="passport.immunizationDeworming[${item_index}].id" name="passport.immunizationDeworming[${item_index}].id" value="${item.id!0}">
+           <#-- <input type="hidden" name="passport.immunizationDeworming[${item_index}].id" name="passport.immunizationDeworming[${item_index}].id" value="${item.id!0}">-->
         </div>
         <div class="input-field col s6">
             <div class="switch">
                 <label>
                     Иммунизация
                     <input type="checkbox" id="passport.immunizationDeworming[${item_index}].immunizationDeworming"
-                           name="immunizationDeworming[${item_index}].immunizationDeworming"/>
-                    <#if item.immunizationDeworming== true>checked="checked"</#if>
+                           name="immunizationDeworming[${item_index}].immunizationDeworming"
+                    <#if item.immunizationDeworming== true>checked="checked"</#if>>
                     <span class="lever"></span>
                     Дегельминтизация
                 </label>
+
             </div>
         </div>
         <div class="input-field col s6">

@@ -1,14 +1,14 @@
 <#if quarantine??>
 <div class="row">
-<#--<div class="col s12">-->
-<#--<input type="hidden" name="id" value="${quarantine.id!0}">-->
-<#--</div>-->
+    <input type="hidden" name="id" value="${quarantine.id!0}">
     <div class="input-field col s8">
         <label>Лаборатория</label>
+        <br/>
         <p>${quarantine.laboratory!""}</p>
     </div>
     <div class="input-field col s4">
         <label>Дней в карантине</label>
+        <br/>
         <p>${quarantine.numberOfDays!0}</p>
     </div>
 </div>
@@ -16,6 +16,7 @@
 <div class="row">
     <div class="input-field col s12">
         <label>Адрес лаборатории</label>
+        <br/>
         <p>${quarantine.addressOfLaboratory!""}</p>
     </div>
 </div>

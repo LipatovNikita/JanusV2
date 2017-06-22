@@ -21,7 +21,7 @@ public class Pet {
 
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "guid", nullable = false,unique = true)
+    @Column(name = "guid", nullable = false)
     private String guid;
 
     @Column(name = "isLast")

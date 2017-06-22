@@ -20,7 +20,7 @@ public interface PassportService {
 
     Passport findOne(Integer id);
 
-    Passport findByGuid(UUID guid);
+    Passport findByGuid(String guid);
 
     Passport update(Passport passport);
 

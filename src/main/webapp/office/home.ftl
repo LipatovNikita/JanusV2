@@ -12,20 +12,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-
 <#include "/template/navbar.ftl">
-
 <#if currentUser?? && currentUser.role == "PET_OWNER">
 <div class="center-block section row">
     <div class="col s12">
         <div class="row picture-block">
-            <div class="col s4">
+            <div class="col s5">
                 <a href="/office/pets">
-                    Петомцы
+                    Питомцы
                     <img src="/resources/images/pets.png" class="responsive-img" alt=""/>
                 </a>
             </div>
-            <div id="imgzat" class="col s4">
+            <div id="imgzat" class="col s5">
                 <a href="/office/bids">
                     Заявки
                     <img src="/resources/images/bids.png" class="responsive-img" alt=""/>
@@ -33,30 +31,21 @@
             </div>
         </div>
         <div class="row picture-block">
-            <div class="col s4">
+            <div class="col s5">
                 <a href="/office/bids/create">
                     Создать заявку на Вет Док
                     <img src="/resources/images/bid.png" class="responsive-img" alt=""/>
                 </a>
             </div>
-            <div class="col s4">
+            <div class="col s5">
                 <a href="/fast/add">
                     Создать паспорт
                     <img src="/resources/images/pass.png" class="responsive-img" alt=""/>
-                </a>
-            </div>
-            <div class="col s4">
-                <a href="/fast/add">
-                   Добавить питомца
                 </a>
             </div>
         </div>
     </div>
 </div>
 </#if>
-
-<#--<footer class="footer">-->
-
-<#--</footer>-->
 </body>
 </html>

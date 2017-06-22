@@ -1,6 +1,6 @@
 <#list passport.vaccination as item>
 <fieldset class="template-block" idvac="${item_index}">
-    <input type="hidden" id="vaccination[${item_index}].id" name="vaccination[${item_index}].id" value="${item.id!""}">
+<#--    <input type="hidden" id="vaccination[${item_index}].id" name="vaccination[${item_index}].id" value="${item.id!""}">-->
     <div class="row">
         <div class="input-field col s6">
             <input type="text" id="vaccination[${item_index}].typeOfVaccine"

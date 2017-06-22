@@ -1,5 +1,6 @@
 package topprogersgroup.service.Impl;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -102,20 +103,29 @@ public class PassportServiceImpl implements PassportService {
     }
 
     @Override
-    public Passport findByGuid(UUID guid) {
+    public Passport findByGuid(String guid) {
         return passportRepository.findOneByGuidAndIsDeletedAndIsLast(guid, false, true);
     }
 
     @Override
     public Passport update(Passport passport) {
-        Passport oldPassport = new Passport();
-        oldPassport = passportRepository.findOne(passport.getId());
+        Passport oldPassport = passportRepository.findOne(passport.getId());
         oldPassport.setLast(false);
         passportRepository.save(oldPassport);
-        passport.setLast(false);
         passport.setId(0);
         passport.setLast(true);
-        return passportRepository.save(passport);
+        passport.setOwner(oldPassport.getOwner());
+        passport.setGuid(oldPassport.getGuid());
+        passport = passportRepository.save(passport);
+        for (Vaccination vaccination : passport.getVaccination()) {
+            vaccination.setPassport(passport);
+        }
+        for (ImmunizationDeworming immunizationDeworming : passport.getImmunizationDeworming()) {
+            immunizationDeworming.setPassport(passport);
+        }
+        vaccinationService.saveAll(passport.getVaccination());
+        immunizationDewormingService.saveAll(passport.getImmunizationDeworming());
+        return passport;
     }
 
     @Override
