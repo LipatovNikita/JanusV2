@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import topprogersgroup.entity.CheckPoint;
 import topprogersgroup.entity.Passport;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.UUID;
 

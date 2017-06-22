@@ -38,6 +38,13 @@ public class CurrentUserServiceImpl implements CurrentUserService {
     }
 
     public boolean canAccessOwnerPets(CurrentUser currentUser, int petId) {
+        boolean flag;
+        List<Pet> pets = currentUser.getUser().getOwner().getPet();
+        Pet pet = petService.findOne(petId);
+        System.out.print("");
+        if (currentUser.getUser().getOwner().getPet().contains(petService.findOne(petId))) {
+            flag = true;
+        }
         return currentUser != null
                 && (currentUser.getUser().getOwner().getPet().contains(petService.findOne(petId)));
     }

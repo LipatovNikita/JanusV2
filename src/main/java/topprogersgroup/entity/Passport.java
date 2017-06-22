@@ -92,8 +92,8 @@ public class Passport {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "passport", fetch = FetchType.EAGER)
     private Pet pet;
 
-    @OneToMany(mappedBy = "passport", fetch = FetchType.EAGER)
-    private Set<UploadImage> images;
+    @OneToMany(mappedBy = "passport")
+    private List<UploadImage> images;
 
     @Column(name = "isdeleted")
     @Type(type = "boolean")

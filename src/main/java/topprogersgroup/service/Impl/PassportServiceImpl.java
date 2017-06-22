@@ -25,6 +25,7 @@ public class PassportServiceImpl implements PassportService {
 
     @Autowired
     private PassportRepository passportRepository;
+
     @Autowired
     private ImageRepository imageRepository;
 
@@ -35,19 +36,24 @@ public class PassportServiceImpl implements PassportService {
     private ImmunizationDewormingService immunizationDewormingService;
 
     public void uploadPassportImage(MultipartFile image, Passport passport) {
-        final String imageHomePath = System.getProperty("catalina.home") +
-                File.separator + "images" + File.separator + "passport" + File.separator;
-
-        String imagePath = imageHomePath + passport.getGuid() + File.separator + passport.getId() +
-                File.separator + generateImageName(new Random(61)) + getFileExtension(image.getOriginalFilename());
+        ClassLoader classLoader = getClass().getClassLoader();
+        String projectPath = classLoader.getResource("").getPath();
+        String basicProjectPath = projectPath.substring(1, projectPath.indexOf("target"));
+        String absoluteImagePath = basicProjectPath + "src/main/webapp/resources/images/passport/" +
+                passport.getGuid() + "/" + passport.getId() + "/" +
+                generateImageName() + getFileExtension(image.getOriginalFilename());
+        String imagePathForPage = absoluteImagePath.substring(absoluteImagePath.indexOf("/resources"),
+                absoluteImagePath.length()).replace("\\", "/");
         try {
-            File dir = new File(imagePath);
-            dir.getParentFile().mkdirs();
+            File dir = new File(absoluteImagePath);
+            if (!dir.exists()) {
+                dir.getParentFile().mkdirs();
+            }
             image.transferTo(dir);
             UploadImage uploadImage = new UploadImage();
-            uploadImage.setName(generateImageName(new Random(61)) + getFileExtension(image.getOriginalFilename()));
-            uploadImage.setPath(imagePath);
-            uploadImage.setPassport(null);
+            uploadImage.setName(image.getOriginalFilename());
+            uploadImage.setPath(imagePathForPage);
+            uploadImage.setPassport(passport);
             imageRepository.save(uploadImage);
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,11 +70,11 @@ public class PassportServiceImpl implements PassportService {
         return fileName.substring(index, fileName.length());
     }
 
-    public String generateImageName(Random random) {
+    public String generateImageName() {
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-        char[] text = new char[25];
+        char[] text = new char[10];
         for (int i = 0; i < text.length; i++) {
-            text[i] = alphabet.charAt(random.nextInt(alphabet.length()));
+            text[i] = alphabet.charAt(new Random().nextInt(60));
         }
         return new String(text);
     }

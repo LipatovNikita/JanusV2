@@ -7,11 +7,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import topprogersgroup.entity.Pet;
 import topprogersgroup.entity.VeterinaryCertificate;
 import topprogersgroup.entity.VeterinaryDocument;
+import topprogersgroup.service.PetService;
 import topprogersgroup.service.VeterinaryCertificateService;
 
 import javax.xml.datatype.DatatypeConfigurationException;
+import java.io.File;
 import java.util.Date;
 
 @RunWith(SpringRunner.class)
@@ -20,6 +23,9 @@ public class JanusApplicationTests {
 
 	@Autowired
 	private VeterinaryCertificateService veterinaryCertificateService;
+
+	@Autowired
+	private PetService petService;
 
 	@Test
 	public void testWS() throws DatatypeConfigurationException {

@@ -50,12 +50,14 @@ public class OfficeController {
                                  @AuthenticationPrincipal User user) {
         Owner owner = ownerService.findOwnerByEmailUser(userService.getUserEmail());
         List<Pet> pets = owner.getPet();
+        UploadImage uploadImage = (UploadImage) pets.get(1).getPassport().getImages().toArray()[0];
         model.addAttribute("pets", pets);
+        model.addAttribute("images", uploadImage.getPath());
         return "/office/pets";
     }
 
     //Страница пета
-/*    @PreAuthorize("@currentUserServiceImpl.canAccessOwnerPets(principal, #idPet)")*/
+    //@PreAuthorize("@currentUserServiceImpl.canAccessOwnerPets(principal, #idPet)")
     @RequestMapping(value = "/pets/{idPet}", method = RequestMethod.GET)
     public String getPetPage(Model model,
                              @PathVariable Integer idPet) {
@@ -67,6 +69,8 @@ public class OfficeController {
         model.addAttribute("vaccinationList", passport.getVaccination());
         model.addAttribute("immunizationList", passport.getImmunizationDeworming());
         model.addAttribute("quarantine",pet.getQuarantine());
+        UploadImage uploadImage = (UploadImage) pet.getPassport().getImages().toArray()[0];
+        model.addAttribute("image", uploadImage.getPath());
         return "/office/pet";
     }
 
