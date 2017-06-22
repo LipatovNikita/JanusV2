@@ -31,6 +31,7 @@
                     <img src="/resources/images/okbids.png" class="responsive-img" alt=""/>
                 </a>
             </div>
+
         </div>
     </div>
 </div>
