@@ -20,25 +20,42 @@
 
 <div class="section">
 <#if bidList??>
-    <#list bidList as bid>
-        <a href="/docs/bid/${bid.id}">
-            <div class="row">
-                <div class="col s6">
-                    Статус: ${bid.status!""}<br/>
-                    Количество петомцев: ${bid.countPet!0}<br/>
-                    Количество мест под петомцев: ${bid.countSeats!0}<br/>
-                    Дата отправления: ${(bid.departureDate?string("dd-MM-yyyy"))!""}<br/>
-                </div>
-                <div class="col s6">
-                    Пункт назначения: ${bid.route.destination!""}<br/>
-                    Пукты следования: ${bid.route.followingPoints!""}<br/>
-                    Пункт отправления: ${bid.route.departure!""}<br/>
-                    Въездной БИП в ЕС: ${bid.route.BorderInspectionPosts!""}<br/>
-                    Тип транспорта: ${bid.route.transportType!""}<br/>
-                </div>
-            </div>
-        </a>
-    </#list>
+
+    <table class="striped responsive-table">
+        <thead>
+        <tr>
+            <th>Статус</th>
+            <th>Количество петомцев</th>
+            <th>Время пребывания животного в РФ</th>
+            <th>Количество мест под петомцев</th>
+            <th>Дата отправления</th>
+            <th>Пункт назначения</th>
+            <th>Пункт отправления</th>
+            <th>Пукты следования</th>
+            <th>Въездной БИП в ЕС</th>
+            <th>Функуции</th>
+        </tr>
+        </thead>
+        <tbody>
+            <#list bidList as bid>
+            <tr>
+                <td>${bid.status!""}</td>
+                <td>${bid.countPet!0}</td>
+                <td>${bid.countSeats!0}</td>
+                <td>${(bid.departureDate?string("dd/MM/yyyy"))!""}</td>
+                <td>${bid.route.destination!""}</td>
+                <td>${bid.route.departure!""}</td>
+                <td>${bid.route.followingPoints!""}</td>
+                <td>${bid.route.BorderInspectionPosts!""}</td>
+                <td>
+                    <a href="/docs/bid/${bid.id}">Пинять решение</a>
+                </td>
+            </tr>
+            </#list>
+        </tbody>
+    </table>
+
+
     <#if numberPage?? || (numberPage > 0) >
     <#include "/template/pagination/processbids.ftl"/>
     </#if>

@@ -27,11 +27,12 @@ import java.util.List;
 @RequestMapping("/docs")
 public class DocumentController {
 
-    //Возможные статусы REJECTED, CREATED, PROCESSED, ACCEPTED
-    private final String REJECTED = "REJECTED";
-    private final String CREATED = "CREATED";
-    private final String PROCESSED = "PROCESSED";
-    private final String ACCEPTED = "ACCEPTED";
+    //Возможные статусы REJECTED, CREATED, PROCESSED, ACCEPTED, APPROVED
+    private final String REJECTED = "REJECTED";//Отклонен
+    private final String CREATED = "CREATED";//Создан
+    private final String PROCESSED = "PROCESSED";//Обрабатывается
+    private final String ACCEPTED = "ACCEPTED";//Принят
+    private final String APPROVED = "APPROVED";//Утвержден - значит оформлено вет. свидетельство
 
     @Autowired
     private VeterinaryDocumentService veterinaryDocService;
@@ -49,22 +50,15 @@ public class DocumentController {
     @RequestMapping(value = {"/{numberPage}"}, method = RequestMethod.GET)
     public String all(Model model,
                       @PathVariable Integer numberPage){
+        if(numberPage <= 0){
+            numberPage = 1;
+        }
         Pageable pageable = new PageRequest(numberPage,20);
         List<Bid> bidList = bidService.findForPageByStatusAndSortDate(PROCESSED,false, pageable);
         model.addAttribute("bidList", bidList);
         model.addAttribute("numberPage",numberPage);
         return "document/bids";
     }
-
-//    //Поиск заявок
-//    @PreAuthorize("hasAuthority('EMPLOYEE')")
-//    @RequestMapping(value = {"/find/bids"}, method = RequestMethod.GET)
-//    public String findBid(Model model){
-//        String ownerDocNumber = "";
-//        model.addAttribute("ownerDocNumber", ownerDocNumber);
-//        return "document/findbids";
-//    }
-
 
     //Поиск заявок по номеру документа Владельца(находятся на странице - findbids)
     @PreAuthorize("hasAuthority('EMPLOYEE')")
@@ -75,15 +69,6 @@ public class DocumentController {
         model.addAttribute("bidList",bidList);
         return "document/bids";
     }
-
-    //    //Поиск заявок
-//    @PreAuthorize("hasAuthority('EMPLOYEE')")
-//    @RequestMapping(value = {"/find/bids"}, method = RequestMethod.GET)
-//    public String findAcceptedBid(Model model){
-//        String ownerDocNumber = "";
-//        model.addAttribute("ownerDocNumber", ownerDocNumber);
-//        return "document/findbids";
-//    }
 
     //Поиск принятых заявок по номеру документа Владельца(находятся на странице - findacceptedbids)
     @PreAuthorize("hasAuthority('EMPLOYEE')")
@@ -133,6 +118,9 @@ public class DocumentController {
     @RequestMapping(value = {"/accepted/page/{numberPage}"}, method = RequestMethod.GET)
     public String getAcceptedBidPage(Model model,
                                      @ModelAttribute("numberPage")Integer numberPage){
+        if(numberPage <= 0){
+            numberPage = 1;
+        }
         Pageable pageable = new PageRequest(numberPage,20);
 //        todo:Сделано - Должны выводиться страницы в статусе ПРИНЯТЫ и отсортированы по дате с конца
         List<Bid> bidList = bidService.findForPageByStatusAndSortDate(ACCEPTED,false,pageable);
@@ -173,10 +161,27 @@ public class DocumentController {
         if(bindingVetDocResult.hasErrors()){
             return "document/vetdoc";
         }
-        vetDoc.setStatus(CREATED);
 
 //        todo: Таня тоже для тебя прими что нужно в конроллере, но не возвращаемые страницы не изменяй
+        vetDoc.setBid(bid);
+        vetDoc = veterinaryDocService.create(vetDoc);
+        bid.setStatus(APPROVED);
         return String.format("redirect:/docs/accepted/page/%d",numberPage);
+    }
+
+    @PreAuthorize("hasAuthority('EMPLOYEE')")
+    @RequestMapping(value = {"/vet/page/{numberPage}"}, method = RequestMethod.GET)
+    public String getVeterinaryDocumentList(Model model,
+                                            @PathVariable Integer numberPage){
+        if(numberPage <= 0){
+            numberPage = 1;
+        }
+        Pageable pageable = new PageRequest(numberPage,20);
+        List<VeterinaryDocument> vetDocList = veterinaryDocService.getAllVeterinaryDocumentPagingList(pageable);
+        model.addAttribute("vetDocList", vetDocList);
+        model.addAttribute("numberPage", numberPage);
+        //todo: Сделать страницу
+        return "document/vetdocs";
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
@@ -189,16 +194,7 @@ public class DocumentController {
         return "document/preview";
     }
 
-    @PreAuthorize("hasAuthority('EMPLOYEE')")
-    @RequestMapping(value = {"/vet/list/{numberPage}"}, method = RequestMethod.GET)
-    public String getVeterinaryDocumentList(Model model,
-                                            @PathVariable Integer numberPage){
-        Pageable pageable = new PageRequest(numberPage,20);
-        List<VeterinaryDocument> vetDoc = veterinaryDocService.getAllVeterinaryDocumentPagingList(pageable);
-        model.addAttribute("vetDoc", vetDoc);
-        //todo: Сделать страницу
-        return "document/preview";
-    }
+
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value = {"/vet/{idDoc}/send"}, method = RequestMethod.GET)

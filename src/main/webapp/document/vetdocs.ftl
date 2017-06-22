@@ -19,28 +19,41 @@
 <#include "/template/search/findbids.ftl">
 
 <div class="section">
-<#if bidList??>
-    <#list bidList as bid>
-        <a href="/docs/bid/${bid.id}">
-            <div class="row">
-                <div class="col s6">
-                    Статус: ${bid.status!""}<br/>
-                    Количество петомцев: ${bid.countPet!0}<br/>
-                    Количество мест под петомцев: ${bid.countSeats!0}<br/>
-                    Дата отправления: ${(bid.departureDate?string("dd-MM-yyyy"))!""}<br/>
-                </div>
-                <div class="col s6">
-                    Пункт назначения: ${bid.route.destination!""}<br/>
-                    Пукты следования: ${bid.route.followingPoints!""}<br/>
-                    Пункт отправления: ${bid.route.departure!""}<br/>
-                    Въездной БИП в ЕС: ${bid.route.BorderInspectionPosts!""}<br/>
-                    Тип транспорта: ${bid.route.transportType!""}<br/>
-                </div>
-            </div>
-        </a>
-    </#list>
-    <#if numberPage?? || (numberPage > 0) >
-    <#include "/template/pagination/processbids.ftl"/>
+<#if vetDocList??>
+    <table class="striped responsive-table">
+        <thead>
+        <tr>
+            <th>Номер свидетельства</th>
+            <th>Дата оформления свидетельства</th>
+            <th>Время пребывания животного в РФ</th>
+            <th>Гос. Вет. Служба</th>
+            <th>Оформил сотрудник</th>
+            <th>Функуции</th>
+        </tr>
+        </thead>
+        <tbody>
+            <#list vetDocList as vetDoc>
+            <tr>
+                <td>${vetDoc.number!0}</td>
+                <td>${(vetDoc.issueDate?string("dd/MM/yyyy"))!""}</td>
+                <td>${vetDoc.residenceTime!0}</td>
+                <td>${vetDoc.stateVeterinaryService.serviceName!""}</td>
+                <td>${vetDoc.employee.firstName!""} ${vetDoc.employee.lastName!""}</td>
+                <td>
+                    <a href="/docs/bid/${bid.id}"><#--todo: Подставить ссылку-->
+                        Оформить Вет. сертификат
+                    </a>
+                    <a href="/docs/vet/${vetDoc.id}">
+                        Просмотреть
+                    </a>
+                </td>
+            </tr>
+            </#list>
+        </tbody>
+    </table>
+
+    <#if numberPage?? >
+        <#include "/template/pagination/pagvetdoc.ftl"/>
     </#if>
 </#if>
 </div>
