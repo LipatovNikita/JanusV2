@@ -64,8 +64,6 @@ public class PetServiceImpl implements PetService {
         return petRepository.findByIsDeletedAndIsLast(false, true);
     }
 
-    @Autowired
-    QuarantineService quarantineService;
 
     @Override
     public List<Pet> findIsLastPetByOwner(Integer id) {

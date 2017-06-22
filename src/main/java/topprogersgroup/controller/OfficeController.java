@@ -52,7 +52,7 @@ public class OfficeController {
     public String getAllPetsPage(Model model,
                                  @AuthenticationPrincipal User user) {
         Owner owner = ownerService.findOwnerByEmailUser(userService.getUserEmail());
-        List<Pet> pets = owner.getPet();
+        List<Pet> pets = petService.findIsLastPetByOwner(owner.getId());
         model.addAttribute("pets", pets);
         return "/office/pets";
     }

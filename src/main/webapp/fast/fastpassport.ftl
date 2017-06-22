@@ -32,26 +32,28 @@
 
         <div id="block_download" class="col s12">
             <div id="download_file">
-            <#--           <#list passport.images as image>
-                           <fieldset>
-                               <div class="card">
-                                   <div class="card-image">
-                                   &lt;#&ndash;<img src="${passport.images[0].path!"/resources/test.jpg"}" class="responsive-img" alt=""/>&ndash;&gt;
-                                   </div>
-                                   <div class="card-action">
-                                   &lt;#&ndash;    <#if passport.images[0].isdeleted == false>
-                                           <a class="btn-floating btn-large red">
-                                               <i class="large material-icons">mode_edit</i>
-                                           </a>
-                                       <#else>
-                                           <a class="btn btn-primary btnDelete">Удалить</a>
-                                       </#if>&ndash;&gt;
-                                   </div>
-                               </div>
-                           </fieldset>
-                       </#list>-->
                 <fieldset>
-                    <input type="file" name="images_p" multiple="multiple" id="images_p"/>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Файлы</span>
+                            <input type="file" name="images_p" multiple="multiple" id="images_p"/>
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Загрузите сканы паспорта">
+                        </div>
+                    </div>
+                </fieldset>
+                <br/>
+                <fieldset>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Фото</span>
+                            <input type="file" name="photo" multiple="multiple" id="photo"/>
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Загрузите фото питомца">
+                        </div>
+                    </div>
                 </fieldset>
                 <div class="btn-block">
                     <a class="btn btn-primary btnPrevious">Previous</a>

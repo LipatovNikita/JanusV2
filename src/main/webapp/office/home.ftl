@@ -14,16 +14,15 @@
 <body>
 <#include "/template/navbar.ftl">
 <#if currentUser?? && currentUser.role == "PET_OWNER">
-<div class="center-block section row">
-    <div class="col s12">
+<div class="center-block section row block-top">
         <div class="row picture-block">
-            <div class="col s5">
+            <div class="col s6 ">
                 <a href="/office/pets">
                     Питомцы
                     <img src="/resources/images/pets.png" class="responsive-img" alt=""/>
                 </a>
             </div>
-            <div id="imgzat" class="col s5">
+            <div id="imgzat" class="col s6 ">
                 <a href="/office/bids">
                     Заявки
                     <img src="/resources/images/bids.png" class="responsive-img" alt=""/>
@@ -31,20 +30,19 @@
             </div>
         </div>
         <div class="row picture-block">
-            <div class="col s5">
+            <div class="col s6 ">
                 <a href="/office/bids/create">
                     Создать заявку на Вет Док
                     <img src="/resources/images/bid.png" class="responsive-img" alt=""/>
                 </a>
             </div>
-            <div class="col s5">
+            <div class="col s6">
                 <a href="/fast/add">
                     Создать паспорт
                     <img src="/resources/images/pass.png" class="responsive-img" alt=""/>
                 </a>
             </div>
         </div>
-    </div>
 </div>
 </#if>
 </body>
