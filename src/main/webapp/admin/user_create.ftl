@@ -88,10 +88,11 @@
                     <input type="text" name="position" id="position" value="${employee.position!""}"/>
                 </div>
             </div>
-            <div class="input-field col s6">
-             <#--   todo доделать эту чертову дату -->
-                <input type="text" class="date" id="employmentDate" data-format="YYYY/MM/DD" data-template="D MMM YYYY" name="employmentDate" value="${employee.employmentDate!"1996/10/24"?date}">
+            <div class="col s12 m6">
+                <#--todo Доделать дату-->
                 <label for="employmentDate">Дата приема на работу</label>
+                <input type="text" name="employmentDate" id="employmentDate"
+                       value="${(employee.employmentDate?string("dd/MM/yyyy"))!""}"/>
             </div>
             <div class="col s12 m6">
                 <label for="stateVeterinaryService">Место работы (ГосВетСлужба)</label>
@@ -106,8 +107,8 @@
         <div class="btn-block col s12 m5">
             <button type="submit" class="btn waves-effect waves-light">Добавить</button>
         </div>
-    </div>
-</form>
+    </form>
+</div>
 
 <@spring.bind "form" />
 <#if spring.status.error>
