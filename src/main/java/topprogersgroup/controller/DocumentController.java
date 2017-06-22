@@ -8,14 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import topprogersgroup.entity.Bid;
-import topprogersgroup.entity.Owner;
-import topprogersgroup.entity.SpecialNotes;
-import topprogersgroup.entity.VeterinaryDocument;
+import topprogersgroup.entity.*;
 import topprogersgroup.service.BidService;
+import topprogersgroup.service.VeterinaryCertificateService;
 import topprogersgroup.service.VeterinaryDocumentService;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -27,17 +26,24 @@ import java.util.List;
 @RequestMapping("/docs")
 public class DocumentController {
 
+
     //Возможные статусы REJECTED, CREATED, PROCESSED, ACCEPTED, APPROVED
-    private final String REJECTED = "REJECTED";//Отклонен
-    private final String CREATED = "CREATED";//Создан
-    private final String PROCESSED = "PROCESSED";//Обрабатывается
-    private final String ACCEPTED = "ACCEPTED";//Принят
-    private final String APPROVED = "APPROVED";//Утвержден - значит оформлено вет. свидетельство
+    private final String BID_REJECTED = "REJECTED";//Отклонен
+    private final String BID_PROCESSED = "PROCESSED";//Обрабатывается
+    private final String BID_ACCEPTED = "ACCEPTED";//Принят
+    private final String BID_APPROVED = "APPROVED";//Утвержден - значит оформлено вет. свидетельство
+    private final String VET_DOC_NOT_SENT = "NOT_SENT";//Вет документ еще не отослан
+    private final String VET_DOC_SENT = "SENT";//Вет документ отослан
+    private final String VET_SERT_CREATED = "CREATED";
 
     @Autowired
     private VeterinaryDocumentService veterinaryDocService;
+
     @Autowired
     private BidService bidService;
+
+    @Autowired
+    private VeterinaryCertificateService veterinaryCertService;
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value = {"","/home"}, method = RequestMethod.GET)
@@ -54,7 +60,7 @@ public class DocumentController {
             numberPage = 1;
         }
         Pageable pageable = new PageRequest(numberPage,20);
-        List<Bid> bidList = bidService.findForPageByStatusAndSortDate(PROCESSED,false, pageable);
+        List<Bid> bidList = bidService.findForPageByStatusAndSortDate(BID_PROCESSED,false, pageable);
         model.addAttribute("bidList", bidList);
         model.addAttribute("numberPage",numberPage);
         return "document/bids";
@@ -65,7 +71,7 @@ public class DocumentController {
     @RequestMapping(value = {"/find/bids"}, method = RequestMethod.POST)
     public String findBid(Model model,
                           @RequestParam String ownerDocNumber){
-        List<Bid> bidList = bidService.findByDocumentNumberAndStatus(PROCESSED,ownerDocNumber,false);
+        List<Bid> bidList = bidService.findByDocumentNumberAndStatus(BID_PROCESSED,ownerDocNumber,false);
         model.addAttribute("bidList",bidList);
         return "document/bids";
     }
@@ -75,7 +81,7 @@ public class DocumentController {
     @RequestMapping(value = {"/find/acceptedbids"}, method = RequestMethod.POST)
     public String findAcceptedBid(Model model,
                                   @RequestParam String ownerDocNumber){
-        List<Bid> bidList = bidService.findByDocumentNumberAndStatus(ACCEPTED,ownerDocNumber,false);
+        List<Bid> bidList = bidService.findByDocumentNumberAndStatus(BID_ACCEPTED,ownerDocNumber,false);
         model.addAttribute("bidList",bidList);
         return "document/bids";
     }
@@ -87,7 +93,7 @@ public class DocumentController {
                              @PathVariable Integer idBid,
                              @ModelAttribute("numberPage")Integer numberPage){
         Bid bid = bidService.findOne(idBid);
-        if(bid.getStatus().equals(PROCESSED)){
+        if(bid.getStatus().equals(BID_PROCESSED)){
             model.addAttribute("bid", bid);
             model.addAttribute("petList", bid.getPets());
             model.addAttribute("route", bid.getRoute());
@@ -107,8 +113,8 @@ public class DocumentController {
         if(bindingResult.hasErrors()){
             return "document/bid";
         }
-        if(bid.getStatus().equals(REJECTED) ||
-                bid.getStatus().equals(ACCEPTED)){
+        if(bid.getStatus().equals(BID_REJECTED) ||
+                bid.getStatus().equals(BID_ACCEPTED)){
             bidService.save(bid);
         }
         return String.format("redirect:docs/%d",numberPage);
@@ -122,21 +128,23 @@ public class DocumentController {
             numberPage = 1;
         }
         Pageable pageable = new PageRequest(numberPage,20);
-//        todo:Сделано - Должны выводиться страницы в статусе ПРИНЯТЫ и отсортированы по дате с конца
-        List<Bid> bidList = bidService.findForPageByStatusAndSortDate(ACCEPTED,false,pageable);
+        List<Bid> bidList = bidService.findForPageByStatusAndSortDate(BID_ACCEPTED,false,pageable);
         model.addAttribute("bidList", bidList);
         model.addAttribute("numberPage",numberPage);
         return "document/acceptedbids";
     }
 
+    //Создать Вет. Документ по Принятому БИДу
     @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value = {"/accepted/bid/{idBid}"}, method = RequestMethod.GET)
     public String createVetDocForAcceptedBid(Model model,
                                              @PathVariable Integer idBid,
                                              @ModelAttribute("numberPage")Integer numberPage){
         Bid bid = bidService.findOne(idBid);
-        if(bid.getStatus().equals(ACCEPTED)){
+        if(bid.getStatus().equals(BID_ACCEPTED)){
             VeterinaryDocument vetDoc = new VeterinaryDocument();
+            //            todo: Добавил дату, нужно удалить со старницы
+            vetDoc.setIssueDate(new Date());
             vetDoc.setBid(bid);
             HashSet<SpecialNotes> notesSet = new HashSet<>();
             notesSet.add(new SpecialNotes());
@@ -150,6 +158,7 @@ public class DocumentController {
         return String.format("redirect:/docs/accepted/page/%d",numberPage);
     }
 
+    //Создать Вет. Документ по Принятому БИДу
     @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value = {"/accepted/bid/{idBid}"}, method = RequestMethod.POST)
     public String createVetDocForAcceptedBid(Model model,
@@ -164,13 +173,15 @@ public class DocumentController {
 
 //        todo: Таня тоже для тебя прими что нужно в конроллере, но не возвращаемые страницы не изменяй
         vetDoc.setBid(bid);
+        vetDoc.setStatus(VET_DOC_NOT_SENT);
         vetDoc = veterinaryDocService.create(vetDoc);
-        bid.setStatus(APPROVED);
-        return String.format("redirect:/docs/accepted/page/%d",numberPage);
+        bid.setStatus(BID_APPROVED);
+        return String.format("redirect:/docs/vet/doc/%d",vetDoc.getId());
     }
 
+    //Список всех Вет. Документов
     @PreAuthorize("hasAuthority('EMPLOYEE')")
-    @RequestMapping(value = {"/vet/page/{numberPage}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/vet/doc/page/{numberPage}"}, method = RequestMethod.GET)
     public String getVeterinaryDocumentList(Model model,
                                             @PathVariable Integer numberPage){
         if(numberPage <= 0){
@@ -180,37 +191,72 @@ public class DocumentController {
         List<VeterinaryDocument> vetDocList = veterinaryDocService.getAllVeterinaryDocumentPagingList(pageable);
         model.addAttribute("vetDocList", vetDocList);
         model.addAttribute("numberPage", numberPage);
-        //todo: Сделать страницу
         return "document/vetdocs";
     }
 
+    //Просмотреть Вет.Документ
     @PreAuthorize("hasAuthority('EMPLOYEE')")
-    @RequestMapping(value = {"/vet/{idDoc}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/vet/doc/{idDoc}"}, method = RequestMethod.GET)
     public String previewVeterinaryDocument(Model model,
                                             @PathVariable Integer idDoc){
         VeterinaryDocument vetDoc = veterinaryDocService.getVeterinaryDocumentById(idDoc);
+        Bid bid = vetDoc.getBid();
         model.addAttribute("vetDoc", vetDoc);
-        //todo: Сделать страницу
-        return "document/preview";
+        model.addAttribute("bid", bid);
+        model.addAttribute("petList", bid.getPets());
+        model.addAttribute("route", bid.getRoute());
+        return "document/previewvetdoc";
     }
-
-
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
-    @RequestMapping(value = {"/vet/{idDoc}/send"}, method = RequestMethod.GET)
-    public String sendDocumentToForeignCountry(@PathVariable Integer idDoc){
-        VeterinaryDocument vetDoc = veterinaryDocService.getVeterinaryDocumentById(idDoc);
-        //todo: Дописать метод конвертирующий в западный сертификат наш документ
-//        VeterinaryDocument document =
-
-        return "";
+    @RequestMapping(value = {"/vet/doc/{idDoc}/send"}, method = RequestMethod.GET)
+    public String createVeterinaryCertificate(Model model,
+                                              @PathVariable Integer idDoc){
+        VeterinaryCertificate vetSert = new VeterinaryCertificate();
+        vetSert.setIssueDate(new Date());
+        model.addAttribute("vetSert",vetSert);
+        model.addAttribute("idDoc",idDoc);
+        return "document/vetsert";
     }
 
-    //todo: Нужны методы для обработки полученых статусов и поиска
+    @PreAuthorize("hasAuthority('EMPLOYEE')")
+    @RequestMapping(value = {"/vet/doc/{idDoc}/send"}, method = RequestMethod.POST)
+    public String createVeterinaryCertificate(Model model,
+                                              @ModelAttribute("vetSert") VeterinaryCertificate vetSert,
+                                              BindingResult bindingResult,
+                                              @PathVariable Integer idDoc){
+        if(bindingResult.hasErrors()){
+            return "document/vetsert";
+        }
+        VeterinaryDocument vetDoc = veterinaryDocService.getVeterinaryDocumentById(idDoc);
+        vetSert.setVeterinaryDocument(vetDoc);
+        vetSert.setStatus(VET_SERT_CREATED);
+        veterinaryCertService.create(vetSert);
+        vetDoc.setStatus(VET_DOC_SENT);
+        return "redirect:/docs/accepted/page/1";
+    }
 
-//    return "redirect:/books"; вернул http://localhost:8080/books?
-//            return "jsp/books/booksList"; вернул http://localhost:8080/request-list?
-//            return "forward:/books"; вернул http://localhost:8080/request-list?
+    @PreAuthorize("hasAuthority('EMPLOYEE')")
+    @RequestMapping(value = {"/vet/sert/page/{numberPage}"}, method = RequestMethod.GET)
+    public String getVeterinaryCertificateList(Model model,
+                                            @PathVariable Integer numberPage){
+        if(numberPage <= 0){
+            numberPage = 1;
+        }
+        Pageable pageable = new PageRequest(numberPage,20);
+        List<VeterinaryCertificate> vetSertList = veterinaryCertService.findForPageBySortDate(false,pageable);
+        model.addAttribute("vetSertList", vetSertList);
+        model.addAttribute("numberPage", numberPage);
+        return "document/vetserts";
+    }
+
+    @PreAuthorize("hasAuthority('EMPLOYEE')")
+    @RequestMapping(value = {"/vet/sert/{idDoc}/send"}, method = RequestMethod.POST)
+    public String sendDocumentToForeignCountry(@PathVariable Integer idDoc){
+        VeterinaryCertificate vetSert = veterinaryCertService.findById(idDoc);
+        veterinaryCertService.getStatusFromForeignSystem(vetSert);
+        return "redirect:/docs/sert/page/1";
+    }
 
 
 }

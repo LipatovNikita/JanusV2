@@ -20,7 +20,6 @@
 
 <div class="section">
 <#if bidList??>
-
     <table class="striped responsive-table">
         <thead>
         <tr>
@@ -48,13 +47,14 @@
                 <td>${bid.route.followingPoints!""}</td>
                 <td>${bid.route.BorderInspectionPosts!""}</td>
                 <td>
-                    <a href="/docs/bid/${bid.id}">Пинять решение</a>
+                    <a href="/docs/bid/${bid.id}" class="waves-effect waves-light btn">
+                        Принять решение
+                    </a>
                 </td>
             </tr>
             </#list>
         </tbody>
     </table>
-
 
     <#if numberPage?? || (numberPage > 0) >
     <#include "/template/pagination/processbids.ftl"/>

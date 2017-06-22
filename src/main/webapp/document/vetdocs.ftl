@@ -40,12 +40,22 @@
                 <td>${vetDoc.stateVeterinaryService.serviceName!""}</td>
                 <td>${vetDoc.employee.firstName!""} ${vetDoc.employee.lastName!""}</td>
                 <td>
-                    <a href="/docs/bid/${bid.id}"><#--todo: Подставить ссылку-->
-                        Оформить Вет. сертификат
-                    </a>
-                    <a href="/docs/vet/${vetDoc.id}">
-                        Просмотреть
-                    </a>
+                    <div class="row">
+                        <a href="/docs/vet/doc/${vetDoc.id}" class="waves-effect waves-light btn">
+                            Просмотреть
+                        </a>
+                    </div>
+                    <div class="row">
+                        <#if vetDoc.status=="NOT_SENT">
+                            <a href="/docs/vet/doc/${vetDoc.id}/send" class="waves-effect waves-light btn">
+                                Оформить Вет. сертификат
+                            </a>
+                        <#else>
+                            <a href="/docs/vet/doc/${vetDoc.id}/send" class="btn disabled">
+                                Оформить Вет. сертификат
+                            </a>
+                        </#if>
+                    </div>
                 </td>
             </tr>
             </#list>

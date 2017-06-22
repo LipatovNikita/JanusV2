@@ -22,11 +22,11 @@ import java.util.List;
 @RequestMapping(value = "/office")
 public class OfficeController {
 
-    //Возможные статусы REJECTED, CREATED, PROCESSED, ACCEPTED
-    private final String REJECTED = "REJECTED";
-    private final String CREATED = "CREATED";
-    private final String PROCESSED = "PROCESSED";
-    private final String ACCEPTED = "ACCEPTED";
+    //Возможные статусы REJECTED, CREATED, PROCESSED, ACCEPTED, APPROVED
+
+    private final String BID_CREATED = "CREATED";
+    private final String BID_PROCESSED = "PROCESSED";
+    private final String BID_REJECTED = "REJECTED";
 
     @Autowired
     CurrentUserService userService;
@@ -120,7 +120,7 @@ public class OfficeController {
         }
         route = routeService.create(route);
         bid.setRoute(route);
-        bid.setStatus(CREATED);
+        bid.setStatus(BID_CREATED);
         bidService.save(bid);
         return "redirect:/office/bids";
     }
@@ -130,8 +130,8 @@ public class OfficeController {
     public String editBid(Model model,
                           @PathVariable Integer idBid) {
         Bid bid = bidService.findOne(idBid);
-        if(bid.getStatus().equals(CREATED)||
-                bid.getStatus().equals(REJECTED)){
+        if(bid.getStatus().equals(BID_CREATED)||
+                bid.getStatus().equals(BID_REJECTED)){
             Owner owner = ownerService.findOwnerByEmailUser(userService.getUserEmail());
             List<Pet> pets = owner.getPet();
             model.addAttribute("pets", pets);
@@ -153,8 +153,8 @@ public class OfficeController {
         if(bindingBidResult.hasErrors() || bindingRouteResult.hasErrors()){
             return "/bids/create";
         }
-        if(bid.getStatus().equals(REJECTED)){
-            bid.setStatus(CREATED);
+        if(bid.getStatus().equals(BID_REJECTED)){
+            bid.setStatus(BID_CREATED);
         }
         route = routeService.create(route);
         bid.setRoute(route);
@@ -169,11 +169,11 @@ public class OfficeController {
     public String sendBid(Model model,
                           @PathVariable Integer idBid) {
         Bid bid = bidService.findOne(idBid);
-        if(bid.getStatus().equals(CREATED)){
-            bid.setStatus(PROCESSED);
+        if(bid.getStatus().equals(BID_CREATED)){
+            bid.setStatus(BID_PROCESSED);
             bidService.save(bid);
             return "/office/bids";
-        }else if(bid.getStatus().equals(REJECTED)){
+        }else if(bid.getStatus().equals(BID_REJECTED)){
             return String.format("redirect:/office/bids/%d/edit",idBid);
         }
         return "redirect:/office/bids";

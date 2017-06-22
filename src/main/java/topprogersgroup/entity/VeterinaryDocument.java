@@ -46,9 +46,9 @@ public class VeterinaryDocument{
     @JoinColumn(name = "employee", nullable = false)
     private Employee employee;
 
-//    // получаемый (от зарубежной системы) или изначально задаваемый статус
-//    @Column(name = "status")
-//    private String status;
+    // изначально задаваемый статус
+    @Column(name = "status")
+    private String status;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "veterinaryDocument")
     private VeterinaryCertificate veterinaryCertificate;
