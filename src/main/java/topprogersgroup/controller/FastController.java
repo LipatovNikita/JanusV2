@@ -68,7 +68,7 @@ public class FastController {
         quarantine.setDiseases(diseases);
         model.addAttribute("passport", passport);
         model.addAttribute("quarantine", quarantine);
-        return "fast/fastpassport";
+        return "fast/add";
     }
 
     @PreAuthorize("hasAuthority('PET_OWNER')")
@@ -102,21 +102,23 @@ public class FastController {
         Quarantine quarantine = pet.getQuarantine();
         model.addAttribute("quarantine",  quarantine);
         model.addAttribute("passport", passport);
-        return "fast/add";
+        model.addAttribute("pet", pet);
+        return "fast/edit";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String update(Model model, @ModelAttribute("passport") Passport passport, @RequestParam("images_p") MultipartFile[] images, @ModelAttribute("quarantine") Quarantine quarantine){
-        Pet oldPet = passport.getPet();
-        oldPet.setQuarantine(quarantine);
-        oldPet.setPassport(passport);
+    public String update(Model model,  @ModelAttribute("pet") Pet pet, @ModelAttribute("passport") Passport passport, @RequestParam("images_p") MultipartFile[] images, @ModelAttribute("quarantine") Quarantine quarantine){
+        passport = passportService.update(passport);
         for (MultipartFile image : images) {
             passportService.uploadPassportImage(image, passport);
         }
-        petService.update(oldPet);
-        model.addAttribute("quarantine",  quarantine);
-        model.addAttribute("passport", passport);
-        return "office/pets";
+        pet.setPassport(passport);
+        quarantine.setId(0);
+        pet.setQuarantine(quarantine);
+        pet = petService.update(pet);
+        model.addAttribute("quarantine",  pet.getQuarantine());
+        model.addAttribute("passport",pet.getPassport());
+        return "redirect:/office/pets";
     }
 
 }
