@@ -13,9 +13,6 @@ import topprogersgroup.entity.*;
 import topprogersgroup.service.OwnerService;
 import topprogersgroup.service.UserService;
 
-import javax.validation.Valid;
-import java.util.Date;
-
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {

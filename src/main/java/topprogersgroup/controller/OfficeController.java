@@ -44,7 +44,7 @@ public class OfficeController {
         return "/office/home";
     }
 
-    //Все петомцы
+    //Все питомцы
     @RequestMapping(value = "/pets", method = RequestMethod.GET)
     public String getAllPetsPage(Model model,
                                  @AuthenticationPrincipal User user) {
@@ -55,7 +55,6 @@ public class OfficeController {
     }
 
     //Страница пета
-    //todo:Запретить смотреть чужих петов
     @PreAuthorize("@currentUserServiceImpl.canAccessOwnerPets(principal, #idPet)")
     @RequestMapping(value = "/pets/{idPet}", method = RequestMethod.GET)
     public String getPetPage(Model model,
@@ -85,6 +84,7 @@ public class OfficeController {
     @RequestMapping(value = "/bids/{idBid}/preview", method = RequestMethod.POST)
     public String previewBid(Model model,
                              @PathVariable Integer idBid) {
+        //todo:Запретить смотреть чужие заявки и чужих петов
         Bid bid = bidService.findOne(idBid);
         model.addAttribute("bid", bid);
         model.addAttribute("route",bid.getRoute());

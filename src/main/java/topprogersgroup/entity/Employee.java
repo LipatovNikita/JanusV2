@@ -56,6 +56,7 @@ public class Employee {
 
     // дата приёма на работу
     @Column(name = "employmentdate", nullable = false)
+    @Temporal(value=TemporalType.DATE)
     private Date employmentDate;
 
     // должность
