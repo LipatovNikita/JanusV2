@@ -32,4 +32,10 @@ public class VaccinationServiceImpl implements VaccinationService {
     public void delete(Vaccination vaccination) {
         vaccinationRepository.delete(vaccination);
     }
+
+    @Override
+    public List<Vaccination> saveAll(List<Vaccination> vaccinations) {
+        vaccinations = vaccinationRepository.save(vaccinations);
+        return vaccinations;
+    }
 }

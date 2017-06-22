@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Паспорт питомца</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; image/png; charset=UTF-8">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href='/resources/materialize/css/materialize.css'/>
     <link rel="stylesheet" type="text/css" href='/resources/css/style_child.css'/>
@@ -22,7 +22,7 @@
             <a href="/office/pets/${pet.id}">
                 <div class="card">
                     <div class="card-image">
-                        <img src="<#--${pet.passport.images[0].path!""}-->C:\Users\Татьяна\Desktop\314.jpg" class="responsive-img" alt=""/>
+                        <#--<img src="${pet.passport.images[0].path!"/resources/test.jpg"}" class="responsive-img" alt=""/>-->
                     </div>
                     <div class="card-content">
                         <h3 class="light">${pet.passport.petName!""}</h3>

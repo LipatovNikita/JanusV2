@@ -1,5 +1,5 @@
 <div class="row">
-    <input type="hidden" id="id" name="id" value="${quarantine.id!0}">
+    <input type="hidden" id="quarantine.id" name="id" value="${quarantine.id!0}">
     <div class="input-field col s6">
         <input type="text" id="laboratory" name="laboratory" value="${quarantine.laboratory!""}">
         <label for="quarantine.laboratory">Лаборатория</label>

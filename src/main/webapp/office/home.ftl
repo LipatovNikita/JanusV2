@@ -34,6 +34,11 @@
                     Создать заявку на Вет Док
                 </a>
             </div>
+            <div class="col s4">
+                <a href="/fast/add">
+                   Добавить питомца
+                </a>
+            </div>
         </div>
     </div>
 </div>
