@@ -21,7 +21,7 @@
     <div class="col s12 m4">
         <div class="card">
             <div class="card-image">
-                <img src="${passport.passportPhoto}" class="responsive-img" alt=""/>
+                <#--<img src="${passport.passportPhoto}" class="responsive-img" alt=""/>-->
             </div>
             <div class="card-content">
                 <h3 class="light">${passport.petName}</h3>

@@ -34,14 +34,6 @@
                     <label for="phonenumber">Номер телефона</label>
                     <input type="text" name="phoneNumber" id="phoneNumber" value="${checkPoint.phoneNumber!""}" required/><#--placeholder="(XXX)-XXX-XXXX" pattern="(XXX)-XXX-XXXX"-->
                 </div>
-            <#--<div>-->
-            <#--<label for="inspector">Сотрудник россельхоза</label>-->
-            <#--<select name="inspector" id="inspector" required>-->
-            <#--<#list inspector as iKey, iValue>-->
-            <#--<option value="${iKey}">${iValue.lastName} ${iValue.firstName} ${iValue.middleName}</option>-->
-            <#--</#list>-->
-            <#--</select>-->
-            <#--</div>-->
             </div>
             <button type="submit" class="btn waves-effect waves-light">Сохранить</button>
         </div>
