@@ -66,7 +66,7 @@ public class PassportServiceImpl implements PassportService {
 
     public String generateImageName(Random random) {
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-        char[] text = new char[5];
+        char[] text = new char[25];
         for (int i = 0; i < text.length; i++) {
             text[i] = alphabet.charAt(random.nextInt(alphabet.length()));
         }

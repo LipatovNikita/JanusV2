@@ -16,22 +16,6 @@
 
 <#include "/template/navbar.ftl">
 
-<#--<nav role="navigation">-->
-    <#--<ul>-->
-    <#--<#if !currentUser??>-->
-        <#--Вы не авторизованы-->
-        <#--<li><a href="/login">Войти</a></li>-->
-    <#--</#if>-->
-    <#--<#if currentUser??>-->
-        <#--<li>-->
-            <#--<form action="/logout" method="post">-->
-                <#--<button type="submit">Выйти</button>-->
-            <#--</form>-->
-        <#--</li>-->
-    <#--</#if>-->
-    <#--</ul>-->
-<#--</nav>-->
-
 <#if currentUser?? && currentUser.role == "ADMIN">
 <div class="center-block section row">
     <div class="col s12">
@@ -42,12 +26,12 @@
                 </a>
             </div>
             <div id="imgzat" class="col s4">
-                <a href="/admin/checkpoint">Добавить ПКВП
+                <a href="/admin/checkpoint/create">Добавить ПКВП
                 <#--<img src="/resources/images/bids.png" class="responsive-img" alt=""/>-->
                 </a>
             </div>
             <div class="col s4">
-                <a href="/admin/vet">Добавить ГосВетСлужбу</a>
+                <a href="/admin/vet/create">Добавить ГосВетСлужбу</a>
             </div>
         </div>
     </div>
