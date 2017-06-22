@@ -14,8 +14,8 @@
 <script type="text/javascript" rel="script" src="/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" rel="script" src="/resources/materialize/js/materialize.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/combodate.js"></script>
-<script type="text/javascript" rel="script" src="/resources/js/fastpassport.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
+<script type="text/javascript" rel="script" src="/resources/js/fastpassport.js"></script>
 <script type="text/javascript" rel="script" src="/webjars/jquery-validation/1.16.0/jquery.validate.js"></script>
 
 <#include "/template/navbar.ftl">

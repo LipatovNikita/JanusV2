@@ -15,42 +15,45 @@
 <script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
 
 <#include "/template/navbar.ftl">
-<#include "/template/search/findbids.ftl"><#--todo:Надежда что работает поиск заявок-->
+<#--Поиск заявок-->
+<#include "/template/search/findbids.ftl">
 
 <div class="section">
-<#list bidList as bid>
-    <a href="/docs/bid/${bid.id}">
-        <div class="row">
-
-            <div class="col s6">
-                Статус: ${bid.status!""}<br/>
-                Количество петомцев: ${bid.countPet!0}<br/>
-                Количество мест под петомцев: ${bid.countSeats!0}<br/>
-                Дата отправления: ${(bid.departureDate?string("dd-MM-yyyy"))!""}<br/>
+<#if bidList??>
+    <#list bidList as bid>
+        <a href="/docs/bid/${bid.id}">
+            <div class="row">
+                <div class="col s6">
+                    Статус: ${bid.status!""}<br/>
+                    Количество петомцев: ${bid.countPet!0}<br/>
+                    Количество мест под петомцев: ${bid.countSeats!0}<br/>
+                    Дата отправления: ${(bid.departureDate?string("dd-MM-yyyy"))!""}<br/>
+                </div>
+                <div class="col s6">
+                    Пункт назначения: ${bid.route.destination!""}<br/>
+                    Пукты следования: ${bid.route.followingPoints!""}<br/>
+                    Пункт отправления: ${bid.route.departure!""}<br/>
+                    Въездной БИП в ЕС: ${bid.route.BorderInspectionPosts!""}<br/>
+                    Тип транспорта: ${bid.route.transportType!""}<br/>
+                </div>
             </div>
-            <div class="col s6">
-                Пункт назначения: ${bid.route.destination!""}<br/>
-                Пукты следования: ${bid.route.followingPoints!""}<br/>
-                Пункт отправления: ${bid.route.departure!""}<br/>
-                Въездной БИП в ЕС: ${bid.route.BorderInspectionPosts!""}<br/>
-                Тип транспорта: ${bid.route.transportType!""}<br/>
-            </div>
-        </div>
-    </a>
-</#list>
-</div>
+        </a>
+    </#list>
 
-<#if numberPage?? || (numberPage > 0) >
-<ul class="pagination">
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a href="/docs/${numberPage}">1</a></li>
-    <li class="waves-effect"><a href="/docs/${(numberPage+1)}">2</a></li>
-    <li class="waves-effect"><a href="/docs/${(numberPage+2)}">3</a></li>
-    <li class="waves-effect"><a href="/docs/${(numberPage+3)}">4</a></li>
-    <li class="waves-effect"><a href="/docs/${(numberPage+4)}">5</a></li>
-    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-</ul>
+    <#if numberPage?? || (numberPage > 0) >
+        <ul class="pagination">
+            <li class="disabled"><a href="/docs/${numberPage-1}"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="/docs/${numberPage}">${numberPage}</a></li>
+            <li class="waves-effect"><a href="/docs/${(numberPage+1)}">${(numberPage+1)}</a></li>
+            <li class="waves-effect"><a href="/docs/${(numberPage+2)}">${(numberPage+2)}</a></li>
+            <li class="waves-effect"><a href="/docs/${(numberPage+3)}">${(numberPage+3)}</a></li>
+            <li class="waves-effect"><a href="/docs/${(numberPage+4)}">${(numberPage+4)}</a></li>
+            <li class="waves-effect"><a href="/docs/${numberPage+1}"><i class="material-icons">chevron_right</i></a>
+            </li>
+        </ul>
+    </#if>
 </#if>
+</div>
 
 <footer>
     footer

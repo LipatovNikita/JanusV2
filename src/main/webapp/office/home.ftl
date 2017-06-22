@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Заявка на вывоз</title>
+    <title>Личный кабинет</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href='/resources/materialize/css/materialize.css'/>
@@ -15,27 +15,45 @@
 
 <#include "/template/navbar.ftl">
 
+<#if currentUser?? && currentUser.role == "PET_OWNER">
 <div class="center-block section row">
     <div class="col s12">
         <div class="row picture-block">
             <div class="col s4">
                 <a href="/office/pets">
+                    Петомцы
                     <img src="/resources/images/pets.png" class="responsive-img" alt=""/>
                 </a>
             </div>
             <div id="imgzat" class="col s4">
                 <a href="/office/bids">
+                    Заявки
                     <img src="/resources/images/bids.png" class="responsive-img" alt=""/>
                 </a>
             </div>
+        </div>
+        <div class="row picture-block">
             <div class="col s4">
-                <a href=/office/bids/create">
+                <a href="/office/bids/create">
                     Создать заявку на Вет Док
+                    <img src="/resources/images/bid.png" class="responsive-img" alt=""/>
+                </a>
+            </div>
+            <div class="col s4">
+                <a href="/fast/add">
+                    Создать паспорт
+                    <img src="/resources/images/pass.png" class="responsive-img" alt=""/>
+                </a>
+            </div>
+            <div class="col s4">
+                <a href="/fast/add">
+                   Добавить питомца
                 </a>
             </div>
         </div>
     </div>
 </div>
+</#if>
 
 <#--<footer class="footer">-->
 

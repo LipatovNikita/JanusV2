@@ -39,23 +39,25 @@ public class OfficeController {
     @Autowired
     OwnerService ownerService;
 
-    @RequestMapping(value = {"/",""}, method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/","/home"}, method = RequestMethod.GET)
     public String home(Model model) {
         return "/office/home";
     }
 
-    //Все петомцы
+    //Все питомцы
     @RequestMapping(value = "/pets", method = RequestMethod.GET)
     public String getAllPetsPage(Model model,
                                  @AuthenticationPrincipal User user) {
         Owner owner = ownerService.findOwnerByEmailUser(userService.getUserEmail());
         List<Pet> pets = owner.getPet();
+        UploadImage uploadImage = (UploadImage) pets.get(1).getPassport().getImages().toArray()[0];
         model.addAttribute("pets", pets);
+        model.addAttribute("images", uploadImage.getPath());
         return "/office/pets";
     }
 
     //Страница пета
-    @PreAuthorize("@currentUserServiceImpl.canAccessOwnerPets(principal, #idPet)")
+    //@PreAuthorize("@currentUserServiceImpl.canAccessOwnerPets(principal, #idPet)")
     @RequestMapping(value = "/pets/{idPet}", method = RequestMethod.GET)
     public String getPetPage(Model model,
                              @PathVariable Integer idPet) {
@@ -67,22 +69,23 @@ public class OfficeController {
         model.addAttribute("vaccinationList", passport.getVaccination());
         model.addAttribute("immunizationList", passport.getImmunizationDeworming());
         model.addAttribute("quarantine",pet.getQuarantine());
+        UploadImage uploadImage = (UploadImage) pet.getPassport().getImages().toArray()[0];
+        model.addAttribute("image", uploadImage.getPath());
         return "/office/pet";
     }
 
     //Все заявки
     @RequestMapping(value = "/bids", method = RequestMethod.GET)
     public String getBidPage(Model model) {
-        //todo: Вытащить заявки
-        Owner owner = ownerService.findOwnerByEmailUser(userService.getUserEmail());
-//        List<Bid> bidList = bidService.(owner);
-//        model.addAttribute("bidList", bidList);
+        List<Bid> bidList = bidService.findByEmailUser(userService.getUserEmail(),false);
+        model.addAttribute("bidList", bidList);
         return "/office/bids";
     }
 
     //Просмотр заявки
-    @PreAuthorize("@currentUserServiceImpl.canAccessOwnerBids(principal, #idBid)")
-    @RequestMapping(value = "/bids/preview/{idBid}", method = RequestMethod.POST)
+   //todo:Запретить смотреть чужие заявки
+ /*    @PreAuthorize("@currentUserServiceImpl.canAccessOwnerBids(principal, #idBid)")*/
+    @RequestMapping(value = "/bids/{idBid}/preview", method = RequestMethod.POST)
     public String previewBid(Model model,
                              @PathVariable Integer idBid) {
         //todo:Запретить смотреть чужие заявки и чужих петов
@@ -119,7 +122,7 @@ public class OfficeController {
         bid.setRoute(route);
         bid.setStatus(CREATED);
         bidService.save(bid);
-        return "forward:/office/bids";
+        return "redirect:/office/bids";
     }
 
     //Редактирование возможно если заявка СОЗДАНА или ОТКЛОНЕНА
@@ -156,7 +159,7 @@ public class OfficeController {
         route = routeService.create(route);
         bid.setRoute(route);
         bidService.save(bid);
-        return "forward:/office/bids";
+        return "redirect:/office/bids";
     }
 
     //Отправлять возможно заявки только в состоянии СОЗДАНА
@@ -171,9 +174,9 @@ public class OfficeController {
             bidService.save(bid);
             return "/office/bids";
         }else if(bid.getStatus().equals(REJECTED)){
-            return String.format("forward:/office/bids/%d/edit",idBid);
+            return String.format("redirect:/office/bids/%d/edit",idBid);
         }
-        return "forward:/office/bids";
+        return "redirect:/office/bids";
     }
 
 }

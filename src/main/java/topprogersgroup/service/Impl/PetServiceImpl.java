@@ -10,6 +10,7 @@ import topprogersgroup.service.OwnerService;
 import topprogersgroup.service.PetService;
 
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -54,12 +55,10 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Pet update(Pet pet) {
-        Pet pet1 = new Pet();
-        pet1.setId(pet.getId());
-        pet1 = petRepository.findOne(pet1.getId());
-        pet1.setLast(false);
-        petRepository.save(pet1);
-        petRepository.save(pet);
+        Pet oldPet = new Pet();
+        oldPet = petRepository.findOne(pet.getId());
+        oldPet.setLast(false);
+        petRepository.save(oldPet);
         pet.setId(0);
         pet.setLast(true);
         return petRepository.save(pet);

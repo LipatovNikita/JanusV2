@@ -16,6 +16,7 @@ import topprogersgroup.validator.FileValidator;
 import topprogersgroup.validator.ImmunizationDewormingValidator;
 import topprogersgroup.validator.OwnerValidator;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -47,6 +48,10 @@ public class FastController {
     @Autowired
     private PetService petService;
 
+    @Autowired
+    private VaccinationService vaccinationService;
+
+    @PreAuthorize("hasAuthority('PET_OWNER')")
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String fast(Model model) {
         Passport passport = new Passport();
@@ -73,6 +78,7 @@ public class FastController {
         if (principal instanceof UserDetails) {
             String email = ((UserDetails) principal).getUsername();
             Owner owner = ownerService.findOwnerByEmailUser(email);
+
             passport.setOwner(owner);
             passport = passportService.save(passport);
             for (MultipartFile image : images) {
@@ -80,11 +86,37 @@ public class FastController {
             }
             quarantine = quarantineService.save(quarantine);
             Pet pet = new Pet();
+            pet.setOwner(owner);
             pet.setPassport(passport);
             pet.setQuarantine(quarantine);
             petService.save(pet);
         }
-        return "fast/fastpassport";
+        return "office/home";
+    }
+
+  /*  @PreAuthorize("@currentUserServiceImpl.canAccessOwnerPets(principal, #idPet)")*/
+    @RequestMapping(value = "/edit/{idPet}", method = RequestMethod.GET)
+    public String edit(Model model, @PathVariable Integer idPet) {
+        Pet pet = petService.findOne(idPet);
+        Passport passport = pet.getPassport();
+        Quarantine quarantine = pet.getQuarantine();
+        model.addAttribute("quarantine",  quarantine);
+        model.addAttribute("passport", passport);
+        return "fast/add";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String update(Model model, @ModelAttribute("passport") Passport passport, @RequestParam("images_p") MultipartFile[] images, @ModelAttribute("quarantine") Quarantine quarantine){
+        Pet oldPet = passport.getPet();
+        oldPet.setQuarantine(quarantine);
+        oldPet.setPassport(passport);
+        for (MultipartFile image : images) {
+            passportService.uploadPassportImage(image, passport);
+        }
+        petService.update(oldPet);
+        model.addAttribute("quarantine",  quarantine);
+        model.addAttribute("passport", passport);
+        return "office/pets";
     }
 
 }

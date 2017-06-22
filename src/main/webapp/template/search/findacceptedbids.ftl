@@ -1,12 +1,14 @@
 <fieldset>
-    <label for="searchBid">Поиск заявок по серия/номер паспорта</label>
+
     <div id="searchBid" class="row">
         <form name="" action="/docs/find/acceptedbids" id="searchForm" method="post">
-            <div class="col s8">
+            <div class="col offset-s6 s5">
+                <label>Поиск заявок по серия/номер паспорта</label>
+                </br>
                 <input type="text" name="ownerDocNumber" placeholder="Серия/номер паспорта">
             </div>
-            <div class="col s4">
-                <input type="submit" value="Поиск">
+            <div class="col s2 m2 l1">
+                <input type="submit" class="waves-effect waves-light btn-large" value="Поиск">
             </div>
         </form>
     </div>

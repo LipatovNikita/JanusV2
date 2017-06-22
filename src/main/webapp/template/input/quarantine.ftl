@@ -2,12 +2,12 @@
     <input type="hidden" id="quarantine.id" name="id" value="${quarantine.id!0}">
     <div class="input-field col s6">
         <input type="text" id="laboratory" name="laboratory" value="${quarantine.laboratory!""}">
-        <label for="laboratory">Лаборатория</label>
+        <label for="quarantine.laboratory">Лаборатория</label>
     </div>
     <div class="input-field col s6">
-        <input type="text" id="quarantineaddressOfLaboratory" name="addressOfLaboratory"
+        <input type="text" id="addressOfLaboratory" name="addressOfLaboratory"
                value="${quarantine.addressOfLaboratory!""}">
-        <label for="addressOfLaboratory">Адрес лабораторной</label>
+        <label for="quarantine.addressOfLaboratory">Адрес лабораторной</label>
     </div>
     <div class="input-field col s4">
         <input type="text" id="numberOfDays" name="numberOfDays"
@@ -25,8 +25,8 @@
         </div>
         <div class="input-field col s6">
             <input type="text" id="diseases[${item_index}].researchMethod" name="diseases[${item_index}].researchMethod"
-                   value="${item.researchMethod!""}">
-            <label for="diseases[${item_index}].researchMethod">Метод исследования</label>
+                   value="${item.researchmethod!""}">
+            <label for="diseases[${item_index}].researchmethod">Метод исследования</label>
         </div>
     </div>
     <div class="row">
@@ -52,8 +52,8 @@
             <label for="diseases[${item_index}].disName">Наименование</label>
         </div>
         <div class="input-field col s6">
-            <input type="text" id="diseases.researchmethod" name="diseases.researchmethod">
-            <label for="diseases[${item_index}].researchmethod">Метод исследования</label>
+            <input type="text" id="diseases.researchMethod" name="diseases.researchMethod">
+            <label for="diseases[${item_index}].researchMethod">Метод исследования</label>
         </div>
     </div>
     <div class="row">

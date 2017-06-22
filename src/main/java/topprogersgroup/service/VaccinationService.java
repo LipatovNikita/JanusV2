@@ -15,4 +15,6 @@ public interface VaccinationService {
     Vaccination findOne(Integer id);
 
     void delete(Vaccination vaccination);
+
+    List<Vaccination> saveAll(List<Vaccination> vaccinations);
 }
