@@ -22,6 +22,8 @@ public interface PetService {
 
     List<Pet> findAllIsNotDeleted();
 
+    List<Pet> findIsLastPetByOwner(Integer id);
+
     Pet update(Pet pet);
 
     void delete(Pet pet);
