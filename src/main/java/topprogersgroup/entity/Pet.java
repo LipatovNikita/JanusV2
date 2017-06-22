@@ -1,6 +1,7 @@
 package topprogersgroup.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -11,7 +12,6 @@ import java.util.UUID;
 
 @Data
 @Entity
-@ToString
 @Table(name = "pet")
 public class Pet {
     @Id

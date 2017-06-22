@@ -30,4 +30,10 @@ public class ImmunizationDewormingServiceImpl implements ImmunizationDewormingSe
     public List<ImmunizationDeworming> getImmunizationDewormingListByPassport(Passport passport) {
         return immunizationDewormingRepository.findByPassport(passport);
     }
+
+    @Override
+    public List<ImmunizationDeworming> saveAll(List<ImmunizationDeworming> immunizationDewormings) {
+        immunizationDewormings = immunizationDewormingRepository.save(immunizationDewormings);
+        return immunizationDewormings;
+    }
 }
