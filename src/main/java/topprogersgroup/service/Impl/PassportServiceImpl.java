@@ -102,8 +102,8 @@ public class PassportServiceImpl implements PassportService {
     }
 
     @Override
-    public Passport findByGuid(UUID guid) {
-        return passportRepository.findOneByGuidAndIsDeletedAndIsLast(guid, false, true);
+    public Passport findByGuid(String guid) {
+        return passportRepository.findOneByGuidAndIsDeletedAndIsLast(guid,false,true);
     }
 
     @Override
@@ -113,6 +113,7 @@ public class PassportServiceImpl implements PassportService {
         oldPassport.setLast(false);
         passportRepository.save(oldPassport);
         passport.setLast(false);
+        passportRepository.save(passport);
         passport.setId(0);
         passport.setLast(true);
         return passportRepository.save(passport);

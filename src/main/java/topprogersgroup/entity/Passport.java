@@ -1,7 +1,6 @@
 package topprogersgroup.entity;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -13,6 +12,7 @@ import java.util.Set;
 
 @Data
 @Entity
+@ToString
 @Table(name = "passport")
 public class Passport {
 
@@ -59,7 +59,7 @@ public class Passport {
     @Column(name = "offspring")
     private String offspring;
 
-    @ManyToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
