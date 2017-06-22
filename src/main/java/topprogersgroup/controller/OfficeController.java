@@ -50,18 +50,19 @@ public class OfficeController {
                                  @AuthenticationPrincipal User user) {
         Owner owner = ownerService.findOwnerByEmailUser(userService.getUserEmail());
         List<Pet> pets = owner.getPet();
-        UploadImage uploadImage = (UploadImage) pets.get(1).getPassport().getImages().toArray()[0];
+        UploadImage uploadImage = (UploadImage) pets.get(0).getPassport().getImages().toArray()[0];
         model.addAttribute("pets", pets);
         model.addAttribute("images", uploadImage.getPath());
         return "/office/pets";
     }
 
     //Страница пета
-    //@PreAuthorize("@currentUserServiceImpl.canAccessOwnerPets(principal, #idPet)")
+    @PreAuthorize("@currentUserServiceImpl.canAccessOwnerPets(principal, #idPet)")
     @RequestMapping(value = "/pets/{idPet}", method = RequestMethod.GET)
     public String getPetPage(Model model,
                              @PathVariable Integer idPet) {
         Pet pet = petService.findOne(idPet);
+
         Passport passport = pet.getPassport();
         model.addAttribute("pet", pet);
         model.addAttribute("passport", passport);
@@ -84,7 +85,7 @@ public class OfficeController {
 
     //Просмотр заявки
    //todo:Запретить смотреть чужие заявки
- /*    @PreAuthorize("@currentUserServiceImpl.canAccessOwnerBids(principal, #idBid)")*/
+    @PreAuthorize("@currentUserServiceImpl.canAccessOwnerBids(principal, #idBid)")
     @RequestMapping(value = "/bids/{idBid}/preview", method = RequestMethod.POST)
     public String previewBid(Model model,
                              @PathVariable Integer idBid) {

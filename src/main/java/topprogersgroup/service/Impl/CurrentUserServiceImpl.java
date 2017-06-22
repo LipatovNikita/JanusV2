@@ -24,29 +24,29 @@ public class CurrentUserServiceImpl implements CurrentUserService {
     private PetService petService;
 
     public boolean canAccessOwnerBids(CurrentUser currentUser, int bidId) {
-        return currentUser != null
-                && (checkContainsBid(currentUser, bidId));
+        return currentUser != null && (checkContainsBid(currentUser, bidId));
     }
 
     public boolean checkContainsBid(CurrentUser currentUser, int bidId) {
-        List<Pet> pets = currentUser.getUser().getOwner().getPet();
-        Bid bid = bidService.findOne(bidId);
-        for (Pet pet : pets) {
-            if (pet.getBids().contains(bid)) return true;
+        boolean access = false;
+        for (Pet pet : currentUser.getUser().getOwner().getPet()) {
+            if (pet.getBids().contains(bidService.findOne(bidId)))
+                access = true;
         }
-        return false;
+        return access;
     }
 
     public boolean canAccessOwnerPets(CurrentUser currentUser, int petId) {
-        boolean flag;
-        List<Pet> pets = currentUser.getUser().getOwner().getPet();
-        Pet pet = petService.findOne(petId);
-        System.out.print("");
-        if (currentUser.getUser().getOwner().getPet().contains(petService.findOne(petId))) {
-            flag = true;
+        boolean access = false;
+        if (currentUser != null) {
+            for (Pet pet : currentUser.getUser().getOwner().getPet()) {
+                if (pet.getGuid().equals(petService.findOne(petId).getGuid())) {
+                    access = true;
+                    break;
+                }
+            }
         }
-        return currentUser != null
-                && (currentUser.getUser().getOwner().getPet().contains(petService.findOne(petId)));
+        return access;
     }
 
     @Override
