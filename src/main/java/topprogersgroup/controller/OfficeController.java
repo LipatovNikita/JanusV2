@@ -16,10 +16,7 @@ import topprogersgroup.entity.*;
 import topprogersgroup.service.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "/office")
@@ -78,7 +75,7 @@ public class OfficeController {
     //Все заявки
     @RequestMapping(value = "/bids", method = RequestMethod.GET)
     public String getBidPage(Model model) {
-        List<Bid> bidList = bidService.findByEmailUser(userService.getUserEmail(),false);
+        Set<Bid> bidList = bidService.findByEmailUser(userService.getUserEmail(),false);
         model.addAttribute("bidList", bidList);
         return "/office/bids";
     }
