@@ -22,8 +22,6 @@
     <#include "/template/output/bidforemployee.ftl">
     </div>
 </div>
-<footer>
-    footer
-</footer>
+
 </body>
 </html>

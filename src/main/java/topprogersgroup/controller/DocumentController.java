@@ -9,9 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import topprogersgroup.entity.*;
-import topprogersgroup.service.BidService;
-import topprogersgroup.service.VeterinaryCertificateService;
-import topprogersgroup.service.VeterinaryDocumentService;
+import topprogersgroup.service.*;
 
 import javax.validation.Valid;
 import java.util.Date;
@@ -135,6 +133,12 @@ public class DocumentController {
         return "document/acceptedbids";
     }
 
+    @Autowired
+    CurrentUserService userService;
+
+    @Autowired
+    EmployeeService employeeService;
+
     //Создать Вет. Документ по Принятому БИДу
     @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value = {"/accepted/bid/{idBid}"}, method = RequestMethod.GET)
@@ -143,13 +147,14 @@ public class DocumentController {
         Bid bid = bidService.findOne(idBid);
         if(bid.getStatus().equals(BID_ACCEPTED)){
             VeterinaryDocument vetDoc = new VeterinaryDocument();
-            //            todo: Добавил дату, нужно удалить со старницы
             vetDoc.setIssueDate(new Date());
             vetDoc.setBid(bid);
             HashSet<SpecialNotes> notesSet = new HashSet<>();
             notesSet.add(new SpecialNotes());
             vetDoc.setSpecialNotes(notesSet);
-//            todo: Таня допиши, сюда что еще нужно для формирования ВетДока, может массив СпецОтметок
+            Employee employee = employeeService.findEmployeeByEmail(userService.getUserEmail(),false);
+            vetDoc.setEmployee(employee);
+            vetDoc.setStateVeterinaryService(employee.getStateVeterinaryService());
             model.addAttribute("vetDoc",vetDoc);
             model.addAttribute("bid", bid);
             return "document/vetdoc";
@@ -169,7 +174,6 @@ public class DocumentController {
             return "document/vetdoc";
         }
 
-//        todo: Таня тоже для тебя прими что нужно в конроллере, но не возвращаемые страницы не изменяй
         vetDoc.setBid(bid);
         vetDoc.setStatus(VET_DOC_NOT_SENT);
         vetDoc = veterinaryDocService.create(vetDoc);
