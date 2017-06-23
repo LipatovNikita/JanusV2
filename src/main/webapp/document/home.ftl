@@ -12,32 +12,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-
 <#include "/template/navbar.ftl">
-
 <#if currentUser?? && currentUser.role == "EMPLOYEE">
-<div class="center-block section row">
-    <div class="col s12">
-        <div class="row picture-block">
-            <div class="col s4">
+<div class="center section">
+    <div class="center-block row">
+        <div class="col s12">
+            <div class="col s5 m5">
                 <a href="/docs/1">
                     Заявки
                     <img src="/resources/images/processbids.png" class="responsive-img" alt=""/>
                 </a>
             </div>
-            <div id="imgzat" class="col s4">
+            <div class="col s5 m5">
                 <a href="/docs/accepted/page/1">
                     Принятые заявки
                     <img src="/resources/images/okbids.png" class="responsive-img" alt=""/>
                 </a>
             </div>
-            <div id="imgzat" class="col s4">
+        </div>
+        <div class="col s12">
+            <div class="col s5 m5">
                 <a href="/docs/vet/doc/page/1">
                     Ветеринарные свидетельства
                     <img src="/resources/images/sertifacateR.png" class="responsive-img" alt=""/>
                 </a>
             </div>
-            <div id="imgzat" class="col s4">
+            <div class="col s5 m5">
                 <a href="/docs/vet/sert/page/1">
                     Ветеринарные сертификаты
                     <img src="/resources/images/sertifacateF.png" class="responsive-img" alt=""/>
@@ -47,9 +47,5 @@
     </div>
 </div>
 </#if>
-
-<#--<footer class="footer">-->
-
-<#--</footer>-->
 </body>
 </html>

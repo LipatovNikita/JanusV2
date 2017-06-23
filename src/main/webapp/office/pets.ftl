@@ -38,9 +38,5 @@
     </#list>
     </ul>
 </div>
-
-<footer class="footer">
-    footer
-</footer>
 </body>
 </html>

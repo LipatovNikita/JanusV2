@@ -34,8 +34,6 @@
         <#include "/template/output/pet.ftl">
     </div>
 </div>
-<footer class="footer">
 
-</footer>
 </body>
 </html>

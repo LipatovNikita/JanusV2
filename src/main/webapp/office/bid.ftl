@@ -70,8 +70,5 @@
     <#include "/template/output/bidforowner.ftl"/>
     </div>
 </div>
-<footer class="footer">
-
-</footer>
 </body>
 </html>
