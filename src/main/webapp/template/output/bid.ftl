@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col s12 m4">
-        <label>Количество петомцев</label>
+        <label>Количество питомцев</label>
         <p>${bid.countPet!0}</p>
     </div>
     <div class="col s12 m4">
-        <label>Количество мест под петомцев</label>
+        <label>Количество мест под питомцев</label>
         <p>${bid.countSeats!0}</p>
     </div>
     <div class="col s12 m4">

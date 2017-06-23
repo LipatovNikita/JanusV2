@@ -21,6 +21,7 @@ import javax.annotation.Resource;
 
 
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -56,5 +57,11 @@ public class BidServiceTest {
     public void findByDocumentNumberAndStatus() throws Exception {
         List<Bid> bid = bidService.findByDocumentNumberAndStatus("processed","2281488",false);
         System.out.print("fdf");
+    }
+
+    @Test
+    public void findByemail(){
+        Set<Bid> bidSet = bidService.findByEmailUser("alex@mail.ru",false);
+        System.out.print("df");
     }
 }

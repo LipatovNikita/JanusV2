@@ -8,18 +8,12 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import topprogersgroup.entity.*;
 import topprogersgroup.service.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "/office")
@@ -91,7 +85,7 @@ public class OfficeController {
 
     @RequestMapping(value = "/bids", method = RequestMethod.GET)
     public String getBidPage(Model model) {
-        List<Bid> bidList = bidService.findByEmailUser(userService.getUserEmail(), false);
+        Set<Bid> bidList = bidService.findByEmailUser(userService.getUserEmail(),false);
         model.addAttribute("bidList", bidList);
         return "/office/bids";
     }
@@ -125,11 +119,14 @@ public class OfficeController {
     public String createBid(Model model) {
         Route route = new Route();
         Bid bid = new Bid();
+        bid.setPets(new ArrayList<>());
         Owner owner = ownerService.findOwnerByEmailUser(userService.getUserEmail());
-        List<Pet> pets = owner.getPet();
-        model.addAttribute("pets", pets);
+        List<Pet> petList = petService.findIsLastPetByOwner(owner.getId());
+        model.addAttribute("petList", petList);
         model.addAttribute("route", route);
         model.addAttribute("bid", bid);
+        Integer[] pets = {};
+        model.addAttribute("petsid[]", pets);
         return "/office/create";
     }
 
@@ -137,16 +134,19 @@ public class OfficeController {
     @PreAuthorize("hasAuthority('PET_OWNER')")
     @RequestMapping(value = "/bids/create", method = RequestMethod.POST)
     public String createBid(Model model,
-                            @Valid @ModelAttribute("route") Route route,
-                            BindingResult bindingRouteResult,
-                            @ModelAttribute("bid") Bid bid,
-                            BindingResult bindingBidResult) {
-        if (bindingBidResult.hasErrors() || bindingRouteResult.hasErrors()) {
+                            @ModelAttribute("bid")Bid bid,
+                            BindingResult bindingBidResult, @RequestParam(value ="petsid[]") Integer[] petsid /*@RequestParam(value = "pets") String pets*/) {
+        if(bindingBidResult.hasErrors()){
             return "/bids/create";
         }
-        route = routeService.create(route);
+        Route route = routeService.create(bid.getRoute());
         bid.setRoute(route);
         bid.setStatus(BID_CREATED);
+        List<Pet> pets = new ArrayList<>();
+        for (Integer id: petsid) {
+            pets.add(petService.findOne(id));
+        }
+        bid.setPets(pets);
         bidService.save(bid);
         return "redirect:/office/bids";
     }

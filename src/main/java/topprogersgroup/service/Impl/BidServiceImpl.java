@@ -3,6 +3,7 @@ package topprogersgroup.service.Impl;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,10 @@ import topprogersgroup.repository.BidRepository;
 import topprogersgroup.service.BidService;
 
 import javax.persistence.EntityManagerFactory;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by aalle on 16.06.2017.
@@ -56,8 +60,10 @@ public class BidServiceImpl implements BidService {
     }
 
     @Override
-    public List<Bid> findByEmailUser(String email, boolean isDeleted) {
-        return bidRepository.findByPetsOwnerUserEmailAndIsDeleted(email,isDeleted);
+    public Set<Bid> findByEmailUser(String email, boolean isDeleted) {
+        List<Bid> bids = bidRepository.findByPetsOwnerUserEmailAndIsDeleted(email,isDeleted);
+        Set<Bid> bidSet = new HashSet<Bid>(bids);
+        return bidSet;
     }
 
     @Override
