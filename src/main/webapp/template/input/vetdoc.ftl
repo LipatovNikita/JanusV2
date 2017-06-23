@@ -7,5 +7,6 @@
         <label for="residenceTime">Время пребывания животного в РФ</label>
         <input type="text" name="residenceTime" id="residenceTime" value="${vetDoc.residenceTime!0}" required/>
     </div>
+</div>
 
 
