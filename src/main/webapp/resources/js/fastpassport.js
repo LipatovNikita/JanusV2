@@ -34,6 +34,7 @@ $(document).ready(function () {
     // Динамические поля для вакцинации
     var numberRowVaccination = $('fieldset[idvac]:last').attr('idvac');
     $('#block_vaccination').on('click', '.btnAddVac', function () {
+
         numberRowVaccination++;
         var $templateVaccination = $('#templateVaccination'),
             $vac_clone = $templateVaccination
@@ -108,38 +109,64 @@ $(function () {
             },
             ignore: false,
             rules: {
-                images: {
+                images_p: {
+                    required: true,
+                    extension: 'jpe?g,png',
+                    accept: 'jpe?g,png',
+                    uploadFile: true
+                },
+                photo: {
                     required: true,
                     extension: 'jpe?g,png',
                     uploadFile: true
                 },
                 petName: {
-                    required: true
+                    required: true,
+                    regexp: /^[а-я]+$/
                 },
                 animalType: {
-                    required: true
+                    required: true,
+                    regexp: /^[а-я]+$/
                 },
                 breed: {
-                    required: true
+                    required: true,
+                    regexp: /^[а-я]+$/
                 },
                 color: {
-                    required: true
+                    required: true,
+                    regexp: /^[а-я]+$/
                 },
                 doctor: {
-                    required: true
+                    required: true,
+                    regexp: /^[а-я]+$/
                 },
                 numberMicrochipTattoo: {
-                    required: true
+                    required: true,
+                    digits: true
                 },
                 clinic: {
                     required: true
                 }
+
             }
         });
-  /*  $(input[id^='vaccination['): {
-        required: true
-    }*/
-    $.extend($.validator.messages, {required: "Поле обязательно для заполения"});
+
+
+   /* $('[id^="vaccination["]').rules("add",{
+            required: true,
+            regexp: /^[а-я]+$/
+        });*/
+
+    jQuery.extend(jQuery.validator.messages, {
+        required: "Поле обязательно для заполения",
+        digits: "Введите только цифры",
+        regexp: "Введите только русские буквы"
+    });
+
+    $.validator.addMethod('regexp', function (value, element, params) {
+        var expression = new RegExp(params);
+        return this.optional(element) || expression.test(value);
+    });
+
 
 });
-

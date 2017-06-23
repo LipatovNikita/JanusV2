@@ -19,8 +19,6 @@
         <ul id="nav" class="left">
             <li><a href="">Janus</a></li>
             <li><a href="">Информация</a></li>
-            <li><a href="http://localhost:8080/passport/edit">Edit</a></li>
-            <li><a href="http://localhost:8080/passport/add">Add</a></li>
         </ul>
         <ul id="nav" class="right">
         <#if !currentUser??>

@@ -1,17 +1,12 @@
 <#setting date_format="YYYY/MM/DD">
 <script type="text/javascript" rel="script" src="/resources/js/combodate.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.date').each(function () {
-            $(this).combodate();
-        });
-    });
-</script>
+<script type="text/javascript" rel="script" src="/resources/js/owner_validate.js"></script>
+<script type="text/javascript" rel="script" src="/webjars/jquery-validation/1.16.0/jquery.validate.js"></script>
 <div class="row">
     <div class="input-field col s6">
         <input type="text" name="documentNumber" id="documentNumber"
-               value="${owner.documentNumber!""}">
+               value="${owner.documentNumber!""}" maxlength="10">
         <label for="documentNumber">Серия и номер паспорта</label>
     </div>
     <div class="input-field col s6">
@@ -34,7 +29,7 @@
 <div class="row">
     <div class="input-field col s6">
         <br/>
-        <input type="text" id="phoneNumber" name="phoneNumber" value="${owner.phoneNumber!""}">
+        <input type="text" id="phoneNumber" name="phoneNumber"  maxlength="11"  minlength="11" required pattern="d{11}" value="${owner.phoneNumber!""}">
         <label for="phoneNumber">Номер телефона</label>
     </div>
     <div class="input-field col s6">

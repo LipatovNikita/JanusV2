@@ -106,8 +106,9 @@ public class FastController {
         return "fast/edit";
     }
 
+    //todo сохранить фото питомца для главной. photo
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String update(Model model,  @ModelAttribute("pet") Pet pet, @ModelAttribute("passport") Passport passport, @RequestParam("images_p") MultipartFile[] images, @ModelAttribute("quarantine") Quarantine quarantine){
+    public String update(Model model,  @ModelAttribute("pet") Pet pet, @ModelAttribute("passport") Passport passport, @RequestParam("images_p") MultipartFile[] images, @ModelAttribute("quarantine") Quarantine quarantine,  @RequestParam("photo") MultipartFile photo){
         passport = passportService.update(passport);
         for (MultipartFile image : images) {
             passportService.uploadPassportImage(image, passport);
