@@ -58,11 +58,19 @@ body{
     display: none; !important;
 }
 .header-margin{
-    margin-bottom: 5%;
+     margin-bottom: 5%;
+}
+.header-margin2{
+    margin-bottom: 2%;
 }
 .card.table{
     padding: 5% 5%;
 }
 .picture-block{
     margin-left: 5%;
+}
+.center{
+    margin-left:15%;
+    margin-right: auto;
+    width:80%
 }
