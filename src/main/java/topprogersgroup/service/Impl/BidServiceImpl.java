@@ -55,8 +55,10 @@ public class BidServiceImpl implements BidService {
     }
 
     @Override
-    public List<Bid> findByDocumentNumberAndStatus(String status, String documentNumber, boolean isDeleted) {
-        return bidRepository.findByStatusAndPetsOwnerDocumentNumberAndIsDeleted(status,documentNumber,isDeleted);
+    public Set<Bid> findByDocumentNumberAndStatus(String status, String documentNumber, boolean isDeleted) {
+        List<Bid> bids = bidRepository.findByStatusAndPetsOwnerDocumentNumberAndIsDeleted(status,documentNumber,isDeleted);
+        Set<Bid> bidSet = new HashSet<Bid>(bids);
+        return bidSet;
     }
 
     @Override
