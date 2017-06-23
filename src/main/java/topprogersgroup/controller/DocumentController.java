@@ -144,13 +144,12 @@ public class DocumentController {
         Bid bid = bidService.findOne(idBid);
         if(bid.getStatus().equals(BID_ACCEPTED)){
             VeterinaryDocument vetDoc = new VeterinaryDocument();
-            //            todo: Добавил дату, нужно удалить со старницы
             vetDoc.setIssueDate(new Date());
             vetDoc.setBid(bid);
             HashSet<SpecialNotes> notesSet = new HashSet<>();
             notesSet.add(new SpecialNotes());
             vetDoc.setSpecialNotes(notesSet);
-//            todo: Таня допиши, сюда что еще нужно для формирования ВетДока, может массив СпецОтметок
+//           todo: Таня допиши, сюда что еще нужно для формирования ВетДока, может массив СпецОтметок
             model.addAttribute("vetDoc",vetDoc);
             model.addAttribute("bid", bid);
             model.addAttribute("numberPage",numberPage);
