@@ -47,9 +47,5 @@
     </div>
 </div>
 </#if>
-
-<#--<footer class="footer">-->
-
-<#--</footer>-->
 </body>
 </html>
