@@ -17,8 +17,24 @@
 <nav class="nav header-color">
     <ul id="nav">
         <ul id="nav" class="left">
-            <li><a href="">Janus</a></li>
-            <li><a href="">Информация</a></li>
+            <li><a href="/home">Янус</a></li>
+        <#if currentUser??>
+            <#if currentUser.role == "ADMIN">
+                <li><a href="/admin/create">Добавить пользователя</a></li>
+                <li><a href="/admin/checkpoint/create">Добавить ПКВП</a></li>
+                <li><a href="/admin/vet/create">Добавить ГосВетСлужбу</a></li>
+            <#elseif currentUser.role == "EMPLOYEE">
+                <li><a href="/docs/1">Заявки</a></li>
+                <li><a href="/docs/accepted/page/1">Принятые заявки</a></li>
+                <li><a href="/docs/vet/doc/page/1">Список ветеринарных свидетельств</a></li>
+                <li><a href="/docs/vet/sert/page/1">Список ветеринарных сертификатов</a></li>
+            <#elseif currentUser.role == "PET_OWNER">
+                <li><a href="/office/pets">Мои питомцы</a></li>
+                <li><a href="/office/bids">Мои заявки</a></li>
+                <li><a href="/fast/add">Добавить паспорт питомца</a></li>
+                <li><a href="/office/bids/create">Заявка на вет. свидетельство</a></li>
+            </#if>
+        </#if>
         </ul>
         <ul id="nav" class="right">
         <#if !currentUser??>

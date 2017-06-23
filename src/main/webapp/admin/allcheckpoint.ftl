@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Создание ПКВП</title>
+    <title>Список ПКВП</title>
     <link rel="stylesheet" type="text/css" href='/resources/materialize/css/materialize.css'/>
     <link rel="stylesheet" type="text/css" href='/resources/css/style.css'/>
 
@@ -14,42 +14,38 @@
 </head>
 <body>
 <#include "/template/navbar.ftl"/>
+
 <#if checkPointList??>
-    <#list checkPointList as checkPoint>
-    <div class="row">
-        <div class="col s9 m6 l5">
-            <div class="row">
-                <div class="col s6">
-                    <label>Наименование учреждения</label>
-                ${checkPoint.cpName!""}
-                </div>
-                <div class="col s6">
-                    <label>Номер телефона</label>
-                ${checkPoint.phoneNumber!""}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    <label>Адрес учереждения</label>
-                ${checkPoint.address!""}
-                </div>
-            </div>
-        </div>
-        <div class="col s3 m2 l1">
-            <div class="row">
+<table class="striped responsive-table">
+    <thead>
+    <tr>
+        <th>Наименование учреждения</th>
+        <th>Адрес учереждения</th>
+        <th>Номер телефона</th>
+        <th>Редактировать</th>
+        <th>Удалить</th>
+    </tr>
+    </thead>
+    <tbody>
+        <#list checkPointList as checkPoint>
+        <tr>
+            <td>${checkPoint.cpName!""}</td>
+            <td>${checkPoint.address!""}</td>
+            <td>${checkPoint.phoneNumber!""}</td>
+            <td>
                 <a href="/admin/checkpoint/list/${checkPoint.id}/edit" class="waves-effect waves-light btn">
                     Редактировать
                 </a>
-            </div>
-            <div class="row">
+            </td>
+            <td>
                 <a href="/admin/checkpoint/list/${checkPoint.id}/delete"class="waves-effect waves-light btn">
                     Удалить
                 </a>
-            </div>
-        </div>
-    </div>
-    </#list>
-
+            </td>
+        </tr>
+        </#list>
+    </tbody>
+</table>
 </#if>
 
 </body>

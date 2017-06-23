@@ -34,13 +34,13 @@
             <div id="imgzat" class="col s4">
                 <a href="/docs/vet/doc/page/1">
                     Ветеринарные свидетельства
-                    <img src="/resources/images/okbids.png" class="responsive-img" alt=""/>
+                    <img src="/resources/images/sertifacateR.png" class="responsive-img" alt=""/>
                 </a>
             </div>
             <div id="imgzat" class="col s4">
                 <a href="/docs/vet/sert/page/1">
-                    Ветеринарные свидетельства
-                    <img src="/resources/images/okbids.png" class="responsive-img" alt=""/>
+                    Ветеринарные сертификаты
+                    <img src="/resources/images/sertifacateF.png" class="responsive-img" alt=""/>
                 </a>
             </div>
         </div>
