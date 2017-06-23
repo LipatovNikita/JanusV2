@@ -91,7 +91,7 @@ public class OfficeController {
     }
 
     //Просмотр заявки
-    @RequestMapping(value = "/bids/{idBid}/preview", method = RequestMethod.POST)
+    @RequestMapping(value = "/bids/{idBid}/preview", method = RequestMethod.GET)
     public String previewBid(Model model,
                              @PathVariable Integer idBid) {
         Bid bid = bidService.findOne(idBid);
