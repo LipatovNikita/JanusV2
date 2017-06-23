@@ -23,36 +23,49 @@
         <a href="/office/vet/doc/${bid.id}" class="waves-effect waves-light btn">
             Просмотреть вет. свидетельство
         </a>
+        <br/>
+        <br/>
+        <#if bid.veterinaryDocument.veterinaryCertificate??>
+            <a href="/office/vet/sert/${bid.id}" class="waves-effect waves-light btn">
+                Просмотреть вет. сертификат
+            </a>
+            <br/>
+            <br/>
+        <#else>
+            <a class="btn disabled">
+                Просмотреть вет. сертификат
+            </a>
+            <br/>
+            <br/>
+        </#if>
     <#else>
         <a class="btn disabled">
             Просмотреть вет. свидетельство
         </a>
-    </#if>
-
-    <#if bid.veterinaryDocument.veterinaryCertificate??>
-        <a href="/office/vet/sert/${bid.id}" class="waves-effect waves-light btn">
-            Просмотреть вет. сертификат
-        </a>
-    <#else>
-        <a class="btn disabled">
-            Просмотреть вет. сертификат
-        </a>
+        <br/>
+        <br/>
     </#if>
     </div>
     <div class="col offset-s7 s5">
     <#if bid.status == "CREATED">
-        <a href="/office/bids/${bid.id}/send">
+        <a href="/office/bids/${bid.id}/send" class="waves-effect waves-light btn">
             Отправить на расмотрение(без возможности редактирования)
         </a>
-        <a href="/office/bids/${bid.id}/edit">
+        <br/>
+        <br/>
+        <a href="/office/bids/${bid.id}/edit" class="waves-effect waves-light btn">
             Редактирование
         </a>
     <#elseif bid.status == "REJECTED">
-        <a href="/office/bids/${bid.id}/edit">
+        <a href="/office/bids/${bid.id}/edit" class="waves-effect waves-light btn">
             Редактирование
         </a>
+        <br/>
+        <br/>
     </#if>
     </div>
+    <br/>
+    <br/>
     <div class="col s12">
     <#include "/template/output/bidforowner.ftl"/>
     </div>

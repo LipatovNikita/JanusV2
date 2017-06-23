@@ -22,7 +22,7 @@ public interface BidService {
 
     List<Bid> findForPageIsNotDeleted(Pageable pageable);
 
-    List<Bid> findByDocumentNumberAndStatus(String status,String documentNumber,boolean isDeleted);
+    Set<Bid> findByDocumentNumberAndStatus(String status,String documentNumber,boolean isDeleted);
 
     Set<Bid> findByEmailUser(String email, boolean isDeleted);
 

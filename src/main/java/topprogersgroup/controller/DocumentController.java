@@ -17,6 +17,7 @@ import javax.validation.Valid;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by VP on 16.06.2017.
@@ -74,7 +75,7 @@ public class DocumentController {
     @RequestMapping(value = {"/find/bids"}, method = RequestMethod.POST)
     public String findBid(Model model,
                           @RequestParam String ownerDocNumber){
-        List<Bid> bidList = bidService.findByDocumentNumberAndStatus(BID_PROCESSED,ownerDocNumber,false);
+        Set<Bid> bidList = bidService.findByDocumentNumberAndStatus(BID_PROCESSED,ownerDocNumber,false);
         model.addAttribute("bidList",bidList);
         return "document/bids";
     }
@@ -84,7 +85,7 @@ public class DocumentController {
     @RequestMapping(value = {"/find/acceptedbids"}, method = RequestMethod.POST)
     public String findAcceptedBid(Model model,
                                   @RequestParam String ownerDocNumber){
-        List<Bid> bidList = bidService.findByDocumentNumberAndStatus(BID_ACCEPTED,ownerDocNumber,false);
+        Set<Bid> bidList = bidService.findByDocumentNumberAndStatus(BID_ACCEPTED,ownerDocNumber,false);
         model.addAttribute("bidList",bidList);
         return "document/bids";
     }

@@ -56,7 +56,7 @@
         </tbody>
     </table>
 
-    <#if numberPage?? || (numberPage > 0) >
+    <#if (numberPage??) || (numberPage > 0) >
     <#include "/template/pagination/processbids.ftl"/>
     </#if>
 </#if>

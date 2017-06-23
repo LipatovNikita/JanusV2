@@ -60,8 +60,8 @@
                     </div>
                 </div>
                 <div class="card-action">
-                    <div class="row"><a href="/office/${bid.id}/preview">Просмотреть</a></div>
-                    <div class="row"><a href="/office/${bid.id}/edit">Редактировать</a></div>
+                    <div class="row"><a href="/office/bids/${bid.id}/preview">Просмотреть</a></div>
+                    <div class="row"><a href="/office/bids/${bid.id}/edit">Редактировать</a></div>
                 </div>
             </fieldset>
         </#list>

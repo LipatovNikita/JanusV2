@@ -55,7 +55,7 @@ public class BidServiceTest {
 
     @Test
     public void findByDocumentNumberAndStatus() throws Exception {
-        List<Bid> bid = bidService.findByDocumentNumberAndStatus("processed","2281488",false);
+        Set<Bid> bid = bidService.findByDocumentNumberAndStatus("processed","2281488",false);
         System.out.print("fdf");
     }
 
