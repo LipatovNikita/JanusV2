@@ -15,7 +15,7 @@ public class UploadImage {
     @Column(name = "id", nullable = false, unique = true)
     private int id;
 
-    @Column(name = "name", nullable = false,unique = true)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "path", nullable = false, unique = true)

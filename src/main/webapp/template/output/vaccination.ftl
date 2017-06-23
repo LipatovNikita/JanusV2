@@ -1,7 +1,7 @@
 <#if vaccinationList??>
 <div class="row">
     <div class="input-field col s6">
-        <table>
+        <table class="striped responsive-table">
             <thead>
             <tr>
                 <th>Серия вакцины</th>

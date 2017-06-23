@@ -64,6 +64,7 @@ public class PetServiceImpl implements PetService {
         return petRepository.findByIsDeletedAndIsLast(false, true);
     }
 
+
     @Override
     public List<Pet> findIsLastPetByOwner(Integer id) {
         return petRepository.findByIsDeletedAndIsLastAndOwnerId(false,true,id);
@@ -71,12 +72,15 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Pet update(Pet pet) {
-        Pet oldPet = new Pet();
-        oldPet = petRepository.findOne(pet.getId());
+        Pet oldPet = petRepository.findOne(pet.getId());
         oldPet.setLast(false);
         petRepository.save(oldPet);
+        Quarantine quarantine = quarantineService.save(pet.getQuarantine());
+        pet.setQuarantine(quarantine);
         pet.setId(0);
         pet.setLast(true);
+        pet.setGuid(oldPet.getGuid());
+        pet.setOwner(oldPet.getOwner());
         return petRepository.save(pet);
     }
 

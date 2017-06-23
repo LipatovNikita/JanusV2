@@ -27,6 +27,11 @@
                     <div class="card-content">
                         <h3 class="light">${pet.passport.petName!""}</h3>
                     </div>
+                    <div class="card-action">
+                     <a href="/fast/edit/${pet.id}" class="btn-floating btn-large red">
+                            <i class="large material-icons">mode_edit</i>
+                        </a>
+                    </div>
                 </div>
             </a>
         </li>

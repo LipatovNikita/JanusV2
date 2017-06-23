@@ -6,7 +6,7 @@
     </div>
     <div class="col s4">
         <label>Пункт отправления</label>
-        <p>${route.departure!""}</p>
+        <p>${route.departureDate!""}</p>
     </div>
     <div class="col s4">
         <label>Пункты следования</label>
@@ -30,7 +30,7 @@
 </div>
 <div class="row">
     <div class="col s12">
-        <table>
+        <table class="striped responsive-table">
             <thead>
             <tr>
                 <th>Название пропускного пункта</th>

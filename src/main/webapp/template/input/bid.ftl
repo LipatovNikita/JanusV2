@@ -1,38 +1,41 @@
+<script type="text/javascript" rel="script" src="/resources/js/combodate.js"></script>
+<script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
+<script type="text/javascript" rel="script" src="/resources/js/moment.js"></script>
+<link rel="stylesheet" type="text/css" href='/resources/materialize/css/materialize.css'/>
+<script>
+    $(document).ready(function () {
+        $('.date').each(function () {
+            $(this).combodate();
+            $('select').material_select();
+        });
+    });
+</script>
 <div class="row">
     <div class="col s6">
-        <label for="countPet">Количество петомцев</label>
+        <label for="countPet">Количество питомцев</label>
         <input type="text" name="countPet" id="countPet" value="${bid.countPet!0}" required autofocus/>
     </div>
     <div class="col s6">
-        <label for="countSeats">Количество мест под петомцев</label>
+        <label for="countSeats">Количество мест под питомцев</label>
         <input type="text" name="countSeats" id="countSeats" value="${bid.countSeats!0}" required/>
     </div>
 </div>
 <div>
-<#--<div id="labelDepartureDate" class="input-field col s6">-->
-<#--<label>Дата рождения</label>-->
-<#--<div>-->
-<#--<script>-->
-<#--$(function () {-->
-<#--$('#departureDate').combodate({-->
-<#--value: new Date(),-->
-<#--minYear: 1950,-->
-<#--maxYear: moment().format('YYYY')-->
-<#--});-->
-<#--});-->
-<#--</script>-->
-<#--<input type="text" id="departureDate" name="departureDate"-->
-<#--value="${(bid.departureDate?string("dd-MM-yyyy"))!""}" format="DD-MM-YYYY"-->
-<#--data-template="D MMM YYYY">-->
-<#--</div>-->
-<#--</div>-->
-<#--todo:Множественный селект для выбора питомцев и выбор маршрута-->
-<#--<div>-->
-<#--<label for="route">Тип транспорта</label>-->
-<#--<input type="text" name="route" id="route" value="${.route!""}" required/>-->
-<#--@ManyToMany(cascade = CascadeType.ALL)-->
-<#--@JoinTable(name = "pet_bid", joinColumns = @JoinColumn(name = "pet_id"),-->
-<#--inverseJoinColumns = @JoinColumn(name = "bid_id"))-->
-<#--private List<Pet> pets;-->
-<#--</div>-->
+    <div class="row">
+        <div class="input-field col s6">
+        <#setting date_format="YYYY/MM/DD">
+            <input type="text" class="date" id="departureDate"
+                   name="departureDate" data-format="YYYY/MM/DD" data-template="D MMM YYYY"
+                   value="${bid.departureDate!"1996/10/24"?date}">
+            <label for="departureDate">Дата поездки</label>
+        </div>
+   <div class="input-field col s8">
+            <select id="petsid[]" name="petsid[]" multiple>
+                   <#list petList as pet>
+                         <option value="${pet.id}">${pet.passport.petName!""}</option>
+                   </#list>
+            </select>
+            <label for="pet">Питомцы</label>
+        </div>
+    </div>
 </div>

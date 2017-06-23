@@ -44,6 +44,9 @@ public class Bid {
             inverseJoinColumns = @JoinColumn(name = "bid_id"))
     private List<Pet> pets;
 
+    @OneToOne(mappedBy = "bid")
+    private VeterinaryDocument veterinaryDocument;
+
     @Column(name = "isdeleted")
     @Type(type = "boolean")
     private boolean isDeleted;

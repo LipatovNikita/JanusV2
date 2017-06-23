@@ -19,7 +19,7 @@
 <#if currentUser?? && currentUser.role == "ADMIN">
 <div class="center-block section row">
     <div class="col s12">
-        <div class="row picture-block">
+        <div class="row">
             <div class="col s4">
                 <a href="/admin/create">
                     Добавить пользователя
@@ -32,8 +32,11 @@
                 </a>
             </div>
             <div class="col s4">
-                <a href="/admin/vet/create">Добавить ГосВетСлужбу</a>
-                <img src="/resources/images/statevetservice.png" class="responsive-img" alt=""/>
+                <a href="/admin/vet/create">
+                    Добавить ГосВетСлужбу
+                    <img src="/resources/images/statevetservice.png" class="responsive-img" alt=""/>
+                </a>
+
             </div>
         </div>
     </div>

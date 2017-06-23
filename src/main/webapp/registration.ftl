@@ -18,7 +18,7 @@
             <div class="card-content black-text">
                 <h4 class="light">Регистрация</h4>
                 <br/>
-                <form role="form" name="registration" method="post">
+                <form role="form" id="registration" name="registration" method="post">
                     <div class="input-field">
                         <input type="email" name="email" id="email_reg" required/>
                         <label for="email">Адрес электронной почты</label>

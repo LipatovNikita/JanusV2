@@ -36,7 +36,7 @@
         <div id="block_bid" class="col s12">
             <div class="center-block">
             <#include "/template/input/bid.ftl">
-                <input type="submit" name="sub" value="Создать">
+                <input class="btn btn-primary" type="submit" value="Создать">
             </div>
         </div>
 

@@ -19,33 +19,57 @@
 
 <div class="section">
 <#if bidList??>
-    <#list bidList as bid>
-        <div class="row">
-            <div class="col s4">
-                Количество петомцев: ${bid.countPet!0}<br/>
-                Количество мест под петомцев: ${bid.countSeats!0}<br/>
-                Дата отправления: ${(bid.departureDate?string("dd-MM-yyyy"))!""}<br/>
-            </div>
-            <div class="col s6">
-                Пункт назначения: ${bid.route.destination!""}<br/>
-                Пукты следования: ${bid.route.followingPoints!""}<br/>
-                Пункт отправления: ${bid.route.departure!""}<br/>
-                Въездной БИП в ЕС: ${bid.route.BorderInspectionPosts!""}<br/>
-                Тип транспорта: ${bid.route.transportType!""}<br/>
-            </div>
-            <div class="col s2">
-                <div class="row"><a href="/office/${bid.id}/preview">Просмотреть</a></div>
-                <div class="row"><a href="/office/${bid.id}/edit">Редактировать</a></div>
-            </div>
-        </div>
-    </#list>
+    <div class="row center-block">
+        <#list bidList as bid>
+            <fieldset class="card table">
+                <div class="row">
+                    <div class="col s12 m6">
+
+                            <p class="flow-text">Статус: ${bid.status!""}</p>
+
+                    </div>
+                    <div class="col s12">
+                        <div class="col s6">
+                            <label class="flow-text"> Количество мест под питомцев:</label>
+                            <p class="flow-text">  ${bid.countSeats!0}</p>
+                        </div>
+                        <div class="col s6">
+                            <label class="flow-text"> Дата отправления: </label>
+                            <p class="flow-text">  ${(bid.departureDate?string("dd-MM-yyyy"))!""}</p>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="col s6">
+                            <label class="flow-text"> Пункт назначения:</label>
+                            <p class="flow-text">  ${bid.route.destination!""}</p>
+                        </div>
+                        <div class="col s6">
+                            <label class="flow-text"> Пукты следования: </label>
+                            <p class="flow-text"> ${bid.route.followingPoints!""}</p>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="col s6">
+                            <label class="flow-text"> Пункт отправления: </label>
+                            <p class="flow-text">${bid.route.departure!""}</p>
+                        </div>
+                        <div class="col s6">
+                            <label class="flow-text"> Въездной БИП в ЕС: </label>
+                            <p class="flow-text">${bid.route.BorderInspectionPosts!""}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <div class="row"><a href="/office/bids/${bid.id}/preview">Просмотреть</a></div>
+                    <div class="row"><a href="/office/bids/${bid.id}/edit">Редактировать</a></div>
+                </div>
+            </fieldset>
+        </#list>
+    </div>
 </#if>
 
 </div>
 
-<footer>
-    footer
-</footer>
 </body>
 </html>
 

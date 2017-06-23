@@ -16,17 +16,58 @@
 <script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
 
 <#include "/template/navbar.ftl">
-
+<br/><br/>
 <div class="center-block section row">
-    <#if bid.status == "CREATED">
-    <#--todo: Можно с помощью JS сначала заблокировать ссылку, потом после вывода сообщения, типа после отправки редактировать нельзя, если нажмет да то отправить-->
-        <a href="/office/bids/${bid.id}/send">Отправить на расмотрение(без возможности редактирования)</a>
-        <a href="/office/bids/${bid.id}/edit">Редактирование</a>
-    <#elseif bid.status == "REJECTED">
-        <a href="/office/bids/${bid.id}/edit">Редактирование</a>
+    <div class="col offset-s7 s5">
+    <#if bid.veterinaryDocument??>
+        <a href="/office/vet/doc/${bid.id}" class="waves-effect waves-light btn">
+            Просмотреть вет. свидетельство
+        </a>
+        <br/>
+        <br/>
+        <#if bid.veterinaryDocument.veterinaryCertificate??>
+            <a href="/office/vet/sert/${bid.id}" class="waves-effect waves-light btn">
+                Просмотреть вет. сертификат
+            </a>
+            <br/>
+            <br/>
+        <#else>
+            <a class="btn disabled">
+                Просмотреть вет. сертификат
+            </a>
+            <br/>
+            <br/>
+        </#if>
+    <#else>
+        <a class="btn disabled">
+            Просмотреть вет. свидетельство
+        </a>
+        <br/>
+        <br/>
     </#if>
+    </div>
+    <div class="col offset-s7 s5">
+    <#if bid.status == "CREATED">
+        <a href="/office/bids/${bid.id}/send" class="waves-effect waves-light btn">
+            Отправить на расмотрение(без возможности редактирования)
+        </a>
+        <br/>
+        <br/>
+        <a href="/office/bids/${bid.id}/edit" class="waves-effect waves-light btn">
+            Редактирование
+        </a>
+    <#elseif bid.status == "REJECTED">
+        <a href="/office/bids/${bid.id}/edit" class="waves-effect waves-light btn">
+            Редактирование
+        </a>
+        <br/>
+        <br/>
+    </#if>
+    </div>
+    <br/>
+    <br/>
     <div class="col s12">
-        <#include "/template/output/bidforowner.ftl"/>
+    <#include "/template/output/bidforowner.ftl"/>
     </div>
 </div>
 <footer class="footer">
