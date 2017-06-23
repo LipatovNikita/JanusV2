@@ -12,34 +12,19 @@
 </head>
 <body>
 <script type="text/javascript" rel="script" src="/resources/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
-<script type="text/javascript" rel="script" src="/resources/js/vetDoc.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/pgwslider.js"></script>
-
 <#include "/template/navbar.ftl">
-
 <div class="row main_block">
-    <div class="col s12 block-top">
-        <ul class="tabs" id="tabs">
-            <li class="tab col">
-                <a href="#block_vetdoc" class="active" name="block_vetdoc" data-toggle="tab">
-                    Ветеринарное свидетельство
-                </a>
-            </li>
-            <li class="tab col">
-                <a href="#block_specnotes" name="block_specnotes" data-toggle="tab">
-                    Специальные отметки
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div id="block_vetdoc" class="col s12 center-block">
-    <#include "/template/input/vetdoc.ftl">
-    </div>
+    <form id="vetdocform" name="" method="POST">
+        <div id="block_vetdoc" class="col s12 center-block">
+        <#include "/template/input/vetdoc.ftl">
+        </div>
 
-    <div id="block_specnotes" class="col s12 center-block">
-    <#include "/template/input/specialnotes.ftl">
-    </div>
+        <div id="block_specnotes" class="col s12 center-block">
+        <#include "/template/input/specialnotes.ftl">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Отправить данные">
+    </form>
 </div>
 
 </body>
