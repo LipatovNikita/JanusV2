@@ -66,3 +66,8 @@ body{
 .picture-block{
     margin-left: 5%;
 }
+.center{
+    margin-left:15%;
+    margin-right: auto;
+    width:80%
+}
