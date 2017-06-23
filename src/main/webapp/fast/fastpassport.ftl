@@ -44,17 +44,6 @@
                     </div>
                 </fieldset>
                 <br/>
-                <fieldset>
-                    <div class="file-field input-field">
-                        <div class="btn">
-                            <span>Фото</span>
-                            <input type="file" name="photo" multiple="multiple" id="photo"/>
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Загрузите фото питомца">
-                        </div>
-                    </div>
-                </fieldset>
                 <div class="btn-block">
                     <a class="btn btn-primary btnPrevious">Previous</a>
                     <input class="btn btn-primary mainBtn" type="submit" value="Отправить данные">
