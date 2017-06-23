@@ -16,20 +16,39 @@
 
 <#include "/template/navbar.ftl">
 
-
 <div class="section">
-    <#--todo: ТАНЯ отдизайнь страницу-->
-Номер сертификата:<input type="text" name="number" id="number" value="${vetSert.number!0}"> <br/>
-Цетральный компетентный орган:<input type="text" name="centralCompetentAuthority"
-                                     id="centralCompetentAuthority" value=" ${vetSert.centralCompetentAuthority!""}"><br/>
-Местный компетентный орган: <input type="text" name="localCompetentAuthority" id="localCompetentAuthority" value="${vetSert.localCompetentAuthority!""}"><br/>
-Место оформления: <input type="text" name="registrationPlace" id="registrationPlace" value="${vetSert.registrationPlace!""}"><br/>
-
+    <div class="row center-block">
+        <fieldset class="card table">
+            <div class="row">
+                <div class="col s12">
+                    <div class="col s6">
+                        <label class="flow-text"> Номер сертификата:</label>
+                        <input type="text" name="number" id="number" value="${vetSert.number!0}"> <br/>
+                    </div>
+                    <div class="col s6">
+                        <label class="flow-text"> Цетральный компетентный орган:</label>
+                        <input type="text" name="centralCompetentAuthority"
+                               id="centralCompetentAuthority"
+                               value=" ${vetSert.centralCompetentAuthority!""}"><br/>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <div class="col s6">
+                        <label class="flow-text"> Местный компетентный орган:</label>
+                        <input type="text" name="localCompetentAuthority"
+                               id="localCompetentAuthority"
+                               value="${vetSert.localCompetentAuthority!""}"><br/>
+                    </div>
+                    <div class="col s6">
+                        <label class="flow-text"> Место оформления:</label>
+                        <input type="text" name="registrationPlace" id="registrationPlace"
+                               value="${vetSert.registrationPlace!""}"><br/>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
 </div>
-
-<footer>
-    footer
-</footer>
 </body>
 </html>
 

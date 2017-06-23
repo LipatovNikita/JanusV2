@@ -28,10 +28,4 @@
         <label for="transportID">Идентификатор транспорта</label>
         <input type="text" name="route.transportID" id="transportID" value="${route.transportID!""}" required/>
     </div>
-<#--todo:Добавить множественный выбор чекПоинтов-->
-<#--<div class="col s3">-->
-<#--<label for="checkPoints">Контрольные пункты</label>-->
-<#--<input type="text" name="checkPoints" id="checkPoints" value="${.checkPoints!""}" required/>-->
-<#--Set<CheckPoint> checkPoints;-->
-<#--</div>-->
 </div>
