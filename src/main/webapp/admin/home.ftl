@@ -32,8 +32,11 @@
                 </a>
             </div>
             <div class="col s4">
-                <a href="/admin/vet/create">Добавить ГосВетСлужбу</a>
-                <img src="/resources/images/statevetservice.png" class="responsive-img" alt=""/>
+                <a href="/admin/vet/create">
+                    Добавить ГосВетСлужбу
+                    <img src="/resources/images/statevetservice.png" class="responsive-img" alt=""/>
+                </a>
+
             </div>
         </div>
     </div>

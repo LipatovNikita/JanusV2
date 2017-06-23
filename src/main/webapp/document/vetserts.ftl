@@ -46,7 +46,7 @@
                             Отправить зарубежной стране
                         </a>
                     <#else>
-                        <a href="/docs/vet/doc/${vetDoc.id}/send" class="btn disabled">
+                        <a class="btn disabled">
                             Отправить зарубежной стране
                         </a>
                     </#if>

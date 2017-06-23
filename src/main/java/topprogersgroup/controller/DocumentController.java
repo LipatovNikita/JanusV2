@@ -35,6 +35,9 @@ public class DocumentController {
     private final String VET_DOC_NOT_SENT = "NOT_SENT";//Вет документ еще не отослан
     private final String VET_DOC_SENT = "SENT";//Вет документ отослан
     private final String VET_SERT_CREATED = "CREATED";
+    private final String VET_SERT_SENT = "SENT";//Отправлен
+    private final String VET_SERT_REJECTED = "REJECTED";//Отклонен
+    private final String VET_SERT_ACCEPTED = "ACCEPTED";//Принят
 
     @Autowired
     private VeterinaryDocumentService veterinaryDocService;
@@ -233,6 +236,7 @@ public class DocumentController {
         vetSert.setStatus(VET_SERT_CREATED);
         veterinaryCertService.create(vetSert);
         vetDoc.setStatus(VET_DOC_SENT);
+        veterinaryDocService.edit(vetDoc);
         return "redirect:/docs/accepted/page/1";
     }
 
@@ -254,9 +258,25 @@ public class DocumentController {
     @RequestMapping(value = {"/vet/sert/{idDoc}/send"}, method = RequestMethod.POST)
     public String sendDocumentToForeignCountry(@PathVariable Integer idDoc){
         VeterinaryCertificate vetSert = veterinaryCertService.findById(idDoc);
+        vetSert.setStatus(VET_SERT_SENT);
+        veterinaryCertService.edit(vetSert);
         veterinaryCertService.getStatusFromForeignSystem(vetSert);
         return "redirect:/docs/sert/page/1";
     }
 
-
+    //Просмотреть Вет.сертификат
+    @PreAuthorize("hasAuthority('EMPLOYEE')")
+    @RequestMapping(value = {"/vet/sert/{idDoc}"}, method = RequestMethod.GET)
+    public String previewVeterinaryCertificate(Model model,
+                                            @PathVariable Integer idDoc){
+        VeterinaryCertificate vetSert = veterinaryCertService.findById(idDoc);
+        VeterinaryDocument vetDoc = vetSert.getVeterinaryDocument();
+        Bid bid = vetDoc.getBid();
+        model.addAttribute("vetSert", vetSert);
+        model.addAttribute("vetDoc", vetDoc);
+        model.addAttribute("bid", bid);
+        model.addAttribute("petList", bid.getPets());
+        model.addAttribute("route", bid.getRoute());
+        return "document/previewvetsert";
+    }
 }
