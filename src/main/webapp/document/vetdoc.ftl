@@ -14,8 +14,8 @@
 <script type="text/javascript" rel="script" src="/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" rel="script" src="/resources/js/pgwslider.js"></script>
 <#include "/template/navbar.ftl">
-<div class="row main_block">
-    <form id="vetdocform" name="" method="POST">
+<form id="vetdocform" name="" action="" method="POST">
+    <div class="row main_block">
         <div id="block_vetdoc" class="col s12 center-block">
         <#include "/template/input/vetdoc.ftl">
         </div>
@@ -24,8 +24,7 @@
         <#include "/template/input/specialnotes.ftl">
         </div>
         <input class="btn btn-primary" type="submit" value="Отправить данные">
-    </form>
-</div>
-
+    </div>
+</form>
 </body>
 </html>

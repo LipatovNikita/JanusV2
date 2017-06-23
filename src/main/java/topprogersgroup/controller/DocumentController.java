@@ -12,10 +12,7 @@ import topprogersgroup.entity.*;
 import topprogersgroup.service.*;
 
 import javax.validation.Valid;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by VP on 16.06.2017.
@@ -149,9 +146,10 @@ public class DocumentController {
             VeterinaryDocument vetDoc = new VeterinaryDocument();
             vetDoc.setIssueDate(new Date());
             vetDoc.setBid(bid);
-            HashSet<SpecialNotes> notesSet = new HashSet<>();
-            notesSet.add(new SpecialNotes());
-            vetDoc.setSpecialNotes(notesSet);
+            List<SpecialNotes> notes = new ArrayList<>();
+            SpecialNotes specialNote = new SpecialNotes();
+            notes.add(specialNote);
+            vetDoc.setSpecialNotes(notes);
             Employee employee = employeeService.findEmployeeByEmail(userService.getUserEmail(),false);
             vetDoc.setEmployee(employee);
             vetDoc.setStateVeterinaryService(employee.getStateVeterinaryService());
@@ -167,15 +165,19 @@ public class DocumentController {
     @RequestMapping(value = {"/accepted/bid/{idBid}"}, method = RequestMethod.POST)
     public String createVetDocForAcceptedBid(Model model,
                                              @PathVariable Integer idBid,
-                                             @ModelAttribute("bid")Bid bid,
+                                             @ModelAttribute("specialNotes") ArrayList<SpecialNotes> specialNotes,
                                              @ModelAttribute("vetDoc") VeterinaryDocument vetDoc,
                                              BindingResult bindingVetDocResult){
         if(bindingVetDocResult.hasErrors()){
             return "document/vetdoc";
         }
-
+        Bid bid = bidService.findOne(idBid);
         vetDoc.setBid(bid);
+        vetDoc.setIssueDate(new Date());
         vetDoc.setStatus(VET_DOC_NOT_SENT);
+        Employee employee = employeeService.findEmployeeByEmail(userService.getUserEmail(),false);
+        vetDoc.setEmployee(employee);
+        vetDoc.setStateVeterinaryService(employee.getStateVeterinaryService());
         vetDoc = veterinaryDocService.create(vetDoc);
         bid.setStatus(BID_APPROVED);
         return String.format("redirect:/docs/vet/doc/%d",vetDoc.getId());
@@ -233,6 +235,7 @@ public class DocumentController {
         VeterinaryDocument vetDoc = veterinaryDocService.getVeterinaryDocumentById(idDoc);
         vetSert.setVeterinaryDocument(vetDoc);
         vetSert.setStatus(VET_SERT_CREATED);
+        vetSert.setIssueDate(new Date());
         veterinaryCertService.create(vetSert);
         vetDoc.setStatus(VET_DOC_SENT);
         veterinaryDocService.edit(vetDoc);

@@ -15,7 +15,7 @@
 <script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
 
 <#include "/template/navbar.ftl">
-
+<form action=""  method="POST">
 <div class="section">
     <div class="row center-block">
         <fieldset class="card table">
@@ -45,10 +45,14 @@
                                value="${vetSert.registrationPlace!""}"><br/>
                     </div>
                 </div>
+                <div class="col s12">
+                    <input class="btn btn-primary" type="submit" value="Отправить данные">
+                </div>
             </div>
         </fieldset>
     </div>
 </div>
+</form>
 </body>
 </html>
 
