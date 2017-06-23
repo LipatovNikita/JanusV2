@@ -51,6 +51,9 @@ public class FastController {
     @Autowired
     private VaccinationService vaccinationService;
 
+    @Autowired
+    private DiseaseService diseaseService;
+
     @PreAuthorize("hasAuthority('PET_OWNER')")
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String fast(Model model) {
@@ -84,7 +87,12 @@ public class FastController {
             for (MultipartFile image : images) {
                 passportService.uploadPassportImage(image, passport);
             }
+
             quarantine = quarantineService.save(quarantine);
+            for (Disease disease: quarantine.getDiseases()){
+                disease.setQuarantine(quarantine);
+                diseaseService.save(disease);
+            }
             Pet pet = new Pet();
             pet.setOwner(owner);
             pet.setPassport(passport);
@@ -106,9 +114,8 @@ public class FastController {
         return "fast/edit";
     }
 
-    //todo сохранить фото питомца для главной. photo
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String update(Model model,  @ModelAttribute("pet") Pet pet, @ModelAttribute("passport") Passport passport, @RequestParam("images_p") MultipartFile[] images, @ModelAttribute("quarantine") Quarantine quarantine,  @RequestParam("photo") MultipartFile photo){
+    public String update(Model model,  @ModelAttribute("pet") Pet pet, @ModelAttribute("passport") Passport passport, @RequestParam("images_p") MultipartFile[] images, @ModelAttribute("quarantine") Quarantine quarantine){
         passport = passportService.update(passport);
         for (MultipartFile image : images) {
             passportService.uploadPassportImage(image, passport);

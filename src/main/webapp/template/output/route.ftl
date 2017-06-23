@@ -6,7 +6,7 @@
     </div>
     <div class="col s4">
         <label>Пункт отправления</label>
-        <p>${route.departure!""}</p>
+        <p>${route.departureDate!""}</p>
     </div>
     <div class="col s4">
         <label>Пункты следования</label>

@@ -11,7 +11,7 @@
 </div>
 <div class="row">
     <div class="col s12">
-        <label>Петомцы</label>
+        <label>Питомцы</label>
         <#include "/template/output/petstable.ftl"/>
     </div>
 </div>
