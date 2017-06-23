@@ -51,11 +51,11 @@
                     <div class="col s12">
                         <div class="col s6">
                             <label class="flow-text"> Пункт отправления: </label>
-                            <p class="flow-text">  ${bid.route.departure!""}</p>
+                            <p class="flow-text">${bid.route.departure!""}</p>
                         </div>
                         <div class="col s6">
                             <label class="flow-text"> Въездной БИП в ЕС: </label>
-                            <p class="flow-text">  ${bid.route.BorderInspectionPosts!""}</p>
+                            <p class="flow-text">${bid.route.BorderInspectionPosts!""}</p>
                         </div>
                     </div>
                 </div>
