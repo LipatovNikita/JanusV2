@@ -60,8 +60,8 @@ public class DocumentController {
     @RequestMapping(value = {"/{numberPage}"}, method = RequestMethod.GET)
     public String all(Model model,
                       @PathVariable Integer numberPage){
-        if(numberPage <= 0){
-            numberPage = 1;
+        if(numberPage < 0){
+            numberPage = 0;
         }
         Pageable pageable = new PageRequest(numberPage,20);
         List<Bid> bidList = bidService.findForPageByStatusAndSortDate(BID_PROCESSED,false, pageable);
@@ -77,7 +77,7 @@ public class DocumentController {
                           @RequestParam String ownerDocNumber){
         Set<Bid> bidList = bidService.findByDocumentNumberAndStatus(BID_PROCESSED,ownerDocNumber,false);
         model.addAttribute("bidList",bidList);
-        return "document/bids";
+        return "document/forfindbids";
     }
 
     //Поиск принятых заявок по номеру документа Владельца(находятся на странице - findacceptedbids)
@@ -87,24 +87,22 @@ public class DocumentController {
                                   @RequestParam String ownerDocNumber){
         Set<Bid> bidList = bidService.findByDocumentNumberAndStatus(BID_ACCEPTED,ownerDocNumber,false);
         model.addAttribute("bidList",bidList);
-        return "document/bids";
+        return "document/forfindbids";
     }
 
     //Выбранная заявка
     @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value = {"/bid/{idBid}"}, method = RequestMethod.GET)
     public String processBid(Model model,
-                             @PathVariable Integer idBid,
-                             @ModelAttribute("numberPage")Integer numberPage){
+                             @PathVariable Integer idBid){
         Bid bid = bidService.findOne(idBid);
         if(bid.getStatus().equals(BID_PROCESSED)){
             model.addAttribute("bid", bid);
             model.addAttribute("petList", bid.getPets());
             model.addAttribute("route", bid.getRoute());
-            model.addAttribute("numberPage",numberPage);
             return "document/bid";//Страница с заявкой
         }
-       return String.format("redirect:/docs/%d",numberPage);
+       return String.format("redirect:/docs/%d",0);
     }
 
     //Сохранения решения насчет заявки(ОТКЛОНЕНА или ПРИНЯТА)
@@ -113,23 +111,22 @@ public class DocumentController {
     public String processBid(Model model,
                              @Valid @ModelAttribute("bid")Bid bid,
                              BindingResult bindingResult,
-                             @ModelAttribute("numberPage")Integer numberPage){
-        if(bindingResult.hasErrors()){
-            return "document/bid";
-        }
+                             @PathVariable Integer idBid){
+        Bid bid1 = bidService.findOne(idBid);
         if(bid.getStatus().equals(BID_REJECTED) ||
                 bid.getStatus().equals(BID_ACCEPTED)){
-            bidService.save(bid);
+            bid1.setStatus(bid.getStatus());
+            bidService.save(bid1);
         }
-        return String.format("redirect:docs/%d",numberPage);
+        return String.format("redirect:docs/%d",0);
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value = {"/accepted/page/{numberPage}"}, method = RequestMethod.GET)
     public String getAcceptedBidPage(Model model,
                                      @ModelAttribute("numberPage")Integer numberPage){
-        if(numberPage <= 0){
-            numberPage = 1;
+        if(numberPage < 0){
+            numberPage = 0;
         }
         Pageable pageable = new PageRequest(numberPage,20);
         List<Bid> bidList = bidService.findForPageByStatusAndSortDate(BID_ACCEPTED,false,pageable);
@@ -188,8 +185,8 @@ public class DocumentController {
     @RequestMapping(value = {"/vet/doc/page/{numberPage}"}, method = RequestMethod.GET)
     public String getVeterinaryDocumentList(Model model,
                                             @PathVariable Integer numberPage){
-        if(numberPage <= 0){
-            numberPage = 1;
+        if(numberPage < 0){
+            numberPage = 0;
         }
         Pageable pageable = new PageRequest(numberPage,20);
         List<VeterinaryDocument> vetDocList = veterinaryDocService.getAllVeterinaryDocumentPagingList(pageable);

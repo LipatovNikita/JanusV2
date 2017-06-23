@@ -20,25 +20,25 @@
     <div class="col s12">
         <div class="row picture-block">
             <div class="col s4">
-                <a href="/docs/1">
+                <a href="/docs/0">
                     Заявки
                     <img src="/resources/images/processbids.png" class="responsive-img" alt=""/>
                 </a>
             </div>
             <div id="imgzat" class="col s4">
-                <a href="/docs/accepted/page/1">
+                <a href="/docs/accepted/page/0">
                     Принятые заявки
                     <img src="/resources/images/okbids.png" class="responsive-img" alt=""/>
                 </a>
             </div>
             <div id="imgzat" class="col s4">
-                <a href="/docs/vet/doc/page/1">
+                <a href="/docs/vet/doc/page/0">
                     Ветеринарные свидетельства
                     <img src="/resources/images/sertifacateR.png" class="responsive-img" alt=""/>
                 </a>
             </div>
             <div id="imgzat" class="col s4">
-                <a href="/docs/vet/sert/page/1">
+                <a href="/docs/vet/sert/page/0">
                     Ветеринарные сертификаты
                     <img src="/resources/images/sertifacateF.png" class="responsive-img" alt=""/>
                 </a>

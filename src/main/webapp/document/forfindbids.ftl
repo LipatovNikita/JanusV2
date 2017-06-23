@@ -55,8 +55,6 @@
             </#list>
         </tbody>
     </table>
-
-    <#include "/template/pagination/processbids.ftl"/>
 </#if>
 </div>
 
