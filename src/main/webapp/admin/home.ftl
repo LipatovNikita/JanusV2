@@ -19,7 +19,7 @@
 <#if currentUser?? && currentUser.role == "ADMIN">
 <div class="center-block section row">
     <div class="col s12">
-        <div class="row picture-block">
+        <div class="row">
             <div class="col s4">
                 <a href="/admin/create">
                     Добавить пользователя

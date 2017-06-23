@@ -101,8 +101,7 @@ public class FastController {
         }
         return "office/home";
     }
-
-  /*  @PreAuthorize("@currentUserServiceImpl.canAccessOwnerPets(principal, #idPet)")*/
+    @PreAuthorize("hasAuthority('PET_OWNER')")
     @RequestMapping(value = "/edit/{idPet}", method = RequestMethod.GET)
     public String edit(Model model, @PathVariable Integer idPet) {
         Pet pet = petService.findOne(idPet);
