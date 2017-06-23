@@ -15,12 +15,14 @@
 <script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
 
 <#include "/template/navbar.ftl">
+
+<div class="header-margin2">
 <#--Поиск заявок-->
 <#include "/template/search/findbids.ftl">
-
-<div class="section">
+</div>
+<div class="row center-align">
 <#if bidList??>
-    <table class="striped responsive-table">
+    <table class="striped responsive-table m2">
         <thead>
         <tr>
             <th>Статус</th>
@@ -57,10 +59,6 @@
     </table>
 </#if>
 </div>
-
-<footer>
-    footer
-</footer>
 </body>
 </html>
 
