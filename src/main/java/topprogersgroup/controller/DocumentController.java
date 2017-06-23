@@ -118,7 +118,7 @@ public class DocumentController {
             bid1.setStatus(bid.getStatus());
             bidService.save(bid1);
         }
-        return String.format("redirect:docs/%d",0);
+        return  String.format("redirect:/docs/%d",0);
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
@@ -139,8 +139,7 @@ public class DocumentController {
     @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value = {"/accepted/bid/{idBid}"}, method = RequestMethod.GET)
     public String createVetDocForAcceptedBid(Model model,
-                                             @PathVariable Integer idBid,
-                                             @ModelAttribute("numberPage")Integer numberPage){
+                                             @PathVariable Integer idBid){
         Bid bid = bidService.findOne(idBid);
         if(bid.getStatus().equals(BID_ACCEPTED)){
             VeterinaryDocument vetDoc = new VeterinaryDocument();
@@ -152,10 +151,9 @@ public class DocumentController {
 //           todo: Таня допиши, сюда что еще нужно для формирования ВетДока, может массив СпецОтметок
             model.addAttribute("vetDoc",vetDoc);
             model.addAttribute("bid", bid);
-            model.addAttribute("numberPage",numberPage);
             return "document/vetdoc";
         }
-        return String.format("redirect:/docs/accepted/page/%d",numberPage);
+        return String.format("redirect:/docs/accepted/page/%d",0);
     }
 
     //Создать Вет. Документ по Принятому БИДу
@@ -165,8 +163,7 @@ public class DocumentController {
                                              @PathVariable Integer idBid,
                                              @ModelAttribute("bid")Bid bid,
                                              @ModelAttribute("vetDoc") VeterinaryDocument vetDoc,
-                                             BindingResult bindingVetDocResult,
-                                             @ModelAttribute("numberPage")Integer numberPage){
+                                             BindingResult bindingVetDocResult){
         if(bindingVetDocResult.hasErrors()){
             return "document/vetdoc";
         }
