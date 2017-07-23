@@ -22,7 +22,7 @@
             <a href="/office/pets/${pet.id}">
                 <div class="card">
                     <div class="card-image">
-                        <img src="${pet.passport.images[0].path!""}" class="responsive-img" alt=""/>
+                        <img src="/resources/images/pet.png" class="responsive-img" alt=""/>
                     </div>
                     <div class="card-content">
                         <h3 class="light">${pet.passport.petName!""}</h3>
@@ -38,9 +38,5 @@
     </#list>
     </ul>
 </div>
-
-<footer class="footer">
-    footer
-</footer>
 </body>
 </html>

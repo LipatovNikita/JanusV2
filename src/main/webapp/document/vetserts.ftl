@@ -15,8 +15,6 @@
 <script type="text/javascript" rel="script" src="/resources/js/office.js"></script>
 
 <#include "/template/navbar.ftl">
-
-
 <div class="section">
 <#if vetSertList??>
     <table class="striped responsive-table">
@@ -62,9 +60,6 @@
 </#if>
 </div>
 
-<footer>
-    footer
-</footer>
 </body>
 </html>
 

@@ -9,9 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import topprogersgroup.entity.*;
-import topprogersgroup.service.BidService;
-import topprogersgroup.service.VeterinaryCertificateService;
-import topprogersgroup.service.VeterinaryDocumentService;
+import topprogersgroup.service.*;
 
 import javax.validation.Valid;
 import java.util.Date;
@@ -60,8 +58,8 @@ public class DocumentController {
     @RequestMapping(value = {"/{numberPage}"}, method = RequestMethod.GET)
     public String all(Model model,
                       @PathVariable Integer numberPage){
-        if(numberPage <= 0){
-            numberPage = 1;
+        if(numberPage < 0){
+            numberPage = 0;
         }
         Pageable pageable = new PageRequest(numberPage,20);
         List<Bid> bidList = bidService.findForPageByStatusAndSortDate(BID_PROCESSED,false, pageable);
@@ -77,7 +75,7 @@ public class DocumentController {
                           @RequestParam String ownerDocNumber){
         Set<Bid> bidList = bidService.findByDocumentNumberAndStatus(BID_PROCESSED,ownerDocNumber,false);
         model.addAttribute("bidList",bidList);
-        return "document/bids";
+        return "document/forfindbids";
     }
 
     //Поиск принятых заявок по номеру документа Владельца(находятся на странице - findacceptedbids)
@@ -87,24 +85,22 @@ public class DocumentController {
                                   @RequestParam String ownerDocNumber){
         Set<Bid> bidList = bidService.findByDocumentNumberAndStatus(BID_ACCEPTED,ownerDocNumber,false);
         model.addAttribute("bidList",bidList);
-        return "document/bids";
+        return "document/forfindbids";
     }
 
     //Выбранная заявка
     @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value = {"/bid/{idBid}"}, method = RequestMethod.GET)
     public String processBid(Model model,
-                             @PathVariable Integer idBid,
-                             @ModelAttribute("numberPage")Integer numberPage){
+                             @PathVariable Integer idBid){
         Bid bid = bidService.findOne(idBid);
         if(bid.getStatus().equals(BID_PROCESSED)){
             model.addAttribute("bid", bid);
             model.addAttribute("petList", bid.getPets());
             model.addAttribute("route", bid.getRoute());
-            model.addAttribute("numberPage",numberPage);
             return "document/bid";//Страница с заявкой
         }
-       return String.format("redirect:/docs/%d",numberPage);
+       return String.format("redirect:/docs/%d",0);
     }
 
     //Сохранения решения насчет заявки(ОТКЛОНЕНА или ПРИНЯТА)
@@ -113,23 +109,22 @@ public class DocumentController {
     public String processBid(Model model,
                              @Valid @ModelAttribute("bid")Bid bid,
                              BindingResult bindingResult,
-                             @ModelAttribute("numberPage")Integer numberPage){
-        if(bindingResult.hasErrors()){
-            return "document/bid";
-        }
+                             @PathVariable Integer idBid){
+        Bid bid1 = bidService.findOne(idBid);
         if(bid.getStatus().equals(BID_REJECTED) ||
                 bid.getStatus().equals(BID_ACCEPTED)){
-            bidService.save(bid);
+            bid1.setStatus(bid.getStatus());
+            bidService.save(bid1);
         }
-        return String.format("redirect:docs/%d",numberPage);
+        return  String.format("redirect:/docs/%d",0);
     }
 
     @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value = {"/accepted/page/{numberPage}"}, method = RequestMethod.GET)
     public String getAcceptedBidPage(Model model,
                                      @ModelAttribute("numberPage")Integer numberPage){
-        if(numberPage <= 0){
-            numberPage = 1;
+        if(numberPage < 0){
+            numberPage = 0;
         }
         Pageable pageable = new PageRequest(numberPage,20);
         List<Bid> bidList = bidService.findForPageByStatusAndSortDate(BID_ACCEPTED,false,pageable);
@@ -138,28 +133,33 @@ public class DocumentController {
         return "document/acceptedbids";
     }
 
+    @Autowired
+    CurrentUserService userService;
+
+    @Autowired
+    EmployeeService employeeService;
+
     //Создать Вет. Документ по Принятому БИДу
     @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value = {"/accepted/bid/{idBid}"}, method = RequestMethod.GET)
     public String createVetDocForAcceptedBid(Model model,
-                                             @PathVariable Integer idBid,
-                                             @ModelAttribute("numberPage")Integer numberPage){
+                                             @PathVariable Integer idBid){
         Bid bid = bidService.findOne(idBid);
         if(bid.getStatus().equals(BID_ACCEPTED)){
             VeterinaryDocument vetDoc = new VeterinaryDocument();
-            //            todo: Добавил дату, нужно удалить со старницы
             vetDoc.setIssueDate(new Date());
             vetDoc.setBid(bid);
             HashSet<SpecialNotes> notesSet = new HashSet<>();
             notesSet.add(new SpecialNotes());
             vetDoc.setSpecialNotes(notesSet);
-//            todo: Таня допиши, сюда что еще нужно для формирования ВетДока, может массив СпецОтметок
+            Employee employee = employeeService.findEmployeeByEmail(userService.getUserEmail(),false);
+            vetDoc.setEmployee(employee);
+            vetDoc.setStateVeterinaryService(employee.getStateVeterinaryService());
             model.addAttribute("vetDoc",vetDoc);
             model.addAttribute("bid", bid);
-            model.addAttribute("numberPage",numberPage);
             return "document/vetdoc";
         }
-        return String.format("redirect:/docs/accepted/page/%d",numberPage);
+        return String.format("redirect:/docs/accepted/page/%d",0);
     }
 
     //Создать Вет. Документ по Принятому БИДу
@@ -169,13 +169,11 @@ public class DocumentController {
                                              @PathVariable Integer idBid,
                                              @ModelAttribute("bid")Bid bid,
                                              @ModelAttribute("vetDoc") VeterinaryDocument vetDoc,
-                                             BindingResult bindingVetDocResult,
-                                             @ModelAttribute("numberPage")Integer numberPage){
+                                             BindingResult bindingVetDocResult){
         if(bindingVetDocResult.hasErrors()){
             return "document/vetdoc";
         }
 
-//        todo: Таня тоже для тебя прими что нужно в конроллере, но не возвращаемые страницы не изменяй
         vetDoc.setBid(bid);
         vetDoc.setStatus(VET_DOC_NOT_SENT);
         vetDoc = veterinaryDocService.create(vetDoc);
@@ -188,8 +186,8 @@ public class DocumentController {
     @RequestMapping(value = {"/vet/doc/page/{numberPage}"}, method = RequestMethod.GET)
     public String getVeterinaryDocumentList(Model model,
                                             @PathVariable Integer numberPage){
-        if(numberPage <= 0){
-            numberPage = 1;
+        if(numberPage < 0){
+            numberPage = 0;
         }
         Pageable pageable = new PageRequest(numberPage,20);
         List<VeterinaryDocument> vetDocList = veterinaryDocService.getAllVeterinaryDocumentPagingList(pageable);

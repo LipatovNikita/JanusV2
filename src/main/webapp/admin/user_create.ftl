@@ -89,7 +89,6 @@
                 </div>
             </div>
             <div class="col s12 m6">
-                <#--todo Доделать дату-->
                 <label for="employmentDate">Дата приема на работу</label>
                 <input type="text" name="employmentDate" id="employmentDate"
                        value="${(employee.employmentDate?string("dd/MM/yyyy"))!""}"/>

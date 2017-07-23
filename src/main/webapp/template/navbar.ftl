@@ -24,10 +24,10 @@
                 <li><a href="/admin/checkpoint/create">Добавить ПКВП</a></li>
                 <li><a href="/admin/vet/create">Добавить ГосВетСлужбу</a></li>
             <#elseif currentUser.role == "EMPLOYEE">
-                <li><a href="/docs/1">Заявки</a></li>
-                <li><a href="/docs/accepted/page/1">Принятые заявки</a></li>
-                <li><a href="/docs/vet/doc/page/1">Список ветеринарных свидетельств</a></li>
-                <li><a href="/docs/vet/sert/page/1">Список ветеринарных сертификатов</a></li>
+                <li><a href="/docs/0">Заявки</a></li>
+                <li><a href="/docs/accepted/page/0">Принятые заявки</a></li>
+                <li><a href="/docs/vet/doc/page/0">Список ветеринарных свидетельств</a></li>
+                <li><a href="/docs/vet/sert/page/0">Список ветеринарных сертификатов</a></li>
             <#elseif currentUser.role == "PET_OWNER">
                 <li><a href="/office/pets">Мои питомцы</a></li>
                 <li><a href="/office/bids">Мои заявки</a></li>

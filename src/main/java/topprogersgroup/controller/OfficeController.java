@@ -201,7 +201,7 @@ public class OfficeController {
         if (bid.getStatus().equals(BID_CREATED)) {
             bid.setStatus(BID_PROCESSED);
             bidService.save(bid);
-            return "/office/bids";
+            return "redirect:/office/bids";
         } else if (bid.getStatus().equals(BID_REJECTED)) {
             return String.format("redirect:/office/bids/%d/edit", idBid);
         }
