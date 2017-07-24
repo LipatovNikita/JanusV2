@@ -5,6 +5,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 // ветеринарное свидетельство
@@ -39,8 +40,8 @@ public class VeterinaryDocument{
     @Column(name = "number", nullable = false, unique = true)
     private int number;
 
-    @OneToMany(mappedBy = "veterinaryDocument", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<SpecialNotes> specialNotes;
+    @OneToMany(mappedBy = "veterinaryDocument", cascade = CascadeType.ALL)
+    private List<SpecialNotes> specialNotes;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "employee", nullable = false)
